@@ -1,0 +1,4 @@
+user_input_files/
+dist/
+node_modules/
+.DS_Store
