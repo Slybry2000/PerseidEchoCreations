@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+            location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+        }
+    </script>
+    <title>Perseid Echo Creations | Thoughtful Digital Products</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030818;
+            --panel: #0b1626;
+            --card: #131c2c;
+            --text: #f7f8fb;
+            --muted: #8ea2c3;
+            --accent: #4ad3c5;
+            --accent-strong: #2e8a85;
+            --border: rgba(255, 255, 255, 0.12);
+            --radius: 18px;
+            --shadow: 0 18px 50px rgba(2, 3, 12, 0.8);
+            --transition: 260ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+            background:
+                radial-gradient(circle at 20% -10%, rgba(74, 211, 197, 0.15), transparent 45%),
+                radial-gradient(circle at 80% 0%, rgba(45, 138, 133, 0.18), transparent 40%),
+                #030818;
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 32px);
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(1180px, 92vw);
+            margin: 0 auto;
+            padding: 2rem 0 5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4.5rem;
+        }
+
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin: 0 auto;
+            max-width: 1180px;
+            padding: 1rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(5, 10, 24, 0.75);
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(130deg, rgba(74, 211, 197, 0.92), rgba(30, 70, 141, 0.9));
+            box-shadow: 0 10px 28px rgba(74, 211, 197, 0.35);
+        }
+
+        .nav-brand strong {
+            font-family: "Sora", "Segoe UI", sans-serif;
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.1rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: rgba(74, 211, 197, 0.15);
+        }
+
+        .nav-toggle {
+            display: none;
+            border: 1px solid var(--border);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: transparent;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 2px;
+            background: var(--text);
+            transform: translate(-50%, -50%);
+            transition: var(--transition);
+        }
+
+        .nav-toggle span:nth-child(1) {
+            top: 45%;
+        }
+
+        .nav-toggle span:nth-child(2) {
+            top: 55%;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .hero {
+            padding-top: 1rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.7rem, 5vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            color: var(--muted);
+            margin-bottom: 1.6rem;
+            font-size: 1.05rem;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.68rem;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn.primary {
+            background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+            color: #fff;
+            box-shadow: 0 15px 35px rgba(46, 138, 133, 0.35);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn.ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-meta {
+            display: inline-flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .hero-meta span {
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-panel {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(15, 24, 40, 0.85));
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-panel h2 {
+            margin: 0.6rem 0;
+            font-size: 1.5rem;
+        }
+
+        .hero-panel p {
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .panel-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.62rem;
+            color: var(--accent);
+        }
+
+        .panel-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        .section {
+            padding: 0;
+        }
+
+        .section-head {
+            max-width: 720px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-head p {
+            color: var(--muted);
+        }
+
+        .build-grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .build-card {
+            background: var(--panel);
+            border-radius: var(--radius);
+            padding: 1.6rem;
+            border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .build-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+
+        .build-card h3 {
+            margin-bottom: 0.6rem;
+        }
+
+        .build-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .product-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 26px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(74, 211, 197, 0.18), rgba(19, 33, 54, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 320px;
+            filter: saturate(1.1);
+        }
+
+        .product-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .product-body h3 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .product-body p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .product-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .product-list li {
+            position: relative;
+            padding-left: 1.1rem;
+        }
+
+        .product-list li::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .product-link {
+            align-self: flex-start;
+            font-size: 0.82rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .approach-card {
+            padding: 1.6rem;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .process-grid {
+            margin-top: 1.8rem;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .process-step {
+            padding: 1.2rem;
+            background: var(--panel);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .process-step h4 {
+            margin-bottom: 0.45rem;
+        }
+
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .trust-grid {
+            margin-top: 1.6rem;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .trust-card {
+            padding: 1rem 1.2rem;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--muted);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            min-height: 320px;
+            border-radius: 24px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .about-content {
+            background: var(--panel);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .founder-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .founder-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 18px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+
+        .quote-panel {
+            padding: 1.4rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: linear-gradient(150deg, rgba(22, 27, 71, 0.84), rgba(11, 18, 37, 0.96));
+            box-shadow: var(--shadow);
+        }
+
+        .quote-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.55rem 0.9rem;
+            margin-bottom: 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .quote-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            object-fit: cover;
+        }
+
+        .quote-visual {
+            width: 100%;
+            min-height: 260px;
+            border-radius: 18px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            margin-bottom: 1rem;
+        }
+
+        .quote-panel p {
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 0.8rem;
+        }
+
+        .quote-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            color: var(--muted);
+        }
+
+        .quote-points li {
+            padding: 0.6rem 0.75rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .quote-form {
+            background: linear-gradient(170deg, rgba(16, 23, 44, 0.98), rgba(8, 13, 27, 0.98));
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .form-note {
+            margin-top: -0.3rem;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .form-note a {
+            color: var(--accent);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-panel {
+            padding: 2rem;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-panel ul {
+            list-style: none;
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            color: var(--muted);
+        }
+
+        .contact-panel li {
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-form {
+            padding: 2rem;
+            border-radius: 24px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .form-input {
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0.85rem 1rem;
+            color: var(--text);
+            font: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(74, 211, 197, 0.2);
+        }
+
+        .form-submit {
+            border-radius: 999px;
+            border: none;
+            padding: 0.85rem 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-status {
+            min-height: 1.2rem;
+            margin-top: -0.25rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .form-status.pending {
+            color: var(--accent);
+        }
+
+        .form-status.success {
+            color: #92f0dc;
+        }
+
+        .form-status.error {
+            color: #ffb5b5;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 2rem 0 3rem;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 600ms ease, transform 600ms ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1000px) {
+            .hero-grid,
+            .about-grid,
+            .quote-grid,
+            .contact-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .build-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.open {
+                display: flex;
+                position: absolute;
+                top: 72px;
+                right: 1rem;
+                left: 1rem;
+                flex-direction: column;
+                gap: 0.4rem;
+                padding: 0.8rem;
+                border-radius: 16px;
+                background: rgba(5, 10, 24, 0.95);
+                border: 1px solid var(--border);
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .top-nav {
+                border-radius: 16px;
+                padding: 0.7rem 0.8rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+
+            .product-card {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .section-head h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <div>
+                <strong>Perseid Echo</strong><br>
+                <span>Creations</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#what-we-build">What We Build</a></li>
+            <li><a href="#featured-products">Products</a></li>
+            <li><a href="#our-approach">Approach</a></li>
+            <li><a href="#how-we-work">Process</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#request-quote">Request Quote</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+    <main>
+        <header class="hero" id="hero">
+            <div class="hero-grid">
+                <div class="hero-text reveal">
+                    <p class="eyebrow">Independent product studio</p>
+                    <h1>Thoughtful digital products built to reduce friction, not add noise.</h1>
+                    <p>We design and build focused software experiences, tools that feel intentional, understandable, and useful from the first interaction.</p>
+                    <div class="hero-actions">
+                        <a class="btn primary" href="#featured-products">Explore products</a>
+                        <a class="btn ghost" href="#request-quote">Request a quote</a>
+                    </div>
+                    <div class="hero-meta">
+                        <span>Clarity over novelty</span>
+                        <span>Build small, learn fast</span>
+                        <span>No dark patterns</span>
+                    </div>
+                </div>
+                <div class="hero-panel reveal">
+                    <p class="panel-label">Studio signal</p>
+                    <h2>Current focus: practical tools with real utility.</h2>
+                    <p>Perseid Echo builds software where decisions become clearer, workflows feel lighter, and progress is measured through real behavior.</p>
+                    <ul class="panel-list">
+                        <li>The Green Felt Club is in closed testing.</li>
+                        <li>Domains: consumer apps, intelligent systems, product experiments.</li>
+                        <li>Promise: every feature must earn its place.</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <section id="what-we-build" class="section">
+            <div class="section-head reveal">
+                <p class="eyebrow">What we build</p>
+                <h2>Creating tools that matter.</h2>
+                <p>We focus on areas where careful product decisions make everyday experiences easier to understand.</p>
+            </div>
+            <div class="build-grid">
+                <article class="build-card reveal">
+                    <h3>Consumer applications</h3>
+                    <p>Practical, well-designed apps that solve specific problems without unnecessary complexity.</p>
+                </article>
+                <article class="build-card reveal">
+                    <h3>Intelligent systems</h3>
+                    <p>Data-driven logic, automation, and decision frameworks surface insight without overwhelming users.</p>
+                </article>
+                <article class="build-card reveal">
+                    <h3>Product experiments</h3>
+                    <p>Carefully scoped ideas tested in the real world, built small, refined quickly, and improved through use.</p>
+                </article>
+            </div>
+        </section>
+        <section id="featured-products" class="section">
+            <div class="section-head reveal">
+                <p class="eyebrow">Featured product</p>
+                <h2>Tools in motion, built for focused outcomes.</h2>
+                <p>The Green Felt Club is our latest companion app for improving pool performance without league overhead.</p>
+            </div>
+            <article class="product-card reveal">
+                <img class="product-image" src="user_input_files/Stop_Guessing__Start_Dominating__version_1 (1).png" alt="The Green Felt Club landing screen">
+                <div class="product-body">
+                    <span class="panel-label">Closed testing</span>
+                    <h3>The Green Felt Club</h3>
+                    <p>A smarter way to track, compare, and improve your pool game, without league bureaucracy.</p>
+                    <ul class="product-list">
+                        <li>Track matches and skill progression over time.</li>
+                        <li>Compare performance without league friction.</li>
+                        <li>Enable friendly competition with meaningful stats.</li>
+                    </ul>
+                    <a class="product-link" href="https://www.thegreenfeltclub.com/" target="_blank" rel="noopener noreferrer">Visit site</a>
+                </div>
+            </article>
+        </section>
+        <section id="our-approach" class="section">
+            <div class="section-head reveal">
+                <p class="eyebrow">Our approach</p>
+                <h2>Good products should feel obvious, not flashy.</h2>
+            </div>
+            <div class="approach-grid">
+                <article class="approach-card reveal">
+                    <h3>Clear purpose before feature expansion</h3>
+                    <p>Every feature must justify its existence. We start with the core problem and expand only when the foundation is solid.</p>
+                </article>
+                <article class="approach-card reveal">
+                    <h3>Simple systems that scale cleanly</h3>
+                    <p>We build architecture that can grow without becoming tangled. Clean foundations support long-term value.</p>
+                </article>
+                <article class="approach-card reveal">
+                    <h3>Design that supports understanding</h3>
+                    <p>Visual decisions help users accomplish goals, not compete for attention. Clarity guides every pixel.</p>
+                </article>
+                <article class="approach-card reveal">
+                    <h3>Ship early, refine with evidence</h3>
+                    <p>Real-world usage feedback creates better products than over-polished assumptions.</p>
+                </article>
+            </div>
+        </section>
+        <section id="how-we-work" class="section">
+            <div class="section-head reveal">
+                <p class="eyebrow">How we work</p>
+                <h2>Disciplined process, transparent delivery.</h2>
+                <p>Each stage is intentional so the product remains coherent as it grows.</p>
+            </div>
+            <div class="process-grid">
+                <article class="process-step reveal">
+                    <h4>Define the real problem</h4>
+                    <p>We isolate the friction point first, then build around the actual need.</p>
+                </article>
+                <article class="process-step reveal">
+                    <h4>Design the system</h4>
+                    <p>Architecture, logic, and intent come before visual finishes.</p>
+                </article>
+                <article class="process-step reveal">
+                    <h4>Build small and test early</h4>
+                    <p>Focused releases validate assumptions quickly and reduce long-term waste.</p>
+                </article>
+                <article class="process-step reveal">
+                    <h4>Iterate with intent</h4>
+                    <p>Every addition must earn its place through observed behavior and feedback.</p>
+                </article>
+            </div>
+        </section>
+        <section id="transparency" class="section">
+            <div class="section-head reveal">
+                <p class="eyebrow">Transparency & trust</p>
+                <h2>Relationship principles, not marketing copy.</h2>
+            </div>
+            <div class="trust-grid">
+                <article class="trust-card reveal">
+                    <h4>No dark patterns</h4>
+                    <p>Ethical design decisions by default.</p>
+                </article>
+                <article class="trust-card reveal">
+                    <h4>Privacy first</h4>
+                    <p>Minimal data collection and transparent intent.</p>
+                </article>
+                <article class="trust-card reveal">
+                    <h4>Clear pricing</h4>
+                    <p>No hidden cost structures, just honest access.</p>
+                </article>
+                <article class="trust-card reveal">
+                    <h4>Sustainable growth</h4>
+                    <p>Long-term value overrides short-lived spikes.</p>
+                </article>
+            </div>
+        </section>
+        <section id="about" class="section">
+            <div class="section-head reveal">
+                <p class="eyebrow">About the studio</p>
+                <h2>Perseid Echo Creations</h2>
+            </div>
+            <div class="about-grid">
+                <img class="about-image reveal" src="user_input_files/the_mascot-_the_echo_comet_what_it_is_a_singular_intelligent_comet_whose_identity_is_expressed_thro_yn5st8a7fmiy47lga3x8_1.png" alt="Perseid Echo mascot">
+                <div class="about-content reveal">
+                    <h3>About the studio</h3>
+                    <p>Perseid Echo Creations is an independent product studio building useful digital tools with restraint and care.</p>
+                    <p>We operate at the intersection of product design, systems thinking, and practical engineering, favoring clarity over novelty and longevity over trends.</p>
+                    <p>This studio exists to explore ideas worth building and to ship products that improve how people make decisions, learn skills, and use their time.</p>
+                </div>
+            </div>
+        </section>
+        <section id="founder" class="section">
+            <article class="founder-card reveal">
+                <img class="founder-avatar" src="user_input_files/PEC_Modern_Icon.jpeg" alt="Founder portrait">
+                <div>
+                    <h3>The Founder</h3>
+                    <p>Perseid Echo Creations is led by an experienced product builder with a background in customer experience, systems design, and applied technology. The work blends strategic thinking with hands-on execution across product vision, technical implementation, and real-world usability.</p>
+                </div>
+            </article>
+        </section>
+        <section id="request-quote" class="section">
+            <div class="section-head reveal">
+                <p class="eyebrow">Build with us</p>
+                <h2>Request a quote for your app build.</h2>
+                <p>Share your goals and we will send back practical scope, timeline, and pricing guidance.</p>
+            </div>
+            <div class="quote-grid">
+                <article class="quote-panel reveal">
+                    <div class="quote-badge">
+                        <img class="quote-icon" src="assets/images/PEC_Modern_Icon_512.jpg" alt="Perseid Echo comet icon">
+                        <span>Custom app planning</span>
+                    </div>
+                    <img class="quote-visual" src="assets/images/PEC_Modern_Med.jpeg" alt="Perseid Echo brand artwork">
+                    <p>Quote requests include:</p>
+                    <ul class="quote-points">
+                        <li>A focused scope recommendation based on your goals.</li>
+                        <li>A proposed delivery path with milestones and timeline.</li>
+                        <li>Budget guidance aligned to product complexity.</li>
+                    </ul>
+                </article>
+                <form class="contact-form quote-form reveal" id="quote-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quote-name">Name</label>
+                            <input class="form-input" type="text" id="quote-name" name="quoteName" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quote-email">Email</label>
+                            <input class="form-input" type="email" id="quote-email" name="quoteEmail" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quote-company">Company or Brand</label>
+                            <input class="form-input" type="text" id="quote-company" name="quoteCompany" placeholder="Optional">
+                        </div>
+                        <div class="form-group">
+                            <label for="quote-type">App Type</label>
+                            <select class="form-input" id="quote-type" name="quoteType" required>
+                                <option value="">Select one</option>
+                                <option>Web app</option>
+                                <option>Mobile app</option>
+                                <option>Web + mobile app</option>
+                                <option>Internal business app</option>
+                                <option>Not sure yet</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quote-budget">Estimated Budget</label>
+                            <select class="form-input" id="quote-budget" name="quoteBudget" required>
+                                <option value="">Select range</option>
+                                <option>Under $5,000</option>
+                                <option>$5,000-$15,000</option>
+                                <option>$15,000-$40,000</option>
+                                <option>$40,000+</option>
+                                <option>Need guidance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quote-timeline">Target Timeline</label>
+                            <select class="form-input" id="quote-timeline" name="quoteTimeline" required>
+                                <option value="">Select timeline</option>
+                                <option>ASAP</option>
+                                <option>1-2 months</option>
+                                <option>3-6 months</option>
+                                <option>6+ months</option>
+                                <option>Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-summary">Project Summary</label>
+                        <textarea class="form-input" id="quote-summary" name="quoteSummary" placeholder="What should the app do, and who is it for?" rows="5" required></textarea>
+                    </div>
+                    <p class="form-note">We respond to quote requests at <a href="mailto:perseidechocreations@gmail.com">perseidechocreations@gmail.com</a>.</p>
+                    <p class="form-status" id="quote-form-status" role="status" aria-live="polite"></p>
+                    <button class="form-submit" type="submit">Request Quote</button>
+                </form>
+            </div>
+        </section>
+        <section id="contact" class="section">
+            <div class="section-head reveal">
+                <p class="eyebrow">Stay connected</p>
+                <h2>Get in touch.</h2>
+                <p>Interested in early access, product updates, or thoughtful collaboration? Send a message and we will reply promptly.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-panel reveal">
+                    <p>Send us a note for:</p>
+                    <ul>
+                        <li>Early access and release updates.</li>
+                        <li>Partnerships and product inquiries.</li>
+                        <li>Thoughtful, signal-first collaboration.</li>
+                    </ul>
+                </div>
+                <form class="contact-form reveal" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-input" id="message" name="message" placeholder="Tell us about your inquiry..." rows="4" required></textarea>
+                    </div>
+                    <button class="form-submit" type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Perseid Echo Creations. Thoughtful digital products, built with intention.</p>
+        <p><a class="btn ghost" href="#hero">Back to top</a></p>
+    </footer>
+    <script>
+        const navToggle = document.querySelector(".nav-toggle");
+        const navLinks = document.querySelector(".nav-links");
+        const quoteForm = document.getElementById("quote-form");
+        const quoteFormStatus = document.getElementById("quote-form-status");
+        const quoteSubmitButton = quoteForm ? quoteForm.querySelector('button[type="submit"]') : null;
+        const contactForm = document.getElementById("contact-form");
+        const revealElements = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        navToggle.addEventListener("click", () => {
+            navToggle.classList.toggle("active");
+            navLinks.classList.toggle("open");
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navToggle.classList.remove("active");
+                navLinks.classList.remove("open");
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", event => {
+                const target = document.querySelector(anchor.getAttribute("href"));
+                if (target) {
+                    event.preventDefault();
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            });
+        });
+
+        const setQuoteStatus = (message = "", state = "") => {
+            if (!quoteFormStatus) return;
+            quoteFormStatus.textContent = message;
+            quoteFormStatus.className = "form-status";
+            if (state) {
+                quoteFormStatus.classList.add(state);
+            }
+        };
+
+        if (quoteForm) {
+            quoteForm.addEventListener("submit", async event => {
+                event.preventDefault();
+                const data = new FormData(quoteForm);
+                const name = data.get("quoteName");
+                const email = data.get("quoteEmail");
+                const company = data.get("quoteCompany") || "Not provided";
+                const appType = data.get("quoteType");
+                const budget = data.get("quoteBudget");
+                const timeline = data.get("quoteTimeline");
+                const summary = data.get("quoteSummary");
+                const payload = { name, email, company, appType, budget, timeline, summary };
+
+                setQuoteStatus("Sending quote request...", "pending");
+                if (quoteSubmitButton) {
+                    quoteSubmitButton.disabled = true;
+                }
+
+                try {
+                    const response = await fetch("/api/quote-request", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json().catch(() => ({}));
+                    if (!response.ok) {
+                        throw new Error(result.message || "Unable to submit quote request right now.");
+                    }
+
+                    quoteForm.reset();
+                    setQuoteStatus("Quote request sent successfully. We will follow up soon.", "success");
+                } catch (error) {
+                    setQuoteStatus(error.message || "Submission failed. Email us directly at perseidechocreations@gmail.com.", "error");
+                } finally {
+                    if (quoteSubmitButton) {
+                        quoteSubmitButton.disabled = false;
+                    }
+                }
+            });
+        }
+
+        if (contactForm) {
+            contactForm.addEventListener("submit", event => {
+                event.preventDefault();
+                const data = new FormData(contactForm);
+                const name = data.get("name");
+                const email = data.get("email");
+                const message = data.get("message");
+                const subject = encodeURIComponent(`Message from ${name}`);
+                const body = encodeURIComponent(`Name: ${name}\\nEmail: ${email}\\n\\nMessage:\\n${message}`);
+                window.location.href = `mailto:perseidechocreations@gmail.com?subject=${subject}&body=${body}`;
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
