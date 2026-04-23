@@ -1,0 +1,1176 @@
+/* =========================================================
+   Cinematic Modules — Perseid Echo Creations
+   Namespace: .pec-*
+   Palette: retokenized from modules' golden to PECWEB cyan/blue/purple
+   All scroll-pinned modules disabled under prefers-reduced-motion.
+   ========================================================= */
+
+/* Reduced-motion master switch — loaded styles still render, motion stops */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================================
+   1. Ambient — canvas mesh gradient layer
+   Canvas sits just above the CSS .bg-mesh fallback div, still
+   behind all content. If JS is disabled or reduced-motion is on,
+   the canvas stays blank and the CSS gradient below shows through.
+   ========================================================= */
+.pec-mesh-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    display: block;
+    opacity: 0.85;
+    /* Promote to its own layer to avoid repaints under content */
+    will-change: transform;
+}
+
+/* When the canvas is active, dim the CSS fallback so they don't stack
+   into an over-bright mesh. */
+body:has(.pec-mesh-canvas) .bg-mesh {
+    opacity: 0.35;
+}
+
+/* =========================================================
+   2. Cursor — soft glow trail
+   ========================================================= */
+.pec-cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74, 211, 197, 0.14) 0%, rgba(74, 211, 197, 0.04) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+
+.pec-cursor-glow.is-active {
+    opacity: 1;
+}
+
+@media (hover: none) {
+    .pec-cursor-glow { display: none; }
+}
+
+/* =========================================================
+   3. Hero — text-mask reveal on H1
+   Two stacked copies of the headline: outline (stroke) on bottom,
+   gradient-filled on top, clipped to 0% initially. GSAP ScrollTrigger
+   animates the clip-path so the fill rises from bottom as user scrolls.
+   ========================================================= */
+.pec-mask-h1 {
+    position: relative;
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    min-height: 1.1em;
+}
+
+.pec-mask-stroke,
+.pec-mask-fill {
+    display: block;
+    position: relative;
+}
+
+.pec-mask-stroke {
+    color: transparent;
+    -webkit-text-stroke: 1.2px rgba(247, 248, 251, 0.35);
+    /* Subtle visible tint so it's not a ghost before the fill arrives */
+    background: linear-gradient(135deg, rgba(247,248,251,0.12) 0%, rgba(161,161,170,0.08) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.pec-mask-fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 50%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    /* Starts fully clipped from the top — fill rises as user scrolls */
+    clip-path: inset(100% 0 0 0);
+    will-change: clip-path;
+}
+
+/* =========================================================
+   4. Hero — typewriter subtitle
+   ========================================================= */
+.pec-hero-sub {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+}
+
+.pec-typewriter {
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.pec-typewriter::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--accent-cyan);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: pec-blink 0.6s step-end infinite;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.pec-typewriter.is-done::after {
+    opacity: 0;
+    animation: none;
+}
+
+@keyframes pec-blink {
+    50% { opacity: 0; }
+}
+
+.pec-sub-rest {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.pec-sub-rest.is-visible {
+    opacity: 1;
+}
+
+/* =========================================================
+   5. Hero — particle-button click bursts
+   Particles are spawned as absolutely positioned divs.
+   ========================================================= */
+.pec-particle {
+    position: fixed;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+}
+
+/* =========================================================
+   6. Dynamic-island status pill
+   Floats at the very top of the viewport, above the pill nav.
+   ========================================================= */
+.pec-island {
+    position: fixed;
+    top: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.9rem;
+    background: rgba(11, 22, 38, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    z-index: 101;
+    transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1),
+                width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1),
+                opacity 0.3s ease;
+    will-change: transform;
+}
+
+.pec-island.is-morphing {
+    transform: translateX(-50%) scale(0.92);
+    opacity: 0.6;
+}
+
+.pec-island-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px var(--accent-cyan);
+    animation: pec-island-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pec-island-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+@media (max-width: 640px) {
+    .pec-island {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.7rem;
+    }
+}
+
+/* =========================================================
+   7. Hero image-trail — tiny cyan echo dots behind cursor
+   Scoped to #pec-hero-visual only so it reinforces the
+   "Echo" brand metaphor without taking over the page.
+   ========================================================= */
+.pec-echo-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 12px rgba(74, 211, 197, 0.6);
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+    z-index: 2;
+    will-change: transform, opacity;
+}
+
+/* =========================================================
+   8. Scramble characters (used by text-scramble)
+   ========================================================= */
+.pec-scramble-char {
+    display: inline-block;
+    transition: color 0.12s ease;
+}
+.pec-scramble-char.scrambling { color: var(--text-muted); }
+.pec-scramble-char.resolved { color: inherit; }
+
+/* =========================================================
+   9. Odometer stat strip (Apps section)
+   ========================================================= */
+.pec-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 0 auto 3.5rem;
+    padding: 1.5rem 2rem;
+    max-width: 720px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    flex-wrap: wrap;
+}
+
+.pec-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.pec-stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--accent-cyan);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.pec-stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.pec-stat-divider {
+    width: 1px;
+    height: 2rem;
+    background: var(--border-color);
+}
+
+@media (max-width: 640px) {
+    .pec-stats { gap: 1.25rem; padding: 1rem 1.25rem; }
+    .pec-stat-divider { display: none; }
+}
+
+/* =========================================================
+   10. Flip cards (Apps grid replacement)
+   ========================================================= */
+.pec-flip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.pec-flip-card {
+    perspective: 1200px;
+    height: 420px;
+    cursor: pointer;
+    outline: none;
+}
+
+.pec-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pec-flip-card:hover .pec-flip-inner,
+.pec-flip-card:focus .pec-flip-inner,
+.pec-flip-card.is-flipped .pec-flip-inner {
+    transform: rotateY(180deg);
+}
+
+.pec-flip-front,
+.pec-flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.pec-flip-front {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+}
+
+.pec-flip-front .card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.5rem;
+    color: var(--accent-cyan);
+}
+
+.pec-flip-front h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.pec-flip-front p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.pec-flip-hint {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    opacity: 0.7;
+}
+
+.pec-flip-back {
+    background: linear-gradient(145deg, rgba(30, 70, 141, 0.35) 0%, rgba(46, 138, 133, 0.25) 100%);
+    border: 1px solid rgba(74, 211, 197, 0.25);
+    transform: rotateY(180deg);
+    color: var(--text-main);
+}
+
+.pec-flip-back h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--accent-cyan);
+}
+
+.pec-flip-stack {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.pec-flip-stack li {
+    padding-left: 1.1rem;
+    position: relative;
+}
+
+.pec-flip-stack li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--accent-cyan);
+}
+
+.pec-flip-stack strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.pec-flip-back p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.pec-flip-cta {
+    margin-top: auto;
+    color: var(--accent-cyan);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media (hover: none) {
+    /* Touch devices: flip on tap via .is-flipped (toggled in sections.js) */
+    .pec-flip-card:hover .pec-flip-inner { transform: none; }
+}
+
+/* =========================================================
+   11. Sticky stack (Featured Product section)
+   ========================================================= */
+.pec-sticky-stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.pec-sticky-visual {
+    position: sticky;
+    top: 8rem;
+}
+
+.pec-sticky-inner {
+    background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+}
+
+.pec-sticky-inner .product-visual {
+    margin-top: 1.5rem;
+}
+
+.pec-sticky-inner h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.pec-sticky-features {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.pec-feature {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2rem 2.25rem;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.4s ease;
+}
+
+.pec-feature:hover {
+    transform: translateY(-4px);
+    border-color: rgba(74, 211, 197, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.pec-feature-num {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--accent-cyan);
+    opacity: 0.7;
+}
+
+.pec-feature .pec-draw-check {
+    color: var(--accent-cyan);
+    margin-bottom: 1rem;
+}
+
+.pec-feature h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    color: var(--text-main);
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.pec-feature p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+    .pec-sticky-stack { grid-template-columns: 1fr; gap: 2.5rem; }
+    .pec-sticky-visual { position: static; }
+}
+
+/* =========================================================
+   12. Kinetic marquee (Product + Toolchain)
+   ========================================================= */
+.pec-marquee {
+    overflow: hidden;
+    padding: 2rem 0;
+    margin: 3rem 0;
+    position: relative;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.pec-marquee-track {
+    display: inline-flex;
+    gap: 2.5rem;
+    align-items: center;
+    white-space: nowrap;
+    animation: pec-marquee-scroll 38s linear infinite;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    font-weight: 500;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+    padding-left: 2.5rem;
+}
+
+.pec-marquee-dot {
+    color: var(--accent-cyan);
+    font-size: 0.5em;
+    transform: translateY(-0.25em);
+}
+
+@keyframes pec-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.pec-marquee-toolchain {
+    margin-top: 3rem;
+}
+
+.pec-marquee-toolchain .pec-marquee-track {
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pec-marquee-track { animation: none; transform: translateX(0); }
+}
+
+/* =========================================================
+   13. Sticky cards (About section)
+   Each child is position:sticky with a progressively greater top.
+   ========================================================= */
+.pec-sticky-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 780px;
+    margin: 0 auto 3rem;
+    padding-bottom: 6rem;
+}
+
+.pec-stack-card {
+    position: sticky;
+    border-radius: var(--radius-lg);
+    padding: 3rem 2.5rem;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    will-change: transform;
+}
+
+/* Solid --bg-surface base prevents content behind from bleeding through
+   when cards are stacked/pinned. Color-tint gradient layers on top. */
+.pec-stack-card.pec-stack-1 {
+    top: 6rem;
+    background:
+        linear-gradient(145deg, rgba(74, 211, 197, 0.14) 0%, transparent 60%),
+        var(--bg-surface);
+    z-index: 1;
+}
+.pec-stack-card.pec-stack-2 {
+    top: 7rem;
+    background:
+        linear-gradient(145deg, rgba(30, 70, 141, 0.22) 0%, transparent 60%),
+        var(--bg-surface);
+    z-index: 2;
+}
+.pec-stack-card.pec-stack-3 {
+    top: 8rem;
+    background:
+        linear-gradient(145deg, rgba(46, 138, 133, 0.2) 0%, transparent 60%),
+        var(--bg-surface);
+    z-index: 3;
+}
+
+.pec-stack-card .pec-stack-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-cyan);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.pec-stack-card h3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.pec-stack-card p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 55ch;
+}
+
+@media (max-width: 768px) {
+    .pec-stack-card { padding: 2rem 1.5rem; min-height: 240px; }
+    .pec-stack-card.pec-stack-1 { top: 5rem; }
+    .pec-stack-card.pec-stack-2 { top: 5.5rem; }
+    .pec-stack-card.pec-stack-3 { top: 6rem; }
+}
+
+/* =========================================================
+   14. Gradient-stroke heading (About H2)
+   Outlined text with an animated gradient fill sweep.
+   ========================================================= */
+.pec-stroke-gradient {
+    background: linear-gradient(90deg,
+        var(--accent-cyan) 0%,
+        var(--accent-blue) 30%,
+        var(--accent-purple) 60%,
+        var(--accent-cyan) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(74, 211, 197, 0.2);
+    animation: pec-stroke-sweep 8s linear infinite;
+}
+
+@keyframes pec-stroke-sweep {
+    from { background-position: 0% 50%; }
+    to { background-position: 200% 50%; }
+}
+
+/* =========================================================
+   15. SVG draw-in checkmarks (triggered via JS on scroll-in)
+   ========================================================= */
+.pec-draw-check {
+    color: var(--accent-cyan);
+    flex-shrink: 0;
+}
+
+.pec-draw-check polyline,
+.pec-draw-check path,
+.pec-draw-check line {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    transition: stroke-dashoffset 1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.pec-draw-check.is-drawn polyline,
+.pec-draw-check.is-drawn path,
+.pec-draw-check.is-drawn line {
+    stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pec-draw-check polyline,
+    .pec-draw-check path,
+    .pec-draw-check line {
+        stroke-dasharray: none;
+        stroke-dashoffset: 0;
+    }
+}
+
+/* =========================================================
+   16. Zoom-parallax divider (Now section)
+   ========================================================= */
+.pec-zoom-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0 2rem;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.pec-zoom-word {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(4rem, 14vw, 10rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(74, 211, 197, 0.15);
+    transform: translateZ(0) scale(var(--pec-zoom-scale, 1));
+    opacity: var(--pec-zoom-opacity, 0.85);
+    transition: transform 0.12s linear, opacity 0.12s linear;
+    will-change: transform, opacity;
+}
+
+/* =========================================================
+   17. Spotlight-border (Support cards)
+   A rim glow that follows the cursor along the border.
+   ========================================================= */
+.pec-spotlight {
+    position: relative;
+}
+
+.pec-spotlight::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+        240px 240px at var(--spot-x, -200px) var(--spot-y, -200px),
+        rgba(74, 211, 197, 0.55),
+        transparent 70%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.pec-spotlight:hover::after { opacity: 1; }
+
+/* =========================================================
+   18. Glitch-effect (Contact H2, one-shot on scroll-in)
+   ========================================================= */
+.pec-glitch {
+    position: relative;
+    display: inline-block;
+    color: var(--text-main);
+}
+
+.pec-glitch::before,
+.pec-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pec-glitch.is-glitching::before {
+    color: var(--accent-cyan);
+    animation: pec-glitch-1 0.9s steps(1, end) 1;
+    opacity: 1;
+    clip-path: inset(0 0 60% 0);
+    transform: translate(-2px, 0);
+    mix-blend-mode: screen;
+}
+
+.pec-glitch.is-glitching::after {
+    color: var(--accent-purple);
+    animation: pec-glitch-2 0.9s steps(1, end) 1;
+    opacity: 1;
+    clip-path: inset(55% 0 0 0);
+    transform: translate(2px, 0);
+    mix-blend-mode: screen;
+}
+
+@keyframes pec-glitch-1 {
+    0% { transform: translate(-3px, 0); clip-path: inset(10% 0 70% 0); }
+    25% { transform: translate(2px, -1px); clip-path: inset(40% 0 40% 0); }
+    50% { transform: translate(-1px, 1px); clip-path: inset(0 0 80% 0); }
+    75% { transform: translate(4px, 0); clip-path: inset(65% 0 10% 0); }
+    100% { transform: translate(0, 0); clip-path: inset(0 0 100% 0); opacity: 0; }
+}
+
+@keyframes pec-glitch-2 {
+    0% { transform: translate(3px, 1px); clip-path: inset(65% 0 10% 0); }
+    30% { transform: translate(-2px, -1px); clip-path: inset(30% 0 50% 0); }
+    60% { transform: translate(1px, 0); clip-path: inset(80% 0 0 0); }
+    100% { transform: translate(0, 0); clip-path: inset(100% 0 0 0); opacity: 0; }
+}
+
+/* =========================================================
+   19. Circular-text footer
+   ========================================================= */
+.pec-circular {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    color: var(--text-muted);
+}
+
+.pec-circular-svg {
+    width: 100%;
+    height: 100%;
+    animation: pec-spin-circ 40s linear infinite;
+}
+
+@keyframes pec-spin-circ {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.pec-circular-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    opacity: 0.55;
+    color: var(--accent-cyan);
+}
+
+/* =========================================================
+   21. About story block — "The shift" narrative
+   ========================================================= */
+.pec-story {
+    max-width: 780px;
+    margin: 0 auto 3.5rem;
+    padding: 2.5rem 2.75rem;
+    background: linear-gradient(145deg, rgba(74, 211, 197, 0.05) 0%, rgba(30, 70, 141, 0.05) 100%);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-cyan);
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.pec-story p {
+    margin-bottom: 1rem;
+}
+
+.pec-story p:last-of-type {
+    margin-bottom: 0;
+}
+
+.pec-story strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.pec-story a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74, 211, 197, 0.3);
+    transition: border-color 0.25s ease;
+}
+
+.pec-story a:hover {
+    border-bottom-color: var(--accent-cyan);
+}
+
+.pec-story-lead {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    line-height: 1.4;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem !important;
+}
+
+.pec-story-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.5rem 1.5rem;
+}
+
+.pec-story-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-main);
+    font-size: 0.98rem;
+}
+
+.pec-story-list li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--accent-cyan);
+    font-weight: 700;
+}
+
+.pec-story-quote {
+    margin: 1.25rem 0 !important;
+    padding: 1rem 1.25rem;
+    border-left: 2px solid var(--accent-cyan);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-main);
+    background: rgba(74, 211, 197, 0.04);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.pec-story-tag {
+    margin-top: 1.25rem !important;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    font-weight: 500;
+}
+
+/* =========================================================
+   22. LinkedIn link pill
+   ========================================================= */
+.pec-linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+    padding: 0.55rem 1.1rem;
+    background: rgba(74, 211, 197, 0.08);
+    border: 1px solid rgba(74, 211, 197, 0.25);
+    border-radius: 999px;
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.pec-linkedin-link svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.pec-linkedin-link:hover {
+    background: rgba(74, 211, 197, 0.15);
+    border-color: var(--accent-cyan);
+    transform: translateY(-1px);
+}
+
+.pec-linkedin-contact {
+    align-self: center;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+    .pec-story { padding: 2rem 1.5rem; }
+}
+
+/* =========================================================
+   23. Hero background — orbital SVG sits behind centered text
+   Overrides the original 2-column grid so the comet/echo system
+   becomes the dramatic backdrop instead of a side visual.
+   ========================================================= */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark radial vignette behind the text that tames any remaining SVG
+   glow near the content. Sits above .hero-visual (z-index 1) but
+   below .hero-grid (z-index 3). */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            ellipse 70% 55% at 50% 55%,
+            rgba(3, 8, 24, 0.85) 0%,
+            rgba(3, 8, 24, 0.6) 40%,
+            rgba(3, 8, 24, 0.25) 70%,
+            transparent 90%
+        );
+}
+
+.hero-grid {
+    grid-template-columns: 1fr;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    gap: 0;
+}
+
+.hero-content {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-content .pec-hero-sub {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-actions {
+    justify-content: center;
+}
+
+.hero-visual {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    z-index: 1;
+    opacity: 0.22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Shift the whole orbital upward so the bright comet core
+       sits above the capability chip row rather than on the eyebrow/H1.
+       Transform on .hero-visual doesn't conflict with the .float
+       animation which lives on .svg-container (its child). */
+    transform: translateY(-48%);
+    /* Blur softens the rings + comet so they read as atmospheric
+       background rather than sharp foreground graphics. */
+    filter: blur(2px);
+    /* pointer-events stay on so the echo-trail dots spawn,
+       but content sits on top via z-index so links still work. */
+}
+
+.hero-visual .svg-container {
+    position: static;
+    top: auto;
+    left: auto;
+    width: min(110vh, 1100px);
+    height: min(110vh, 1100px);
+    max-width: none;
+    /* Keep float animation but ease the scale for a calmer backdrop */
+}
+
+.pec-mask-h1,
+.pec-mask-stroke,
+.pec-mask-fill {
+    text-align: center;
+}
+
+/* On narrow screens: shift the orbital further up + shrink the SVG
+   so the bright core clears the chips row and eyebrow entirely. */
+@media (max-width: 640px) {
+    .hero-visual {
+        opacity: 0.2;
+        align-items: center;
+        padding-top: 0;
+        transform: translateY(-62%);
+        filter: blur(1.5px);
+    }
+    .hero-visual .svg-container {
+        width: 90vw;
+        height: 90vw;
+    }
+    /* Mobile vignette focuses over the text block (which is lower on the viewport) */
+    .hero::before {
+        background:
+            radial-gradient(
+                ellipse 75% 45% at 50% 60%,
+                rgba(3, 8, 24, 0.9) 0%,
+                rgba(3, 8, 24, 0.7) 40%,
+                transparent 85%
+            );
+    }
+}
+
+/* =========================================================
+   24. Hero capability chips — AI Agents · AaaS · SaaS · Mobile
+   Small cyan-bordered pills sit above the eyebrow.
+   ========================================================= */
+.pec-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.pec-chip {
+    padding: 0.35rem 0.85rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(74, 211, 197, 0.3);
+    border-radius: 999px;
+    background: rgba(74, 211, 197, 0.06);
+    color: var(--accent-cyan);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.pec-chip:hover {
+    transform: translateY(-1px);
+    background: rgba(74, 211, 197, 0.12);
+    border-color: var(--accent-cyan);
+}
+
+/* =========================================================
+   20. Color-shift ambient drift
+   The body's --pec-hue custom property is mutated as user scrolls,
+   and the canvas mesh fallback reacts to it subtly.
+   ========================================================= */
+body {
+    --pec-hue: 0deg;
+}
+
+.bg-mesh {
+    filter: blur(60px) hue-rotate(var(--pec-hue));
+    transition: filter 0.6s linear;
+}

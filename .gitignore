@@ -2,3 +2,5 @@ user_input_files/
 dist/
 node_modules/
 .DS_Store
+.env
+assets/images/PEC_Modern_Large.png

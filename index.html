@@ -3,511 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bry Piard — Solo Indie Dev | Perseid Echo Creations</title>
+    <title>Bryan Piard — Solo Indie Dev | Perseid Echo Creations</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-base: #030818;
-            --bg-surface: #0b1626;
-            --bg-panel: rgba(255, 255, 255, 0.03);
-            --text-main: #f7f8fb;
-            --text-muted: #8ea2c3;
-            --accent-cyan: #4ad3c5;
-            --accent-blue: #1e468d;
-            --accent-purple: #2e8a85;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Animated Background Mesh */
-        .bg-mesh {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            background: 
-                radial-gradient(circle at 15% 50%, rgba(0, 85, 255, 0.08), transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.08), transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(112, 0, 255, 0.08), transparent 50%);
-            filter: blur(60px);
-            animation: mesh-breathe 10s ease-in-out infinite alternate;
-        }
-
-        @keyframes mesh-breathe {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
-        }
-
-        /* Grid Overlay */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-        }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, var(--text-main) 0%, #a1a1aa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .text-accent-gradient {
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 50%, var(--accent-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Layout */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 4rem);
-            max-width: 1280px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 100px;
-            z-index: 100;
-            transition: var(--transition-smooth);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
-        .brand svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: var(--transition-smooth);
-        }
-
-        .nav-links a:hover {
-            color: var(--text-main);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-            opacity: 0;
-            transition: var(--transition-smooth);
-            z-index: 1;
-        }
-
-        .btn-primary span {
-            position: relative;
-            z-index: 2;
-        }
-
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent-cyan);
-            background: rgba(0, 240, 255, 0.05);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 6rem;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(3rem, 5vw, 5rem);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content p {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            max-width: 90%;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        /* Advanced SVG Animations */
-        .hero-visual {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1/1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .svg-container {
-            width: 120%;
-            height: 120%;
-            position: absolute;
-            top: -10%;
-            left: -10%;
-        }
-
-        /* SVG Animation Classes */
-        .draw-path {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: draw 6s cubic-bezier(0.4, 0, 0.2, 1) forwards infinite alternate;
-        }
-
-        .draw-path-delayed {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: draw 6s cubic-bezier(0.4, 0, 0.2, 1) 3s forwards infinite alternate;
-        }
-
-        .spin-slow {
-            transform-origin: center;
-            animation: spin 30s linear infinite;
-        }
-
-        .spin-slow-reverse {
-            transform-origin: center;
-            animation: spin 40s linear infinite reverse;
-        }
-
-        .pulse-glow {
-            animation: pulse 4s ease-in-out infinite alternate;
-        }
-
-        .float {
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes draw {
-            0% { stroke-dashoffset: 1000; }
-            100% { stroke-dashoffset: 0; }
-        }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0% { filter: drop-shadow(0 0 8px var(--accent-cyan)); opacity: 0.6; }
-            100% { filter: drop-shadow(0 0 25px var(--accent-blue)); opacity: 1; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Sections */
-        section {
-            padding: 8rem 0;
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-            max-width: 600px;
-        }
-
-        .eyebrow {
-            color: var(--accent-cyan);
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.125rem;
-        }
-
-        /* Cards with Hover Glow Effect */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .glow-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition-smooth);
-            z-index: 1;
-        }
-
-        /* Mouse tracking glow */
-        .glow-card::before {
-            content: "";
-            position: absolute;
-            top: var(--y, 0);
-            left: var(--x, 0);
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .glow-card:hover::before {
-            opacity: 1;
-        }
-
-        .glow-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 1.5rem;
-            color: var(--accent-cyan);
-        }
-
-        .glow-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .glow-card p {
-            color: var(--text-muted);
-        }
-
-        /* Featured Product */
-        .product-showcase {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-showcase::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 50%; height: 100%;
-            background: radial-gradient(circle at top right, rgba(0, 85, 255, 0.1), transparent 60%);
-            pointer-events: none;
-        }
-
-        .product-info h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .product-info ul {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .product-info li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            color: var(--text-muted);
-        }
-
-        .product-info li svg {
-            color: var(--accent-cyan);
-            flex-shrink: 0;
-        }
-
-        .product-visual {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .product-visual img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.7s ease;
-        }
-
-        .product-visual:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Scroll Reveal Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 4rem 0;
-            text-align: center;
-            color: var(--text-muted);
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-grid, .product-showcase {
-                grid-template-columns: 1fr;
-            }
-            .hero-content {
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .nav-links {
-                display: none;
-            }
-            .product-showcase {
-                padding: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/styles/base.css">
+    <link rel="stylesheet" href="/assets/styles/modules.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="/assets/scripts/ambient.js" defer></script>
+    <script src="/assets/scripts/cursor.js" defer></script>
+    <script src="/assets/scripts/hero.js" defer></script>
+    <script src="/assets/scripts/sections.js" defer></script>
+    <script src="/assets/scripts/reveals.js" defer></script>
 </head>
 <body>
 
     <div class="bg-mesh"></div>
+    <canvas class="pec-mesh-canvas" id="pec-mesh-canvas" aria-hidden="true"></canvas>
     <div class="bg-grid"></div>
+    <div class="pec-cursor-glow" aria-hidden="true"></div>
+
+    <!-- Morphing status island (macOS-style pill) -->
+    <div class="pec-island" id="pec-island" role="status" aria-live="polite">
+        <span class="pec-island-dot" aria-hidden="true"></span>
+        <span class="pec-island-text">Online</span>
+    </div>
 
     <nav>
         <a href="#" class="brand">
@@ -536,15 +57,27 @@
         <section class="hero container">
             <div class="hero-grid">
                 <div class="hero-content reveal">
-                    <span class="eyebrow">Solo Indie Developer</span>
-                    <h1 class="text-gradient">I build focused mobile apps that solve real problems.</h1>
-                    <p>I'm Bry Piard — the sole person behind Perseid Echo Creations. I ship apps fast, iterate based on real usage, and use AI tooling heavily. When something goes to production, I switch hats to reliability.</p>
+                    <div class="pec-chips" aria-label="What I build">
+                        <span class="pec-chip">AI Agents</span>
+                        <span class="pec-chip">AaaS</span>
+                        <span class="pec-chip">SaaS</span>
+                        <span class="pec-chip">Mobile Apps</span>
+                    </div>
+                    <span class="eyebrow" data-pec-scramble="Solo Indie Developer">Solo Indie Developer</span>
+                    <h1 class="pec-mask-h1">
+                        <span class="pec-mask-stroke" aria-hidden="true">I build focused mobile apps that solve real problems.</span>
+                        <span class="pec-mask-fill">I build focused mobile apps that solve real problems.</span>
+                    </h1>
+                    <p class="pec-hero-sub">
+                        <span class="pec-typewriter" data-pec-typewriter="I'm Bryan Piard — the sole person behind Perseid Echo Creations."></span>
+                        <span class="pec-sub-rest"> I ship apps fast, iterate based on real usage, and use AI tooling heavily. When something goes to production, I switch hats to reliability.</span>
+                    </p>
                     <div class="hero-actions">
-                        <a href="#apps" class="btn btn-primary"><span>See My Apps</span></a>
-                        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                        <a href="#apps" class="btn btn-primary" data-pec-particles><span>See My Apps</span></a>
+                        <a href="#contact" class="btn btn-outline" data-pec-particles>Get in Touch</a>
                     </div>
                 </div>
-                <div class="hero-visual reveal">
+                <div class="hero-visual reveal" id="pec-hero-visual">
                     <div class="svg-container float">
                         <!-- Super Refined SVG Animation -->
                         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
@@ -590,7 +123,7 @@
                             <g transform="translate(400, 400)">
                                 <circle cx="0" cy="0" r="45" fill="url(#cyan-blue)" class="pulse-glow" filter="url(#glow-intense)" opacity="0.9" />
                                 <circle cx="0" cy="0" r="20" fill="#ffffff" filter="url(#glow)" />
-                                
+
                                 <!-- Orbiting Particles -->
                                 <g class="spin-slow">
                                     <circle cx="120" cy="0" r="6" fill="var(--accent-cyan)" filter="url(#glow)" />
@@ -610,43 +143,98 @@
                 <h2>Proof of work, not pitch decks.</h2>
                 <p>I build, ship, and iterate. Here's what I've put in front of real users. Status tags are honest — no "coming soon" theatre.</p>
             </div>
-            
-            <div class="grid-3">
-                <div class="glow-card reveal">
-                    <!-- Animated SVG Icon -->
-                    <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="4" y="8" width="40" height="32" rx="6" stroke="currentColor" stroke-width="2" class="draw-path"/>
-                        <path d="M12 16H24" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path-delayed"/>
-                        <path d="M12 24H36" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path"/>
-                        <path d="M12 32H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path-delayed"/>
-                    </svg>
-                    <span class="eyebrow" style="color: var(--accent-purple); margin-bottom: 0.5rem;">● Closed Beta</span>
-                    <h3>The Green Felt Club</h3>
-                    <p>A pool game tracker built in Flutter + Firebase. Match history, skill progression, and friendly competition — no league admin overhead. Built, designed, and shipped solo.</p>
-                    <a href="https://www.thegreenfeltclub.com/" target="_blank" style="display: inline-block; margin-top: 1.25rem; color: var(--accent-cyan); font-size: 0.875rem; font-weight: 600; text-decoration: none;">Visit website →</a>
+
+            <!-- Odometer stat strip — honest numbers, cyan-accented -->
+            <div class="pec-stats reveal">
+                <div class="pec-stat">
+                    <span class="pec-stat-num" data-pec-count="1">0</span>
+                    <span class="pec-stat-label">app shipped</span>
                 </div>
-                
-                <div class="glow-card reveal" style="transition-delay: 0.1s;">
-                    <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" class="spin-slow"/>
-                        <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2" class="draw-path"/>
-                        <circle cx="24" cy="24" r="4" fill="currentColor" class="pulse-glow"/>
-                        <path d="M24 4V12M24 36V44M4 24H12M36 24H44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    <span class="eyebrow" style="color: var(--accent-cyan); margin-bottom: 0.5rem;">● In Development</span>
-                    <h3>More in the pipeline</h3>
-                    <p>I prototype fast and test with real users early. If you're seeing this, I'm probably mid-build on something new. Check back or follow along for updates.</p>
+                <div class="pec-stat-divider" aria-hidden="true"></div>
+                <div class="pec-stat">
+                    <span class="pec-stat-num" data-pec-count="0">0</span>
+                    <span class="pec-stat-label">fake launches</span>
+                </div>
+                <div class="pec-stat-divider" aria-hidden="true"></div>
+                <div class="pec-stat">
+                    <span class="pec-stat-num" data-pec-count="100" data-pec-count-suffix="%">0</span>
+                    <span class="pec-stat-label">solo-built</span>
+                </div>
+            </div>
+
+            <div class="pec-flip-grid">
+                <div class="pec-flip-card reveal" tabindex="0">
+                    <div class="pec-flip-inner">
+                        <div class="pec-flip-front">
+                            <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="4" y="8" width="40" height="32" rx="6" stroke="currentColor" stroke-width="2" class="draw-path"/>
+                                <path d="M12 16H24" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path-delayed"/>
+                                <path d="M12 24H36" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path"/>
+                                <path d="M12 32H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path-delayed"/>
+                            </svg>
+                            <span class="eyebrow" style="color: var(--accent-purple); margin-bottom: 0.5rem;">● Closed Beta</span>
+                            <h3>The Green Felt Club</h3>
+                            <p>A pool game tracker built in Flutter + Firebase. Match history, skill progression, and friendly competition — no league admin overhead.</p>
+                            <span class="pec-flip-hint">Hover to see the stack →</span>
+                        </div>
+                        <div class="pec-flip-back">
+                            <h3>Under the hood</h3>
+                            <ul class="pec-flip-stack">
+                                <li><strong>Client:</strong> Flutter + Dart</li>
+                                <li><strong>Backend:</strong> Firebase — Auth, Firestore, Functions</li>
+                                <li><strong>Shipping channels:</strong> TestFlight + Play closed track</li>
+                                <li><strong>Designed, coded, shipped:</strong> solo</li>
+                            </ul>
+                            <a href="https://www.thegreenfeltclub.com/" target="_blank" class="pec-flip-cta">Visit website →</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="glow-card reveal" style="transition-delay: 0.2s;">
-                    <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M24 4L40 16V32L24 44L8 32V16L24 4Z" stroke="currentColor" stroke-width="2" class="draw-path"/>
-                        <path d="M24 4V24M40 16L24 24M8 16L24 24M24 44V24M40 32L24 24M8 32L24 24" stroke="currentColor" stroke-width="2" class="draw-path-delayed"/>
-                    </svg>
-                    <span class="eyebrow" style="color: var(--text-muted); margin-bottom: 0.5rem;">● Occasionally</span>
-                    <h3>Small Engagements</h3>
-                    <p>I occasionally take on audits, bug-fixes, or short MVP spikes for the right project. Not an agency — just a solo dev sometimes available for focused, well-scoped work.</p>
-                    <a href="#contact" style="display: inline-block; margin-top: 1.25rem; color: var(--accent-cyan); font-size: 0.875rem; font-weight: 600; text-decoration: none;">Get in touch →</a>
+                <div class="pec-flip-card reveal" style="transition-delay: 0.1s;" tabindex="0">
+                    <div class="pec-flip-inner">
+                        <div class="pec-flip-front">
+                            <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" class="spin-slow"/>
+                                <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2" class="draw-path"/>
+                                <circle cx="24" cy="24" r="4" fill="currentColor" class="pulse-glow"/>
+                                <path d="M24 4V12M24 36V44M4 24H12M36 24H44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="eyebrow" style="color: var(--accent-cyan); margin-bottom: 0.5rem;">● In Development</span>
+                            <h3>More in the pipeline</h3>
+                            <p>I prototype fast and test with real users early. If you're seeing this, I'm probably mid-build on something new.</p>
+                            <span class="pec-flip-hint">Hover for the hint →</span>
+                        </div>
+                        <div class="pec-flip-back">
+                            <h3>Currently prototyping</h3>
+                            <p>A second consumer app — early prototype, not ready to announce yet. Follow the <em>Right Now</em> section below for honest updates.</p>
+                            <a href="#now" class="pec-flip-cta">See what's on the desk →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pec-flip-card reveal" style="transition-delay: 0.2s;" tabindex="0">
+                    <div class="pec-flip-inner">
+                        <div class="pec-flip-front">
+                            <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 4L40 16V32L24 44L8 32V16L24 4Z" stroke="currentColor" stroke-width="2" class="draw-path"/>
+                                <path d="M24 4V24M40 16L24 24M8 16L24 24M24 44V24M40 32L24 24M8 32L24 24" stroke="currentColor" stroke-width="2" class="draw-path-delayed"/>
+                            </svg>
+                            <span class="eyebrow" style="color: var(--text-muted); margin-bottom: 0.5rem;">● Occasionally</span>
+                            <h3>Small Engagements</h3>
+                            <p>I occasionally take on audits, bug-fixes, or short MVP spikes for the right project. Not an agency — just a solo dev.</p>
+                            <span class="pec-flip-hint">Hover to see what fits →</span>
+                        </div>
+                        <div class="pec-flip-back">
+                            <h3>Good fits</h3>
+                            <ul class="pec-flip-stack">
+                                <li>Flutter/Firebase audits</li>
+                                <li>Short MVP spikes (2–4 weeks)</li>
+                                <li>Focused bug hunts on production code</li>
+                                <li>AI-workflow retrofits for small teams</li>
+                            </ul>
+                            <a href="#contact" class="pec-flip-cta">Get in touch →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -657,85 +245,157 @@
                 <h2>The Green Felt Club — a closer look.</h2>
             </div>
 
-            <div class="product-showcase reveal">
-                <div class="product-info">
-                    <span class="eyebrow" style="color: var(--accent-purple);">Closed Testing</span>
-                    <h3 class="text-accent-gradient">The Green Felt Club</h3>
-                    <p style="color: var(--text-muted); font-size: 1.125rem;">A smarter way to track, compare, and improve your pool game, without league bureaucracy.</p>
-                    
-                    <ul>
-                        <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Track matches and skill progression over time.
-                        </li>
-                        <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Compare performance without league friction.
-                        </li>
-                        <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Enable friendly competition with meaningful stats.
-                        </li>
-                    </ul>
-
-                    <a href="https://www.thegreenfeltclub.com/" target="_blank" class="btn btn-outline">Visit Website</a>
+            <div class="pec-sticky-stack">
+                <!-- LEFT: sticky visual + intro -->
+                <div class="pec-sticky-visual">
+                    <div class="pec-sticky-inner">
+                        <span class="eyebrow" style="color: var(--accent-purple);">Closed Testing</span>
+                        <h3 class="text-accent-gradient">The Green Felt Club</h3>
+                        <p style="color: var(--text-muted); font-size: 1.125rem;">A smarter way to track, compare, and improve your pool game, without league bureaucracy.</p>
+                        <div class="product-visual">
+                            <img src="user_input_files/Stop_Guessing__Start_Dominating__version_1 (1).png" alt="The Green Felt Club Interface" onerror="this.src='https://via.placeholder.com/600x400/111/333?text=The+Green+Felt+Club'">
+                        </div>
+                        <a href="https://www.thegreenfeltclub.com/" target="_blank" class="btn btn-outline" style="margin-top: 1.25rem;">Visit Website</a>
+                    </div>
                 </div>
-                <div class="product-visual">
-                    <!-- Fallback to a placeholder if image is missing, but using the original path -->
-                    <img src="user_input_files/Stop_Guessing__Start_Dominating__version_1 (1).png" alt="The Green Felt Club Interface" onerror="this.src='https://via.placeholder.com/600x400/111/333?text=The+Green+Felt+Club'">
+
+                <!-- RIGHT: features scroll past -->
+                <div class="pec-sticky-features">
+                    <div class="pec-feature reveal">
+                        <span class="pec-feature-num">01</span>
+                        <svg class="pec-draw-check" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <h4>Track matches and skill progression over time.</h4>
+                        <p>Every frame you log builds your long-term trend line. See how you improve week over week, not just who won last Tuesday.</p>
+                    </div>
+                    <div class="pec-feature reveal">
+                        <span class="pec-feature-num">02</span>
+                        <svg class="pec-draw-check" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <h4>Compare performance without league friction.</h4>
+                        <p>No captains, no weekly schedules, no admin. Just pick up a cue, log the game, and your stats catch up.</p>
+                    </div>
+                    <div class="pec-feature reveal">
+                        <span class="pec-feature-num">03</span>
+                        <svg class="pec-draw-check" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <h4>Enable friendly competition with meaningful stats.</h4>
+                        <p>Head-to-head records, venue-specific form, and handicapped leaderboards make small rivalries feel as real as any league.</p>
+                    </div>
+                    <div class="pec-feature reveal">
+                        <span class="pec-feature-num">04</span>
+                        <svg class="pec-draw-check" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <h4>Built where it counts — auth, data, and offline.</h4>
+                        <p>Flutter client with Firebase Auth and Firestore. Offline-first session logging, proper schema migrations, and no abandoned test accounts in production.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Kinetic marquee tagline strip -->
+        <div class="pec-marquee reveal" aria-hidden="true">
+            <div class="pec-marquee-track">
+                <span>Pool Tracker</span><span class="pec-marquee-dot">●</span>
+                <span>Flutter</span><span class="pec-marquee-dot">●</span>
+                <span>Firebase</span><span class="pec-marquee-dot">●</span>
+                <span>Closed Beta</span><span class="pec-marquee-dot">●</span>
+                <span>Indie-Built</span><span class="pec-marquee-dot">●</span>
+                <span>Pool Tracker</span><span class="pec-marquee-dot">●</span>
+                <span>Flutter</span><span class="pec-marquee-dot">●</span>
+                <span>Firebase</span><span class="pec-marquee-dot">●</span>
+                <span>Closed Beta</span><span class="pec-marquee-dot">●</span>
+                <span>Indie-Built</span><span class="pec-marquee-dot">●</span>
+            </div>
+        </div>
+
         <section id="about" class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">About Me</span>
-                <h2>Indie "vibe coder" — defined honestly.</h2>
+                <h2 class="pec-stroke-gradient" data-text="Indie &quot;vibe coder&quot; — defined honestly.">Indie "vibe coder" — defined honestly.</h2>
                 <p>Perseid Echo Creations is my personal studio name for the apps I ship. It's just me.</p>
             </div>
-            
-            <div class="grid-3">
-                <div class="glow-card reveal">
-                    <h3 style="font-size: 1.25rem; color: var(--accent-cyan);">Prototype fast.</h3>
+
+            <!-- The shift: 21 years in corporate → building in public -->
+            <div class="pec-story reveal">
+                <p class="pec-story-lead">I spent <strong>21 years</strong> inside a large company. Now I'm building.</p>
+                <p>My focus is on <strong>AI agentic systems</strong> — designing workflows where AI doesn't just assist, but actually carries work forward. Systems that:</p>
+                <ul class="pec-story-list">
+                    <li>generate ideas</li>
+                    <li>critique and improve them</li>
+                    <li>route decisions</li>
+                    <li>and produce real, usable outputs</li>
+                </ul>
+                <p>Alongside that, I'm developing digital products (AaaS / SaaS), including <a href="https://www.thegreenfeltclub.com/" target="_blank" rel="noopener">The Green Felt Club</a>.</p>
+                <p>The biggest shift hasn't been learning AI. It's been changing how I think about work:</p>
+                <p class="pec-story-quote">Less doing everything myself.<br>More designing systems that do the work with me.</p>
+                <p class="pec-story-tag">Still early. Building in public. Getting better every week.</p>
+                <a href="https://www.linkedin.com/in/bryan-piard-70575131/" target="_blank" rel="noopener" class="pec-linkedin-link">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3-.5-2-1.6-2-1.2 0-1.9.8-1.9 2V19h-3V9h2.9v1.3A3.1 3.1 0 0115 9c2.1 0 4 1.3 4 4.1V19z"/></svg>
+                    Follow along on LinkedIn
+                </a>
+            </div>
+
+            <div class="pec-sticky-cards">
+                <div class="pec-stack-card pec-stack-1">
+                    <span class="pec-stack-num">01 / 03</span>
+                    <h3>Prototype fast.</h3>
                     <p>I build small and test early. Real-world usage feedback creates better products than over-polished assumptions. I ship something working, then improve it.</p>
                 </div>
-                <div class="glow-card reveal" style="transition-delay: 0.1s;">
-                    <h3 style="font-size: 1.25rem; color: var(--accent-blue);">AI tooling, heavily.</h3>
+                <div class="pec-stack-card pec-stack-2">
+                    <span class="pec-stack-num">02 / 03</span>
+                    <h3>AI tooling, heavily.</h3>
                     <p>I use AI copilots throughout the build process. That's a feature, not a cheat — it lets me move fast as a solo developer without cutting corners on the things that matter.</p>
                 </div>
-                <div class="glow-card reveal" style="transition-delay: 0.2s;">
-                    <h3 style="font-size: 1.25rem; color: var(--accent-purple);">Boring where it counts.</h3>
+                <div class="pec-stack-card pec-stack-3">
+                    <span class="pec-stack-num">03 / 03</span>
+                    <h3>Boring where it counts.</h3>
                     <p>Production code is reliable where it has to be: payments, auth, and data paths get clean architecture, reproducible builds, and proper testing. No shortcuts there.</p>
                 </div>
             </div>
 
-            <div class="glow-card reveal" style="margin-top: 2rem; max-width: 800px;">
-                <p style="font-size: 1.125rem; line-height: 1.8; color: var(--text-muted);">
-                    <strong style="color: var(--text-main);">Toolchain:</strong> Flutter · Firebase · Dart · Node.js · JavaScript · GitHub · AI-assisted workflows
-                </p>
+            <!-- Toolchain marquee -->
+            <div class="pec-marquee pec-marquee-toolchain reveal" aria-label="Toolchain">
+                <div class="pec-marquee-track">
+                    <span>Flutter</span><span class="pec-marquee-dot">●</span>
+                    <span>Firebase</span><span class="pec-marquee-dot">●</span>
+                    <span>Dart</span><span class="pec-marquee-dot">●</span>
+                    <span>Node.js</span><span class="pec-marquee-dot">●</span>
+                    <span>JavaScript</span><span class="pec-marquee-dot">●</span>
+                    <span>GitHub</span><span class="pec-marquee-dot">●</span>
+                    <span>AI-assisted workflows</span><span class="pec-marquee-dot">●</span>
+                    <span>Flutter</span><span class="pec-marquee-dot">●</span>
+                    <span>Firebase</span><span class="pec-marquee-dot">●</span>
+                    <span>Dart</span><span class="pec-marquee-dot">●</span>
+                    <span>Node.js</span><span class="pec-marquee-dot">●</span>
+                    <span>JavaScript</span><span class="pec-marquee-dot">●</span>
+                    <span>GitHub</span><span class="pec-marquee-dot">●</span>
+                    <span>AI-assisted workflows</span><span class="pec-marquee-dot">●</span>
+                </div>
             </div>
         </section>
 
         <section id="now" class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Right Now</span>
-                <h2>What I'm currently building.</h2>
+                <h2 data-pec-scramble="What I'm currently building.">What I'm currently building.</h2>
                 <p>Updated regularly. This is what I'm actually working on this month.</p>
+            </div>
+
+            <!-- Zoom-parallax focus divider -->
+            <div class="pec-zoom-divider reveal" aria-hidden="true">
+                <span class="pec-zoom-word">Focus</span>
             </div>
 
             <div class="product-showcase reveal" style="grid-template-columns: 1fr;">
                 <div class="product-info">
                     <ul>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             Expanding The Green Felt Club — adding venue organiser tools and improving the onboarding flow based on beta feedback.
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             Scoping a second app concept — still in early prototype, not ready to announce.
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             This site — making it a genuine developer portfolio rather than a studio landing page.
                         </li>
                     </ul>
@@ -751,29 +411,30 @@
             </div>
 
             <div class="grid-3">
-                <div class="glow-card reveal">
+                <div class="glow-card pec-spotlight reveal">
                     <h3>The Green Felt Club</h3>
                     <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Pool game tracker. Currently in closed beta testing.</p>
                     <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
-                        <li><a href="mailto:perseidechocreations@gmail.com?subject=GFC Support" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">📧 Email support</a></li>
+                        <li><a href="mailto:Bryan@perseidechocreations.com?subject=GFC Support" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">📧 Email support</a></li>
                         <li><a href="https://www.thegreenfeltclub.com/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">🌐 App website</a></li>
                         <li><a href="https://www.thegreenfeltclub.com/privacy_policy.html" target="_blank" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy policy</a></li>
-                        <li><a href="mailto:perseidechocreations@gmail.com?subject=GFC Bug Report" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Report a bug</a></li>
+                        <li><a href="mailto:Bryan@perseidechocreations.com?subject=GFC Bug Report" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Report a bug</a></li>
                     </ul>
                 </div>
 
-                <div class="glow-card reveal" style="transition-delay: 0.1s;">
+                <div class="glow-card pec-spotlight reveal" style="transition-delay: 0.1s;">
                     <h3>General Enquiries</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Questions about an app, a data request, or anything else.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Questions about an app, a data request, or anything else. Email is best — LinkedIn works too.</p>
                     <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
-                        <li><a href="mailto:perseidechocreations@gmail.com" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">📧 perseidechocreations@gmail.com</a></li>
+                        <li><a href="mailto:Bryan@perseidechocreations.com" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">📧 Bryan@perseidechocreations.com</a></li>
+                        <li><a href="https://www.linkedin.com/in/bryan-piard-70575131/" target="_blank" rel="noopener" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">in Connect on LinkedIn</a></li>
                         <li><a href="https://www.thegreenfeltclub.com/account-deletion.html" target="_blank" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Request account deletion</a></li>
                     </ul>
                 </div>
 
-                <div class="glow-card reveal" style="transition-delay: 0.2s;">
+                <div class="glow-card pec-spotlight reveal" style="transition-delay: 0.2s;">
                     <h3>Response Times</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">I'm a solo developer, not a support team. I aim to respond within 2–3 business days.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">I'm a solo developer, not a support team. I aim to respond within 24 hours.</p>
                     <p style="color: var(--text-muted); font-size: 0.875rem;">For urgent issues (data loss, payment problems), mark your email subject "URGENT" and I'll prioritise it.</p>
                 </div>
             </div>
@@ -783,15 +444,19 @@
             <div class="product-showcase reveal" style="background: linear-gradient(145deg, rgba(0, 85, 255, 0.05) 0%, rgba(112, 0, 255, 0.05) 100%);">
                 <div class="product-info">
                     <span class="eyebrow">Get in Touch</span>
-                    <h2>Want to work together?</h2>
+                    <h2 class="pec-glitch" data-text="Want to work together?">Want to work together?</h2>
                     <p style="margin-top: 1rem; color: var(--text-muted);">I occasionally take small engagements — audits, MVP spikes, bug fixes — for the right project. Drop me an email with what you're building and I'll give you an honest answer on whether I can help.</p>
                     <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">Not an agency. No account managers. Just me.</p>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 1rem;">
-                    <a href="mailto:perseidechocreations@gmail.com" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.125rem;">
+                    <a href="mailto:Bryan@perseidechocreations.com" class="btn btn-primary" data-pec-particles style="padding: 1rem 2rem; font-size: 1.125rem;">
                         <span>Send Me an Email</span>
                     </a>
-                    <p style="text-align: center; color: var(--text-muted); font-size: 0.875rem;">perseidechocreations@gmail.com</p>
+                    <p style="text-align: center; color: var(--text-muted); font-size: 0.875rem;">Bryan@perseidechocreations.com</p>
+                    <a href="https://www.linkedin.com/in/bryan-piard-70575131/" target="_blank" rel="noopener" class="pec-linkedin-link pec-linkedin-contact">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3-.5-2-1.6-2-1.2 0-1.9.8-1.9 2V19h-3V9h2.9v1.3A3.1 3.1 0 0115 9c2.1 0 4 1.3 4 4.1V19z"/></svg>
+                        or connect on LinkedIn
+                    </a>
                 </div>
             </div>
         </section>
@@ -799,56 +464,23 @@
 
     <footer>
         <div class="container">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px; margin-bottom: 1rem; opacity: 0.5;">
-                <path d="M20 0L22.5 17.5L40 20L22.5 22.5L20 40L17.5 22.5L0 20L17.5 17.5L20 0Z" fill="currentColor"/>
-            </svg>
-            <p>&copy; 2026 Perseid Echo Creations — Bry Piard's personal studio label for indie apps.</p>
+            <!-- Circular-text signature mark -->
+            <div class="pec-circular" aria-hidden="true">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="pec-circular-svg">
+                    <defs>
+                        <path id="pec-circle-path" d="M 100, 100 m -72, 0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"></path>
+                    </defs>
+                    <text font-family="Space Grotesk, sans-serif" font-size="11" letter-spacing="4" fill="var(--text-muted)">
+                        <textPath href="#pec-circle-path">PERSEID · ECHO · CREATIONS · INDIE · DEV · 2026 · </textPath>
+                    </text>
+                </svg>
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="pec-circular-mark">
+                    <path d="M20 0L22.5 17.5L40 20L22.5 22.5L20 40L17.5 22.5L0 20L17.5 17.5L20 0Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <p>&copy; 2026 Perseid Echo Creations — Bryan Piard's personal studio label for indie apps.</p>
         </div>
     </footer>
 
-    <script>
-        // Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // Mouse tracking for glow cards
-        document.querySelectorAll('.glow-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                card.style.setProperty('--x', `${x}px`);
-                card.style.setProperty('--y', `${y}px`);
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
