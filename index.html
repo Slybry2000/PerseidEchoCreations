@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bryan Piard — Solo Indie Dev | Perseid Echo Creations</title>
+    <title>Perseid Echo Creations — An AI Solutions Practice | Bryan Piard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/styles/base.css">
-    <link rel="stylesheet" href="/assets/styles/modules.css">
+    <link rel="stylesheet" href="assets/styles/base.css">
+    <link rel="stylesheet" href="assets/styles/modules.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-    <script src="/assets/scripts/ambient.js" defer></script>
-    <script src="/assets/scripts/cursor.js" defer></script>
-    <script src="/assets/scripts/hero.js" defer></script>
-    <script src="/assets/scripts/sections.js" defer></script>
-    <script src="/assets/scripts/reveals.js" defer></script>
+    <script src="assets/scripts/ambient.js" defer></script>
+    <script src="assets/scripts/cursor.js" defer></script>
+    <script src="assets/scripts/hero.js" defer></script>
+    <script src="assets/scripts/sections.js" defer></script>
+    <script src="assets/scripts/reveals.js" defer></script>
+    <script src="assets/scripts/scroll-comet.js" defer></script>
 </head>
 <body>
 
@@ -23,6 +24,12 @@
     <canvas class="pec-mesh-canvas" id="pec-mesh-canvas" aria-hidden="true"></canvas>
     <div class="bg-grid"></div>
     <div class="pec-cursor-glow" aria-hidden="true"></div>
+
+    <!-- Scroll-driven comet that flies across the full viewport as the page scrolls -->
+    <div class="pec-scroll-comet" id="pec-scroll-comet" aria-hidden="true">
+        <div class="pec-scroll-comet-tail"></div>
+        <div class="pec-scroll-comet-head"></div>
+    </div>
 
     <!-- Morphing status island (macOS-style pill) -->
     <div class="pec-island" id="pec-island" role="status" aria-live="polite">
@@ -44,7 +51,7 @@
             Perseid Echo
         </a>
         <ul class="nav-links">
-            <li><a href="#apps">Apps</a></li>
+            <li><a href="#apps">Projects</a></li>
             <li><a href="#now">Now</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#support">Support</a></li>
@@ -59,22 +66,22 @@
                 <div class="hero-content reveal">
                     <div class="pec-chips" aria-label="What I build">
                         <span class="pec-chip">AI Agents</span>
+                        <span class="pec-chip">API Automation</span>
                         <span class="pec-chip">AaaS</span>
-                        <span class="pec-chip">SaaS</span>
                         <span class="pec-chip">Mobile Apps</span>
                     </div>
-                    <span class="eyebrow" data-pec-scramble="Solo Indie Developer">Solo Indie Developer</span>
+                    <span class="eyebrow" data-pec-scramble="AI Solutions Practice">AI Solutions Practice</span>
                     <h1 class="pec-mask-h1">
-                        <span class="pec-mask-stroke" aria-hidden="true">I build focused mobile apps that solve real problems.</span>
-                        <span class="pec-mask-fill">I build focused mobile apps that solve real problems.</span>
+                        <span class="pec-mask-stroke" aria-hidden="true">AI agents that quietly do real work for your business.</span>
+                        <span class="pec-mask-fill">AI agents that quietly do real work for your business.</span>
                     </h1>
                     <p class="pec-hero-sub">
-                        <span class="pec-typewriter" data-pec-typewriter="I'm Bryan Piard — the sole person behind Perseid Echo Creations."></span>
-                        <span class="pec-sub-rest"> I ship apps fast, iterate based on real usage, and use AI tooling heavily. When something goes to production, I switch hats to reliability.</span>
+                        <span class="pec-typewriter" data-pec-typewriter="I'm Bryan Piard — Perseid Echo Creations, an AI Solutions Practice."></span>
+                        <span class="pec-sub-rest"> Twenty-one years in customer experience and digital transformation, now building products of my own — and the agents and API automations that keep them running. I bring that same toolkit to other businesses ready to put AI to work properly.</span>
                     </p>
                     <div class="hero-actions">
-                        <a href="#apps" class="btn btn-primary" data-pec-particles><span>See My Apps</span></a>
-                        <a href="#contact" class="btn btn-outline" data-pec-particles>Get in Touch</a>
+                        <a href="#services" class="btn btn-primary" data-pec-particles><span>See What I Build</span></a>
+                        <a href="#contact" class="btn btn-outline" data-pec-particles>Start a Conversation</a>
                     </div>
                 </div>
                 <div class="hero-visual reveal" id="pec-hero-visual">
@@ -174,7 +181,7 @@
                             </svg>
                             <span class="eyebrow" style="color: var(--accent-purple); margin-bottom: 0.5rem;">● Closed Beta</span>
                             <h3>The Green Felt Club</h3>
-                            <p>A pool game tracker built in Flutter + Firebase. Match history, skill progression, and friendly competition — no league admin overhead.</p>
+                            <p>A pool game tracker — Flutter + Firebase. Built end-to-end with AI agents and vibe coding as a personal proving ground for agent-driven development.</p>
                             <span class="pec-flip-hint">Hover to see the stack →</span>
                         </div>
                         <div class="pec-flip-back">
@@ -182,8 +189,8 @@
                             <ul class="pec-flip-stack">
                                 <li><strong>Client:</strong> Flutter + Dart</li>
                                 <li><strong>Backend:</strong> Firebase — Auth, Firestore, Functions</li>
+                                <li><strong>Build process:</strong> 100% AI agents + vibe coding</li>
                                 <li><strong>Shipping channels:</strong> TestFlight + Play closed track</li>
-                                <li><strong>Designed, coded, shipped:</strong> solo</li>
                             </ul>
                             <a href="https://www.thegreenfeltclub.com/" target="_blank" class="pec-flip-cta">Visit website →</a>
                         </div>
@@ -200,19 +207,52 @@
                                 <path d="M24 4V12M24 36V44M4 24H12M36 24H44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                             <span class="eyebrow" style="color: var(--accent-cyan); margin-bottom: 0.5rem;">● In Development</span>
-                            <h3>More in the pipeline</h3>
-                            <p>I prototype fast and test with real users early. If you're seeing this, I'm probably mid-build on something new.</p>
-                            <span class="pec-flip-hint">Hover for the hint →</span>
+                            <h3>Bristlecone</h3>
+                            <p>An AI marketing OS for solo founders. You give it one goal; it picks a strategy, routes the work to AI agents, and carries the campaign forward — research, copy, creative, and send.</p>
+                            <span class="pec-flip-hint">Hover to see the stack →</span>
                         </div>
                         <div class="pec-flip-back">
-                            <h3>Currently prototyping</h3>
-                            <p>A second consumer app — early prototype, not ready to announce yet. Follow the <em>Right Now</em> section below for honest updates.</p>
-                            <a href="#now" class="pec-flip-cta">See what's on the desk →</a>
+                            <h3>Under the hood</h3>
+                            <ul class="pec-flip-stack">
+                                <li><strong>Agents:</strong> Claude Opus + Sonnet via the Claude Agent SDK — they decide, not just assist</li>
+                                <li><strong>Engine:</strong> Goal → Strategy → Tactic with a capability router (have / get / build / cannot)</li>
+                                <li><strong>AI tooling:</strong> Firecrawl for research, AgentMail for send, GPT Image 2 for creative</li>
+                                <li><strong>Runtime:</strong> Node.js, runtime-agnostic — runs the same on a laptop or a server</li>
+                            </ul>
+                            <a href="https://bristlecone.so" target="_blank" rel="noopener" class="pec-flip-cta">Visit bristlecone.so →</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="pec-flip-card reveal" style="transition-delay: 0.2s;" tabindex="0">
+                    <div class="pec-flip-inner">
+                        <div class="pec-flip-front">
+                            <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="14" cy="24" r="6" stroke="currentColor" stroke-width="2" class="draw-path"/>
+                                <circle cx="34" cy="24" r="6" stroke="currentColor" stroke-width="2" class="draw-path-delayed"/>
+                                <path d="M20 24H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path"/>
+                                <path d="M14 12V8M34 12V8M14 36V40M34 36V40" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path-delayed"/>
+                                <rect x="6" y="14" width="36" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" class="spin-slow" opacity="0.4"/>
+                            </svg>
+                            <span class="eyebrow" style="color: var(--accent-cyan); margin-bottom: 0.5rem;">● In Development</span>
+                            <h3>Convergent Court</h3>
+                            <p>A two-agent decision court where Claude argues as architect and Codex as implementer — designed to refuse fluent-but-wrong answers instead of producing them.</p>
+                            <span class="pec-flip-hint">Hover to see the stack →</span>
+                        </div>
+                        <div class="pec-flip-back">
+                            <h3>Under the hood</h3>
+                            <ul class="pec-flip-stack">
+                                <li><strong>Orchestrator:</strong> bash + Python</li>
+                                <li><strong>Agents:</strong> Claude Code + OpenAI Codex CLI</li>
+                                <li><strong>Protocol:</strong> schema-validated rounds of framing &amp; rebuttal</li>
+                                <li><strong>Audit trail:</strong> every exchange committed to git as a two-agent decision record</li>
+                            </ul>
+                            <a href="#now" class="pec-flip-cta">See what's on the desk →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pec-flip-card reveal" style="transition-delay: 0.3s;" tabindex="0">
                     <div class="pec-flip-inner">
                         <div class="pec-flip-front">
                             <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -241,21 +281,18 @@
 
         <section id="products" class="container">
             <div class="section-header reveal">
-                <span class="eyebrow">Featured App</span>
-                <h2>The Green Felt Club — a closer look.</h2>
+                <span class="eyebrow">Featured Project</span>
+                <h2>A closer look at what I'm building now.</h2>
             </div>
 
             <div class="pec-sticky-stack">
                 <!-- LEFT: sticky visual + intro -->
                 <div class="pec-sticky-visual">
                     <div class="pec-sticky-inner">
-                        <span class="eyebrow" style="color: var(--accent-purple);">Closed Testing</span>
-                        <h3 class="text-accent-gradient">The Green Felt Club</h3>
-                        <p style="color: var(--text-muted); font-size: 1.125rem;">A smarter way to track, compare, and improve your pool game, without league bureaucracy.</p>
-                        <div class="product-visual">
-                            <img src="user_input_files/Stop_Guessing__Start_Dominating__version_1 (1).png" alt="The Green Felt Club Interface" onerror="this.src='https://via.placeholder.com/600x400/111/333?text=The+Green+Felt+Club'">
-                        </div>
-                        <a href="https://www.thegreenfeltclub.com/" target="_blank" class="btn btn-outline" style="margin-top: 1.25rem;">Visit Website</a>
+                        <span class="eyebrow" style="color: var(--accent-cyan);">In Development</span>
+                        <h3 class="text-accent-gradient">Convergent Court</h3>
+                        <p style="color: var(--text-muted); font-size: 1.125rem;">A two-agent decision court where Claude argues as architect and Codex as implementer — designed to refuse fluent-but-wrong answers instead of producing them.</p>
+                        <a href="#now" class="btn btn-outline" style="margin-top: 1.25rem;">See what's on the desk</a>
                     </div>
                 </div>
 
@@ -264,26 +301,26 @@
                     <div class="pec-feature reveal">
                         <span class="pec-feature-num">01</span>
                         <svg class="pec-draw-check" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        <h4>Track matches and skill progression over time.</h4>
-                        <p>Every frame you log builds your long-term trend line. See how you improve week over week, not just who won last Tuesday.</p>
+                        <h4>Two agents, two roles, one debate.</h4>
+                        <p>Claude takes the architect seat, Codex takes the implementer seat. They have to converge on the framing of a question before either is allowed to answer it.</p>
                     </div>
                     <div class="pec-feature reveal">
                         <span class="pec-feature-num">02</span>
                         <svg class="pec-draw-check" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        <h4>Compare performance without league friction.</h4>
-                        <p>No captains, no weekly schedules, no admin. Just pick up a cue, log the game, and your stats catch up.</p>
+                        <h4>Schema-validated rounds of framing and rebuttal.</h4>
+                        <p>Each round has a structured contract. Off-topic, hand-wavy, or fluent-but-wrong responses fail validation instead of slipping through as confident output.</p>
                     </div>
                     <div class="pec-feature reveal">
                         <span class="pec-feature-num">03</span>
                         <svg class="pec-draw-check" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        <h4>Enable friendly competition with meaningful stats.</h4>
-                        <p>Head-to-head records, venue-specific form, and handicapped leaderboards make small rivalries feel as real as any league.</p>
+                        <h4>Refuse out loud when no honest answer exists.</h4>
+                        <p>If the agents can't converge on a framing, the court returns a visible refusal — not a smoothed-over guess. The disagreement is the signal.</p>
                     </div>
                     <div class="pec-feature reveal">
                         <span class="pec-feature-num">04</span>
                         <svg class="pec-draw-check" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        <h4>Built where it counts — auth, data, and offline.</h4>
-                        <p>Flutter client with Firebase Auth and Firestore. Offline-first session logging, proper schema migrations, and no abandoned test accounts in production.</p>
+                        <h4>Local-first, git as the audit trail.</h4>
+                        <p>A bash + Python orchestrator running Claude Code and the OpenAI Codex CLI on your machine. Every block is committed to git as a two-agent decision record — no chat UI, no judge, no smoothing.</p>
                     </div>
                 </div>
             </div>
@@ -292,29 +329,29 @@
         <!-- Kinetic marquee tagline strip -->
         <div class="pec-marquee reveal" aria-hidden="true">
             <div class="pec-marquee-track">
-                <span>Pool Tracker</span><span class="pec-marquee-dot">●</span>
-                <span>Flutter</span><span class="pec-marquee-dot">●</span>
-                <span>Firebase</span><span class="pec-marquee-dot">●</span>
-                <span>Closed Beta</span><span class="pec-marquee-dot">●</span>
-                <span>Indie-Built</span><span class="pec-marquee-dot">●</span>
-                <span>Pool Tracker</span><span class="pec-marquee-dot">●</span>
-                <span>Flutter</span><span class="pec-marquee-dot">●</span>
-                <span>Firebase</span><span class="pec-marquee-dot">●</span>
-                <span>Closed Beta</span><span class="pec-marquee-dot">●</span>
-                <span>Indie-Built</span><span class="pec-marquee-dot">●</span>
+                <span>AI Agents</span><span class="pec-marquee-dot">●</span>
+                <span>Vibe Coding</span><span class="pec-marquee-dot">●</span>
+                <span>Agent Orchestration</span><span class="pec-marquee-dot">●</span>
+                <span>Solo-Built</span><span class="pec-marquee-dot">●</span>
+                <span>Shipped, Not Pitched</span><span class="pec-marquee-dot">●</span>
+                <span>AI Agents</span><span class="pec-marquee-dot">●</span>
+                <span>Vibe Coding</span><span class="pec-marquee-dot">●</span>
+                <span>Agent Orchestration</span><span class="pec-marquee-dot">●</span>
+                <span>Solo-Built</span><span class="pec-marquee-dot">●</span>
+                <span>Shipped, Not Pitched</span><span class="pec-marquee-dot">●</span>
             </div>
         </div>
 
         <section id="about" class="container">
             <div class="section-header reveal">
-                <span class="eyebrow">About Me</span>
-                <h2 class="pec-stroke-gradient" data-text="Indie &quot;vibe coder&quot; — defined honestly.">Indie "vibe coder" — defined honestly.</h2>
-                <p>Perseid Echo Creations is my personal studio name for the apps I ship. It's just me.</p>
+                <span class="eyebrow">About</span>
+                <h2 class="pec-stroke-gradient" data-text="From CX transformation to AI Solutions Practice.">From CX transformation to AI Solutions Practice.</h2>
+                <p>Perseid Echo Creations is the studio I run as a solo operator. It now covers both the products I'm building and the AI agent work I do for other businesses.</p>
             </div>
 
-            <!-- The shift: 21 years in corporate → building in public -->
+            <!-- The shift: 21 years CX/digital transformation → building products → agency -->
             <div class="pec-story reveal">
-                <p class="pec-story-lead">I spent <strong>21 years</strong> inside a large company. Now I'm building.</p>
+                <p class="pec-story-lead">Twenty-one years in <strong>customer experience and digital transformation</strong>. Now building products of my own — and the agents that run them.</p>
                 <p>My focus is on <strong>AI agentic systems</strong> — designing workflows where AI doesn't just assist, but actually carries work forward. Systems that:</p>
                 <ul class="pec-story-list">
                     <li>generate ideas</li>
@@ -322,10 +359,10 @@
                     <li>route decisions</li>
                     <li>and produce real, usable outputs</li>
                 </ul>
-                <p>Alongside that, I'm developing digital products (AaaS / SaaS), including <a href="https://www.thegreenfeltclub.com/" target="_blank" rel="noopener">The Green Felt Club</a>.</p>
+                <p>The products came first — <a href="https://www.thegreenfeltclub.com/" target="_blank" rel="noopener">The Green Felt Club</a>, Bristlecone, Convergent Court. Each one needed agents to do real work behind the scenes, and that's where I learned the operating side: setting them up, keeping them running as models change, and stepping in when something breaks. That toolkit is what I now bring to other businesses.</p>
                 <p>The biggest shift hasn't been learning AI. It's been changing how I think about work:</p>
                 <p class="pec-story-quote">Less doing everything myself.<br>More designing systems that do the work with me.</p>
-                <p class="pec-story-tag">Still early. Building in public. Getting better every week.</p>
+                <p class="pec-story-tag">Transitioning openly. Building in public. Getting better every week.</p>
                 <a href="https://www.linkedin.com/in/bryan-piard-70575131/" target="_blank" rel="noopener" class="pec-linkedin-link">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3-.5-2-1.6-2-1.2 0-1.9.8-1.9 2V19h-3V9h2.9v1.3A3.1 3.1 0 0115 9c2.1 0 4 1.3 4 4.1V19z"/></svg>
                     Follow along on LinkedIn
@@ -388,11 +425,15 @@
                     <ul>
                         <li>
                             <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Expanding The Green Felt Club — adding venue organiser tools and improving the onboarding flow based on beta feedback.
+                            Building Bristlecone — an AI marketing OS where agents run the campaign, not just draft it.
                         </li>
                         <li>
                             <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Scoping a second app concept — still in early prototype, not ready to announce.
+                            Building Convergent Court — a local-first orchestrator that forces Claude and Codex to debate the framing of a question before they answer it, or refuse out loud when no honest answer exists.
+                        </li>
+                        <li>
+                            <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Iterating on The Green Felt Club beta — small fixes and onboarding tweaks based on tester feedback.
                         </li>
                         <li>
                             <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>

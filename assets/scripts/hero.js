@@ -42,9 +42,13 @@
         const frame = (now) => {
             const p = Math.min((now - start) / duration, 1);
             let html = '';
+            let wordOpen = false;
+            const openWord = () => { html += '<span class="pec-scramble-word">'; wordOpen = true; };
+            const closeWord = () => { if (wordOpen) { html += '</span>'; wordOpen = false; } };
             for (let i = 0; i < len; i++) {
                 const ch = finalText[i];
-                if (ch === ' ') { html += ' '; continue; }
+                if (ch === ' ') { closeWord(); html += ' '; continue; }
+                if (!wordOpen) openWord();
                 const threshold = (i / len) * 0.7 + 0.15;
                 if (p >= threshold) {
                     html += `<span class="pec-scramble-char resolved">${ch}</span>`;
@@ -53,6 +57,7 @@
                     html += `<span class="pec-scramble-char scrambling">${r}</span>`;
                 }
             }
+            closeWord();
             el.innerHTML = html;
             if (p < 1) requestAnimationFrame(frame);
         };
