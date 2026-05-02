@@ -84,62 +84,46 @@
 
     if (!form) return;
 
-    const iframe = document.getElementById('pec-contact-iframe');
-    let pending = false;
-    let timeoutId = null;
-
-    function showSuccess() {
-        if (!pending) return;
-        pending = false;
-        clearTimeout(timeoutId);
-        submitBtn.classList.remove('is-loading');
-        submitBtn.disabled = false;
-        form.style.display = 'none';
-        success.classList.add('is-visible');
-        success.setAttribute('aria-hidden', 'false');
-        status.textContent = '';
-    }
-
-    function showError(msg) {
-        if (!pending) return;
-        pending = false;
-        clearTimeout(timeoutId);
-        submitBtn.classList.remove('is-loading');
-        submitBtn.disabled = false;
-        status.classList.add('is-error');
-        status.textContent = msg || 'Something went wrong. Email Bryan@perseidechocreations.com directly.';
-    }
-
-    if (iframe) {
-        iframe.addEventListener('load', () => {
-            if (pending) showSuccess();
-        });
-    }
+    const TO = 'Bryan@perseidechocreations.com';
 
     form.addEventListener('submit', (e) => {
-        // Honeypot — silently bail if filled
+        e.preventDefault();
+
         const honey = form.querySelector('input[name="_honey"]');
-        if (honey && honey.value) {
-            e.preventDefault();
-            return;
-        }
+        if (honey && honey.value) return;
 
         if (!form.checkValidity()) {
-            e.preventDefault();
             form.reportValidity();
             return;
         }
 
-        // Let the native submit fire into the hidden iframe; iframe.load shows success
+        const data = new FormData(form);
+        const name = (data.get('name') || '').toString().trim();
+        const email = (data.get('email') || '').toString().trim();
+        const topic = (data.get('topic') || '').toString().trim();
+        const message = (data.get('message') || '').toString().trim();
+
+        const subject = topic ? `[Perseid Echo] ${topic}` : '[Perseid Echo] New enquiry';
+        const body =
+            `Hi Bryan,\n\n${message}\n\n— ${name}\nReply to: ${email}\n\n` +
+            `(Sent from the contact form on perseidechocreations.com)`;
+
+        const mailto = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
         status.classList.remove('is-error');
-        status.textContent = 'Sending…';
+        status.textContent = 'Opening your email app…';
         submitBtn.classList.add('is-loading');
         submitBtn.disabled = true;
-        pending = true;
 
-        // Fallback: if the iframe never fires load within 12s, surface an error
-        timeoutId = setTimeout(() => {
-            showError('Send timed out. Email Bryan@perseidechocreations.com directly.');
-        }, 12000);
+        window.location.href = mailto;
+
+        setTimeout(() => {
+            submitBtn.classList.remove('is-loading');
+            submitBtn.disabled = false;
+            form.style.display = 'none';
+            success.classList.add('is-visible');
+            success.setAttribute('aria-hidden', 'false');
+            status.textContent = '';
+        }, 600);
     });
 })();
