@@ -1484,15 +1484,6 @@ body {
     pointer-events: none;
 }
 
-.pec-contact-iframe {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
 .pec-contact-actions {
     display: flex;
     align-items: center;
