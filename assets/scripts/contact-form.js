@@ -119,7 +119,7 @@
             const ok = res.ok && (json.success === true || String(json.success).toLowerCase() === 'true');
 
             if (!ok) {
-                const msg = json.message || `Submission failed (HTTP ${res.status})`;
+                const msg = (json && json.message) || `Submission failed (HTTP ${res.status})`;
                 throw new Error(msg);
             }
 
