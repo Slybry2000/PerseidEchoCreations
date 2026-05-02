@@ -84,54 +84,62 @@
 
     if (!form) return;
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    const iframe = document.getElementById('pec-contact-iframe');
+    let pending = false;
+    let timeoutId = null;
 
+    function showSuccess() {
+        if (!pending) return;
+        pending = false;
+        clearTimeout(timeoutId);
+        submitBtn.classList.remove('is-loading');
+        submitBtn.disabled = false;
+        form.style.display = 'none';
+        success.classList.add('is-visible');
+        success.setAttribute('aria-hidden', 'false');
+        status.textContent = '';
+    }
+
+    function showError(msg) {
+        if (!pending) return;
+        pending = false;
+        clearTimeout(timeoutId);
+        submitBtn.classList.remove('is-loading');
+        submitBtn.disabled = false;
+        status.classList.add('is-error');
+        status.textContent = msg || 'Something went wrong. Email Bryan@perseidechocreations.com directly.';
+    }
+
+    if (iframe) {
+        iframe.addEventListener('load', () => {
+            if (pending) showSuccess();
+        });
+    }
+
+    form.addEventListener('submit', (e) => {
         // Honeypot — silently bail if filled
         const honey = form.querySelector('input[name="_honey"]');
-        if (honey && honey.value) return;
+        if (honey && honey.value) {
+            e.preventDefault();
+            return;
+        }
 
         if (!form.checkValidity()) {
+            e.preventDefault();
             form.reportValidity();
             return;
         }
 
+        // Let the native submit fire into the hidden iframe; iframe.load shows success
         status.classList.remove('is-error');
         status.textContent = 'Sending…';
         submitBtn.classList.add('is-loading');
         submitBtn.disabled = true;
+        pending = true;
 
-        try {
-            const payload = {};
-            new FormData(form).forEach((value, key) => {
-                if (key !== '_honey') payload[key] = value;
-            });
-
-            const res = await fetch(form.action, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
-
-            const json = await res.json().catch(() => ({}));
-            if (!res.ok || (json.success && String(json.success).toLowerCase() === 'false')) {
-                throw new Error(json.message || 'Submission failed');
-            }
-
-            form.style.display = 'none';
-            success.classList.add('is-visible');
-            success.setAttribute('aria-hidden', 'false');
-            status.textContent = '';
-        } catch (err) {
-            status.classList.add('is-error');
-            status.textContent = 'Something went wrong. Email Bryan@perseidechocreations.com directly.';
-            console.error('Contact form error:', err);
-        } finally {
-            submitBtn.classList.remove('is-loading');
-            submitBtn.disabled = false;
-        }
+        // Fallback: if the iframe never fires load within 12s, surface an error
+        timeoutId = setTimeout(() => {
+            showError('Send timed out. Email Bryan@perseidechocreations.com directly.');
+        }, 12000);
     });
 })();
