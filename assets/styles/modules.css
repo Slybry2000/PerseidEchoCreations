@@ -1259,3 +1259,343 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .pec-scroll-comet { display: none; }
 }
+
+/* ===========================================================
+   Contact Form Modal
+   =========================================================== */
+.pec-contact-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.pec-contact-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.pec-contact-backdrop {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(74, 211, 197, 0.18), transparent 55%),
+                radial-gradient(circle at 80% 80%, rgba(30, 70, 141, 0.25), transparent 55%),
+                rgba(3, 8, 24, 0.78);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    cursor: pointer;
+}
+
+.pec-contact-panel {
+    position: relative;
+    width: min(640px, 100%);
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    padding: 2.5rem 2.25rem 2rem;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(155deg, rgba(11, 22, 38, 0.92) 0%, rgba(3, 8, 24, 0.95) 100%);
+    border: 1px solid rgba(74, 211, 197, 0.22);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 0 60px rgba(74, 211, 197, 0.12);
+    transform: translateY(24px) scale(0.96);
+    opacity: 0;
+    transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.25, 1), opacity 0.45s ease;
+}
+
+.pec-contact-panel::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(74, 211, 197, 0.5), rgba(30, 70, 141, 0.1) 40%, rgba(46, 138, 133, 0.4));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.pec-contact-modal.is-open .pec-contact-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.pec-contact-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.pec-contact-close:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    background: rgba(74, 211, 197, 0.08);
+    transform: rotate(90deg);
+}
+
+.pec-contact-header {
+    margin-bottom: 1.75rem;
+}
+
+.pec-contact-header .eyebrow {
+    color: var(--accent-cyan);
+}
+
+.pec-contact-header h2 {
+    font-size: clamp(1.6rem, 2.6vw, 2rem);
+    margin: 0.4rem 0 0.6rem;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.pec-contact-header p {
+    color: var(--text-muted);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.pec-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.pec-contact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem;
+}
+
+@media (max-width: 560px) {
+    .pec-contact-row { grid-template-columns: 1fr; }
+    .pec-contact-panel { padding: 2rem 1.25rem 1.5rem; }
+}
+
+.pec-contact-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.pec-contact-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.pec-contact-field input,
+.pec-contact-field textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.25s;
+}
+
+.pec-contact-field textarea {
+    min-height: 120px;
+    line-height: 1.55;
+}
+
+.pec-contact-field input::placeholder,
+.pec-contact-field textarea::placeholder {
+    color: rgba(142, 162, 195, 0.5);
+}
+
+.pec-contact-field input:focus,
+.pec-contact-field textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    background: rgba(74, 211, 197, 0.05);
+    box-shadow: 0 0 0 4px rgba(74, 211, 197, 0.12);
+}
+
+.pec-contact-underline {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.25, 1);
+    border-radius: 2px;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.pec-contact-field:focus-within .pec-contact-underline {
+    transform: scaleX(1);
+}
+
+.pec-contact-field input:invalid:not(:placeholder-shown),
+.pec-contact-field textarea:invalid:not(:placeholder-shown) {
+    border-color: rgba(255, 120, 120, 0.5);
+}
+
+.pec-contact-honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pec-contact-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.pec-contact-status {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    min-height: 1.2em;
+}
+
+.pec-contact-status.is-error {
+    color: #ff8a8a;
+}
+
+.pec-contact-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.6rem;
+}
+
+.pec-contact-submit svg {
+    transition: transform 0.25s;
+}
+
+.pec-contact-submit:hover svg {
+    transform: translateX(3px);
+}
+
+.pec-contact-submit.is-loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.pec-contact-submit.is-loading span::after {
+    content: "…";
+    display: inline-block;
+    margin-left: 2px;
+    animation: pec-contact-dots 1.4s steps(4, end) infinite;
+}
+
+@keyframes pec-contact-dots {
+    0%, 20% { content: ""; }
+    40% { content: "."; }
+    60% { content: ".."; }
+    80%, 100% { content: "..."; }
+}
+
+.pec-contact-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1rem 0 0.5rem;
+}
+
+.pec-contact-success.is-visible {
+    display: flex;
+    animation: pec-contact-fade-in 0.5s ease both;
+}
+
+.pec-contact-success svg {
+    color: var(--accent-cyan);
+    filter: drop-shadow(0 0 12px rgba(74, 211, 197, 0.4));
+}
+
+.pec-contact-success-ring {
+    stroke-dasharray: 176;
+    stroke-dashoffset: 176;
+    animation: pec-contact-draw 0.7s ease forwards;
+}
+
+.pec-contact-success-check {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: pec-contact-draw 0.4s 0.55s ease forwards;
+}
+
+@keyframes pec-contact-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+.pec-contact-success h3 {
+    font-size: 1.4rem;
+    margin: 0;
+    background: linear-gradient(135deg, #fff, var(--accent-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.pec-contact-success p {
+    color: var(--text-muted);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.pec-contact-success .btn {
+    margin-top: 0.6rem;
+}
+
+@keyframes pec-contact-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+body.pec-contact-locked {
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pec-contact-modal,
+    .pec-contact-panel { transition: opacity 0.2s ease; }
+    .pec-contact-panel { transform: none; }
+    .pec-contact-success-ring,
+    .pec-contact-success-check { animation: none; stroke-dashoffset: 0; }
+}
