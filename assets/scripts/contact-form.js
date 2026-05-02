@@ -105,6 +105,8 @@
             new FormData(form).forEach((value, key) => {
                 if (key !== '_honey') payload[key] = value;
             });
+            // Make replies thread back to the visitor's email
+            if (payload.email) payload.replyto = payload.email;
 
             const res = await fetch(form.action, {
                 method: 'POST',
