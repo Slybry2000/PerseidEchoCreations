@@ -170,7 +170,7 @@
        ───────────────────────────────────────────────────────────── */
     const ISLAND_STATES = [
         { dot: '#4ad3c5', text: 'Available for engagements' },
-        { dot: '#4ad3c5', text: 'Shipping GFC v2.1' },
+        { dot: '#4ad3c5', text: 'GFC live on App Store, Play, and web' },
         { dot: '#2e8a85', text: 'Deep work mode' },
         { dot: '#4ad3c5', text: 'Inbox open — Bryan@perseidechocreations.com' }
     ];
