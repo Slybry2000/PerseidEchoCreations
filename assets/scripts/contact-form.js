@@ -102,14 +102,24 @@
         submitBtn.disabled = true;
 
         try {
-            const data = new FormData(form);
-            const res = await fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: { Accept: 'application/json' }
+            const payload = {};
+            new FormData(form).forEach((value, key) => {
+                if (key !== '_honey') payload[key] = value;
             });
 
-            if (!res.ok) throw new Error('Network response was not ok');
+            const res = await fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const json = await res.json().catch(() => ({}));
+            if (!res.ok || (json.success && String(json.success).toLowerCase() === 'false')) {
+                throw new Error(json.message || 'Submission failed');
+            }
 
             form.style.display = 'none';
             success.classList.add('is-visible');
@@ -118,6 +128,7 @@
         } catch (err) {
             status.classList.add('is-error');
             status.textContent = 'Something went wrong. Email Bryan@perseidechocreations.com directly.';
+            console.error('Contact form error:', err);
         } finally {
             submitBtn.classList.remove('is-loading');
             submitBtn.disabled = false;
