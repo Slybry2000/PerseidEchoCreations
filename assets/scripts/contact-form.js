@@ -84,9 +84,7 @@
 
     if (!form) return;
 
-    const TO = 'Bryan@perseidechocreations.com';
-
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const honey = form.querySelector('input[name="_honey"]');
@@ -97,33 +95,47 @@
             return;
         }
 
-        const data = new FormData(form);
-        const name = (data.get('name') || '').toString().trim();
-        const email = (data.get('email') || '').toString().trim();
-        const topic = (data.get('topic') || '').toString().trim();
-        const message = (data.get('message') || '').toString().trim();
-
-        const subject = topic ? `[Perseid Echo] ${topic}` : '[Perseid Echo] New enquiry';
-        const body =
-            `Hi Bryan,\n\n${message}\n\n— ${name}\nReply to: ${email}\n\n` +
-            `(Sent from the contact form on perseidechocreations.com)`;
-
-        const mailto = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
         status.classList.remove('is-error');
-        status.textContent = 'Opening your email app…';
+        status.textContent = 'Sending…';
         submitBtn.classList.add('is-loading');
         submitBtn.disabled = true;
 
-        window.location.href = mailto;
+        try {
+            const payload = {};
+            new FormData(form).forEach((value, key) => {
+                if (key !== '_honey') payload[key] = value;
+            });
 
-        setTimeout(() => {
-            submitBtn.classList.remove('is-loading');
-            submitBtn.disabled = false;
+            const res = await fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const json = await res.json().catch(() => ({}));
+            const ok = res.ok && (json.success === true || String(json.success).toLowerCase() === 'true');
+
+            if (!ok) {
+                const msg = json.message || `Submission failed (HTTP ${res.status})`;
+                throw new Error(msg);
+            }
+
             form.style.display = 'none';
             success.classList.add('is-visible');
             success.setAttribute('aria-hidden', 'false');
             status.textContent = '';
-        }, 600);
+        } catch (err) {
+            status.classList.add('is-error');
+            status.textContent = err && err.message
+                ? err.message
+                : 'Something went wrong. Email Bryan@perseidechocreations.com directly.';
+            console.error('[contact-form]', err);
+        } finally {
+            submitBtn.classList.remove('is-loading');
+            submitBtn.disabled = false;
+        }
     });
 })();
