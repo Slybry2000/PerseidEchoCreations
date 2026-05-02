@@ -1299,6 +1299,8 @@ body {
     width: min(640px, 100%);
     max-height: calc(100vh - 3rem);
     overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     padding: 2.5rem 2.25rem 2rem;
     border-radius: var(--radius-lg);
     background: linear-gradient(155deg, rgba(11, 22, 38, 0.92) 0%, rgba(3, 8, 24, 0.95) 100%);
@@ -1330,6 +1332,12 @@ body {
 .pec-contact-modal.is-open .pec-contact-panel {
     transform: translateY(0) scale(1);
     opacity: 1;
+}
+
+.pec-contact-panel::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 .pec-contact-close {
