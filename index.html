@@ -348,18 +348,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .contact-link {
-    display: inline-block;
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--navy);
-    text-decoration: none;
-    border-bottom: 2px solid var(--orange);
-    padding: 4px 2px;
-    transition: color 0.2s;
-  }
-  .contact-link:hover { color: var(--orange); }
-
   /* ---------- Footer ---------- */
   footer {
     padding: 40px 0;
@@ -404,6 +392,260 @@
     outline-offset: 3px;
     border-radius: 6px;
   }
+
+  /* ---------- Contact CTA additions ---------- */
+  .contact-cta {
+    margin: 8px auto 0;
+  }
+  .contact-alt {
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--slate);
+  }
+  .contact-alt a {
+    color: var(--slate);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule-light);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-alt a:hover {
+    color: var(--navy);
+    border-color: var(--navy);
+  }
+
+  /* ---------- Contact modal ---------- */
+  .pec-contact-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 20px;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .pec-contact-modal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .pec-contact-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 19, 33, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .pec-contact-panel {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    background: var(--paper);
+    border-radius: 18px;
+    padding: 48px 44px 40px;
+    box-shadow: 0 30px 80px rgba(13, 19, 33, 0.35);
+    transform: translateY(12px);
+    transition: transform 0.3s ease;
+    margin: auto 0;
+  }
+  .pec-contact-modal.is-open .pec-contact-panel { transform: translateY(0); }
+
+  .pec-contact-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    color: var(--slate);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .pec-contact-close:hover {
+    background: rgba(13, 19, 33, 0.06);
+    color: var(--navy);
+  }
+
+  .pec-contact-header { margin-bottom: 28px; }
+  .pec-contact-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 14px;
+  }
+  .pec-contact-header h2 {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .pec-contact-header p {
+    font-size: 15px;
+    color: var(--slate);
+    line-height: 1.55;
+  }
+
+  .pec-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .pec-contact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .pec-contact-honey {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px; height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .pec-contact-field {
+    position: relative;
+    display: block;
+  }
+  .pec-contact-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 6px;
+  }
+  .pec-contact-field input,
+  .pec-contact-field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule-light);
+    padding: 10px 0 12px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--navy);
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .pec-contact-field input::placeholder,
+  .pec-contact-field textarea::placeholder {
+    color: rgba(58, 65, 82, 0.45);
+  }
+  .pec-contact-underline {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background: var(--navy);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .pec-contact-field input:focus ~ .pec-contact-underline,
+  .pec-contact-field textarea:focus ~ .pec-contact-underline {
+    transform: scaleX(1);
+  }
+  .pec-contact-field input:focus,
+  .pec-contact-field textarea:focus {
+    outline: none;
+  }
+
+  .pec-contact-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .pec-contact-status {
+    font-size: 13px;
+    color: var(--slate);
+    min-height: 18px;
+  }
+  .pec-contact-status.is-error {
+    color: #B23A1F;
+  }
+  .pec-contact-submit.is-loading {
+    opacity: 0.7;
+    cursor: wait;
+  }
+
+  .pec-contact-success {
+    display: none;
+    text-align: center;
+    padding: 16px 0;
+    color: var(--navy);
+  }
+  .pec-contact-success.is-visible { display: block; }
+  .pec-contact-success svg {
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .pec-contact-success-ring,
+  .pec-contact-success-check {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: pec-draw 0.6s ease forwards;
+  }
+  .pec-contact-success-check { animation-delay: 0.4s; stroke-dasharray: 60; stroke-dashoffset: 60; }
+  @keyframes pec-draw { to { stroke-dashoffset: 0; } }
+  .pec-contact-success h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+  .pec-contact-success p {
+    font-size: 15px;
+    color: var(--slate);
+    margin-bottom: 20px;
+  }
+  .pec-contact-success strong { color: var(--navy); font-weight: 600; }
+  .pec-contact-close-btn {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: var(--navy);
+    border: 1px solid var(--rule-light);
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .pec-contact-close-btn:hover {
+    border-color: var(--navy);
+  }
+
+  body.pec-contact-locked { overflow: hidden; }
+
+  @media (max-width: 540px) {
+    .pec-contact-panel { padding: 40px 24px 32px; border-radius: 14px; }
+    .pec-contact-row { grid-template-columns: 1fr; gap: 22px; }
+    .pec-contact-header h2 { font-size: 24px; }
+    .pec-contact-actions { flex-direction: column; align-items: stretch; }
+    .pec-contact-submit { justify-content: center; width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -423,7 +665,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Start a Project</a>
+    <button type="button" class="nav-cta" data-pec-contact-open>Start a Project</button>
   </div>
 </nav>
 
@@ -540,7 +782,11 @@
     <div class="section-eyebrow">Start a Conversation</div>
     <h2>Let's put AI to work — properly.</h2>
     <p>If you have an operation that's ready for an honest look at what AI agents and automations could do for it, the door is open.</p>
-    <a class="contact-link" href="mailto:Bryan@perseidechocreations.com">Bryan@perseidechocreations.com</a>
+    <button type="button" class="btn btn-primary contact-cta" data-pec-contact-open>
+      Start a Conversation
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+    <p class="contact-alt">or email <a href="mailto:Bryan@perseidechocreations.com">Bryan@perseidechocreations.com</a></p>
   </div>
 </section>
 
@@ -555,6 +801,68 @@
   </div>
 </footer>
 
+<!-- Contact form modal -->
+<div class="pec-contact-modal" id="pec-contact-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pec-contact-title">
+  <div class="pec-contact-backdrop" data-pec-contact-close></div>
+  <div class="pec-contact-panel" role="document">
+    <button type="button" class="pec-contact-close" data-pec-contact-close aria-label="Close contact form">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="pec-contact-header">
+      <span class="pec-contact-eyebrow">Direct Line</span>
+      <h2 id="pec-contact-title">Let's start a conversation.</h2>
+      <p>Tell me what you're building. I read every message and reply within 24 hours.</p>
+    </div>
+    <form class="pec-contact-form" id="pec-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <input type="hidden" name="access_key" value="9dcf879b-c9aa-42b5-b01b-fbf09e383690">
+      <input type="hidden" name="subject" value="New enquiry from perseidechocreations.com">
+      <input type="hidden" name="from_name" value="Perseid Echo contact form">
+      <input type="text" name="botcheck" tabindex="-1" autocomplete="off" class="pec-contact-honey" aria-hidden="true">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="pec-contact-honey" aria-hidden="true">
+
+      <div class="pec-contact-row">
+        <label class="pec-contact-field">
+          <span class="pec-contact-label">Your name</span>
+          <input type="text" name="name" required autocomplete="name" placeholder="Jane Doe">
+          <span class="pec-contact-underline" aria-hidden="true"></span>
+        </label>
+        <label class="pec-contact-field">
+          <span class="pec-contact-label">Email</span>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@somewhere.com">
+          <span class="pec-contact-underline" aria-hidden="true"></span>
+        </label>
+      </div>
+      <label class="pec-contact-field">
+        <span class="pec-contact-label">What's this about?</span>
+        <input type="text" name="topic" required placeholder="MVP spike, agent retrofit, audit…">
+        <span class="pec-contact-underline" aria-hidden="true"></span>
+      </label>
+      <label class="pec-contact-field">
+        <span class="pec-contact-label">Tell me a bit more</span>
+        <textarea name="message" rows="5" required placeholder="What are you building, and where could AI agents take real work off your plate?"></textarea>
+        <span class="pec-contact-underline" aria-hidden="true"></span>
+      </label>
+
+      <div class="pec-contact-actions">
+        <span class="pec-contact-status" id="pec-contact-status" role="status" aria-live="polite"></span>
+        <button type="submit" class="btn btn-primary pec-contact-submit">
+          <span>Send Message</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </form>
+    <div class="pec-contact-success" id="pec-contact-success" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="32" cy="32" r="28" class="pec-contact-success-ring"></circle>
+        <polyline points="20 33 29 42 46 24" class="pec-contact-success-check"></polyline>
+      </svg>
+      <h3>Message sent.</h3>
+      <p>Landed in <strong>Bryan@perseidechocreations.com</strong> — I usually reply within 24 hours.</p>
+      <button type="button" class="pec-contact-close-btn" data-pec-contact-close>Close</button>
+    </div>
+  </div>
+</div>
+
 <script>
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -566,6 +874,7 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>
+<script src="assets/scripts/contact-form.js" defer></script>
 
 </body>
 </html>
