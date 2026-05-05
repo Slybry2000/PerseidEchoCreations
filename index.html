@@ -75,7 +75,7 @@
     font-weight: 500;
     font-size: 10px;
     letter-spacing: 0.18em;
-    color: var(--orange);
+    color: rgba(246, 246, 244, 0.55);
     margin-top: 4px;
     text-transform: uppercase;
   }
@@ -91,23 +91,23 @@
     font-weight: 500;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--orange); }
+  .nav-links a:hover { color: var(--paper); }
   .nav-cta {
     display: inline-flex;
     align-items: center;
-    background: var(--orange);
-    color: var(--navy);
-    border: none;
-    padding: 10px 20px;
+    background: transparent;
+    color: var(--paper);
+    border: 1px solid rgba(246, 246, 244, 0.28);
+    padding: 9px 18px;
     border-radius: 8px;
     font-family: inherit;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
+    transition: border-color 0.2s, color 0.2s;
   }
-  .nav-cta:hover { background: var(--orange-deep); transform: translateY(-1px); }
+  .nav-cta:hover { border-color: var(--paper); }
 
   /* ---------- Hero ---------- */
   .hero {
@@ -117,52 +117,16 @@
     position: relative;
     overflow: hidden;
   }
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: -20%;
-    background:
-      radial-gradient(circle at 80% 20%, rgba(255, 106, 42, 0.18) 0%, transparent 45%),
-      radial-gradient(circle at 10% 90%, rgba(225, 85, 23, 0.10) 0%, transparent 50%);
-    pointer-events: none;
-  }
-  .hero-inner { position: relative; z-index: 1; max-width: 860px; }
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--orange);
-    margin-bottom: 28px;
-  }
-  .eyebrow::before {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background: var(--orange);
-  }
+  .hero-inner { position: relative; z-index: 1; max-width: 880px; }
   .hero h1 {
-    font-weight: 700;
-    font-size: clamp(40px, 6.4vw, 76px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-  }
-  .hero h1 span { color: var(--orange); }
-  .hero p {
-    font-size: clamp(17px, 1.5vw, 20px);
-    line-height: 1.55;
-    color: rgba(246, 246, 244, 0.78);
-    max-width: 680px;
-    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: clamp(44px, 7.2vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 44px;
   }
   .hero-actions {
     display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
   }
   .btn {
     display: inline-flex;
@@ -180,12 +144,6 @@
   }
   .btn-primary { background: var(--orange); color: var(--navy); }
   .btn-primary:hover { background: var(--orange-deep); transform: translateY(-1px); }
-  .btn-ghost {
-    background: transparent;
-    color: var(--paper);
-    border-color: rgba(246, 246, 244, 0.25);
-  }
-  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
 
   /* ---------- Pillars ---------- */
   .pillars {
@@ -203,7 +161,7 @@
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--orange);
+    color: var(--slate);
     margin-bottom: 16px;
   }
   .section-head h2 {
@@ -221,7 +179,7 @@
   }
   .pillar-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
   .pillar {
@@ -233,15 +191,15 @@
   }
   .pillar:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 106, 42, 0.35);
+    border-color: rgba(13, 19, 33, 0.20);
     box-shadow: 0 16px 36px rgba(13, 19, 33, 0.06);
   }
   .pillar-icon {
     width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: rgba(255, 106, 42, 0.1);
-    color: var(--orange);
+    background: rgba(13, 19, 33, 0.06);
+    color: var(--navy);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -327,9 +285,10 @@
     content: '';
     position: absolute;
     left: 0; top: 9px;
-    width: 8px; height: 8px;
+    width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--orange);
+    background: var(--slate);
+    opacity: 0.45;
   }
 
   /* ---------- About ---------- */
@@ -362,7 +321,7 @@
     color: rgba(246, 246, 244, 0.78);
     margin-bottom: 18px;
   }
-  .about strong { color: var(--orange); font-weight: 600; }
+  .about strong { color: var(--paper); font-weight: 600; }
 
   /* ---------- Contact ---------- */
   .contact {
@@ -381,7 +340,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .contact h2 span { color: var(--orange); }
   .contact p {
     font-size: 17px;
     color: var(--slate);
@@ -417,7 +375,7 @@
     gap: 16px;
   }
   footer a { color: rgba(246, 246, 244, 0.6); text-decoration: none; transition: color 0.2s; }
-  footer a:hover { color: var(--orange); }
+  footer a:hover { color: var(--paper); }
   .footer-links { display: flex; gap: 24px; }
 
   /* ---------- Reveal ---------- */
@@ -426,7 +384,7 @@
 
   /* ---------- Mobile ---------- */
   @media (max-width: 960px) {
-    .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+    .pillar-grid { grid-template-columns: 1fr; }
     .service-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .about-mark .mark { width: 160px; height: 160px; }
@@ -471,36 +429,21 @@
 
 <header class="hero">
   <div class="container hero-inner">
-    <div class="eyebrow">AI Solutions Practice</div>
-    <h1>AI agents that quietly do the <span>real work</span> of your business.</h1>
-    <p>Perseid Echo Creations builds intelligent systems that ship outcomes, not slideware. Operator-led automations, scalable agent architectures, and AI-native products designed to keep working long after launch.</p>
+    <h1>AI agents that do the real work.</h1>
     <div class="hero-actions">
       <a href="#services" class="btn btn-primary">See What I Build →</a>
-      <a href="#contact" class="btn btn-ghost">Start a Conversation</a>
     </div>
   </div>
 </header>
 
-<!-- Four pillars from the brand sheet -->
 <section id="pillars" class="pillars">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-eyebrow">The Practice</div>
-      <h2>Built by operators. Focused on outcomes.</h2>
-      <p>Four principles guide every engagement — and they're how I evaluate whether a project is worth building in the first place.</p>
+      <h2>AI Agent Automations, built three ways.</h2>
+      <p>Operator-led. Scalable. Trusted to last. Three principles that decide whether a project is worth building in the first place.</p>
     </div>
     <div class="pillar-grid">
-      <div class="pillar reveal">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 3v2M15 3v2M9 19v2M15 19v2M3 9h2M3 15h2M19 9h2M19 15h2"/>
-            <rect x="6" y="6" width="12" height="12" rx="2"/>
-            <circle cx="12" cy="12" r="2.5"/>
-          </svg>
-        </div>
-        <h3>AI Agent Automations</h3>
-        <p>Intelligent systems that work for you — handling the workflows, decisions, and follow-through your team shouldn't have to.</p>
-      </div>
       <div class="pillar reveal">
         <div class="pillar-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -595,7 +538,7 @@
 <section id="contact" class="contact">
   <div class="container">
     <div class="section-eyebrow">Start a Conversation</div>
-    <h2>Let's put AI to work — <span>properly</span>.</h2>
+    <h2>Let's put AI to work — properly.</h2>
     <p>If you have an operation that's ready for an honest look at what AI agents and automations could do for it, the door is open.</p>
     <a class="contact-link" href="mailto:Bryan@perseidechocreations.com">Bryan@perseidechocreations.com</a>
   </div>
