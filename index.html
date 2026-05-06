@@ -105,9 +105,14 @@
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
+    transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.2s, color 0.2s;
   }
   .nav-cta:hover { border-color: var(--paper); }
+  .nav-cta.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+  }
 
   /* ---------- Hero ---------- */
   .hero {
@@ -261,6 +266,8 @@
   .service h3 {
     font-weight: 600;
     font-size: 22px;
+    line-height: 1.2;
+    min-height: 2.4em;
     color: var(--navy);
     margin-bottom: 12px;
     letter-spacing: -0.01em;
@@ -382,6 +389,7 @@
   @media (max-width: 960px) {
     .pillar-grid { grid-template-columns: 1fr; }
     .service-grid { grid-template-columns: 1fr; }
+    .service h3 { min-height: 0; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .about-portrait { max-width: 280px; }
   }
@@ -673,7 +681,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button type="button" class="nav-cta" data-pec-contact-open>Start a Conversation</button>
+    <button type="button" class="nav-cta is-hidden" data-pec-contact-open>Start a Conversation</button>
   </div>
 </nav>
 
@@ -736,7 +744,7 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="section-eyebrow">Services</div>
-      <h2>Three ways to put AI to work — properly.</h2>
+      <h2>Three ways to put AI to work&nbsp;&mdash;&nbsp;properly.</h2>
       <p>Every engagement starts with what your business actually needs to ship. Pick the entry point that matches where you are.</p>
     </div>
     <div class="service-grid">
@@ -791,7 +799,7 @@
 <section id="contact" class="contact">
   <div class="container">
     <div class="section-eyebrow">Start a Conversation</div>
-    <h2>Let's put AI to work — properly.</h2>
+    <h2>Let's put AI to work&nbsp;&mdash;&nbsp;properly.</h2>
     <p>If you have an operation that's ready for an honest look at what AI agents and automations could do for it, the door is open.</p>
     <button type="button" class="btn btn-primary contact-cta" data-pec-contact-open>
       Start a Conversation
@@ -884,6 +892,17 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  const heroEl = document.querySelector('.hero');
+  const navCta = document.querySelector('.nav-cta');
+  if (heroEl && navCta) {
+    const heroIO = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        navCta.classList.toggle('is-hidden', e.isIntersecting);
+      });
+    }, { threshold: 0, rootMargin: '-72px 0px 0px 0px' });
+    heroIO.observe(heroEl);
+  }
 </script>
 <script src="assets/scripts/contact-form.js" defer></script>
 
