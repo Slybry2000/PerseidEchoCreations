@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>OG image template — Perseid Echo Creations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6A2A;
+    --navy:   #0D1321;
+    --paper:  #F6F6F4;
+    --slate:  #3A4152;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #222; }
+  body {
+    font-family: 'Poppins', -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px;
+  }
+
+  /* Exactly 1200x630 — what Open Graph + Twitter expect */
+  .card {
+    width: 1200px;
+    height: 630px;
+    background: var(--navy);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px 96px;
+  }
+
+  /* subtle orange glow in the corner so it's not flat */
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 106, 42, 0.35), transparent 60%);
+    pointer-events: none;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 106, 42, 0.18), transparent 65%);
+    pointer-events: none;
+  }
+
+  .top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .wordmark-name {
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .wordmark-sub {
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: rgba(246, 246, 244, 0.55);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .headline {
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+    font-size: 88px;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    max-width: 900px;
+  }
+  .headline em {
+    color: var(--orange);
+    font-style: normal;
+  }
+
+  .footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    color: rgba(246, 246, 244, 0.65);
+    letter-spacing: 0.04em;
+  }
+  .footer .url {
+    font-weight: 500;
+  }
+  .footer .tag {
+    font-weight: 600;
+    color: var(--orange);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="top">
+      <div class="brand">
+        <span class="wordmark-name">Perseid Echo Creations</span>
+        <span class="wordmark-sub">AI Solutions Practice</span>
+      </div>
+    </div>
+
+    <h1 class="headline">AI agents that do the <em>real work.</em></h1>
+
+    <div class="footer">
+      <span class="url">perseidechocreations.com</span>
+      <span class="tag">Operator-led · built to last</span>
+    </div>
+  </div>
+</body>
+</html>
