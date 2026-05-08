@@ -1,88 +1,75 @@
 (function () {
-    const modal = document.getElementById('pec-contact-modal');
-    if (!modal) return;
-
     const form = document.getElementById('pec-contact-form');
+    if (!form) return;
+
     const status = document.getElementById('pec-contact-status');
     const success = document.getElementById('pec-contact-success');
-    const submitBtn = form ? form.querySelector('.pec-contact-submit') : null;
-    const panel = modal.querySelector('.pec-contact-panel');
+    const submitBtn = form.querySelector('.pec-contact-submit');
 
-    let lastFocused = null;
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    function focusableElements() {
-        return panel.querySelectorAll(
-            'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
-        );
-    }
-
-    function openModal() {
-        lastFocused = document.activeElement;
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('pec-contact-locked');
-        // Reset state if reopened after a successful send
-        if (success.classList.contains('is-visible')) {
-            success.classList.remove('is-visible');
-            success.setAttribute('aria-hidden', 'true');
-            form.style.display = '';
-            form.reset();
-            status.textContent = '';
-            status.classList.remove('is-error');
-        }
-        setTimeout(() => {
-            const firstInput = form.querySelector('input[name="name"]');
-            if (firstInput) firstInput.focus();
-        }, 350);
-    }
-
-    function closeModal() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('pec-contact-locked');
-        if (lastFocused && typeof lastFocused.focus === 'function') {
-            lastFocused.focus();
-        }
-    }
-
-    document.querySelectorAll('[data-pec-contact-open]').forEach((trigger) => {
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal();
-        });
-    });
-
-    document.querySelectorAll('[data-pec-contact-close]').forEach((trigger) => {
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeModal();
-        });
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (!modal.classList.contains('is-open')) return;
-        if (e.key === 'Escape') {
-            closeModal();
-            return;
-        }
-        if (e.key === 'Tab') {
-            const focusables = Array.from(focusableElements()).filter(
-                (el) => !el.hasAttribute('disabled') && el.offsetParent !== null
-            );
-            if (!focusables.length) return;
-            const first = focusables[0];
-            const last = focusables[focusables.length - 1];
-            if (e.shiftKey && document.activeElement === first) {
-                e.preventDefault();
-                last.focus();
-            } else if (!e.shiftKey && document.activeElement === last) {
-                e.preventDefault();
-                first.focus();
+    const fields = [
+        {
+            name: 'name',
+            validate: (v) =>
+                v.trim().length === 0 ? 'Tell me what to call you.' : ''
+        },
+        {
+            name: 'email',
+            validate: (v) => {
+                const t = v.trim();
+                if (t.length === 0) return "I'll need an email to reply to.";
+                if (!EMAIL_RE.test(t)) return 'That email looks off. Check the @ and the domain.';
+                return '';
             }
+        },
+        {
+            name: 'topic',
+            validate: (v) =>
+                v.trim().length === 0 ? 'A short label is fine. Even one word.' : ''
+        },
+        {
+            name: 'message',
+            validate: (v) =>
+                v.trim().length === 0
+                    ? "A sentence or two about what you're working on."
+                    : ''
         }
-    });
+    ];
 
-    if (!form) return;
+    fields.forEach((f) => {
+        const input = form.querySelector(`[name="${f.name}"]`);
+        if (!input) return;
+        const fieldEl = input.closest('.pec-contact-field');
+        const errorEl = fieldEl ? fieldEl.querySelector('.pec-contact-error') : null;
+        if (!fieldEl || !errorEl) return;
+
+        let touched = false;
+
+        f.run = function applyValidity() {
+            const msg = f.validate(input.value);
+            if (msg) {
+                fieldEl.classList.add('is-invalid');
+                input.setAttribute('aria-invalid', 'true');
+                errorEl.textContent = msg;
+                return false;
+            }
+            fieldEl.classList.remove('is-invalid');
+            input.setAttribute('aria-invalid', 'false');
+            errorEl.textContent = '';
+            return true;
+        };
+
+        input.addEventListener('blur', () => {
+            touched = true;
+            f.run();
+        });
+        input.addEventListener('input', () => {
+            if (touched) f.run();
+        });
+
+        f.inputEl = input;
+    });
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -90,8 +77,21 @@
         const honey = form.querySelector('input[name="_honey"]');
         if (honey && honey.value) return;
 
-        if (!form.checkValidity()) {
-            form.reportValidity();
+        let firstInvalid = null;
+        let allValid = true;
+        fields.forEach((f) => {
+            if (!f.run) return;
+            const ok = f.run();
+            if (!ok) {
+                allValid = false;
+                if (!firstInvalid) firstInvalid = f.inputEl;
+            }
+        });
+
+        if (!allValid) {
+            if (firstInvalid) firstInvalid.focus();
+            status.classList.remove('is-error');
+            status.textContent = '';
             return;
         }
 
@@ -105,7 +105,6 @@
             new FormData(form).forEach((value, key) => {
                 if (key !== '_honey') payload[key] = value;
             });
-            // Make replies thread back to the visitor's email
             if (payload.email) payload.replyto = payload.email;
 
             const res = await fetch(form.action, {
@@ -128,6 +127,7 @@
             form.style.display = 'none';
             success.classList.add('is-visible');
             success.setAttribute('aria-hidden', 'false');
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
             status.textContent = '';
         } catch (err) {
             status.classList.add('is-error');
