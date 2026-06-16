@@ -1,0 +1,8 @@
+{
+  "prompt": "Using the attached design reference, produce a CLEAN BACKGROUND ART PLATE version of the exact same scene.\n\nREMOVE every UX element:\n- the 'PERSEID ECHO CREATIONS' wordmark at the top-left\n- the nav items 'APPROACH SERVICES ABOUT CONTACT' at the top-right\n- the entire stacked headline 'Built. Not pitched. Not promised.'\n- the persimmon orange underline beneath the headline\n- the meta line 'AN AI SOLUTIONS PRACTICE / EST. 2026'\n- the ghost 'Start a Conversation' button at the lower-right\n- the bottom-left index marker 'INDEX / 01 - PRACTICE'\n- any other text, button, line, or chrome\n\nKEEP, EXACTLY AS THEY ARE:\n- the photograph itself: the hand and forearm in rolled-cuff white shirt holding a black ballpoint pen mid-motion over a marked-up printed A4 spreadsheet, the heavy wooden desk, the closed matte-black 14-inch laptop, the small ceramic mug of black coffee, the stack of two leather-bound notebooks, the dark navy plaster wall behind\n- the lighting (late golden hour from camera-left), camera angle, depth of field, film grain, color grade, aspect ratio\n- the slight vignette in the upper-right corner\n\nThe output must look like the empty stage the original UX was sitting on - the photograph taken BEFORE any text was ever placed.\n\nFORBID: any text anywhere in the image, any logo, any UI overlay, any persimmon orange or chromatic accent, any added object, any added person.",
+  "image_urls": ["https://v3b.fal.media/files/b/0a9a1911/77VBIE7J-fx3VThrdLTi8_clHr6aif.png"],
+  "image_size": "auto",
+  "quality": "high",
+  "num_images": 1,
+  "output_format": "png"
+}

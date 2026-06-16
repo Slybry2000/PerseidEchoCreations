@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Perseid Echo Creations — AI Agent Automations</title>
+<meta name="description" content="An AI Solutions Practice. Operator-led agent automations for businesses ready to put AI to real work. By Bryan Piard." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:       #FF6A2A;
+    --orange-deep:  #E15517;
+    --navy:         #0D1321;
+    --slate:        #3A4152;
+    --paper:        #F6F6F4;
+    --paper-warm:   #EDEAE3;
+    --rule:         rgba(13, 19, 33, 0.10);
+    --muted:        #6E7180;
+    --live:         #FF6A2A;
+    --soon:         #C68A3F;
+    --workshop:     #6E7180;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--navy);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+  }
+
+  /* ---------- Header ---------- */
+  header { padding: 56px 0 0; }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--navy);
+  }
+  .mark { width: 32px; height: 32px; flex-shrink: 0; }
+  .wordmark-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .wordmark-name {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+  .wordmark-sub {
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-top: 5px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 120px 0 90px; }
+
+  .hero h1 {
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 32px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--orange);
+  }
+  .hero p {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--slate);
+    max-width: 560px;
+    font-weight: 400;
+  }
+
+  /* ---------- Section label ---------- */
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ---------- Pillars (Approach) ---------- */
+  .pillars {
+    padding: 70px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .pillar-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 36px;
+  }
+  .pillar {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .pillar-mark {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(255, 106, 42, 0.1);
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pillar-mark svg { width: 18px; height: 18px; }
+  .pillar h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .pillar p {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.55;
+  }
+
+  /* ---------- Services ---------- */
+  .services {
+    padding: 70px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .service {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: start;
+  }
+  .service:last-child { border-bottom: none; }
+
+  .service-name {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+  .service-tagline {
+    font-size: 16px;
+    color: var(--slate);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    max-width: 520px;
+  }
+  .service-meta {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .service-meta a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .service-meta a:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    white-space: nowrap;
+    padding-top: 10px;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .status-live .status-dot {
+    background: var(--live);
+    box-shadow: 0 0 0 0 var(--live);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .status-soon .status-dot { background: var(--soon); }
+  .status-workshop .status-dot { background: var(--workshop); opacity: 0.55; }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 106, 42, 0.45); }
+    50%      { box-shadow: 0 0 0 6px rgba(255, 106, 42, 0); }
+  }
+
+  /* ---------- About ---------- */
+  .about {
+    padding: 70px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .about p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--slate);
+    margin-bottom: 22px;
+    max-width: 600px;
+  }
+  .about p:last-child { margin-bottom: 0; }
+  .about strong { color: var(--navy); font-weight: 600; }
+  .about em {
+    font-style: normal;
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact {
+    padding: 90px 0 60px;
+    border-top: 1px solid var(--rule);
+  }
+  .contact-statement {
+    font-size: clamp(26px, 3.6vw, 34px);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--navy);
+    margin-bottom: 32px;
+    max-width: 600px;
+    letter-spacing: -0.01em;
+  }
+  .contact-link {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 3px;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--orange); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 50px 0 40px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer .links { display: flex; gap: 24px; }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--orange); }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 640px) {
+    .container { padding: 0 22px; }
+    header { padding-top: 36px; }
+    .hero { padding: 70px 0 50px; }
+    .hero h1 { font-size: 36px; }
+    .hero p { font-size: 17px; }
+    .pillar-list { grid-template-columns: 1fr; gap: 22px; }
+    .service {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 28px 0;
+    }
+    .status { padding-top: 0; }
+    .service-name { font-size: 22px; }
+    .about p { font-size: 16px; }
+    .contact { padding: 70px 0 40px; }
+  }
+
+  ::selection { background: var(--orange); color: var(--navy); }
+  a:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <a href="/" class="wordmark" aria-label="Perseid Echo Creations home">
+      <img class="mark" src="../assets/images/PEC_Logo_Light.png" alt="" />
+      <span class="wordmark-text">
+        <span class="wordmark-name">PERSEID ECHO CREATIONS</span>
+        <span class="wordmark-sub">AI Agent Automations</span>
+      </span>
+    </a>
+  </header>
+
+  <section class="hero">
+    <h1 class="reveal">An AI Solutions Practice<br />for businesses that want <em>real work done</em>.</h1>
+    <p class="reveal">Operator-led agent automations and AI-native systems &mdash; built by someone who's run customer experience and digital transformation for two decades, now applying that toolkit on his own terms.</p>
+  </section>
+
+  <section class="pillars">
+    <div class="label">The practice</div>
+    <div class="pillar-list">
+      <div class="pillar reveal">
+        <div class="pillar-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="6" width="12" height="12" rx="2"/>
+            <circle cx="12" cy="12" r="2.5"/>
+            <path d="M9 3v2M15 3v2M9 19v2M15 19v2M3 9h2M3 15h2M19 9h2M19 15h2"/>
+          </svg>
+        </div>
+        <div>
+          <h3>AI Agent Automations</h3>
+          <p>Intelligent systems that work for you &mdash; the workflows, decisions, and follow-through your team shouldn't have to.</p>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Operator-Led</h3>
+          <p>Built by an operator, not a consultant. Focused on outcomes that ship and decisions that hold up.</p>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 17l5-5 4 4 8-8"/>
+            <path d="M14 8h6v6"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Scalable Solutions</h3>
+          <p>Automation that grows with your business &mdash; designed to compound, not collapse, as your volume rises.</p>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l9 4v6c0 5-3.5 9-9 10-5.5-1-9-5-9-10V6l9-4z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Trusted Partner</h3>
+          <p>Reliable, secure, and built to last. Governance and human-in-the-loop controls in from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="label">In the workshop</div>
+
+    <div class="service reveal">
+      <div>
+        <h2 class="service-name">AI Opportunity Audit</h2>
+        <p class="service-tagline">A focused two-week engagement to map where AI agents and automations earn their keep in your operation &mdash; and where they don't.</p>
+        <p class="service-meta">Two weeks &middot; <a href="mailto:Bryan@perseidechocreations.com?subject=AI%20Opportunity%20Audit">enquire</a></p>
+      </div>
+      <span class="status status-live"><span class="status-dot"></span>Now booking</span>
+    </div>
+
+    <div class="service reveal">
+      <div>
+        <h2 class="service-name">Agent &amp; Automation Build</h2>
+        <p class="service-tagline">Production-grade AI agents and API automations &mdash; designed, built, and deployed against the workflows that move the needle.</p>
+        <p class="service-meta">4&ndash;12 weeks &middot; <a href="mailto:Bryan@perseidechocreations.com?subject=Agent%20Build">discuss scope</a></p>
+      </div>
+      <span class="status status-live"><span class="status-dot"></span>Active</span>
+    </div>
+
+    <div class="service reveal">
+      <div>
+        <h2 class="service-name">Automation-as-a-Service</h2>
+        <p class="service-tagline">Ongoing partnership for businesses that want their AI systems treated as living infrastructure &mdash; monitored, improved, expanded.</p>
+        <p class="service-meta">Quarterly retainer &middot; <a href="mailto:Bryan@perseidechocreations.com?subject=AaaS">request a call</a></p>
+      </div>
+      <span class="status status-soon"><span class="status-dot"></span>Limited slots</span>
+    </div>
+
+    <div class="service reveal">
+      <div>
+        <h2 class="service-name">Bristlecone</h2>
+        <p class="service-tagline">An opinionated marketing operating system for solo founders. Currently the engine behind the practice; in active development as a product.</p>
+        <p class="service-meta">Internal toolkit &middot; bristlecone.so</p>
+      </div>
+      <span class="status status-workshop"><span class="status-dot"></span>In the workshop</span>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="label">Who's behind it</div>
+    <p>Perseid Echo Creations is run by <strong>Bryan Piard</strong>, full-time. Background in customer experience, digital transformation, and AI engineering &mdash; most recently at T-Mobile, before going independent to build the agents and automations he wished he'd had on the inside.</p>
+    <p>The bet is simple: businesses don't need <em>more pilots</em>; they need AI systems that quietly do real work and keep doing it. Operator-led. Outcomes-focused. Built to last.</p>
+  </section>
+
+  <section class="contact">
+    <div class="label">Get in touch</div>
+    <p class="contact-statement">If you have an operation ready for an honest look at what AI agents could do for it &mdash; the door is open.</p>
+    <a href="mailto:Bryan@perseidechocreations.com" class="contact-link">Bryan@perseidechocreations.com</a>
+  </section>
+
+  <footer>
+    <div>&copy; 2026 Perseid Echo Creations &middot; AI Agent Automations</div>
+    <div class="links">
+      <a href="https://bristlecone.so" target="_blank" rel="noopener">Bristlecone</a>
+      <a href="mailto:Bryan@perseidechocreations.com">Email</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>
+
+</body>
+</html>

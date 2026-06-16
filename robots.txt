@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /index2.html
+Disallow: /index3.html
+Disallow: /index_old.html
+Disallow: /index_pre-rebrand_backup.html
+Disallow: /rebrand/
+Disallow: /offline-original/
+Disallow: /api/
+Disallow: /dist/
+Disallow: /node_modules/
+
+Sitemap: https://perseidechocreations.com/sitemap.xml

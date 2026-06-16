@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Perseid Echo Creations — AI Agent Automations</title>
+<meta name="description" content="An AI Solutions Practice. Operator-led agent automations. By Bryan Piard." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6A2A;
+    --navy:   #0D1321;
+    --slate:  #3A4152;
+    --paper:  #F6F6F4;
+    --rule:   rgba(246, 246, 244, 0.12);
+    --muted:  rgba(246, 246, 244, 0.55);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--navy);
+    color: var(--paper);
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Subtle radial vignette */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 75% 25%, rgba(255, 106, 42, 0.10) 0%, transparent 45%),
+      radial-gradient(circle at 20% 90%, rgba(225, 85, 23, 0.06) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  .frame {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px;
+    width: 100%;
+  }
+
+  /* ---------- Header ---------- */
+  header { padding: 56px 0 0; }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--paper);
+  }
+  .wordmark .mark { width: 28px; height: 28px; flex-shrink: 0; }
+  .wordmark-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .wordmark-name {
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+  .wordmark-sub {
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-top: 5px;
+  }
+
+  /* ---------- Hero (centered statement) ---------- */
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+  }
+
+  .statement-mark {
+    width: 92px;
+    height: 92px;
+    margin-bottom: 48px;
+  }
+
+  h1 {
+    font-weight: 500;
+    font-size: clamp(36px, 5.4vw, 60px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    margin-bottom: 36px;
+    max-width: 640px;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  .lede {
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 246, 244, 0.72);
+    max-width: 540px;
+    margin-bottom: 56px;
+  }
+
+  /* ---------- Pillars (one-liners) ---------- */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 36px;
+    margin-bottom: 64px;
+    max-width: 600px;
+  }
+  .pillar {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(246, 246, 244, 0.78);
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+  }
+  .pillar-num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-link {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 3px;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { color: var(--orange); transform: translateY(-1px); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 40px 0 48px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--orange); }
+  footer .links { display: flex; gap: 24px; }
+
+  /* ---------- Reveal (opacity only — frame stays still) ---------- */
+  .reveal { opacity: 0; transition: opacity 0.9s ease; }
+  .reveal.in { opacity: 1; }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 640px) {
+    .container { padding: 0 24px; }
+    header { padding-top: 36px; }
+    main { padding: 56px 0; }
+    .statement-mark { width: 72px; height: 72px; margin-bottom: 36px; }
+    h1 { font-size: 34px; }
+    .lede { font-size: 16px; margin-bottom: 44px; }
+    .pillars { grid-template-columns: 1fr; gap: 14px; margin-bottom: 48px; }
+  }
+
+  ::selection { background: var(--orange); color: var(--navy); }
+  a:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <header>
+    <div class="container">
+      <a href="/" class="wordmark" aria-label="Perseid Echo Creations home">
+        <img class="mark" src="../assets/images/PEC_Logo_Light.png" alt="" />
+        <span class="wordmark-text">
+          <span class="wordmark-name">PERSEID ECHO CREATIONS</span>
+          <span class="wordmark-sub">AI Agent Automations</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <img class="statement-mark reveal" src="../assets/images/PEC_Logo_Light.png" alt="Perseid Echo Creations" />
+
+      <h1 class="reveal">An AI Solutions Practice for businesses ready to put AI to <em>real work</em>.</h1>
+
+      <p class="lede reveal">Operator-led agent automations. Intelligent systems that ship outcomes, scale with your business, and keep working long after launch.</p>
+
+      <div class="pillars reveal">
+        <div class="pillar"><span class="pillar-num">01</span><span>AI Agent Automations</span></div>
+        <div class="pillar"><span class="pillar-num">02</span><span>Operator-Led</span></div>
+        <div class="pillar"><span class="pillar-num">03</span><span>Scalable Solutions</span></div>
+        <div class="pillar"><span class="pillar-num">04</span><span>Trusted Partner</span></div>
+      </div>
+
+      <a href="mailto:Bryan@perseidechocreations.com" class="contact-link reveal">Bryan@perseidechocreations.com</a>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div>&copy; 2026 Perseid Echo Creations</div>
+      <div class="links">
+        <a href="https://bristlecone.so" target="_blank" rel="noopener">Bristlecone</a>
+        <a href="mailto:Bryan@perseidechocreations.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>
+
+</body>
+</html>

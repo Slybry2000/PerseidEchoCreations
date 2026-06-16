@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Perseid Echo Creations — A software studio</title>
+<meta name="description" content="A one-person software studio building patient products. By Bryan Piard." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF7F1;
+    --paper-warm: #F4EFE5;
+    --ink: #1A1916;
+    --ink-soft: #3D3A33;
+    --muted: #807A6E;
+    --rule: #E5DFD2;
+    --accent: #2E5A3F;
+    --accent-soft: #4A7A5C;
+    --live: #2E5A3F;
+    --soon: #8B6F2E;
+    --workshop: #6B6862;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Subtle paper grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header */
+  header {
+    padding: 48px 0 0;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .mark {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .wordmark-text {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    font-variation-settings: "opsz" 14;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 140px 0 100px;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 540px;
+    font-weight: 400;
+  }
+
+  /* Section meta label */
+  .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* Products */
+  .products {
+    padding: 80px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .product {
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: start;
+    transition: padding 0.3s ease;
+  }
+
+  .product:last-child {
+    border-bottom: none;
+  }
+
+  .product-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    font-variation-settings: "opsz" 72;
+  }
+
+  .product-name a {
+    color: var(--ink);
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--ink) 0%, var(--ink) 100%);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.3s ease;
+  }
+
+  .product-name a:hover {
+    background-size: 100% 1px;
+  }
+
+  .product-tagline {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    max-width: 520px;
+  }
+
+  .product-meta {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .product-meta a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .product-meta a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    padding-top: 10px;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .status-live .status-dot {
+    background: var(--live);
+    box-shadow: 0 0 0 0 var(--live);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  .status-soon .status-dot { background: var(--soon); }
+  .status-workshop .status-dot { background: var(--workshop); opacity: 0.5; }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(46, 90, 63, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(46, 90, 63, 0); }
+  }
+
+  /* About */
+  .about {
+    padding: 80px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .about p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .about p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* Contact */
+  .contact {
+    padding: 100px 0 60px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .contact-statement {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 580px;
+    font-variation-settings: "opsz" 96;
+  }
+
+  .contact-link {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+    font-variation-settings: "opsz" 48;
+  }
+
+  .contact-link:hover {
+    opacity: 0.7;
+  }
+
+  /* Footer */
+  footer {
+    padding: 60px 0 48px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+  }
+
+  footer .links {
+    display: flex;
+    gap: 24px;
+  }
+
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover {
+    color: var(--ink);
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .container { padding: 0 24px; }
+    header { padding-top: 32px; }
+    .hero { padding: 80px 0 60px; }
+    .hero h1 { font-size: 38px; }
+    .hero p { font-size: 17px; }
+    .product {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 32px 0;
+    }
+    .status { padding-top: 0; }
+    .product-name { font-size: 24px; }
+    .about p { font-size: 16px; }
+    .contact { padding: 70px 0 40px; }
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  /* Focus */
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <a href="/" class="wordmark" aria-label="Perseid Echo Creations home">
+      <svg class="mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Stylized bristlecone — small, patient -->
+        <path d="M12 2 L12 22" stroke="#2E5A3F" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M12 5 Q8 6 6.5 8" stroke="#2E5A3F" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M12 5 Q16 6 17.5 8" stroke="#2E5A3F" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M12 9 Q7 10 5 13" stroke="#2E5A3F" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M12 9 Q17 10 19 13" stroke="#2E5A3F" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M12 14 Q8 15 6.5 17" stroke="#2E5A3F" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M12 14 Q16 15 17.5 17" stroke="#2E5A3F" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="12" cy="22" r="1" fill="#2E5A3F"/>
+      </svg>
+      <span class="wordmark-text">Perseid Echo Creations</span>
+    </a>
+  </header>
+
+  <section class="hero">
+    <h1 class="reveal">A small studio<br />for <em>patient software</em>.</h1>
+    <p class="reveal">Perseid Echo Creations is a one-person software studio. Each product is built to be useful for years, not weeks &mdash; and to compound, quietly, alongside the next one.</p>
+  </section>
+
+  <section class="products">
+    <div class="label">In the workshop</div>
+
+    <div class="product reveal">
+      <div>
+        <h2 class="product-name"><a href="https://thegreenfeltclub.com" target="_blank" rel="noopener">The Green Felt Club</a></h2>
+        <p class="product-tagline">A companion app for the people who actually play the game. Authentic 8-ball and 9-ball scoring, head-to-head stats, and a long memory for rivalries.</p>
+        <p class="product-meta"><a href="https://thegreenfeltclub.com" target="_blank" rel="noopener">thegreenfeltclub.com</a></p>
+      </div>
+      <span class="status status-live"><span class="status-dot"></span>Live</span>
+    </div>
+
+    <div class="product reveal">
+      <div>
+        <h2 class="product-name"><a href="https://dogkwondo.com" target="_blank" rel="noopener">Dogkwondo</a></h2>
+        <p class="product-tagline">A structured way to train working dogs &mdash; built from fifteen years inside the discipline. Levels, mini-goals, and a memory for the work you and your dog have done together.</p>
+        <p class="product-meta">In active development &middot; <a href="mailto:Bryan@perseidechocreations.com?subject=Dogkwondo%20early%20access">request early access</a></p>
+      </div>
+      <span class="status status-soon"><span class="status-dot"></span>Coming soon</span>
+    </div>
+
+    <div class="product reveal">
+      <div>
+        <h2 class="product-name">Bristlecone</h2>
+        <p class="product-tagline">An opinionated marketing operating system. Goal in, governed pipeline through, real artifacts out. Currently the engine behind everything else in the studio.</p>
+        <p class="product-meta">Internal toolkit &middot; may surface as a product later</p>
+      </div>
+      <span class="status status-workshop"><span class="status-dot"></span>In the workshop</span>
+    </div>
+
+    <div class="product reveal">
+      <div>
+        <h2 class="product-name">More, in time.</h2>
+        <p class="product-tagline">A reflection tool. A travel companion. A few quieter ideas. The studio's pace is deliberate; products ship when they earn it.</p>
+        <p class="product-meta">Not yet announced</p>
+      </div>
+      <span class="status status-workshop"><span class="status-dot"></span>Drafting</span>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="label">The studio</div>
+    <p>Perseid Echo Creations is run by <strong>Bryan Piard</strong>, full-time. Background in product, infrastructure, and AI engineering &mdash; most recently at T-Mobile, before going independent to build software at his own cadence.</p>
+    <p>The studio's bet is simple: small, well-made products compound over years if you build them with care and stop trying to win the quarter. Every product here is one Bryan personally wanted to exist, built with AI and a stubborn attention to the details most people skip.</p>
+  </section>
+
+  <section class="contact">
+    <div class="label">Get in touch</div>
+    <p class="contact-statement">If you use one of the products, want to talk about a project, or just want to say hello &mdash; the door is open.</p>
+    <a href="mailto:Bryan@perseidechocreations.com" class="contact-link">Bryan@perseidechocreations.com</a>
+  </section>
+
+  <footer>
+    <div>&copy; 2026 Perseid Echo Creations</div>
+    <div class="links">
+      <a href="https://thegreenfeltclub.com" target="_blank" rel="noopener">Green Felt Club</a>
+      <a href="mailto:Bryan@perseidechocreations.com">Email</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Quiet reveal on scroll — no library
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>
+
+</body>
+</html>

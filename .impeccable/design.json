@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-08T00:00:00.000Z",
+  "title": "Design System: Perseid Echo Creations",
+  "extensions": {
+    "colorMeta": {
+      "persimmon": {
+        "role": "primary",
+        "displayName": "Persimmon",
+        "canonical": "oklch(68% 0.20 38)",
+        "tonalRamp": [
+          "oklch(20% 0.06 38)",
+          "oklch(32% 0.10 38)",
+          "oklch(44% 0.14 38)",
+          "oklch(56% 0.18 38)",
+          "oklch(68% 0.20 38)",
+          "oklch(78% 0.16 38)",
+          "oklch(88% 0.10 38)",
+          "oklch(95% 0.05 38)"
+        ]
+      },
+      "persimmon-deep": {
+        "role": "primary",
+        "displayName": "Persimmon Deep",
+        "canonical": "oklch(60% 0.19 35)",
+        "tonalRamp": [
+          "oklch(18% 0.06 35)",
+          "oklch(30% 0.10 35)",
+          "oklch(42% 0.14 35)",
+          "oklch(52% 0.17 35)",
+          "oklch(60% 0.19 35)",
+          "oklch(72% 0.15 35)",
+          "oklch(85% 0.09 35)",
+          "oklch(94% 0.04 35)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(16% 0.02 265)",
+        "tonalRamp": [
+          "oklch(10% 0.02 265)",
+          "oklch(16% 0.02 265)",
+          "oklch(26% 0.02 265)",
+          "oklch(38% 0.02 265)",
+          "oklch(52% 0.02 265)",
+          "oklch(68% 0.015 265)",
+          "oklch(82% 0.01 265)",
+          "oklch(94% 0.005 265)"
+        ]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Ash",
+        "canonical": "oklch(35% 0.02 265)",
+        "tonalRamp": [
+          "oklch(15% 0.02 265)",
+          "oklch(25% 0.02 265)",
+          "oklch(35% 0.02 265)",
+          "oklch(48% 0.02 265)",
+          "oklch(60% 0.015 265)",
+          "oklch(72% 0.012 265)",
+          "oklch(85% 0.008 265)",
+          "oklch(95% 0.004 265)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(97% 0.003 85)",
+        "tonalRamp": [
+          "oklch(20% 0.005 85)",
+          "oklch(35% 0.005 85)",
+          "oklch(50% 0.004 85)",
+          "oklch(65% 0.004 85)",
+          "oklch(80% 0.004 85)",
+          "oklch(90% 0.003 85)",
+          "oklch(97% 0.003 85)",
+          "oklch(99% 0.002 85)"
+        ]
+      },
+      "paper-dim": {
+        "role": "neutral",
+        "displayName": "Paper Dim",
+        "canonical": "oklch(94% 0.003 85)",
+        "tonalRamp": [
+          "oklch(20% 0.005 85)",
+          "oklch(35% 0.005 85)",
+          "oklch(50% 0.004 85)",
+          "oklch(65% 0.004 85)",
+          "oklch(78% 0.004 85)",
+          "oklch(88% 0.003 85)",
+          "oklch(94% 0.003 85)",
+          "oklch(98% 0.002 85)"
+        ]
+      },
+      "surface-card": {
+        "role": "neutral",
+        "displayName": "Surface Card",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": []
+      },
+      "rule-light": {
+        "role": "neutral",
+        "displayName": "Rule Light",
+        "canonical": "oklch(16% 0.02 265 / 0.10)",
+        "tonalRamp": []
+      },
+      "rule-dark": {
+        "role": "neutral",
+        "displayName": "Rule Dark",
+        "canonical": "oklch(97% 0.003 85 / 0.10)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only. One per page. Carries the entire promise." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2s. Variants per section: About slightly tighter, Contact slightly larger." },
+      "title": { "displayName": "Title", "purpose": "Card and module titles (e.g. service-card headings)." },
+      "body-large": { "displayName": "Body Large", "purpose": "Section ledes and About body where the audience is engaged." },
+      "body": { "displayName": "Body", "purpose": "Default paragraph size. Capped at 65–75ch in long form." },
+      "label": { "displayName": "Label", "purpose": "Section eyebrows. UPPERCASE + 0.18em tracking + Ash. Single allowed eyebrow form." }
+    },
+    "shadows": [
+      { "name": "card-hover", "value": "0 16px 36px rgba(13, 19, 33, 0.06)", "purpose": "Pillar / card hover lift. Diffuse ambient settle, not elevation drama." },
+      { "name": "portrait-depth", "value": "0 24px 60px rgba(0, 0, 0, 0.35)", "purpose": "Founder portrait on Ink About surface. Stronger because it's placed on dark." },
+      { "name": "modal-panel", "value": "0 30px 80px rgba(13, 19, 33, 0.35)", "purpose": "Contact modal panel floating over Ink-72 backdrop with backdrop-blur." }
+    ],
+    "motion": [
+      { "name": "ease-default", "value": "ease", "purpose": "Default state transitions (color, border, transform)." },
+      { "name": "ease-quart-out", "value": "cubic-bezier(0.165, 0.84, 0.44, 1)", "purpose": "Recommended for any new motion. No bounce, no elastic." },
+      { "name": "duration-fast", "value": "200ms", "purpose": "Hover color and border transitions." },
+      { "name": "duration-medium", "value": "250ms", "purpose": "Card hover lift, ghost CTA visibility." },
+      { "name": "duration-slow", "value": "300ms", "purpose": "Modal fade, focus underline draw." },
+      { "name": "duration-reveal", "value": "700ms", "purpose": "IntersectionObserver-triggered section reveal." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "640px" },
+      { "name": "tablet", "value": "960px" },
+      { "name": "desktop", "value": "1180px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The hero and contact CTA. The flagship surface for Persimmon.",
+      "html": "<button class=\"ds-btn-primary\">Start a Conversation <svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line><polyline points=\"12 5 19 12 12 19\"></polyline></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 10px; background: #FF6A2A; color: #0D1321; border: 1px solid transparent; padding: 14px 26px; border-radius: 10px; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.2s, border-color 0.2s, color 0.2s; } .ds-btn-primary:hover { background: #E15517; transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid #FF6A2A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button (Nav CTA)",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The hero-aware nav button. Hidden while the hero is in viewport, enters on hero exit.",
+      "html": "<button class=\"ds-btn-ghost\">Start a Conversation</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; background: transparent; color: #F6F6F4; border: 1px solid rgba(246, 246, 244, 0.28); padding: 9px 18px; border-radius: 8px; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.2s, color 0.2s; } .ds-btn-ghost:hover { border-color: #F6F6F4; } .ds-btn-ghost:focus-visible { outline: 2px solid #FF6A2A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Pillar Card",
+      "kind": "card",
+      "refersTo": "card-pillar",
+      "description": "The Approach section. White card on Paper. Icon well + label + body. Hover lifts.",
+      "html": "<article class=\"ds-card-pillar\"><div class=\"ds-card-pillar__icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"></circle><line x1=\"16.5\" y1=\"16.5\" x2=\"21\" y2=\"21\"></line><path d=\"M8 11h6\"></path></svg></div><h3 class=\"ds-card-pillar__title\">01 / Audit</h3><p class=\"ds-card-pillar__body\">A focused engagement to map where AI and automation actually earn their keep in your operation.</p></article>",
+      "css": ".ds-card-pillar { background: #FFFFFF; border: 1px solid rgba(13, 19, 33, 0.10); border-radius: 16px; padding: 32px 28px; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; max-width: 360px; } .ds-card-pillar:hover { transform: translateY(-4px); border-color: rgba(13, 19, 33, 0.20); box-shadow: 0 16px 36px rgba(13, 19, 33, 0.06); } .ds-card-pillar__icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(13, 19, 33, 0.06); color: #0D1321; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; } .ds-card-pillar__icon svg { width: 24px; height: 24px; } .ds-card-pillar__title { font-weight: 600; font-size: 16px; letter-spacing: 0.02em; text-transform: uppercase; color: #0D1321; margin: 0 0 10px; } .ds-card-pillar__body { font-size: 15px; color: #3A4152; line-height: 1.55; margin: 0; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Services grid card on Paper Dim. Persimmon eyebrow, title, body, bullet list. Note: legacy left-edge stripe is on the watch-list (see Don'ts).",
+      "html": "<article class=\"ds-card-service\"><div class=\"ds-card-service__num\">AI / AGENTS</div><h3 class=\"ds-card-service__title\">AI Agents &amp; Automation</h3><p class=\"ds-card-service__body\">Custom agents that handle real workflows: research, outreach, triage, internal ops.</p><ul class=\"ds-card-service__list\"><li>Workflow agents &amp; assistants</li><li>API &amp; tool-use integration</li><li>Observability &amp; guardrails</li></ul></article>",
+      "css": ".ds-card-service { padding: 36px 32px; background: #FFFFFF; border-radius: 16px; border: 1px solid rgba(13, 19, 33, 0.10); position: relative; overflow: hidden; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; max-width: 480px; } .ds-card-service__num { font-size: 13px; font-weight: 600; color: #FF6A2A; letter-spacing: 0.1em; margin-bottom: 16px; text-transform: uppercase; } .ds-card-service__title { font-weight: 600; font-size: 22px; line-height: 1.2; color: #0D1321; margin: 0 0 12px; letter-spacing: -0.01em; } .ds-card-service__body { font-size: 15px; color: #3A4152; line-height: 1.6; margin: 0 0 20px; } .ds-card-service__list { list-style: none; font-size: 14px; color: #3A4152; padding: 0; margin: 0; } .ds-card-service__list li { padding-left: 20px; position: relative; margin-bottom: 8px; } .ds-card-service__list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: #3A4152; opacity: 0.45; }"
+    },
+    {
+      "name": "Engagement Card",
+      "kind": "card",
+      "refersTo": "card-engagement",
+      "description": "Lightest card in the system. Transparent on Paper Dim, used for engagement-model strip.",
+      "html": "<article class=\"ds-card-engagement\"><h4 class=\"ds-card-engagement__title\">Managed Service</h4><p class=\"ds-card-engagement__body\">Done for you. We build it and run it; you get the outputs.</p></article>",
+      "css": ".ds-card-engagement { background: transparent; border: 1px solid rgba(13, 19, 33, 0.10); border-radius: 12px; padding: 22px 24px; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; max-width: 320px; } .ds-card-engagement__title { font-weight: 600; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: #0D1321; margin: 0 0 8px; } .ds-card-engagement__body { font-size: 14px; color: #3A4152; line-height: 1.55; margin: 0; }"
+    },
+    {
+      "name": "Underline Input",
+      "kind": "input",
+      "refersTo": "input-underline",
+      "description": "The system's only input style. Underline-only with animated focus underline.",
+      "html": "<label class=\"ds-input-underline\"><span class=\"ds-input-underline__label\">Your name</span><input type=\"text\" placeholder=\"Jane Doe\"><span class=\"ds-input-underline__rule\" aria-hidden=\"true\"></span></label>",
+      "css": ".ds-input-underline { position: relative; display: block; max-width: 360px; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; } .ds-input-underline__label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #3A4152; margin-bottom: 6px; } .ds-input-underline input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(13, 19, 33, 0.10); padding: 10px 0 12px; font-family: inherit; font-size: 16px; font-weight: 400; color: #0D1321; outline: none; transition: border-color 0.2s; } .ds-input-underline input::placeholder { color: rgba(58, 65, 82, 0.45); } .ds-input-underline__rule { position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: #0D1321; transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; } .ds-input-underline input:focus ~ .ds-input-underline__rule { transform: scaleX(1); }"
+    },
+    {
+      "name": "Sticky Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Top nav with Ink-92 background and backdrop-blur. Hero-aware ghost CTA.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav__inner\"><a href=\"#\" class=\"ds-nav__brand\"><span class=\"ds-nav__mark\"></span><span class=\"ds-nav__wordmark\"><span class=\"ds-nav__name\">PERSEID ECHO CREATIONS</span><span class=\"ds-nav__sub\">AI Agent Automations</span></span></a><ul class=\"ds-nav__links\"><li><a href=\"#approach\">Approach</a></li><li><a href=\"#services\">Services</a></li><li><a href=\"#about\">About</a></li><li><a href=\"#contact\">Contact</a></li></ul><button class=\"ds-nav__cta\">Start a Conversation</button></div></nav>",
+      "css": ".ds-nav { position: sticky; top: 0; z-index: 50; background: rgba(13, 19, 33, 0.92); backdrop-filter: saturate(140%) blur(10px); -webkit-backdrop-filter: saturate(140%) blur(10px); border-bottom: 1px solid rgba(246, 246, 244, 0.10); font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; } .ds-nav__inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 72px; } .ds-nav__brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #F6F6F4; } .ds-nav__mark { width: 36px; height: 36px; border-radius: 8px; background: #FF6A2A; flex-shrink: 0; } .ds-nav__wordmark { display: flex; flex-direction: column; line-height: 1; } .ds-nav__name { font-weight: 700; font-size: 15px; letter-spacing: 0.04em; } .ds-nav__sub { font-weight: 500; font-size: 10px; letter-spacing: 0.18em; color: rgba(246, 246, 244, 0.55); margin-top: 4px; text-transform: uppercase; } .ds-nav__links { display: flex; gap: 32px; list-style: none; padding: 0; margin: 0; } .ds-nav__links a { color: rgba(246, 246, 244, 0.75); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; } .ds-nav__links a:hover { color: #F6F6F4; } .ds-nav__cta { display: inline-flex; align-items: center; background: transparent; color: #F6F6F4; border: 1px solid rgba(246, 246, 244, 0.28); padding: 9px 18px; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: border-color 0.2s; } .ds-nav__cta:hover { border-color: #F6F6F4; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Quiet Authority",
+    "overview": "The system is premium-by-omission. Confidence is signaled through what is left out, not what is added. The site of a small firm that does not need to perform, because the work performs. Closer in feel to Linear's marketing pages or Stripe's quietest product pages than to any AI-startup template.\n\nBold, declarative, premium reads here as: bold by reduction (one accent, one move per section, no ornamentation), declarative through specificity (concrete claims, real names, tight copy), premium through restraint (more space, fewer elements, better materials). The system explicitly rejects gradient-blob heroes, neon-on-black, navy-and-grey corporate gloom, Awwwards scroll-jacking, and the futurist-sci-fi reflex AI sites fall into.",
+    "keyCharacteristics": [
+      "Modern-monochrome with one signature color (Persimmon) doing ≤10% of the work.",
+      "Tinted neutrals only; no #fff or #000 literals.",
+      "Flat by default; elevation appears only as state.",
+      "Typography is the load-bearing element. Hierarchy through scale and weight, not chrome.",
+      "Ample vertical rhythm (100–120px between sections) over dense layouts.",
+      "One loud move per surface; everything else recedes."
+    ],
+    "rules": [
+      { "name": "The 10% Rule", "body": "Persimmon may occupy no more than 10% of the visible viewport at any scroll position. If a design move requires more, it is the wrong move.", "section": "colors" },
+      { "name": "The No-Pure Rule", "body": "Pure #fff and #000 are forbidden in tokens and prose. Every neutral is tinted. The only exception is Surface Card (#FFFFFF) used strictly as a card fill, never as a screen ground.", "section": "colors" },
+      { "name": "The One Accent Rule", "body": "Persimmon is the only chromatic color. State (error, success, warning) carries through type weight, icon, and copy, not through hue.", "section": "colors" },
+      { "name": "The Single-Family Rule", "body": "No second typeface anywhere. Hierarchy is achieved through size, weight, and letter-spacing only.", "section": "typography" },
+      { "name": "The Tight-Display Rule", "body": "Every type role at 22px or larger uses negative letter-spacing (-0.01em to -0.025em, scaled to size). Body and Body Small stay at normal tracking.", "section": "typography" },
+      { "name": "The Eyebrow Rule", "body": "UPPERCASE + 12px + 0.18em tracking + Ash is the only acceptable eyebrow form.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Every section, card, and surface starts with box-shadow: none. State (hover, focus, modal) is the only justification for adding one.", "section": "elevation" },
+      { "name": "The Diffuse-Soft Rule", "body": "Shadows always use Ink (or near-Ink) at low opacity with large blur. Sharp, dark, small-blur shadows ('2014 app' elevation) are forbidden.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use Persimmon (#FF6A2A) on no more than one major element per fold.",
+      "Do keep the system to a single typeface (Poppins). Hierarchy comes from weight, size, and tracking.",
+      "Do apply negative letter-spacing (-0.01em to -0.025em) to every type role 22px and up.",
+      "Do start every surface with box-shadow: none; add elevation only on hover, focus, or modal context.",
+      "Do tint every neutral toward the brand hue. #F6F6F4 paper and #0D1321 ink are the floor.",
+      "Do keep the hero-aware nav CTA behavior. The ghost button entering on hero exit is a load-bearing brand move.",
+      "Do keep section vertical rhythm at 100–120px desktop, 70px mobile.",
+      "Do specify content. 'Twenty-one years in customer experience, most recently at T-Mobile' not 'decades of experience.'",
+      "Do test every reveal animation against prefers-reduced-motion."
+    ],
+    "donts": [
+      "Don't use #fff or #000 in any new code. Every neutral must be tinted.",
+      "Don't use border-left or border-right greater than 1px as a colored side-stripe accent. The current .service::before orange stripe is the only legacy instance and should not be propagated.",
+      "Don't use gradient text (background-clip: text over a gradient). Persimmon is solid, always.",
+      "Don't use glassmorphism as a default surface treatment.",
+      "Don't ship the hero-metric template (big number + small label + supporting stats). It is the AI-startup template anti-reference.",
+      "Don't add a second brand color. Persimmon is the only chromatic value.",
+      "Don't ship Awwwards-style scroll-jacking, kinetic-text headlines, marquee tickers, or hover gimmicks.",
+      "Don't use stock photography of teams pointing at screens, abstract data swirls, or hands-on-keyboards.",
+      "Don't add neon glow, holographic gradients, futuristic-sci-fi panel HUDs, or 'protocol' framing.",
+      "Don't mix in a second typeface (serif display, monospace caption, script flourish).",
+      "Don't use min-height on card headings to force grid parity.",
+      "Don't use em dashes anywhere in copy."
+    ]
+  }
+}

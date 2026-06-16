@@ -1,0 +1,9 @@
+name = "pec-sites"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "sites"
+
+# Cloudflare Pages Functions live in ./functions (project root).
+# Storefront claim store — same KV the autonomous pipeline reads.
+[[kv_namespaces]]
+binding = "CLAIMS"
+id = "bd8010898ecd4941bb32dda3e7939601"

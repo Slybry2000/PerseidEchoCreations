@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perseid Echo Creations — An AI Solutions Practice | Bryan Piard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/base.css">
+    <link rel="stylesheet" href="assets/styles/modules.css">
+    <script src="assets/scripts/sections.js" defer></script>
+    <script src="assets/scripts/reveals.js" defer></script>
+    <script src="assets/scripts/contact-form.js" defer></script>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <nav>
+        <a href="#" class="brand">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 0L22.5 17.5L40 20L22.5 22.5L20 40L17.5 22.5L0 20L17.5 17.5L20 0Z" fill="var(--accent-cyan)"/>
+            </svg>
+            Perseid Echo
+        </a>
+        <ul class="nav-links">
+            <li><a href="#apps">Projects</a></li>
+            <li><a href="#now">Now</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#support">Support</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button type="button" class="btn btn-primary" data-pec-contact-open><span>Get in Touch</span></button>
+    </nav>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-grid">
+                <div class="hero-content reveal">
+                    <span class="eyebrow">AI Solutions Practice</span>
+                    <h1 class="pec-mask-h1">
+                        Quiet agents. <span style="color: var(--accent-cyan);">Real</span> work.
+                    </h1>
+                    <p class="pec-hero-sub">
+                        Bryan Piard — twenty-one years in customer experience and digital transformation, now building AI agents that carry work forward for solo founders and small teams.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#apps" class="btn btn-primary" data-pec-particles><span>See what I build</span></a>
+                    </div>
+                </div>
+                <div class="hero-visual reveal" id="pec-hero-visual">
+                    <div class="svg-container float">
+                        <!-- Super Refined SVG Animation -->
+                        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="cyan-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--accent-cyan)" />
+                                    <stop offset="100%" stop-color="var(--accent-blue)" />
+                                </linearGradient>
+                                <linearGradient id="comet-tail" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--accent-cyan)" stop-opacity="0.8" />
+                                    <stop offset="100%" stop-color="var(--accent-blue)" stop-opacity="0" />
+                                </linearGradient>
+                                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="15" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                                <filter id="glow-intense" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="25" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                            </defs>
+
+                            <!-- Echo Ripples (Outer) -->
+                            <g class="pulse-glow" transform="translate(400, 400)">
+                                <circle cx="0" cy="0" r="320" fill="none" stroke="rgba(74, 211, 197, 0.05)" stroke-width="1" />
+                                <circle cx="0" cy="0" r="260" fill="none" stroke="rgba(74, 211, 197, 0.1)" stroke-width="1.5" />
+                                <circle cx="0" cy="0" r="200" fill="none" stroke="rgba(74, 211, 197, 0.2)" stroke-width="2" stroke-dasharray="150 50" class="spin-slow" />
+                            </g>
+
+                            <!-- Orbital Rings -->
+                            <g class="spin-slow-reverse" transform="translate(400, 400)">
+                                <ellipse cx="0" cy="0" rx="280" ry="100" fill="none" stroke="url(#cyan-blue)" stroke-width="2" transform="rotate(45)" class="draw-path" filter="url(#glow)" opacity="0.6" />
+                                <ellipse cx="0" cy="0" rx="280" ry="100" fill="none" stroke="url(#cyan-blue)" stroke-width="2" transform="rotate(-45)" class="draw-path-delayed" filter="url(#glow)" opacity="0.6" />
+                            </g>
+
+                            <!-- Comet Tail / Echo -->
+                            <g transform="translate(400, 400)">
+                                <path d="M0,0 C-100,100 -200,200 -300,300" fill="none" stroke="url(#comet-tail)" stroke-width="40" stroke-linecap="round" filter="url(#glow)" class="pulse-glow" opacity="0.7" />
+                                <path d="M0,0 C-80,80 -160,160 -240,240" fill="none" stroke="url(#comet-tail)" stroke-width="20" stroke-linecap="round" filter="url(#glow-intense)" class="pulse-glow" opacity="0.9" />
+                            </g>
+
+                            <!-- Central Core (The Comet) -->
+                            <g transform="translate(400, 400)">
+                                <circle cx="0" cy="0" r="45" fill="url(#cyan-blue)" class="pulse-glow" filter="url(#glow-intense)" opacity="0.9" />
+                                <circle cx="0" cy="0" r="20" fill="#ffffff" filter="url(#glow)" />
+
+                                <!-- Orbiting Particles -->
+                                <g class="spin-slow">
+                                    <circle cx="120" cy="0" r="6" fill="var(--accent-cyan)" filter="url(#glow)" />
+                                    <circle cx="-60" cy="104" r="4" fill="var(--accent-blue)" filter="url(#glow)" />
+                                    <circle cx="-60" cy="-104" r="8" fill="var(--accent-purple)" filter="url(#glow)" />
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="apps" class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Apps I've Shipped</span>
+                <h2>Proof of work, not pitch decks.</h2>
+                <p>I build, ship, and iterate. Here's what I've put in front of real users. Status tags are honest — no "coming soon" theatre.</p>
+            </div>
+
+            <!-- Odometer stat strip — honest numbers, cyan-accented -->
+            <div class="pec-stats reveal">
+                <div class="pec-stat">
+                    <span class="pec-stat-num" data-pec-count="1">0</span>
+                    <span class="pec-stat-label">app shipped</span>
+                </div>
+                <div class="pec-stat-divider" aria-hidden="true"></div>
+                <div class="pec-stat">
+                    <span class="pec-stat-num" data-pec-count="0">0</span>
+                    <span class="pec-stat-label">fake launches</span>
+                </div>
+                <div class="pec-stat-divider" aria-hidden="true"></div>
+                <div class="pec-stat">
+                    <span class="pec-stat-num" data-pec-count="100" data-pec-count-suffix="%">0</span>
+                    <span class="pec-stat-label">solo-built</span>
+                </div>
+            </div>
+
+            <div class="pec-flip-grid">
+                <div class="pec-flip-card reveal" tabindex="0">
+                    <div class="pec-flip-inner">
+                        <div class="pec-flip-front">
+                            <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="4" y="8" width="40" height="32" rx="6" stroke="currentColor" stroke-width="2" class="draw-path"/>
+                                <path d="M12 16H24" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path-delayed"/>
+                                <path d="M12 24H36" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path"/>
+                                <path d="M12 32H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path-delayed"/>
+                            </svg>
+                            <span class="eyebrow" style="color: var(--accent-cyan); margin-bottom: 0.5rem;">● Live</span>
+                            <h3>The Green Felt Club</h3>
+                            <p>A pool game tracker — Flutter + Firebase. Built end-to-end with AI agents and vibe coding as a personal proving ground for agent-driven development. Live on iOS, Android, and web.</p>
+                            <span class="pec-flip-hint">Hover to see the stack →</span>
+                        </div>
+                        <div class="pec-flip-back">
+                            <h3>Under the hood</h3>
+                            <ul class="pec-flip-stack">
+                                <li><strong>Client:</strong> Flutter + Dart</li>
+                                <li><strong>Backend:</strong> Firebase — Auth, Firestore, Functions</li>
+                                <li><strong>Build process:</strong> 100% AI agents + vibe coding</li>
+                                <li><strong>Shipping channels:</strong> App Store + Google Play + web</li>
+                            </ul>
+                            <a href="https://www.thegreenfeltclub.com/" target="_blank" class="pec-flip-cta">Visit website →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pec-flip-card reveal" style="transition-delay: 0.1s;" tabindex="0">
+                    <div class="pec-flip-inner">
+                        <div class="pec-flip-front">
+                            <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" class="spin-slow"/>
+                                <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2" class="draw-path"/>
+                                <circle cx="24" cy="24" r="4" fill="currentColor" class="pulse-glow"/>
+                                <path d="M24 4V12M24 36V44M4 24H12M36 24H44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="eyebrow" style="color: var(--accent-cyan); margin-bottom: 0.5rem;">● In Development</span>
+                            <h3>Bristlecone</h3>
+                            <p>An AI marketing OS for solo founders. You give it one goal; it picks a strategy, routes the work to AI agents, and carries the campaign forward — research, copy, creative, and send.</p>
+                            <span class="pec-flip-hint">Hover to see the stack →</span>
+                        </div>
+                        <div class="pec-flip-back">
+                            <h3>Under the hood</h3>
+                            <ul class="pec-flip-stack">
+                                <li><strong>Agents:</strong> Claude Opus + Sonnet via the Claude Agent SDK — they decide, not just assist</li>
+                                <li><strong>Engine:</strong> Goal → Strategy → Tactic with a capability router (have / get / build / cannot)</li>
+                                <li><strong>AI tooling:</strong> Firecrawl for research, AgentMail for send, GPT Image 2 for creative</li>
+                                <li><strong>Runtime:</strong> Node.js, runtime-agnostic — runs the same on a laptop or a server</li>
+                            </ul>
+                            <a href="https://bristlecone.so" target="_blank" rel="noopener" class="pec-flip-cta">Visit bristlecone.so →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pec-flip-card reveal" style="transition-delay: 0.2s;" tabindex="0">
+                    <div class="pec-flip-inner">
+                        <div class="pec-flip-front">
+                            <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="14" cy="24" r="6" stroke="currentColor" stroke-width="2" class="draw-path"/>
+                                <circle cx="34" cy="24" r="6" stroke="currentColor" stroke-width="2" class="draw-path-delayed"/>
+                                <path d="M20 24H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path"/>
+                                <path d="M14 12V8M34 12V8M14 36V40M34 36V40" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="draw-path-delayed"/>
+                                <rect x="6" y="14" width="36" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" class="spin-slow" opacity="0.4"/>
+                            </svg>
+                            <span class="eyebrow" style="color: var(--accent-cyan); margin-bottom: 0.5rem;">● In Development</span>
+                            <h3>Convergent Court</h3>
+                            <p>A two-agent decision court where Claude argues as architect and Codex as implementer — designed to refuse fluent-but-wrong answers instead of producing them.</p>
+                            <span class="pec-flip-hint">Hover to see the stack →</span>
+                        </div>
+                        <div class="pec-flip-back">
+                            <h3>Under the hood</h3>
+                            <ul class="pec-flip-stack">
+                                <li><strong>Orchestrator:</strong> bash + Python</li>
+                                <li><strong>Agents:</strong> Claude Code + OpenAI Codex CLI</li>
+                                <li><strong>Protocol:</strong> schema-validated rounds of framing &amp; rebuttal</li>
+                                <li><strong>Audit trail:</strong> every exchange committed to git as a two-agent decision record</li>
+                            </ul>
+                            <a href="#now" class="pec-flip-cta">See what's on the desk →</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Kinetic marquee tagline strip -->
+        <div class="pec-marquee reveal" aria-hidden="true">
+            <div class="pec-marquee-track">
+                <span>AI Agents</span><span class="pec-marquee-dot">●</span>
+                <span>Vibe Coding</span><span class="pec-marquee-dot">●</span>
+                <span>Agent Orchestration</span><span class="pec-marquee-dot">●</span>
+                <span>Solo-Built</span><span class="pec-marquee-dot">●</span>
+                <span>Shipped, Not Pitched</span><span class="pec-marquee-dot">●</span>
+                <span>AI Agents</span><span class="pec-marquee-dot">●</span>
+                <span>Vibe Coding</span><span class="pec-marquee-dot">●</span>
+                <span>Agent Orchestration</span><span class="pec-marquee-dot">●</span>
+                <span>Solo-Built</span><span class="pec-marquee-dot">●</span>
+                <span>Shipped, Not Pitched</span><span class="pec-marquee-dot">●</span>
+            </div>
+        </div>
+
+        <section id="about" class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">About</span>
+                <h2 class="pec-stroke-gradient" data-text="From CX transformation to AI Solutions Practice.">From CX transformation to AI Solutions Practice.</h2>
+                <p>Perseid Echo Creations is the studio I run as a solo operator. It now covers both the products I'm building and the AI agent work I do for other businesses.</p>
+            </div>
+
+            <!-- The shift: 21 years CX/digital transformation → building products → agency -->
+            <div class="pec-story reveal">
+                <p class="pec-story-lead">Twenty-one years in <strong>customer experience and digital transformation</strong>. Now building products of my own — and the agents that run them.</p>
+                <p>My focus is on <strong>AI agentic systems</strong> — designing workflows where AI doesn't just assist, but actually carries work forward. Systems that:</p>
+                <ul class="pec-story-list">
+                    <li>generate ideas</li>
+                    <li>critique and improve them</li>
+                    <li>route decisions</li>
+                    <li>and produce real, usable outputs</li>
+                </ul>
+                <p>The products came first — <a href="https://www.thegreenfeltclub.com/" target="_blank" rel="noopener">The Green Felt Club</a>, Bristlecone, Convergent Court. Each one needed agents to do real work behind the scenes, and that's where I learned the operating side: setting them up, keeping them running as models change, and stepping in when something breaks. That toolkit is what I now bring to other businesses.</p>
+                <p>The biggest shift hasn't been learning AI. It's been changing how I think about work:</p>
+                <p class="pec-story-quote">Less doing everything myself.<br>More designing systems that do the work with me.</p>
+                <p class="pec-story-tag">Transitioning openly. Building in public. Getting better every week.</p>
+                <a href="https://www.linkedin.com/in/bryan-piard-70575131/" target="_blank" rel="noopener" class="pec-linkedin-link">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3-.5-2-1.6-2-1.2 0-1.9.8-1.9 2V19h-3V9h2.9v1.3A3.1 3.1 0 0115 9c2.1 0 4 1.3 4 4.1V19z"/></svg>
+                    Follow along on LinkedIn
+                </a>
+            </div>
+
+            <div class="pec-sticky-cards">
+                <div class="pec-stack-card pec-stack-1">
+                    <span class="pec-stack-num">01 / 03</span>
+                    <h3>Prototype fast.</h3>
+                    <p>I build small and test early. Real-world usage feedback creates better products than over-polished assumptions. I ship something working, then improve it.</p>
+                </div>
+                <div class="pec-stack-card pec-stack-2">
+                    <span class="pec-stack-num">02 / 03</span>
+                    <h3>AI tooling, heavily.</h3>
+                    <p>I use AI copilots throughout the build process. That's a feature, not a cheat — it lets me move fast as a solo developer without cutting corners on the things that matter.</p>
+                </div>
+                <div class="pec-stack-card pec-stack-3">
+                    <span class="pec-stack-num">03 / 03</span>
+                    <h3>Boring where it counts.</h3>
+                    <p>Production code is reliable where it has to be: payments, auth, and data paths get clean architecture, reproducible builds, and proper testing. No shortcuts there.</p>
+                </div>
+            </div>
+
+            <!-- Toolchain marquee -->
+            <div class="pec-marquee pec-marquee-toolchain reveal" aria-label="Toolchain">
+                <div class="pec-marquee-track">
+                    <span>Flutter</span><span class="pec-marquee-dot">●</span>
+                    <span>Firebase</span><span class="pec-marquee-dot">●</span>
+                    <span>Dart</span><span class="pec-marquee-dot">●</span>
+                    <span>Node.js</span><span class="pec-marquee-dot">●</span>
+                    <span>JavaScript</span><span class="pec-marquee-dot">●</span>
+                    <span>GitHub</span><span class="pec-marquee-dot">●</span>
+                    <span>AI-assisted workflows</span><span class="pec-marquee-dot">●</span>
+                    <span>Flutter</span><span class="pec-marquee-dot">●</span>
+                    <span>Firebase</span><span class="pec-marquee-dot">●</span>
+                    <span>Dart</span><span class="pec-marquee-dot">●</span>
+                    <span>Node.js</span><span class="pec-marquee-dot">●</span>
+                    <span>JavaScript</span><span class="pec-marquee-dot">●</span>
+                    <span>GitHub</span><span class="pec-marquee-dot">●</span>
+                    <span>AI-assisted workflows</span><span class="pec-marquee-dot">●</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="now" class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Right Now</span>
+                <h2 data-pec-scramble="What I'm currently building.">What I'm currently building.</h2>
+                <p>Updated regularly. This is what I'm actually working on this month.</p>
+            </div>
+
+            <!-- Zoom-parallax focus divider -->
+            <div class="pec-zoom-divider reveal" aria-hidden="true">
+                <span class="pec-zoom-word">Focus</span>
+            </div>
+
+            <div class="product-showcase reveal" style="grid-template-columns: 1fr;">
+                <div class="product-info">
+                    <ul>
+                        <li>
+                            <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Building Bristlecone — an AI marketing OS where agents run the campaign, not just draft it.
+                        </li>
+                        <li>
+                            <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Building Convergent Court — a local-first orchestrator that forces Claude and Codex to debate the framing of a question before they answer it, or refuse out loud when no honest answer exists.
+                        </li>
+                        <li>
+                            <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Supporting The Green Felt Club in production — now live on the App Store, Google Play, and web. Shipping fixes and onboarding tweaks from real-user feedback.
+                        </li>
+                        <li>
+                            <svg class="pec-draw-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            This site — making it a genuine developer portfolio rather than a studio landing page.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">App Support</span>
+                <h2>Need help with one of my apps?</h2>
+                <p>Support is handled directly by me. No ticket system, no bot — just email.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="glow-card pec-spotlight reveal">
+                    <h3>The Green Felt Club</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Pool game tracker. Live on the App Store, Google Play, and web.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <li><a href="mailto:Bryan@perseidechocreations.com?subject=GFC Support" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">📧 Email support</a></li>
+                        <li><a href="https://www.thegreenfeltclub.com/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">🌐 App website</a></li>
+                        <li><a href="https://www.thegreenfeltclub.com/privacy_policy.html" target="_blank" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy policy</a></li>
+                        <li><a href="mailto:Bryan@perseidechocreations.com?subject=GFC Bug Report" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Report a bug</a></li>
+                    </ul>
+                </div>
+
+                <div class="glow-card pec-spotlight reveal" style="transition-delay: 0.1s;">
+                    <h3>General Enquiries</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Questions about an app, a data request, or anything else. Email is best — LinkedIn works too.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <li><a href="mailto:Bryan@perseidechocreations.com" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">📧 Bryan@perseidechocreations.com</a></li>
+                        <li><a href="https://www.linkedin.com/in/bryan-piard-70575131/" target="_blank" rel="noopener" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.9rem;">in Connect on LinkedIn</a></li>
+                        <li><a href="https://www.thegreenfeltclub.com/account-deletion.html" target="_blank" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Request account deletion</a></li>
+                    </ul>
+                </div>
+
+                <div class="glow-card pec-spotlight reveal" style="transition-delay: 0.2s;">
+                    <h3>Response Times</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">I'm a solo developer, not a support team. I aim to respond within 24 hours.</p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;">For urgent issues (data loss, payment problems), mark your email subject "URGENT" and I'll prioritise it.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <div class="product-showcase reveal">
+                <div class="product-info">
+                    <span class="eyebrow">Get in Touch</span>
+                    <h2 class="pec-glitch" data-text="Want to work together?">Want to work together?</h2>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">I occasionally take small engagements — Flutter/Firebase audits, 2–4 week MVP spikes, focused bug hunts, or AI-workflow retrofits for small teams. Drop me an email with what you're building and I'll give you an honest answer on whether I can help.</p>
+                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">Not an agency. No account managers. Just me.</p>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <button type="button" class="btn btn-primary" data-pec-particles data-pec-contact-open style="padding: 1rem 2rem; font-size: 1.125rem;">
+                        <span>Open Contact Form</span>
+                    </button>
+                    <p style="text-align: center; color: var(--text-muted); font-size: 0.875rem;">Or write directly: Bryan@perseidechocreations.com</p>
+                    <a href="https://www.linkedin.com/in/bryan-piard-70575131/" target="_blank" rel="noopener" class="pec-linkedin-link pec-linkedin-contact">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3-.5-2-1.6-2-1.2 0-1.9.8-1.9 2V19h-3V9h2.9v1.3A3.1 3.1 0 0115 9c2.1 0 4 1.3 4 4.1V19z"/></svg>
+                        or connect on LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <!-- Circular-text signature mark -->
+            <div class="pec-circular" aria-hidden="true">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="pec-circular-svg">
+                    <defs>
+                        <path id="pec-circle-path" d="M 100, 100 m -72, 0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"></path>
+                    </defs>
+                    <text font-family="Inter, sans-serif" font-weight="500" font-size="11" letter-spacing="4" fill="var(--text-muted)">
+                        <textPath href="#pec-circle-path">PERSEID · ECHO · CREATIONS · AI · SOLUTIONS · PRACTICE · 2026 · </textPath>
+                    </text>
+                </svg>
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="pec-circular-mark">
+                    <path d="M20 0L22.5 17.5L40 20L22.5 22.5L20 40L17.5 22.5L0 20L17.5 17.5L20 0Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <p>&copy; 2026 Perseid Echo Creations — Bryan Piard's AI Solutions Practice.</p>
+        </div>
+    </footer>
+
+    <!-- Contact form modal -->
+    <div class="pec-contact-modal" id="pec-contact-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pec-contact-title">
+        <div class="pec-contact-backdrop" data-pec-contact-close></div>
+        <div class="pec-contact-panel" role="document">
+            <button type="button" class="pec-contact-close" data-pec-contact-close aria-label="Close contact form">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="pec-contact-header">
+                <span class="eyebrow">Direct Line</span>
+                <h2 id="pec-contact-title">Let's start a conversation.</h2>
+                <p>Tell me what you're building. I read every message and reply within 24 hours.</p>
+            </div>
+            <form class="pec-contact-form" id="pec-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+                <input type="hidden" name="access_key" value="9dcf879b-c9aa-42b5-b01b-fbf09e383690">
+                <input type="hidden" name="subject" value="New enquiry from perseidechocreations.com">
+                <input type="hidden" name="from_name" value="Perseid Echo contact form">
+                <input type="text" name="botcheck" tabindex="-1" autocomplete="off" class="pec-contact-honey" aria-hidden="true">
+                <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="pec-contact-honey" aria-hidden="true">
+
+                <div class="pec-contact-row">
+                    <label class="pec-contact-field">
+                        <span class="pec-contact-label">Your name</span>
+                        <input type="text" name="name" required autocomplete="name" placeholder="Bryan Piard">
+                        <span class="pec-contact-underline" aria-hidden="true"></span>
+                    </label>
+                    <label class="pec-contact-field">
+                        <span class="pec-contact-label">Email</span>
+                        <input type="email" name="email" required autocomplete="email" placeholder="you@somewhere.com">
+                        <span class="pec-contact-underline" aria-hidden="true"></span>
+                    </label>
+                </div>
+                <label class="pec-contact-field">
+                    <span class="pec-contact-label">What's this about?</span>
+                    <input type="text" name="topic" required placeholder="MVP spike, agent retrofit, audit…">
+                    <span class="pec-contact-underline" aria-hidden="true"></span>
+                </label>
+                <label class="pec-contact-field">
+                    <span class="pec-contact-label">Tell me a bit more</span>
+                    <textarea name="message" rows="5" required placeholder="What are you building, and where could AI agents take real work off your plate?"></textarea>
+                    <span class="pec-contact-underline" aria-hidden="true"></span>
+                </label>
+
+                <div class="pec-contact-actions">
+                    <span class="pec-contact-status" id="pec-contact-status" role="status" aria-live="polite"></span>
+                    <button type="submit" class="btn btn-primary pec-contact-submit">
+                        <span>Send Message</span>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </form>
+            <div class="pec-contact-success" id="pec-contact-success" aria-hidden="true">
+                <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="32" cy="32" r="28" class="pec-contact-success-ring"></circle>
+                    <polyline points="20 33 29 42 46 24" class="pec-contact-success-check"></polyline>
+                </svg>
+                <h3>Message sent.</h3>
+                <p>Landed in <strong>Bryan@perseidechocreations.com</strong> — I usually reply within 24 hours.</p>
+                <button type="button" class="btn btn-outline" data-pec-contact-close>Close</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

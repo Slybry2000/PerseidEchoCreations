@@ -1,0 +1,15 @@
+{
+  "name": "pec-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Perseid Echo Creations website with quote request API",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1"
+  }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Banner template — Perseid Echo Creations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6A2A;
+    --navy:   #0D1321;
+    --paper:  #F6F6F4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #222; }
+  body { font-family: 'Poppins', -apple-system, sans-serif; }
+
+  /* Exactly 1128x191 — LinkedIn Company Page cover.
+     LinkedIn drops the round logo over the BOTTOM-LEFT, so the left
+     ~256px is a reserved safe zone and all content lives to the right. */
+  .banner {
+    width: 1128px;
+    height: 191px;
+    background: var(--navy);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 64px 0 256px;
+  }
+
+  /* single orange glow, top-right (bottom-left would sit under the logo) */
+  .banner::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(circle, rgba(255, 106, 42, 0.34), transparent 62%);
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(246, 246, 244, 0.55);
+    margin-bottom: 12px;
+  }
+
+  .headline {
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+  }
+  .headline em { color: var(--orange); font-style: normal; }
+
+  .meta {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: rgba(246, 246, 244, 0.55);
+    margin-top: 14px;
+  }
+  .meta .sep { opacity: 0.4; margin: 0 10px; }
+  .meta .tag {
+    color: var(--orange);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+</style>
+</head>
+<body>
+  <div class="banner">
+    <div class="content">
+      <div class="eyebrow">Perseid Echo Creations · AI Solutions Practice</div>
+      <h1 class="headline">AI agents that do the <em>real work.</em></h1>
+      <div class="meta">
+        perseidechocreations.com
+        <span class="sep">·</span>
+        <span class="tag">Operator-led, built to last</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

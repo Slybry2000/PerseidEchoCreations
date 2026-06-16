@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Offer · Perseid Echo Creations</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23FF6A2A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='24' cy='32' r='2.5'/%3E%3Cpath d='M14 32a10 10 0 0 1 20 0'/%3E%3Cpath d='M8 32a16 16 0 0 1 32 0' opacity='0.6'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+/* ================================================================
+   THEME · Perseid Echo Creations · Light paper, Persimmon accent
+   ================================================================ */
+:root {
+  --bg:              #F6F6F4;
+  --bg-elev:         #FFFFFF;
+  --surface:         #ECEAE5;
+  --border:          rgba(13, 19, 33, 0.10);
+  --border-hover:    rgba(13, 19, 33, 0.28);
+  --text:            #0D1321;
+  --text-paper:      #0D1321;
+  --text-dim:        #3A4152;
+  --muted:           #7a7f8a;
+  --accent:          #FF6A2A;
+  --accent-deep:     #E15517;
+  --accent-hl:       rgba(255, 106, 42, 0.18);
+  --accent-hl-strong:rgba(255, 106, 42, 0.42);
+  --accent-glow:     rgba(255, 106, 42, 0.32);
+  --rule:            rgba(13, 19, 33, 0.10);
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Outfit', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --title-size: clamp(2.4rem, 7.5vw, 6.4rem);
+  --h2-size:    clamp(1.2rem, 2.6vw, 2.2rem);
+  --h3-size:    clamp(0.7rem, 1.05vw, 0.92rem);
+  --body-size:  clamp(0.95rem, 1.35vw, 1.18rem);
+  --small-size: clamp(0.72rem, 0.95vw, 0.85rem);
+  --slide-padding: clamp(2rem, 6vw, 6rem);
+  --content-gap:   clamp(1rem, 2.2vw, 2rem);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 0.9s;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+.slide {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.slide-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 100%;
+  overflow: hidden;
+  padding: var(--slide-padding);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(255, 106, 42, 0.045), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(13, 19, 33, 0.025), transparent 50%);
+}
+
+#hexBg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,106,42,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+}
+
+.slide > * { position: relative; z-index: 1; }
+
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at var(--spot-x, 25%) var(--spot-y, 30%), rgba(255, 106, 42, 0.05), transparent 50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.5s var(--ease);
+  z-index: 0;
+}
+.slide.visible::after { opacity: 1; }
+.slide:nth-child(2n)::after { --spot-x: 75%; --spot-y: 70%; }
+.slide:nth-child(3n)::after { --spot-x: 50%; --spot-y: 85%; }
+
+/* ================================================================
+   TYPOGRAPHY · paper editorial
+   ================================================================ */
+h1.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--title-size);
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+  color: var(--text-paper);
+  max-width: 16ch;
+}
+
+h1.display em,
+h1.display .italic {
+  font-style: italic;
+  color: var(--accent);
+}
+
+h1.display .hl, .hl {
+  background: linear-gradient(90deg, var(--accent-hl) 0%, var(--accent-hl-strong) 100%);
+  background-size: 0% 70%;
+  background-repeat: no-repeat;
+  background-position: 0 82%;
+  padding: 0 8px;
+  animation: hlSweep 5s ease infinite;
+  animation-play-state: paused;
+}
+.slide.visible .hl { animation-play-state: running; }
+@keyframes hlSweep {
+  0%   { background-size: 0% 70%; }
+  40%, 80% { background-size: 100% 70%; }
+  100% { background-size: 0% 70%; }
+}
+
+.hl-static {
+  background: linear-gradient(90deg, transparent 0%, var(--accent-hl) 10%, var(--accent-hl) 90%, transparent 100%);
+  background-size: 100% 65%;
+  background-repeat: no-repeat;
+  background-position: 0 85%;
+  padding: 0 6px;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--h2-size);
+  line-height: 1.35;
+  color: var(--text-dim);
+  letter-spacing: 0;
+  max-width: 38ch;
+  margin-inline: auto;
+}
+
+h3.kicker {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--h3-size);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  margin-bottom: clamp(1.2rem, 2vw, 2rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+h3.kicker::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+}
+
+h3.section-label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--h3-size);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin-bottom: clamp(1rem, 1.6vw, 1.5rem);
+}
+
+strong, .accent { color: var(--accent); font-weight: inherit; }
+
+/* ================================================================
+   SLIDE VARIANTS
+   ================================================================ */
+.lead .slide-content {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.lead h1.display { max-width: 18ch; }
+.lead h2 { margin-top: clamp(1.2rem, 2.4vw, 2rem); }
+
+.iso-slide .slide-content {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(24px, 4vw, 80px);
+  align-items: center;
+  padding: clamp(2rem, 5vw, 5rem) var(--slide-padding);
+}
+@media (max-width: 960px) {
+  .iso-slide .slide-content { grid-template-columns: 1fr; gap: 32px; }
+}
+.iso-text h2.scene-title {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(2rem, 4.4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--text-paper);
+  max-width: 16ch;
+  margin: 0 0 clamp(1rem, 1.8vw, 1.4rem);
+}
+.iso-text h2.scene-title em { font-style: italic; color: var(--accent); }
+.iso-text .body-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 44ch;
+}
+.iso-text .fine-list {
+  list-style: none;
+  margin-top: clamp(1.2rem, 2vw, 1.8rem);
+  border-top: 1px solid var(--border);
+}
+.iso-text .fine-list li {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-dim);
+}
+.iso-text .fine-list li .k { color: var(--muted); }
+.iso-text .fine-list li .v { color: var(--accent); font-weight: 600; }
+
+.iso-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 580px;
+  max-height: 62vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================================================================
+   COMPONENTS
+   ================================================================ */
+.bullets {
+  list-style: none;
+  margin: clamp(1.6rem, 3vw, 2.5rem) 0;
+  max-width: min(85vw, 720px);
+}
+.bullets li {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: clamp(0.8rem, 1.6vw, 1.2rem);
+  padding-left: clamp(1.6rem, 2.5vw, 2.2rem);
+  position: relative;
+}
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: clamp(14px, 1.4vw, 20px);
+  height: 1px;
+  background: var(--accent);
+}
+.bullets li strong {
+  color: var(--text-paper);
+  font-weight: 600;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-right: 6px;
+}
+
+.fine {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.placeholder {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px dashed var(--accent);
+  border-radius: 100px;
+  margin-bottom: 18px;
+  opacity: 0.85;
+}
+
+/* ================================================================
+   REVEAL ANIMATIONS
+   ================================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  filter: blur(4px);
+  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), filter var(--duration) var(--ease);
+}
+.slide.visible .reveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+.slide.visible .reveal:nth-child(1) { transition-delay: 0.1s; }
+.slide.visible .reveal:nth-child(2) { transition-delay: 0.25s; }
+.slide.visible .reveal:nth-child(3) { transition-delay: 0.4s; }
+.slide.visible .reveal:nth-child(4) { transition-delay: 0.55s; }
+.slide.visible .reveal:nth-child(5) { transition-delay: 0.7s; }
+.slide.visible h1.reveal { transition-duration: 1.2s; }
+
+.bullets li {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.slide.visible .bullets li { opacity: 1; transform: translateX(0); }
+.slide.visible .bullets li:nth-child(1) { transition-delay: 0.35s; }
+.slide.visible .bullets li:nth-child(2) { transition-delay: 0.46s; }
+.slide.visible .bullets li:nth-child(3) { transition-delay: 0.57s; }
+.slide.visible .bullets li:nth-child(4) { transition-delay: 0.68s; }
+.slide.visible .bullets li:nth-child(5) { transition-delay: 0.79s; }
+.slide.visible .bullets li:nth-child(6) { transition-delay: 0.90s; }
+
+/* ================================================================
+   FIXED UI
+   ================================================================ */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #ffb07c);
+  z-index: 1000;
+  transition: width 0.3s var(--ease);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+.nav-dots {
+  position: fixed;
+  right: clamp(12px, 1.8vw, 28px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(7px, 0.8vw, 12px);
+  z-index: 1000;
+}
+.nav-dots button {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--muted);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s var(--ease);
+}
+.nav-dots button:hover { border-color: var(--accent); transform: scale(1.3); }
+.nav-dots button.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+
+.slide-number {
+  position: fixed;
+  bottom: clamp(14px, 2vw, 26px);
+  right: clamp(18px, 2.4vw, 32px);
+  z-index: 1000;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+.slide-number .curr { color: var(--text-paper); font-weight: 600; }
+
+.watermark {
+  position: fixed;
+  bottom: clamp(14px, 2vw, 26px);
+  left: clamp(18px, 2.4vw, 32px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.watermark svg { color: var(--accent); flex-shrink: 0; }
+.watermark .bar { width: 14px; height: 1px; background: var(--muted); }
+
+.nav-arrows {
+  position: fixed;
+  bottom: clamp(14px, 2vw, 26px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+.nav-arrow {
+  width: 42px; height: 42px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s var(--ease);
+  padding: 0;
+}
+.nav-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+  transform: scale(1.08);
+}
+.nav-arrow:active { transform: scale(0.95); }
+.nav-arrow svg { width: 18px; height: 18px; }
+.nav-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+.nav-arrow:disabled:hover { border-color: var(--border); color: var(--text-dim); box-shadow: none; transform: none; }
+
+/* Brand block (title slide) */
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.4vw, 16px);
+  margin-top: clamp(1.8rem, 3vw, 2.6rem);
+  padding-top: clamp(1.4rem, 2.4vw, 2rem);
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s var(--ease) 0.9s, transform 0.8s var(--ease) 0.9s;
+}
+.slide.visible .brand-block { opacity: 1; transform: translateY(0); }
+.brand-block .mark { color: var(--accent); flex-shrink: 0; }
+.brand-block .text { text-align: left; line-height: 1.3; }
+.brand-block .title-line {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(0.78rem, 0.92vw, 0.88rem);
+  color: var(--text-paper);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.brand-block .title-line .thin { font-weight: 300; }
+.brand-block .tag-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-height: 700px) {
+  :root { --slide-padding: clamp(1rem, 4vw, 3rem); --title-size: clamp(1.9rem, 6vw, 4.4rem); }
+}
+@media (max-height: 600px) {
+  :root { --title-size: clamp(1.6rem, 5vw, 3.2rem); --body-size: clamp(0.8rem, 1.2vw, 1rem); }
+  .nav-dots { display: none; }
+}
+@media (max-width: 800px) {
+  .nav-dots { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ================================================================
+   AMBIENT MOTION · every slide ≥ 1 dynamic element
+   ================================================================ */
+.brand-block .mark { animation: brandFloat 4s ease-in-out infinite; }
+@keyframes brandFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+
+.slide.lead.visible h1.display em,
+.slide.lead.visible h1.display .italic {
+  animation: accentGlow 3.5s ease-in-out infinite;
+}
+@keyframes accentGlow {
+  0%,100% { text-shadow: 0 0 0 transparent; }
+  50%     { text-shadow: 0 0 22px var(--accent-glow); }
+}
+
+.bullets li::before { animation: markerPulse 3s ease-in-out infinite; }
+@keyframes markerPulse {
+  0%,100% { opacity: 0.55; transform: scaleX(1); }
+  50%     { opacity: 1; transform: scaleX(1.35); }
+}
+
+/* ================================================================
+   PER-SLIDE GRAPHICS · scoped
+   ================================================================ */
+
+/* ─── Discovery recap card (Slide 04) ─── */
+.recap-card {
+  margin-top: clamp(1.4rem, 2.4vw, 2rem);
+  max-width: min(85vw, 760px);
+  width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.4rem, 2.6vw, 2.2rem) clamp(1.6rem, 3vw, 2.6rem);
+  position: relative;
+  text-align: left;
+}
+.recap-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: scanBar 2.8s linear infinite;
+}
+@keyframes scanBar {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.recap-card .recap-head {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.recap-card .recap-head .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: dotBlink 1.4s ease-in-out infinite;
+}
+@keyframes dotBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.recap-card .recap-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.recap-card .recap-list li {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.18vw, 1.08rem);
+  color: var(--text-paper);
+  line-height: 1.55;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+.recap-card .recap-list li .num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  flex-shrink: 0;
+  width: 28px;
+}
+
+/* ─── BIT framework graphic (Slide 05) ─── */
+.bit-stage {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-elev);
+  overflow: hidden;
+}
+.bit-stage .bit-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: 88%;
+  max-width: 460px;
+}
+.bit-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 2.4vw, 28px) 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  position: relative;
+}
+.bit-block:nth-child(1) { border-radius: 10px 0 0 10px; }
+.bit-block:nth-child(3) { border-radius: 0; border-left: 0; }
+.bit-block:nth-child(5) { border-radius: 0 10px 10px 0; border-left: 0; }
+.bit-connect {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.bit-connect svg {
+  width: 24px; height: 12px;
+  color: var(--accent);
+  opacity: 0.5;
+}
+.bit-block .num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.bit-block .label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  color: var(--text-paper);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.bit-block .verb {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+  max-width: 12ch;
+  line-height: 1.4;
+}
+.bit-block.active {
+  background: rgba(255, 106, 42, 0.06);
+  border-color: rgba(255, 106, 42, 0.5);
+}
+.bit-block.active .num { color: var(--accent); }
+.bit-block.active .label { color: var(--accent); }
+.bit-stage .bit-row .bit-block {
+  animation: bitCycle 6s ease-in-out infinite;
+}
+.bit-stage .bit-row .bit-block:nth-child(1) { animation-delay: 0s; }
+.bit-stage .bit-row .bit-block:nth-child(3) { animation-delay: 2s; }
+.bit-stage .bit-row .bit-block:nth-child(5) { animation-delay: 4s; }
+@keyframes bitCycle {
+  0%, 28%  { background: var(--bg); border-color: var(--border); }
+  3%, 25% {
+    background: rgba(255, 106, 42, 0.08);
+    border-color: rgba(255, 106, 42, 0.5);
+  }
+  100%     { background: var(--bg); border-color: var(--border); }
+}
+.bit-stage .bit-row .bit-block::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.bit-foot {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.bit-foot .accent { color: var(--accent); }
+
+/* ─── Pricing ladder (Slide 07) ─── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.8vw, 22px);
+  max-width: min(92vw, 980px);
+  width: 100%;
+  margin: clamp(1.6rem, 3vw, 2.4rem) auto 0;
+}
+@media (max-width: 800px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+.price-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.slide.visible .price-card { opacity: 1; transform: translateY(0); }
+.slide.visible .price-card:nth-child(1) { transition-delay: 0.30s; }
+.slide.visible .price-card:nth-child(2) { transition-delay: 0.45s; }
+.slide.visible .price-card:nth-child(3) { transition-delay: 0.60s; }
+
+.price-card .price-num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+.price-card .price-phase {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  color: var(--text-paper);
+  line-height: 1.05;
+}
+.price-card .price-amount {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  color: var(--text-paper);
+  margin-top: 6px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.price-card .anchor {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.78em;
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+}
+.price-card .special {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  align-self: flex-start;
+  padding: 3px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+}
+.price-card .price-body {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+  margin-top: 8px;
+}
+.price-card .price-body strong {
+  color: var(--text-paper);
+  font-weight: 600;
+}
+.price-card.retainer {
+  background: var(--surface);
+  border-style: dashed;
+}
+.price-card.retainer .price-num { color: var(--text-dim); }
+.price-card.retainer .price-phase { color: var(--text-dim); }
+
+.pricing-foot {
+  margin-top: clamp(1.4rem, 2.4vw, 2rem);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  max-width: min(86vw, 760px);
+  margin-left: auto; margin-right: auto;
+}
+
+/* ─── Closing contact card (Slide 08) ─── */
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 64px);
+  flex-wrap: wrap;
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+}
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 180px;
+}
+.contact-item .label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.contact-item .value {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  color: var(--text-paper);
+}
+.contact-item .value.accent { color: var(--accent); }
+
+/* ─── Pillar mark (used in BIT detail and elsewhere) ─── */
+.pillar-mark {
+  width: 28px; height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="hexBg"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
+<div class="slide-number"><span class="curr" id="slideCurr">01</span> / <span id="slideTotal">08</span></div>
+
+<div class="nav-arrows">
+  <button class="nav-arrow" id="navPrev" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="nav-arrow" id="navNext" aria-label="Next slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<div class="watermark" aria-label="Perseid Echo Creations">
+  <svg width="14" height="14" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="24" cy="32" r="2.5"/>
+    <path d="M14 32a10 10 0 0 1 20 0"/>
+    <path d="M8 32a16 16 0 0 1 32 0" opacity="0.55"/>
+  </svg>
+  <span class="bar"></span>
+  <span>Perseid Echo</span>
+</div>
+
+
+<!-- ==================================================================
+   THE OFFER · 8-slide async pitch deck template
+   Replace [PLACEHOLDER] copy per client. Structure stays the same.
+   ================================================================== -->
+
+<!-- 01 · TITLE -->
+<section class="slide lead" data-title="Title">
+  <div class="slide-content">
+    <h3 class="kicker reveal">The Offer · Prepared for [CLIENT NAME]</h3>
+    <h1 class="display reveal">A working <em>system</em>,<br>not a pilot.</h1>
+    <h2 class="reveal">Operator-led AI agents and automations, scoped against the work we discussed.</h2>
+
+    <div class="brand-block">
+      <svg class="mark" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="24" cy="32" r="2.5"/>
+        <path d="M14 32a10 10 0 0 1 20 0"/>
+        <path d="M8 32a16 16 0 0 1 32 0" opacity="0.6"/>
+        <path d="M2 32a22 22 0 0 1 44 0" opacity="0.35"/>
+      </svg>
+      <div class="text">
+        <div class="title-line"><strong>PERSEID</strong> <span class="thin">ECHO CREATIONS</span></div>
+        <div class="tag-line">An AI Solutions Practice · Bryan Piard</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 02 · WHO WE ARE -->
+<section class="slide lead" data-title="Who we are">
+  <div class="slide-content">
+    <h3 class="section-label reveal">01 · Who we are</h3>
+    <h1 class="display reveal" style="font-size: clamp(2rem, 5.4vw, 4.4rem); max-width: 22ch;">An <em>operator-led</em> practice for businesses that want real work.</h1>
+    <h2 class="reveal" style="max-width: 52ch; margin-top: clamp(1.4rem, 2.4vw, 1.8rem);">
+      Twenty-one years inside corporate operations, now building AI agents and automations
+      that take real work off the desks of small teams. No pilots. No theatre. Systems that ship.
+    </h2>
+    <div class="fine reveal" style="margin-top: clamp(1.8rem, 3vw, 2.4rem);">Perseid Echo Creations · Bryan Piard, Founder</div>
+  </div>
+</section>
+
+
+<!-- 03 · WHAT AI AGENTS ARE + BENEFITS -->
+<section class="slide" data-title="What AI agents are">
+  <div class="slide-content" style="justify-content: center; max-width: min(90vw, 980px); margin: 0 auto; align-items: flex-start;">
+    <h3 class="section-label reveal">02 · What you're buying</h3>
+    <h1 class="display reveal" style="font-size: clamp(1.9rem, 4.6vw, 3.6rem); max-width: 22ch;">
+      AI agents are <span class="hl"><em>software workers</em></span> &mdash; not chatbots.
+    </h1>
+    <h2 class="reveal" style="margin-left: 0; margin-right: auto; max-width: 56ch; margin-top: clamp(1rem, 1.8vw, 1.4rem); font-size: clamp(1rem, 1.5vw, 1.25rem);">
+      They read your tools, take instructions, and complete tasks end-to-end.
+      Where they earn their keep:
+    </h2>
+    <ul class="bullets" style="margin-top: clamp(1.2rem, 2.4vw, 1.8rem);">
+      <li><strong>Reclaim hours</strong> — repetitive desk-work runs in the background, not on your calendar.</li>
+      <li><strong>Steady output</strong> — work that used to wait for the right human now ships on a schedule.</li>
+      <li><strong>Quiet expertise</strong> — agents inherit your standards, your voice, your playbook.</li>
+      <li><strong>Capacity, not headcount</strong> — scale a function without scaling the team.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 04 · WHAT WE HEARD (Discovery recap) -->
+<section class="slide lead" data-title="What we heard">
+  <div class="slide-content" style="max-width: min(90vw, 920px); margin: 0 auto;">
+    <span class="placeholder reveal">Swap per client · from discovery call</span>
+    <h3 class="section-label reveal">03 · What we heard</h3>
+    <h1 class="display reveal" style="font-size: clamp(2rem, 5vw, 4rem); max-width: 22ch;">
+      The work you'd take off your plate <em>tomorrow</em>.
+    </h1>
+
+    <div class="recap-card reveal" role="group" aria-label="Discovery recap">
+      <div class="recap-head"><span class="dot"></span> Discovery · [DATE]</div>
+      <ul class="recap-list">
+        <li><span class="num">01</span><span>[PROBLEM 1 — e.g. "Lead intake takes 4 hours/week and gets dropped on busy weeks."]</span></li>
+        <li><span class="num">02</span><span>[PROBLEM 2 — e.g. "Proposals take 2 days to draft; clients wait."]</span></li>
+        <li><span class="num">03</span><span>[PROBLEM 3 — e.g. "Reporting lives in three places; nothing reconciles."]</span></li>
+        <li><span class="num">04</span><span>[OUTCOME the client named — e.g. "Get back one full day a week."]</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- 05 · HOW WE DELIVER · BIT FRAMEWORK -->
+<section class="slide iso-slide" data-title="The BIT framework">
+  <div class="slide-content">
+    <div class="iso-text">
+      <h3 class="kicker reveal">04 · How we deliver</h3>
+      <h2 class="scene-title reveal">Three phases. <em>One system.</em></h2>
+      <p class="body-text reveal">
+        Every engagement runs the same playbook so you know what you're buying at each step.
+        <strong>Build</strong> ships the system. <strong>Integrate</strong> wires it into the
+        tools your team already lives in. <strong>Tune</strong> keeps it sharp.
+      </p>
+      <ul class="fine-list reveal">
+        <li><span class="k">01 · Build</span><span class="v">2&ndash;4 weeks</span></li>
+        <li><span class="k">02 · Integrate</span><span class="v">1&ndash;2 weeks</span></li>
+        <li><span class="k">03 · Tune</span><span class="v">monthly retainer</span></li>
+      </ul>
+    </div>
+    <div class="iso-stage reveal">
+      <div class="bit-stage" aria-label="BIT framework diagram">
+        <div class="bit-row">
+          <div class="bit-block">
+            <span class="num">01</span>
+            <span class="label">Build</span>
+            <span class="verb">scope · design · ship</span>
+          </div>
+          <div class="bit-connect" aria-hidden="true">
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="2" y1="6" x2="22" y2="6"/><polyline points="16 2 22 6 16 10"/></svg>
+          </div>
+          <div class="bit-block">
+            <span class="num">02</span>
+            <span class="label">Integrate</span>
+            <span class="verb">wire into your stack</span>
+          </div>
+          <div class="bit-connect" aria-hidden="true">
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="2" y1="6" x2="22" y2="6"/><polyline points="16 2 22 6 16 10"/></svg>
+          </div>
+          <div class="bit-block">
+            <span class="num">03</span>
+            <span class="label">Tune</span>
+            <span class="verb">monitor · adjust · extend</span>
+          </div>
+        </div>
+        <div class="bit-foot"><span>BIT framework</span> &nbsp;·&nbsp; <span class="accent">Perseid Echo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 06 · BIT UNPACKED -->
+<section class="slide" data-title="BIT unpacked">
+  <div class="slide-content" style="justify-content: center; max-width: min(90vw, 920px); margin: 0 auto; align-items: flex-start;">
+    <h3 class="section-label reveal">05 · The phases unpacked</h3>
+    <h1 class="display reveal" style="font-size: clamp(1.9rem, 4.6vw, 3.4rem); max-width: 24ch;">
+      What you get at <em>each step</em>.
+    </h1>
+    <ul class="bullets" style="margin-top: clamp(1.4rem, 2.4vw, 2rem);">
+      <li><strong>01 · Build</strong> — scope confirmed, system designed, agent shipped against the use case from Discovery.</li>
+      <li><strong>02 · Integrate</strong> — wired into your tools (CRM, inbox, Drive, calendar &mdash; whatever you live in). Tested with real data.</li>
+      <li><strong>03 · Tune</strong> — monthly retainer. We monitor performance, adjust to drift, and extend the system as the work evolves.</li>
+      <li><strong>What stays with you</strong> — documentation, access, kill-switches. The system is yours, not ours.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 07 · PRICING -->
+<section class="slide" data-title="Pricing">
+  <div class="slide-content" style="justify-content: center; max-width: min(96vw, 1100px); margin: 0 auto; align-items: center; text-align: center;">
+    <h3 class="section-label reveal">06 · Investment</h3>
+    <h1 class="display reveal" style="font-size: clamp(1.9rem, 4.6vw, 3.6rem); max-width: 22ch; margin: 0 auto;">
+      Phased, with a <em>special rate</em> for first engagements.
+    </h1>
+
+    <div class="pricing-grid" role="group" aria-label="Pricing breakdown">
+      <div class="price-card">
+        <span class="price-num">01 · Build</span>
+        <span class="price-phase">Build</span>
+        <div class="price-amount">
+          <span class="anchor">$[ANCHOR]</span>
+          <strong style="color: var(--accent); font-family: var(--font-display); font-weight: 400;">$[BUILD_RATE]</strong>
+        </div>
+        <span class="special">First engagement rate</span>
+        <p class="price-body">Scope, design, and ship the system. <strong>50% on kickoff.</strong></p>
+      </div>
+
+      <div class="price-card">
+        <span class="price-num">02 · Integrate</span>
+        <span class="price-phase">Integrate</span>
+        <div class="price-amount">
+          <strong style="color: var(--accent); font-family: var(--font-display); font-weight: 400;">$[INTEGRATE_RATE]</strong>
+        </div>
+        <p class="price-body">Wire into your stack, test with real data, hand-off. <strong>50% on launch.</strong></p>
+      </div>
+
+      <div class="price-card retainer">
+        <span class="price-num">03 · Tune</span>
+        <span class="price-phase">Tune</span>
+        <div class="price-amount">
+          <strong style="color: var(--text-paper); font-family: var(--font-display); font-weight: 400;">$[TUNE_RATE]<span style="font-size: 0.55em; color: var(--muted); font-style: italic; margin-left: 4px;">/mo</span></strong>
+        </div>
+        <p class="price-body">Monthly retainer. <strong>Scoped separately,</strong> month-to-month, cancel any time.</p>
+      </div>
+    </div>
+
+    <div class="pricing-foot reveal">
+      All figures USD · Build + Integrate billed 50/50 · Tune begins after launch
+    </div>
+  </div>
+</section>
+
+
+<!-- 08 · NEXT STEPS / CONTACT -->
+<section class="slide lead" data-title="Next steps">
+  <div class="slide-content">
+    <h3 class="kicker reveal">07 · Next steps</h3>
+    <h1 class="display reveal">If this <em>maps</em> to what you heard,<br>let's start with Build.</h1>
+    <h2 class="reveal" style="max-width: 50ch;">
+      Reply to this thread with a yes, a question, or a redline.
+      Kickoff lands on the calendar inside the same week.
+    </h2>
+
+    <div class="contact-row reveal">
+      <div class="contact-item">
+        <span class="label">Reply to</span>
+        <span class="value accent">Bryan@perseidechocreations.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="label">Web</span>
+        <span class="value">perseidechocreations.com</span>
+      </div>
+    </div>
+
+    <div class="fine reveal">Perseid Echo Creations · An AI Solutions Practice</div>
+  </div>
+</section>
+
+<!-- =================== END SLIDES =================== -->
+
+<script>
+/* ================================================================
+   BG_CONFIG · light-paper tuned · navy hex mesh, no scatter
+   ================================================================ */
+const BG_CONFIG = {
+  hexAlphaMax:       0.045,  // navy on paper · subtle architectural mesh
+  hexCellSize:       28,     // sparser grid
+  hexLineWidth:      0.55,
+  hexFadeExponent:   3,      // sharper vignette · keep edges quiet
+  hexRotationSpeed:  0.00008,
+  scatterCount:      0,      // pixel-art agent scatter off · senior pitch register
+  scatterOpacityMin: 0,
+  scatterOpacityMax: 0,
+  cursorGlowAlpha:   0.05,
+  hexStrokeRGB:      '13,19,33', // navy
+};
+
+class SlidePresentation {
+  constructor() {
+    this.slides = Array.from(document.querySelectorAll('.slide'));
+    this.navDots = document.getElementById('navDots');
+    this.progressBar = document.getElementById('progressBar');
+    this.currSpan = document.getElementById('slideCurr');
+    this.totalSpan = document.getElementById('slideTotal');
+    this.navPrev = document.getElementById('navPrev');
+    this.navNext = document.getElementById('navNext');
+    this.current = 0;
+    this.totalSpan.textContent = String(this.slides.length).padStart(2, '0');
+    this.buildNavDots();
+    this.attachObserver();
+    this.attachKeyboard();
+    this.attachTouch();
+    this.attachScroll();
+    this.attachArrows();
+  }
+
+  attachArrows() {
+    if (this.navPrev) this.navPrev.addEventListener('click', () => this.goTo(this.current - 1));
+    if (this.navNext) this.navNext.addEventListener('click', () => this.goTo(this.current + 1));
+  }
+
+  updateArrowState() {
+    if (this.navPrev) this.navPrev.disabled = this.current <= 0;
+    if (this.navNext) this.navNext.disabled = this.current >= this.slides.length - 1;
+  }
+
+  buildNavDots() {
+    this.navDots.innerHTML = '';
+    this.slides.forEach((slide, i) => {
+      const btn = document.createElement('button');
+      btn.setAttribute('aria-label', `Slide ${i + 1}: ${slide.dataset.title || ''}`);
+      btn.addEventListener('click', () => this.goTo(i));
+      this.navDots.appendChild(btn);
+    });
+  }
+
+  attachObserver() {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio < 0.55) return;
+        entry.target.classList.add('visible');
+        const i = this.slides.indexOf(entry.target);
+        if (i !== -1) this.setCurrent(i);
+      });
+    }, { threshold: [0, 0.55, 0.9] });
+    this.slides.forEach((s) => io.observe(s));
+  }
+
+  setCurrent(i) {
+    this.current = i;
+    [...this.navDots.children].forEach((b, j) => b.classList.toggle('active', j === i));
+    this.currSpan.textContent = String(i + 1).padStart(2, '0');
+    this.progressBar.style.width = ((i + 1) / this.slides.length * 100) + '%';
+    this.updateArrowState();
+  }
+
+  goTo(i) {
+    if (i < 0 || i >= this.slides.length) return;
+    this.slides[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  attachKeyboard() {
+    document.addEventListener('keydown', (e) => {
+      if (e.target.matches('input, textarea')) return;
+      const keys = {
+        'ArrowDown': 1, 'ArrowRight': 1, 'PageDown': 1, ' ': 1, 'j': 1,
+        'ArrowUp': -1, 'ArrowLeft': -1, 'PageUp': -1, 'k': -1,
+        'Home': -Infinity, 'End': Infinity,
+      };
+      if (e.key in keys) {
+        e.preventDefault();
+        const delta = keys[e.key];
+        if (delta === -Infinity) this.goTo(0);
+        else if (delta === Infinity) this.goTo(this.slides.length - 1);
+        else this.goTo(this.current + delta);
+      }
+    });
+  }
+
+  attachTouch() {
+    let startY = 0;
+    document.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', (e) => {
+      const diff = startY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) < 50) return;
+      this.goTo(this.current + (diff > 0 ? 1 : -1));
+    }, { passive: true });
+  }
+
+  attachScroll() {
+    let raf = null;
+    document.addEventListener('scroll', () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = null;
+        const sh = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = Math.max(0, Math.min(100, (window.scrollY / sh) * 100));
+        this.progressBar.style.width = pct + '%';
+      });
+    }, { passive: true });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  new SlidePresentation();
+  document.querySelector('.slide')?.classList.add('visible');
+  initHexBg();
+  initCursorGlow();
+});
+
+/* ================================================================
+   Hex mesh bg · navy on paper, low alpha
+   ================================================================ */
+function initHexBg() {
+  const hexCanvas = document.getElementById('hexBg');
+  if (!hexCanvas) return;
+  const hexCtx = hexCanvas.getContext('2d');
+  let hexAngle = 0;
+
+  function drawHexGrid() {
+    const W = hexCanvas.width = window.innerWidth;
+    const H = hexCanvas.height = window.innerHeight;
+    hexCtx.clearRect(0, 0, W, H);
+    hexCtx.save();
+    hexCtx.translate(W / 2, H / 2);
+    hexCtx.rotate(hexAngle);
+    hexCtx.translate(-W / 2, -H / 2);
+
+    const hexSize = BG_CONFIG.hexCellSize;
+    const hSpacing = hexSize * Math.sqrt(3);
+    const vSpacing = hexSize * 1.5;
+    const cx0 = W / 2, cy0 = H / 2;
+    const maxDist = Math.sqrt(cx0 * cx0 + cy0 * cy0);
+    const fadeExp = BG_CONFIG.hexFadeExponent;
+    const alphaMax = BG_CONFIG.hexAlphaMax;
+
+    for (let row = -1; row < H / vSpacing + 2; row++) {
+      for (let col = -1; col < W / hSpacing + 2; col++) {
+        const hx = col * hSpacing + (row % 2 ? hSpacing / 2 : 0);
+        const hy = row * vSpacing;
+        const dist = Math.sqrt((hx - cx0) * (hx - cx0) + (hy - cy0) * (hy - cy0));
+        let fade = Math.max(0, 1 - (dist / maxDist) * 0.6);
+        for (let f = 1; f < fadeExp; f++) fade *= fade;
+        const alpha = alphaMax * fade;
+        if (alpha < 0.003) continue;
+        hexCtx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const a = Math.PI / 3 * i - Math.PI / 6;
+          const px = hx + hexSize * Math.cos(a);
+          const py = hy + hexSize * Math.sin(a);
+          i === 0 ? hexCtx.moveTo(px, py) : hexCtx.lineTo(px, py);
+        }
+        hexCtx.closePath();
+        hexCtx.strokeStyle = 'rgba(' + BG_CONFIG.hexStrokeRGB + ',' + alpha + ')';
+        hexCtx.lineWidth = BG_CONFIG.hexLineWidth;
+        hexCtx.stroke();
+      }
+    }
+    hexCtx.restore();
+  }
+
+  function animate() {
+    hexAngle += BG_CONFIG.hexRotationSpeed;
+    drawHexGrid();
+    requestAnimationFrame(animate);
+  }
+  drawHexGrid();
+  requestAnimationFrame(animate);
+  window.addEventListener('resize', drawHexGrid);
+}
+
+/* ================================================================
+   Cursor glow
+   ================================================================ */
+function initCursorGlow() {
+  const glow = document.getElementById('cursorGlow');
+  if (!glow) return;
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let gx = mx, gy = my;
+  document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+  (function tick() {
+    gx += (mx - gx) * 0.12;
+    gy += (my - gy) * 0.12;
+    glow.style.left = gx + 'px';
+    glow.style.top = gy + 'px';
+    requestAnimationFrame(tick);
+  })();
+}
+</script>
+</body>
+</html>
