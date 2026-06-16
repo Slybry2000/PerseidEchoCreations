@@ -1110,6 +1110,20 @@ a:focus-visible, button:focus-visible {
   .hero__actions { gap: 16px; }
   .hero__actions .btn { width: 100%; justify-content: center; }
 }
+
+/* ===== EDITORIAL BLEND: warm parchment base · serif headlines · persimmon = the one accent ===== */
+:root{
+  --paper:#F2EDE3; --paper-dim:#EAE2D2; --surface-card:#FAF6EC;
+  --ink:#1A1510; --ink-deeper:#120D08; --ash:#6B645A;
+  --rule-light:rgba(43,33,20,0.12);
+}
+body{ font-family:var(--serif-body); }
+.hero__subhead{ font-family:var(--serif-body)!important; }
+.hero__display,.section__h2,.pains__item h3,.run__body h3,.tier__name,.faq__item summary,.cta-band h2{
+  font-family:var(--serif)!important; font-weight:500!important; letter-spacing:-0.02em!important; }
+.hero__display{ line-height:1.04!important; }
+.section__h2 em,.cta-band h2 em,.hero__display em{ font-style:italic!important; color:var(--persimmon-deep)!important; }
+.eyebrow{ font-family:var(--plex-mono)!important; }
 </style>
 </head>
 <body>
@@ -1132,7 +1146,7 @@ a:focus-visible, button:focus-visible {
     <ul class="hero__nav-links">
       <li><a href="#automate">WHAT WE AUTOMATE</a></li>
       <li><a href="#how">HOW IT WORKS</a></li>
-      <li><a href="#pricing">PRICING</a></li>
+      <li><a href="#pricing">PRICING</a></li><li><a href="#bristlecone">THE ENGINE</a></li>
       <li><a href="#book">CONTACT</a></li>
     </ul>
   </nav>
@@ -1145,7 +1159,7 @@ a:focus-visible, button:focus-visible {
       <span>so you can run the business.</span>
     </h1>
     <span class="hero__rule" aria-hidden="true"></span>
-    <p class="hero__subhead">Done-for-you AI automation for small and medium business. We set it up, keep it running, update it as AI changes, and pick up the phone when something breaks &mdash; so the repetitive stuff handles itself and nothing falls through the cracks. Most owners feel the difference in 2&ndash;3 weeks. Book a 20-min call and we&rsquo;ll walk through your busiest day together.</p>
+    <p class="hero__subhead">Done-for-you AI automation for small and medium business. We set it up, keep it running, update it as AI changes, and pick up the phone when something breaks &mdash; so the repetitive stuff handles itself and nothing falls through the cracks. We start with your biggest time-sink first, so the payoff shows up fast &mdash; not a year out. Book a 20-min call and we&rsquo;ll walk through your busiest day together.</p>
     <div class="hero__actions">
       <!-- Booking link is set once in the BOOKING_URL constant near the end of this file; it auto-wires every data-book-link button. -->
       <a class="btn btn--primary btn--hero" href="#book" data-book-link>
@@ -1427,6 +1441,36 @@ a:focus-visible, button:focus-visible {
   </div>
 </section>
 
+<!-- ===================== BRISTLECONE (the engine) ===================== -->
+<section id="bristlecone" class="section section--parchment">
+  <div class="section__head section__head--left">
+    <span class="eyebrow">The engine behind it</span>
+    <h2 class="section__h2">It all runs on <em>Bristlecone.</em></h2>
+    <p class="section__lede">Bristlecone is our operating system &mdash; the named method every automation, and every marketing campaign, runs through. It&rsquo;s how the work stays honest at speed: the machine proposes, a human commits. You can read the whole pipeline, top to bottom, on a Tuesday afternoon.</p>
+  </div>
+  <div class="engine">
+    <div class="engine__part">
+      <span class="engine__num">01</span>
+      <span class="engine__name">Operator-in-the-loop</span>
+      <span class="engine__sub">You commit, then it acts</span>
+      <p class="engine__body">The system proposes; nothing consequential happens without your sign-off. That&rsquo;s the whole shape of it.</p>
+    </div>
+    <div class="engine__part">
+      <span class="engine__num">02</span>
+      <span class="engine__name">Evidence over claims</span>
+      <span class="engine__sub">No black box</span>
+      <p class="engine__body">Every output traces back to its inputs. No &ldquo;the AI did it&rdquo; &mdash; you can follow the reasoning end to end.</p>
+    </div>
+    <div class="engine__part">
+      <span class="engine__num">03</span>
+      <span class="engine__name">Built to last</span>
+      <span class="engine__sub">Updated as AI changes</span>
+      <p class="engine__body">Named after the oldest living tree. We keep it current as models change, so what you bought keeps working &mdash; and keeps getting better.</p>
+    </div>
+  </div>
+  <p class="pricing__note" style="margin-top: clamp(40px,4vw,56px);">Bristlecone is also our <strong>marketing engine</strong> &mdash; the same operator-in-the-loop method, pointed at content and outreach when you&rsquo;re ready to grow. <a href="https://crystal-kayak-a8kk.here.now/" target="_blank" rel="noopener" style="color: var(--amber-deep); border-bottom: 1px solid var(--amber); padding-bottom:1px;">See how Bristlecone works &rarr;</a></p>
+</section>
+
 <!-- ===================== FAQ ===================== -->
 <section class="section section--paper">
   <div class="section__head">
@@ -1467,7 +1511,7 @@ a:focus-visible, button:focus-visible {
         <span>How fast will I see results?</span>
         <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </summary>
-      <div class="faq__answer"><p>Most owners feel the difference within 2&ndash;3 weeks, because we start with your single biggest time-sink. You&rsquo;ll get a realistic timeline for your setup on the call &mdash; no inflated promises.</p></div>
+      <div class="faq__answer"><p>We start with your single biggest time-sink, so the payoff shows up fast rather than a year out. You&rsquo;ll get a realistic timeline for your setup on the call &mdash; no inflated promises.</p></div>
     </details>
     <details class="faq__item reveal">
       <summary>
@@ -1563,7 +1607,7 @@ a:focus-visible, button:focus-visible {
 <footer class="site-footer">
   <div class="site-footer__inner">
     <span class="site-footer__index">PERSEID ECHO CREATIONS</span>
-    <span class="site-footer__copy">&copy; 2026 Perseid Echo Creations &middot; An AI Solutions Practice &middot; <a href="https://sites.perseidechocreations.com/privacy.html">Privacy</a></span>
+    <span class="site-footer__copy">&copy; 2026 Perseid Echo Creations LLC &middot; An AI Solutions Practice &middot; <a href="https://sites.perseidechocreations.com/privacy.html">Privacy</a></span>
     <span class="site-footer__email"><a href="mailto:Bryan@perseidechocreations.com">Bryan@perseidechocreations.com</a></span>
   </div>
 </footer>
