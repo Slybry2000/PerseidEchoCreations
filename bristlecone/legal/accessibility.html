@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#F2EDE3" />
+  <meta name="robots" content="noai, noimageai" />
+  <title>Accessibility &mdash; Bristlecone</title>
+  <meta name="description" content="What we hold ourselves to, and where we know the gaps are." />
+  <link rel="icon" type="image/png" href="../assets/images/tranbackBristlecone.png" />
+  <link rel="apple-touch-icon" href="../assets/images/tranbackBristlecone.png" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell row">
+    <a href="../index.html" class="brand-lockup" aria-label="Bristlecone — home">
+      <img class="mark" src="../assets/images/tranbackBristlecone.png" alt="" />
+      <span class="name">Bristlecone<span class="dot">.</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../philosophy.html">Philosophy</a>
+      <a href="../how-it-works.html">How it works</a>
+      
+      <a href="../journal.html">Journal</a>
+      <a href="https://perseidechocreations.com/" class="cta">Work with the studio &#8599;</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="bar"></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero no-rule">
+    <div class="shell-reader">
+      <div class="colophon-rule reveal"><span class="amb">Accessibility</span><span class="line" aria-hidden="true"></span><span>Last reviewed 2026 &middot; 05 &middot; 01</span></div>
+      <h1 class="reveal" style="font-size: clamp(36px, 4.5vw, 64px);">Accessibility.</h1>
+      <p class="deck reveal">We aim for the site and the product to be usable by everyone. We&rsquo;re not perfect yet &mdash; here&rsquo;s what we hold ourselves to and where we know the gaps are.</p>
+    </div>
+  </section>
+
+  <section class="no-rule" style="padding-top: 16px;">
+    <div class="shell-reader">
+      <article class="longform reveal">
+        <h2>The standard we target.</h2>
+        <p>We design and build to the <strong>Web Content Accessibility Guidelines (WCAG) 2.2, Level AA</strong>. That is the bar referenced by the European Accessibility Act (Directive (EU) 2019/882), which becomes enforceable on <strong>28 June 2025</strong>, and it is the bar courts in the United States have consistently applied under <strong>Title III of the Americans with Disabilities Act</strong>. We treat WCAG 2.2 AA as a floor, not a ceiling.</p>
+
+        <h2>What&rsquo;s in place today.</h2>
+        <ul>
+          <li>Semantic HTML &mdash; landmarks, headings, lists, and form elements that mean what they say.</li>
+          <li>Keyboard navigation &mdash; every interactive element on this site can be reached and operated without a mouse.</li>
+          <li>Visible focus &mdash; the focus ring is not removed; it is styled to remain visible against the parchment background.</li>
+          <li><code>prefers-reduced-motion</code> is respected &mdash; if your system asks for less motion, we drop the fade-ins and any other transitions.</li>
+          <li>Form labels are programmatically associated with their inputs. No placeholder-as-label tricks.</li>
+          <li>Body text meets the 4.5:1 contrast ratio against the page background.</li>
+        </ul>
+
+        <h2>Known gaps.</h2>
+        <p>We&rsquo;d rather name these than pretend they don&rsquo;t exist.</p>
+        <ul>
+          <li><strong>Brand amber on cream.</strong> Our amber accent (<code>#C8893D</code>) on the parchment background may fall below the 4.5:1 contrast ratio for small uppercase labels and metadata. We are auditing every use and will either darken the token, increase the type size, or move to ink for affected instances.</li>
+          <li><strong>Pipeline diagram.</strong> The Goal &rarr; Strategy &rarr; Tactic SVG on the homepage is currently marked as decorative with an <code>aria-label</code> summary. That summary does not convey the full structure of the diagram to screen-reader users. A long-text equivalent is on the to-do list.</li>
+          <li><strong>PDF assets.</strong> The brand book and any other PDFs we link to have not been audited for tagged structure, reading order, or alt text. Treat them as visual-only artifacts until we publish a remediated version.</li>
+        </ul>
+
+        <h2>How to report a barrier.</h2>
+        <p>If something on this site or in the product blocks you, write to us. Plain email is fine; you do not need to know the WCAG criterion.</p>
+        <p>Email <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a> or <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a>. Tell us the page or screen, the assistive technology you were using if any, and what got in your way. <strong>We will respond within seven business days</strong> with an acknowledgement, an estimated fix window, and a workaround if one exists.</p>
+
+        <h2>Last reviewed.</h2>
+        <p>2026 &middot; 05 &middot; 01. We review this statement at least annually and after any material change to the site or product. The next scheduled review is May 2027.</p>
+
+        <p class="signature">&mdash; If anything on this page is unclear, write to us. We&rsquo;ll fix the wording.</p>
+      </article>
+    </div>
+  </section>
+  <!-- NEXT-NAV -->
+  <section class="no-rule">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <span class="kicker">Back</span>
+        <h2>Back to Bristlecone.</h2>
+        <a href="../index.html" class="btn btn-primary">Home <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="legal">
+      <span>&copy; 2026 Perseid Echo Creations LLC &middot; Bristlecone, its marketing engine &middot; <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a></span>
+      <span><a href="../legal/privacy.html">Privacy</a><a href="../legal/terms.html">Terms</a><a href="../legal/subprocessors.html">Sub-processors</a><a href="../legal/imprint.html">Imprint</a><a href="../legal/accessibility.html">Accessibility</a><a href="../colophon.html">Colophon</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

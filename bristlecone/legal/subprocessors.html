@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#F2EDE3" />
+  <meta name="robots" content="noai, noimageai" />
+  <title>Sub-processors — Bristlecone</title>
+  <meta name="description" content="The third parties that process data on our behalf, and what each of them does." />
+  <link rel="icon" type="image/png" href="../assets/images/tranbackBristlecone.png" />
+  <link rel="apple-touch-icon" href="../assets/images/tranbackBristlecone.png" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell row">
+    <a href="../index.html" class="brand-lockup" aria-label="Bristlecone — home">
+      <img class="mark" src="../assets/images/tranbackBristlecone.png" alt="" />
+      <span class="name">Bristlecone<span class="dot">.</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../philosophy.html">Philosophy</a>
+      <a href="../how-it-works.html">How it works</a>
+      
+      <a href="../journal.html">Journal</a>
+      <a href="https://perseidechocreations.com/" class="cta">Work with the studio &#8599;</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="bar"></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero no-rule">
+    <div class="shell-reader">
+      <div class="colophon-rule reveal"><span class="amb">Sub-processors</span><span class="line" aria-hidden="true"></span><span>Updated 2026 · 05 · 01</span></div>
+      <h1 class="reveal" style="font-size: clamp(36px, 4.5vw, 64px);">Sub-processors.</h1>
+      <p class="deck reveal">The companies we hand parts of the job to, and what each of them does. Plain version, then the legal-careful version, then the table.</p>
+    </div>
+  </section>
+
+  <section class="no-rule" style="padding-top: 16px;">
+    <div class="shell-reader">
+      <article class="longform reveal">
+        <h2>The plain version.</h2>
+        <p>We don&rsquo;t run our own payments processor, our own email server, our own analytics pipeline, or our own datacenters. We use a small number of vetted companies for those jobs. Each one only sees the data it needs to do its part. None of them sell your data. None of them train models on it. If we add or change one, we tell customers thirty days in advance.</p>
+
+        <h2>The legal-careful version.</h2>
+        <p>The companies listed below are sub-processors of personal data within the meaning of GDPR Art. 28 and equivalent provisions under UK GDPR and the CCPA/CPRA. Each is bound by a written data-processing agreement that requires confidentiality, security measures appropriate to the data, restrictions on onward transfers, and assistance with data-subject requests. Cross-border transfers are made under Standard Contractual Clauses and, where the recipient is certified, the EU&ndash;US Data Privacy Framework and the UK Extension. Customers will receive 30 days&rsquo; email notice before any addition or replacement to this list, and may object in writing within that window.</p>
+
+        <h2>Current list.</h2>
+        <div class="table-wrap" style="overflow-x:auto;">
+          <table class="ledger">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Location</th>
+                <th scope="col">Transfer mechanism</th>
+                <th scope="col">Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Stripe</td>
+                <td>Billing and payment processing</td>
+                <td>United States</td>
+                <td>SCCs and EU&ndash;US DPF (incl. UK Extension)</td>
+                <td><a href="https://stripe.com/privacy" rel="noopener">stripe.com/privacy</a></td>
+              </tr>
+              <tr>
+                <td>Postmark</td>
+                <td>Transactional email (account, billing, enquiry replies)</td>
+                <td>United States</td>
+                <td>SCCs and EU&ndash;US DPF (incl. UK Extension)</td>
+                <td><a href="https://postmarkapp.com/privacy-policy" rel="noopener">postmarkapp.com/privacy-policy</a></td>
+              </tr>
+              <tr>
+                <td>Plausible</td>
+                <td>Privacy-respecting website analytics (no cookies, aggregate)</td>
+                <td>European Union</td>
+                <td>No transfer mechanism required for EU/UK personal data</td>
+                <td><a href="https://plausible.io/privacy" rel="noopener">plausible.io/privacy</a></td>
+              </tr>
+              <tr>
+                <td>Vercel</td>
+                <td>Website and application hosting, edge delivery</td>
+                <td>Global (regional edge)</td>
+                <td>SCCs and EU&ndash;US DPF (incl. UK Extension)</td>
+                <td><a href="https://vercel.com/legal/privacy-policy" rel="noopener">vercel.com/legal/privacy-policy</a></td>
+              </tr>
+              <tr>
+                <td>ConvertKit</td>
+                <td>Email broadcasts &mdash; <em>planned, not yet active</em></td>
+                <td>United States</td>
+                <td>SCCs and EU&ndash;US DPF (will apply when activated)</td>
+                <td><a href="https://convertkit.com/privacy" rel="noopener">convertkit.com/privacy</a></td>
+              </tr>
+              <tr>
+                <td>Model providers</td>
+                <td>Inference for the agents inside the product &mdash; <em>to be listed when wired</em></td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>How we choose them.</h2>
+        <p>Three criteria. They have to be appropriate for the job (a payments processor for payments, not a general-purpose database). They have to have a serious privacy posture (a published DPA, named DPO or equivalent contact, a track record we can read). And they have to allow us to leave on reasonable notice with our data intact. If a vendor stops meeting any of these, we replace them and notify customers.</p>
+
+        <h2>Notice of change.</h2>
+        <p>Customers receive 30 days&rsquo; email notice before any addition, removal, or replacement on this list. Material changes to a vendor&rsquo;s role &mdash; for example, a category of data they newly receive &mdash; trigger the same notice. Objections in writing within the window are addressed individually; if we cannot resolve an objection, the customer may terminate without penalty for the affected portion of the service.</p>
+
+        <p class="signature">&mdash; Bristlecone. Last updated 2026 &middot; 05 &middot; 01.</p>
+      </article>
+    </div>
+  </section>
+  <!-- NEXT-NAV -->
+  <section class="no-rule">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <span class="kicker">Back</span>
+        <h2>Back to Bristlecone.</h2>
+        <a href="../index.html" class="btn btn-primary">Home <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="legal">
+      <span>&copy; 2026 Perseid Echo Creations LLC &middot; Bristlecone, its marketing engine &middot; <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a></span>
+      <span><a href="../legal/privacy.html">Privacy</a><a href="../legal/terms.html">Terms</a><a href="../legal/subprocessors.html">Sub-processors</a><a href="../legal/imprint.html">Imprint</a><a href="../legal/accessibility.html">Accessibility</a><a href="../colophon.html">Colophon</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js" defer></script>
+</body>
+</html>
