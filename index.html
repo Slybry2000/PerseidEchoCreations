@@ -1130,6 +1130,19 @@ body{ font-family:var(--serif-body); }
 @media (max-width:980px){ .pricing--two{ grid-template-columns:1fr; max-width:560px; } }
 .tier__bestfor{ font-family:var(--plex-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--bristle-muted); margin-top:-4px; }
 .tier__care{ font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:0.02em; color:var(--persimmon-deep); margin-top:-4px; }
+/* Pricing v2 — one build price, care decoupled */
+.discovery.discovery--build{ align-items:start; }
+.discovery__pricewrap{ text-align:right; }
+.discovery__sub{ display:block; font-family:var(--mono); font-size:11.5px; letter-spacing:0.03em; color:var(--ash); margin-top:6px; white-space:nowrap; }
+.buildlist{ list-style:none; margin:16px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+.buildlist li{ font-family:var(--mono); font-size:11.5px; letter-spacing:0.02em; color:var(--ash); background:rgba(43,33,20,0.05); border:1px solid var(--rule-light); border-radius:999px; padding:5px 11px; }
+.caremap__head{ max-width:var(--content-max); margin:clamp(34px,4vw,52px) auto clamp(18px,2vw,26px); }
+.caremap__head h3{ font-family:var(--serif); font-weight:500; font-size:clamp(22px,2.2vw,30px); letter-spacing:-0.02em; color:var(--ink); margin:10px 0 8px; }
+.caremap__head p{ font-family:var(--serif-body); font-size:15px; line-height:1.6; color:var(--ash); max-width:66ch; margin:0; }
+.tier__per{ font-size:.42em; font-weight:600; letter-spacing:0; color:var(--ash); }
+.pricing__flex{ max-width:var(--content-max); margin:clamp(22px,2.4vw,30px) auto 0; background:rgba(255,106,42,0.06); border:1px solid rgba(255,106,42,0.22); border-left:3px solid var(--persimmon); border-radius:14px; padding:clamp(18px,2vw,24px) clamp(20px,2.4vw,30px); font-family:var(--serif-body); font-size:15.5px; line-height:1.62; color:var(--ink); }
+.pricing__flex strong{ color:var(--persimmon-deep); }
+@media (max-width:640px){ .discovery__pricewrap{ text-align:left; } }
 </style>
 </head>
 <body>
@@ -1370,16 +1383,42 @@ body{ font-family:var(--serif-body); }
   <div class="section__head">
     <span class="eyebrow">What it costs</span>
     <h2 class="section__h2">What it <em>costs.</em></h2>
-    <p class="section__lede">Every build is scoped after discovery &mdash; every business has different tools, volume, and messy little &ldquo;oh yeah, we also do it this way&rdquo; details. The prices below give you a realistic starting point before we talk.</p>
+    <p class="section__lede">Pricing comes in two parts, kept honest and separate &mdash; a one-time build, then your choice of how involved we stay afterward. <strong>The build costs the same either way,</strong> so you&rsquo;re never paying extra just to keep the option open. Everything&rsquo;s scoped after discovery; the numbers below are realistic starting points.</p>
   </div>
 
   <div class="discovery reveal">
     <div class="discovery__main">
-      <span class="discovery__step">Start here &middot; fixed fee</span>
+      <span class="discovery__step">Step 1 &middot; start here</span>
       <h3 class="discovery__name">Discovery &amp; Automation Map</h3>
       <p class="discovery__body">A fixed-fee audit of where your week is leaking time, what should be automated first, and what it would cost to build. If we move forward together, your discovery fee is credited toward the build.</p>
     </div>
     <div class="discovery__price">$750</div>
+  </div>
+
+  <div class="discovery discovery--build reveal">
+    <div class="discovery__main">
+      <span class="discovery__step">Step 2 &middot; one-time build</span>
+      <h3 class="discovery__name">The build</h3>
+      <p class="discovery__body">One scoped build around the tools you already use &mdash; mapped, built, tested, documented, and handed over with training and a post-launch bug-fix window, all included. <strong>Same price whether you take the keys or keep us on afterward.</strong></p>
+      <ul class="buildlist">
+        <li>Workflow mapping</li>
+        <li>Automation build</li>
+        <li>Testing</li>
+        <li>Documentation</li>
+        <li>Handoff training</li>
+        <li>Bug-fix window</li>
+      </ul>
+    </div>
+    <div class="discovery__pricewrap">
+      <div class="discovery__price">from $2,500</div>
+      <span class="discovery__sub">most builds $3,500&ndash;$9,000</span>
+    </div>
+  </div>
+
+  <div class="caremap__head reveal">
+    <span class="eyebrow">Step 3 &middot; after launch</span>
+    <h3>Then it&rsquo;s your call how involved we stay.</h3>
+    <p>Pick a level of care below &mdash; or take the keys now and add it later. Month to month, change or cancel anytime. Choosing care never changes the build price above.</p>
   </div>
 
   <div class="pricing">
@@ -1392,31 +1431,29 @@ body{ font-family:var(--serif-body); }
   @media (max-width:640px){ .discovery{ grid-template-columns:1fr; gap:14px; } }
   </style>
     <div class="tier reveal">
-      <span class="tier__name">Build &amp; Hand Off</span>
+      <span class="tier__name">Take the keys</span>
       <span class="tier__bestfor">Best if you want to own and run it yourself</span>
-      <span class="tier__price">from $2,500</span>
-      <span class="tier__cadence">one-time build</span>
-      <span class="tier__care">Most builds $3,500&ndash;$9,000</span>
-      <p class="tier__blurb">We build the automation around the tools you already use, document it, and hand you the keys.</p>
+      <span class="tier__price">$0<span class="tier__per">/mo</span></span>
+      <span class="tier__cadence">no monthly fee</span>
+      <span class="tier__care">you own it outright</span>
+      <p class="tier__blurb">We hand over the keys with training and a short bug-fix window. You run it yourself &mdash; and we&rsquo;re one message away if you ever want us back.</p>
       <ul class="tier__includes">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Workflow mapping</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Automation build</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Testing</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Documentation</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Handoff training</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Plain-English owner&rsquo;s guide</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Short post-launch bug-fix window</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Add maintenance anytime</span></li>
       </ul>
       <a class="btn btn--primary" href="#book" data-book-link><span>Book a free call</span></a>
     </div>
-    <div class="tier reveal">
-      <span class="tier__name">Build &amp; Maintain</span>
+    <div class="tier tier--featured reveal">
+      <span class="tier__badge">Most popular</span>
+      <span class="tier__name">Maintain</span>
       <span class="tier__bestfor">Best if you don&rsquo;t want to babysit it</span>
-      <span class="tier__price">from $3,500</span>
-      <span class="tier__cadence">one-time build</span>
-      <span class="tier__care">+ Maintenance from $750/mo</span>
-      <p class="tier__blurb">We build it, then keep it working as your tools, forms, workflows, and business change.</p>
+      <span class="tier__price">from $750<span class="tier__per">/mo</span></span>
+      <span class="tier__cadence">cancel anytime</span>
+      <span class="tier__care">after your one-time build</span>
+      <p class="tier__blurb">We keep it working as your tools, forms, and workflows change &mdash; one person who knows your setup, not a ticket queue.</p>
       <ul class="tier__includes">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Everything in Build &amp; Hand Off</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Monitoring</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Break/fix support</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Small updates</span></li>
@@ -1426,14 +1463,14 @@ body{ font-family:var(--serif-body); }
       <a class="btn btn--primary" href="#book" data-book-link><span>Book a free call</span></a>
     </div>
     <div class="tier reveal">
-      <span class="tier__name">Build, Run &amp; Maintain</span>
+      <span class="tier__name">Run &amp; Maintain</span>
       <span class="tier__bestfor">Best if you want the work off your plate</span>
-      <span class="tier__price">from $7,500</span>
-      <span class="tier__cadence">one-time build</span>
-      <span class="tier__care">+ Run &amp; maintain from $2,000/mo</span>
-      <p class="tier__blurb">We build the system, run it day to day, handle exceptions, and keep improving it over time.</p>
+      <span class="tier__price">from $2,000<span class="tier__per">/mo</span></span>
+      <span class="tier__cadence">cancel anytime</span>
+      <span class="tier__care">after your one-time build</span>
+      <p class="tier__blurb">We run it day to day, handle the exceptions, and keep improving it over time.</p>
       <ul class="tier__includes">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Everything in Build &amp; Maintain</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Everything in Maintain</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Day-to-day workflow operation</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Priority support</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Exception handling</span></li>
@@ -1442,6 +1479,7 @@ body{ font-family:var(--serif-body); }
       <a class="btn btn--primary" href="#book" data-book-link><span>Book a free call</span></a>
     </div>
   </div>
+  <div class="pricing__flex reveal"><strong>Running lean?</strong> Tell me your budget on the call. We can start with a single workflow, phase the build over time, or set up a payment plan &mdash; the point is to get you a win you can actually afford, not to nickel-and-dime you.</div>
   <p class="pricing__note">Tool subscriptions, AI usage, hosting, and third-party platform costs are billed separately unless included in your proposal.</p>
 </section>
 
