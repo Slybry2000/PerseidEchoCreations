@@ -1,0 +1,406 @@
+[
+{
+"client": "Perseid Echo",
+"format": "story.facebook",
+"posted": true,
+"caption": "business automation for small business owners starts after dinner. Two owners had the same busy season, but one was still catching up at night while the other had her weekends back. Know someone stuck in the after-dinner work loop? Send them this.",
+"images": [
+"p0_01_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "If your group keeps saying you should all travel together, timing starts with the people, not the itinerary. Dream Travel hosts gather 10 to 16 adults, then the operator carries the trip details from arrival through the final dinner. Which circle would you invite first?",
+"images": [
+"p1_01_0.jpg",
+"p1_01_4.jpg",
+"p1_01_3.jpg",
+"p1_01_5.jpg",
+"p1_01_2.jpg"
+]
+},
+{
+"client": "Green Felt Club",
+"format": "fb-carousel",
+"posted": true,
+"caption": "Why do I keep losing to the same player? In pool, that usually means one matchup pattern keeps repeating: the same shot, the same leave, or the same pressure mistake. Send this to the person who keeps saying they almost had the rack.",
+"images": [
+"p2_01_4.jpg",
+"p2_01_0.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "linkedin-post",
+"posted": true,
+"caption": "How do I connect an AI model to my own data?\n\nA useful answer starts smaller than most people expect.\n\nYou do not need to pipe your whole company into a model. Pick one workflow where the data is already structured and the human work is repetitive.\n\nBug triage is a good example.\n\nAn error tracker already knows the exception, stack trace, environment, version, request path, params, first seen time, last seen time, and repeat count. The problem is that this information often lands as noise. One crash fires sixty times. Slack fills up. GitHub gets vague issues that say little more than look into this.\n\nThe better pattern is to put a small agent between the event stream and the repo.\n\nFirst, normalize the event. Strip request IDs, UUIDs, timestamps, and other volatile details. Build a fingerprint from the error type, the top app frame, and the file line.\n\nThen compare that fingerprint and message against open issues. High similarity means the agent comments on the existing issue and updates the occurrence count. No match means it opens a fresh issue. Uncertain matches get a triage label so a human can decide.\n\nThe most practical part is auto-repro. The agent reads the request path and sanitized params from the triggering event, then drafts copy-paste steps to hit the same code path. That turns raw tracker data into the thing developers usually need first.\n\nSeverity can come from velocity, too. A crash spiking hundreds of times an hour should outrank a low-volume warning that has existed for months.\n\nSummary: connect AI to your own data by choosing one narrow workflow, giving the model structured context, and asking it to create reviewable actions.\n\nWho on your team would save the most time if bug reports arrived with repro steps already attached?\n\n#AITooling #BugTriage #LowCodeAutomation\n\nFull disclosure: I'm an affiliate, so I may earn a commission if you join.",
+"images": [
+"p3_01_0.jpg"
+]
+},
+{
+"client": "Rowan Report",
+"format": "linkedin-post",
+"posted": false,
+"caption": "Medicaid fraud in New York is now a federal fight.\n\nThe Justice Department has sued New York State, its Medicaid director, and Public Partnerships, LLC over the state\u2019s Consumer Directed Personal Assistance Program.\n\nThat program is not small. Before New York consolidated management under PPL, CDPAP served more than 250,000 patients and was one of the state\u2019s largest public health benefit programs.\n\nThe allegation worth watching is not only fraud. It is structure.\n\nDOJ says PPL was effectively preselected through a fixed or \u201csham\u201d bid process, then skimmed a percentage of each hour of care billed to Medicaid. The suit also claims PPL misrepresented its staffing plan, financial readiness, and software quality.\n\nNew York\u2019s health department calls the complaint baseless and political. PPL had not responded to The Rowan Report by publication.\n\nFor home care and hospice operators, the lesson is plain: vendor selection, billing flows, and state oversight are now part of the enforcement story.\n\nSend this to someone tracking Medicaid, CDPAP, or care-at-home compliance.\n\n#MedicaidFraud #CDPAP #HomeCareCompliance",
+"images": [
+"p4_01_0.jpg"
+]
+},
+{
+"client": "Perseid Echo",
+"format": "post.facebook",
+"posted": true,
+"caption": "business automation for small business owners starts after dinner. Two owners had the same busy season, but one was still catching up at night while the other had her weekends back. Know someone stuck in the after-dinner work loop? Send them this.",
+"images": [
+"p0_02_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "Can I come alone? If you mean as the person starting the trip, you do not have to front the money for the group. Guests cover their own seats, Dream Travel runs the days, and the host chooses whether the benefit becomes travel, commission, or support for a cause. What circle would you invite if the money risk was off your plate?",
+"images": [
+"p1_02_0.jpg",
+"p1_02_2.jpg",
+"p1_02_3.jpg",
+"p1_02_1.jpg",
+"p1_02_4.jpg"
+]
+},
+{
+"client": "Green Felt Club",
+"format": "fb-carousel",
+"posted": true,
+"caption": "Can I see my record against one specific person?\n\nYes. A head-to-head record shows the matchup you actually care about, instead of burying it inside your full win-loss history. Send this to the person who always says they own the table.",
+"images": [
+"p2_02_4.jpg",
+"p2_02_3.jpg",
+"p2_02_0.jpg",
+"p2_02_2.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "post.instagram",
+"posted": false,
+"caption": "voice memo to task automation.\n\nYou know the scene: one idea while driving, three while walking, and a folder of mystery audio files waiting to ruin your afternoon.\n\nThe twist: the voice memo was never the problem.\n\nThe problem was making one messy recording behave like one clean task. It usually isn't. It might contain an email reminder, a doc update, and one half-baked idea that should live in notes, not your to-do list.\n\nA useful setup does four things: transcribes the memo, splits it into atomic tasks, routes each task by meaning, and refuses to invent deadlines you never said.\n\nThat last part matters. If an agent hears urgency in your voice and quietly creates a fake \u201cdue Friday,\u201d your tracker is now lying to you. Leave dates blank unless you actually spoke them.\n\nThe elegant little detail is routing by project descriptions, not keywords. You may never say \u201cCustomer Onboarding,\u201d but \u201cupdate the onboarding doc with new pricing\u201d can still land where it belongs.\n\nSend this to the person whose best ideas are currently trapped in 47 unnamed audio files.\n\n#LowCodeAutomation #VoiceMemoWorkflow #AITaskManagement\n\nFull disclosure: I'm an affiliate, so I may earn a commission if you join.",
+"images": [
+"p3_02_0.jpg"
+]
+},
+{
+"client": "Rowan Report",
+"format": "post.facebook",
+"posted": false,
+"caption": "Medicaid fraud in New York\n\nA $10 billion home care program just landed in the Justice Department\u2019s sights.\n\nThe case centers on CDPAP, New York\u2019s Consumer Directed Personal Assistance Program. Before fall 2024, it was managed by hundreds of agencies. Then the state consolidated management under one company: Public Partnerships, LLC.\n\nDOJ alleges PPL skimmed a percentage from each hour of care billed to Medicaid, adding up to millions. It also claims PPL misrepresented its staffing, finances, and software in the bid process.\n\nThe bigger concern is not just one vendor. It is what happens when a huge public benefit program gets narrowed to one gatekeeper and the oversight does not keep pace.\n\nNew York\u2019s Department of Health rejects the lawsuit, calling it baseless and politically motivated. PPL had not responded to The Rowan Report by publication.\n\nFor providers and families, the lesson is plain: when Medicaid programs change structure, follow the money, the contract terms, and the accountability rules.\n\nSend this to someone watching New York home care policy.\n\n#NYHomeCare #MedicaidOversight #CDPAP",
+"images": [
+"p4_02_0.jpg"
+]
+},
+{
+"client": "Perseid Echo",
+"format": "reel.facebook",
+"posted": true,
+"caption": "What if my current software tools do not connect well with each other? Before replacing everything, look for the one hand-off causing the most duplicate work. Which two apps make your week harder than they should?",
+"images": [
+"p0_03_2.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "If your group has 10 to 16 adults and a milestone already coming, you may have enough for a real hosted trip. Dream Travel handles the itinerary on the ground, and the host benefit can cover your seat, become commission, or support the cause. What date is already circled for your group?",
+"images": [
+"p1_03_1.jpg",
+"p1_03_0.jpg",
+"p1_03_2.jpg",
+"p1_03_5.jpg"
+]
+},
+{
+"client": "Green Felt Club",
+"format": "tiktok-video",
+"posted": true,
+"caption": "How can I know if I am actually getting better at pool? Watch the boring stuff: smaller misses, better cue-ball leaves, smarter patterns, and fewer panic shots when the game gets close. #PoolPractice #BilliardsTraining #GreenFeltClub #PoolHallLife",
+"images": [
+"p2_15_1.jpg",
+"p2_15_0.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "post.instagram",
+"posted": false,
+"caption": "low-code agent for voice memos.\n\nA messy voice memo should not become one giant task.\n\nThe useful move is to split it first: one memo can contain two real tasks, one vague idea, and one personal reminder that does not belong in your work tracker.\n\nA simple setup can handle that. Drop the audio into a folder, transcribe it with Whisper, then use one structured prompt to turn the transcript into separate items.\n\nThe important part is restraint. Route tasks by meaning, not keywords. If the project match is weak, send it to an inbox or review view instead of forcing it somewhere wrong.\n\nAlso: do not let the agent invent deadlines. Only add a due date when you actually said one. A fake \u201cdue Friday\u201d is worse than a blank field.\n\nThis is the kind of low-code workflow that helps because it removes friction at the exact moment your brain is moving fast.\n\nSend this to the person who keeps saying \u201cI\u2019ll remember that later.\u201d\n\n#LowCodeAutomation #AIAgents #VoiceMemoWorkflow\n\nFull disclosure: I'm an affiliate, so I may earn a commission if you join.",
+"images": [
+"p3_03_0.jpg"
+]
+},
+{
+"client": "Rowan Report",
+"format": "post.facebook",
+"posted": false,
+"caption": "New York CDPAP fraud lawsuit\n\nA Medicaid program with more than 250,000 patients just walked into the courtroom.\n\nThe Justice Department is suing New York State, its Medicaid director, and Public Partnerships, LLC, the company chosen to run the state\u2019s $10 billion Consumer Directed Personal Assistance Program.\n\nHere is the part home care leaders should watch: this is not only about one vendor. It is about what happens when a huge public benefit program moves from hundreds of agencies to one central manager.\n\nThe allegation: PPL skimmed a percentage from each hour of care billed to Medicaid, adding up to millions. The DOJ also claims the company misrepresented staffing, finances, and software readiness in its bid.\n\nThen came the reveal.\n\nThe DOJ alleges PPL was \u201cpreselected\u201d through a fixed or \u201csham\u201d bid process, while New York\u2019s Department of Health failed to hold the company accountable. New York calls the complaint baseless and politically motivated.\n\nFor providers, the lesson is plain: consolidation does not erase oversight risk. It can concentrate it.\n\nSend this to someone watching Medicaid, CDPAP, or state-directed care programs right now.\n\n#CDPAP #MedicaidCompliance #HomeCareNews",
+"images": [
+"p4_03_0.jpg"
+]
+},
+{
+"client": "Perseid Echo",
+"format": "linkedin-post",
+"posted": false,
+"caption": "Small business admin automation.\n\nOn Monday morning, the Overloaded Owner opened the week to unread form submissions, half-updated spreadsheets, and three customers asking where things stood.\n\nThe Front Desk Lead was stuck in the loop too. Same status questions. Same digging. Same problem: nothing was moving in one place.\n\nBefore lunch, they tried to clean it up by hand. Copy a detail here. Check a message there. Update the sheet, then hope the next person saw it.\n\nBy midafternoon, one small miss sent the wrong follow-up to the wrong customer. Not a dramatic failure. Just the kind that makes everyone stop and retrace the whole day.\n\nThe useful shift was not adding another tool to babysit. The owner handed the workflow to Perseid Echo Creations, so the next request could be routed, logged, and followed up without someone pausing their real work to push it along.\n\nA few weeks later, Monday looked different. Clean queue. Visible history. Fewer repeated questions. The first hour went to decisions, not detective work.\n\nSend this to someone whose Monday keeps disappearing into admin.\n\n#SmallBusinessAutomation #AdminWorkflows #LocalBusinessOps",
+"images": [
+"p0_04_1.jpg",
+"p0_04_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "If you are wondering whether a hosted group trip is legit, look first at who runs the week. With Dream Travel, the host gathers the group, then the operator handles the itinerary and on-the-ground details once everyone arrives. What would you want clarified before bringing your people together?",
+"images": [
+"p1_04_0.jpg",
+"p1_04_2.jpg",
+"p1_04_3.jpg",
+"p1_04_5.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "post.instagram",
+"posted": false,
+"caption": "low code voice memo automation\n\nThe small mistake is treating voice memos like notes.\n\nThey are usually task soup. One errand, one work item, one half-baked idea, all pretending to be a single recording.\n\nThe useful setup is boring: drop the audio in a folder, transcribe it, then have one model split the transcript into separate items.\n\nNot \u201csummarize this.\u201d That is how you get a tidy paragraph you will ignore.\n\nAsk for each item as either a task or just a thought. Tasks go to the tracker. Thoughts go somewhere else. Your to-do list does not need every stray sentence you said in traffic.\n\nRouting by keywords is where people make it fragile. Most of us do not say the project name out loud. Give the agent short project descriptions and let it match by meaning. If it is unsure, send it to an inbox.\n\nAlso: never let it invent due dates. If you did not say \u201cbefore Friday,\u201d the date stays blank. Helpful little rule. Saves the tracker from lying.\n\nSend this to the person with 47 voice memos named \u201cNew Recording.\u201d\n\n#LowCodeAutomation #AIWorkflows #VoiceMemoSystem\n\nFull disclosure: I'm an affiliate, so I may earn a commission if you join.",
+"images": [
+"p3_04_0.jpg"
+]
+},
+{
+"client": "Rowan Report",
+"format": "post.instagram",
+"posted": false,
+"caption": "New York Medicaid fraud lawsuit\n\nThe Justice Department has sued New York State, its Medicaid director, and Public Partnerships, LLC over the Consumer Directed Personal Assistance Program, known as CDPAP.\n\nThe key issue: New York moved CDPAP from hundreds of agencies to one statewide fiscal intermediary. PPL was selected to run the program, which served more than 250,000 patients and was tied to about $10 billion in benefits.\n\nDOJ alleges PPL was picked through a fixed or \u201csham\u201d bid process, misrepresented parts of its plan, and skimmed a percentage from each hour of care billed to Medicaid.\n\nNew York\u2019s Department of Health called the complaint baseless and politically motivated. PPL had not responded to The Rowan Report by publication time.\n\nFor home care leaders, the practical takeaway is bigger than one state: Medicaid oversight is tightening, especially around managed programs, fiscal intermediaries, and billing structures.\n\nSend this to someone watching CDPAP, Medicaid fraud enforcement, or home care compliance.\n\n#CDPAP #MedicaidFraud #HomeCareCompliance",
+"images": [
+"p4_04_0.jpg"
+]
+},
+{
+"client": "Perseid Echo",
+"format": "post.facebook",
+"posted": false,
+"caption": "business automation help near me\n\nMonday had become the pileup.\n\nThe Overloaded Owner opened the week to unread form submissions, half-updated spreadsheets, and three customers asking for updates before the coffee cooled.\n\nThe Front Desk Lead kept answering the same status questions because the work was scattered. One detail lived in the inbox. One in a spreadsheet. One in a tool that only worked when someone remembered to babysit it.\n\nSo they tried the usual fix before lunch: copy, paste, check, repeat. By midafternoon, one small mismatch sent the wrong follow-up to the wrong customer.\n\nThat is the real cost of manual admin. Not just time. Trust gets wobbly when the handoff depends on memory.\n\nThe owner handed that workflow to Perseid Echo Creations instead of adding another dashboard to manage. The next request came in, got routed, logged, and followed up without anyone stopping their day to push it along.\n\nA few weeks later, Monday started with a clean queue. The team could see what already happened, and the owner spent the first hour making decisions instead of doing detective work.\n\nSend this to someone whose Monday starts in the inbox.\n\n#SmallBusinessAutomation #LocalBusinessOps #AdminWorkflow",
+"images": [
+"p0_05_1.jpg",
+"p0_05_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "A typical day on a Dream Travel hosted trip is not built around the host managing the group. You gather the adults before departure, then the operator runs the itinerary, pacing, and daily details once everyone arrives. What would you want to know before hosting your own group?",
+"images": [
+"p1_05_0.jpg",
+"p1_05_2.jpg",
+"p1_05_4.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "post.instagram",
+"posted": false,
+"caption": "voice memo to task automation\n\nlittle private note from the car: the best productivity system might be the one you can mumble into before you forget the idea.\n\ni used to save messy voice memos, then never open them again. thirty tiny audio files. zero appetite to replay my own brain.\n\nthe useful part is not transcription. it is what happens after.\n\na good low-code agent can take one rambling memo and split it into small pieces: real tasks, loose thoughts, and stuff that should just sit in notes. that matters because one memo is rarely one clean to-do.\n\nrouting by keywords is where these systems break. most people do not say the project name out loud. better: give the agent your project list with one-line descriptions, then let it match by meaning. unsure items go to inbox, not the wrong project.\n\none rule i would not skip: no invented due dates. if you did not say \u201cbefore friday\u201d or \u201cby the 15th,\u201d the due date stays blank. a confident blank beats a fake deadline.\n\nsend this to someone whose best ideas are currently trapped in voice notes.\n\nFull disclosure: I'm an affiliate, so I may earn a commission if you join.\n\n#lowcodeautomation #aitasks #voiceworkflow",
+"images": [
+"p3_05_0.jpg"
+]
+},
+{
+"client": "Rowan Report",
+"format": "post.facebook",
+"posted": false,
+"caption": "New York Medicaid fraud lawsuit\n\nIf you follow care at home, this case is worth understanding before the headlines turn it into a shouting match.\n\nThe Justice Department is suing New York State, its Medicaid director, and Public Partnerships, LLC over the state\u2019s Consumer Directed Personal Assistance Program, known as CDPAP.\n\nBefore fall 2024, CDPAP was managed by hundreds of agencies. New York then moved the work to one company, PPL, for a program serving more than 250,000 patients.\n\nThe DOJ alleges PPL was allowed to make unauthorized profits by taking a percentage from each hour of care billed to Medicaid. It also claims PPL misrepresented its staffing, finances, and software during the bid process.\n\nNew York\u2019s health department says the complaint is baseless and politically motivated. PPL had not responded to The Rowan Report by publication time.\n\nWhat matters to me is simple: when Medicaid dollars are meant for vulnerable people and direct care, oversight cannot be treated like paperwork.\n\nSend this to someone who tracks Medicaid, home care, or CDPAP changes in New York.\n\n#CDPAP #NYMedicaid #HomeCarePolicy",
+"images": [
+"p4_05_0.jpg"
+]
+},
+{
+"client": "Perseid Echo",
+"format": "post.facebook",
+"posted": false,
+"caption": "business automation help near me.\n\nAfter dinner, one owner was still answering messages at the kitchen table and updating records by hand.\n\nAcross town, the Free-Weekend Owner posted a quick trip photo before Monday\u2019s rush even had a chance to clear its throat.\n\nSame kind of business. Same busy season. Very different plot twist.\n\nSo after one more late night of \u201cjust catching up,\u201d the Overworked Owner finally asked what changed. The answer was not more hustle. Perseid Echo Creations had automated the repeat tasks she used to babysit: follow-ups, intake steps, and routine updates.\n\nThen came the reveal.\n\nA whole week moved without her chasing every detail. Messages got routed. Records stayed current. The part of the business that felt like a second shift stopped waiting on her desk after dinner.\n\nA few weeks later, both owners were away with their families for the weekend. Their businesses were still moving. Their evening plans no longer had to be earned by overworking.\n\nSend this to the business owner who still treats \u201cafter dinner\u201d like office hours.\n\n#SmallBusinessAutomation #ServiceBusinessSystems",
+"images": [
+"p0_06_1.jpg",
+"p0_06_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "If only four people sign up, that does not mean the trip is over. It means you have early interest, and the next step is seeing whether the rest of the group chat, roster, or email list wants the same week away. Which group would you test first?",
+"images": [
+"p1_06_0.jpg",
+"p1_06_4.jpg",
+"p1_06_1.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "post.instagram",
+"posted": false,
+"caption": "low code voice memo task automation\n\nA folder of unlabeled voice memos is not a system. It is where good ideas go stale.\n\nThe proof that surprised me: one simple agent can take a messy 2-minute memo and turn it into sorted tasks in about a minute.\n\nThe useful part is not the transcription. Whisper can handle that. The hard part is splitting one ramble into real units: task, task, random thought, maybe nothing.\n\nThen routing has to work by meaning, not keywords. Most people do not say the project name out loud. They say \u201cupdate the onboarding doc with the new pricing,\u201d and the system has to know where that belongs.\n\nThe guardrail I would not skip: no invented due dates. If you did not say \u201cFriday\u201d or \u201cbefore the 15th,\u201d the task should stay undated. A confident-looking fake deadline is worse than an empty field.\n\nStart with the boring version: folder trigger, transcription, one structured prompt, write to your tracker. Even that can save ideas before your brain moves on.\n\nSend this to the person who keeps promising they will \u201cprocess notes later.\u201d\n\n#LowCodeAutomation #AITaskManagement #VoiceMemoWorkflow\n\nFull disclosure: I'm an affiliate, so I may earn a commission if you join.",
+"images": [
+"p3_06_0.jpg"
+]
+},
+{
+"client": "Rowan Report",
+"format": "post.instagram",
+"posted": false,
+"caption": "New York Medicaid fraud lawsuit\n\nThe thing to watch is not just who got sued.\n\nIt is how the program was managed before the lawsuit showed up at the counter.\n\nNew York\u2019s CDPAP program used to run through hundreds of individual agencies. Then the state consolidated management under one company, Public Partnerships, LLC, for a program serving more than 250,000 patients.\n\nThe Justice Department now alleges PPL skimmed a percentage from each hour of care billed to Medicaid, adding up to millions. It also claims the company misrepresented staffing, finances, and software during the bid process.\n\nThe state says the complaint is baseless and politically motivated. PPL had not responded to The Rowan Report by publication.\n\nFor home care providers, the useful lesson is boring and important: when Medicaid money, vendor consolidation, and care hours meet, documentation becomes the story.\n\nSend this to someone who follows Medicaid home care policy and likes reading the fine print before it becomes a headline.\n\n#MedicaidFraud #HomeCarePolicy #CDPAP",
+"images": [
+"p4_06_0.jpg"
+]
+},
+{
+"client": "Perseid Echo",
+"format": "poster.linkedin",
+"posted": false,
+"caption": "Automation should speed up routine work, not remove your final approval.",
+"images": [
+"p0_08_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "What do you get for hosting? If 10 to 16 adults from a list, roster, directory, or group chat say yes, you can choose a covered host seat, a set commission, or a fundraiser structure. Which group would be easiest for you to gather for one week away?",
+"images": [
+"p1_07_0.jpg",
+"p1_07_2.jpg",
+"p1_07_5.jpg",
+"p1_07_3.jpg",
+"p1_07_4.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "post.instagram",
+"posted": false,
+"caption": "low-code agent for voice memos\n\nwait... this is the part most people skip.\n\nvoice notes are not the problem. the problem is that one messy memo usually contains 3 different things: a real task, a random idea, and something that belongs nowhere near your work tracker.\n\ntiny confession: i used to treat transcription like the whole solution. it isn't.\n\nthe useful setup is simple: transcribe the memo, split it into atomic items, label each one as \u201ctask\u201d or \u201cthought,\u201d then route by meaning instead of keywords.\n\nthat last part matters. you probably won\u2019t say the project name out loud. so the agent needs a short list of your active projects with plain-English descriptions.\n\nalso: never let it invent deadlines. if you didn\u2019t say \u201cbefore friday\u201d or \u201cby the 15th,\u201d the due date stays blank. a fake deadline is worse than no deadline.\n\nsend this to someone whose best ideas are currently trapped in their voice memos.\n\n#lowcodeautomation #aiautomation #voicenotes\n\nFull disclosure: I'm an affiliate, so I may earn a commission if you join.",
+"images": [
+"p3_07_0.jpg"
+]
+},
+{
+"client": "Rowan Report",
+"format": "post.instagram",
+"posted": false,
+"caption": "medicaid fraud lawsuit new york\n\nif you follow home care in New York, this is one to keep clipped.\n\nThe Justice Department is suing New York State, its Medicaid director, and Public Partnerships, LLC, the company now operating CDPAP for the state.\n\nCDPAP used to run through hundreds of agencies. In fall 2024, New York consolidated management under one firm. The program served more than 250,000 patients and is described in the suit as a $10 billion program.\n\nThe DOJ alleges PPL skimmed a percentage of each hour of care billed to Medicaid, adding up to millions. It also claims PPL misrepresented parts of its bid, including staffing, financial readiness, and software quality.\n\nNew York is pushing back hard. The Department of Health called the complaint baseless, political, and lacking merit.\n\nThe practical note: when a benefit program this large gets centralized, the oversight questions get bigger too. Who verifies the billing? Who checks performance against the bid? Who protects patients when the vendor and the state disagree?\n\nsend this to someone tracking Medicaid, CDPAP, or home care policy in New York.\n\n#NYHomeCare #CDPAP #MedicaidOversight",
+"images": [
+"p4_07_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "If you're wondering who handles things once the group is overseas, the answer matters. You gather 10 to 16 adults you know, and Dream Travel operates the trip from arrival through the final dinner, so the host can travel with the group instead of running every detail. Could this fit the people you already want to bring together?",
+"images": [
+"p1_08_0.jpg",
+"p1_08_2.jpg",
+"p1_08_5.jpg",
+"p1_08_3.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "linkedin-post",
+"posted": false,
+"caption": "What's the difference between using AI and building with AI?\n\nA lot of teams use AI after the mess already exists. They paste in a stack trace and ask for a summary, a title, or a possible fix.\n\nThat can help. But it does not solve the deeper problem: your tracker still cannot tell whether sixty crash events are one bug or sixty different bugs.\n\nBuilding with AI starts earlier in the workflow.\n\nIn this example, the important move is dedup logic. The agent does not trust the raw event payload, because raw payloads are full of details that change every time: UUIDs, memory addresses, timestamps, request IDs, and other one-off values.\n\nSo the flow strips those volatile parts out first.\n\nThen it builds a fingerprint from the stable parts: error type, the top non-library frame, and file:line. That gives the system a useful answer to the question, \u201cIs this the same crash?\u201d\n\nFrom there, the decision gets easier. If the fingerprint looks like an open issue, the agent comments with the latest occurrence count and version. If there is no match, it opens a clean issue. If the match is suspicious but uncertain, it labels the item for triage.\n\nThat middle lane matters. Auto-merging two different bugs can hide a real problem. A few human reviews are cheaper than losing a failure inside the wrong thread.\n\nThe same pattern applies beyond error tracking: remove noisy variables, compare stable signals, route uncertainty carefully, and let AI handle the repeatable parts around that decision.\n\nSummary: using AI asks for help with a task; building with AI changes the system so the task becomes easier to judge.\n\nWho on your team would benefit from seeing dedup logic explained this way?\n\n#AIAgentBuilders #ErrorTracking #LowCodeAutomation\nFull disclosure: I'm an affiliate, so I may earn a commission if you join.",
+"images": [
+"p3_08_0.jpg"
+]
+},
+{
+"client": "Rowan Report",
+"format": "post.instagram",
+"posted": false,
+"caption": "New York Medicaid fraud lawsuit\n\nA $10 billion home care program just got pulled into the Justice Department\u2019s fraud crackdown.\n\nThe lawsuit targets New York State, its Medicaid director, and Public Partnerships, LLC, the company running CDPAP: the Consumer Directed Personal Assistance Program.\n\nHere\u2019s the part worth watching: before fall 2024, CDPAP was managed by hundreds of individual agencies. New York consolidated that work under one firm, PPL, for a program serving more than 250,000 patients.\n\nThe DOJ alleges PPL was \u201cpreselected\u201d through a fixed or sham bid process. It also claims PPL misrepresented its staffing plan, financial readiness, and software quality.\n\nAnother allegation: unauthorized profits. The suit says PPL skimmed a percentage from each hour of care billed to Medicaid, totaling millions of dollars.\n\nNew York\u2019s Department of Health called the complaint baseless and politically motivated. PPL had not responded to The Rowan Report by publication.\n\nFor providers, the lesson is bigger than one state: when Medicaid dollars, vendor consolidation, and care access meet, documentation and procurement integrity become front-page issues.\n\nSend this to someone tracking Medicaid home care oversight in 2026.\n\n#MedicaidFraud #HomeCarePolicy #CDPAP #NewYorkMedicaid",
+"images": [
+"p4_08_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "If you\u2019re wondering what\u2019s included in the price, start with the roles: you gather 10 to 16 adults you know, and Dream Travel runs the 7 to 10 night trip from arrival through the final dinner. Which would fit your group best: travel free, earn a commission, or give it back to a club or cause?",
+"images": [
+"p1_09_0.jpg",
+"p1_09_4.jpg",
+"p1_09_3.jpg",
+"p1_09_5.jpg"
+]
+},
+{
+"client": "RoboNuggets",
+"format": "linkedin-post",
+"posted": false,
+"caption": "Where do I even start with AI agents?\n\nStart with one decision that already costs you time or money.\n\nFor a signup flow, that decision might happen in the 60 seconds between someone creating an account and your welcome email landing. A founder evaluating your product for a 40-person team should not wait three days in the same nurture queue as a casual student signup.\n\nThe agent in this piece starts with a webhook from the signup form. It pulls the email domain, checks whether it is a personal or throwaway provider, and only enriches work domains. That keeps the form short and avoids adding fields that slow people down.\n\nThen the model gets a narrow job. It receives the enriched company data plus a short definition of an ideal customer. It returns a fit score from 0 to 100 and a one-line reason.\n\nThe important rule is restraint. If enrichment comes back empty, the model returns unknown. It does not guess from the domain name or invent firmographic details.\n\nRouting stays plain. Above 70 with enrichment, the lead goes to Slack and the CRM so a human can follow up inside the hour. Between 40 and 70, the person enters a product-led nurture path. Personal emails, failed enrichment, and low scores still get normal onboarding and can be watched for activation later.\n\nTwo guardrails make this workable. The enrichment branch cannot delay the welcome email. Every routing decision also gets logged to a Google Sheet with the score and reason, so the system can be reviewed weekly.\n\nThe score is the easy part. The safer lesson is to route unknowns to a default path instead of forcing every signup into a confident-looking bucket.\n\nIf you were building your first agent, would you trust it first with enrichment, scoring, or routing?\n\nFull disclosure: I'm an affiliate, so I may earn a commission if you join. \n\n#AIAgentsForBusiness #LowCodeAutomation #SignupAutomation",
+"images": [
+"p3_09_0.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "No, you do not have to plan the itinerary yourself. You bring 10 to 16 adults you know, Dream Travel runs the trip from arrival through the final dinner, and you choose whether the host payoff becomes a covered seat, a commission, or a fundraiser. Which option would make the most sense for your group?",
+"images": [
+"p1_10_4.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "If you are wondering when a hosted trip becomes real, the working number is 10 to 16 adults for a seven-to-ten-night trip. Once the group is there, the host can choose a covered seat, a set commission per booked guest, or giving the value back to a cause. Could your circle reach that range for one trip?",
+"images": [
+"p1_11_0.jpg",
+"p1_11_1.jpg",
+"p1_11_5.jpg",
+"p1_11_3.jpg",
+"p1_11_4.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "fb-carousel",
+"posted": true,
+"caption": "If your first question is, \u201cWill I fit in with this group?\u201d, start with where the group comes from. A hosted trip works best when the travelers already share a club, team, chapter, cause, or adult friend circle, and the host benefit can go back to the cause, cover the host\u2019s seat, or be taken as a set commission. Could your members picture themselves taking the trip together?",
+"images": [
+"p1_12_0.jpg",
+"p1_12_5.jpg",
+"p1_12_1.jpg",
+"p1_12_3.jpg",
+"p1_12_4.jpg"
+]
+},
+{
+"client": "Dream Travel",
+"format": "reel.facebook",
+"posted": true,
+"caption": "Hosting is usually less work than people assume: gather ten to sixteen adults who trust you, then Dream Travel builds and runs the custom adult trip from arrival through the final dinner. Which group would you start with if the trip stayed small and personal?",
+"images": [
+"p1_13_1.jpg"
+]
+}
+]

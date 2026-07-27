@@ -1,106 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#F2EDE3" />
-  <title>Bristlecone by Perseid Echo Creations — Your marketing, live in days.</title>
-  <meta name="description" content="Bristlecone is the marketing engine by Perseid Echo Creations. Each month we turn your long-form content into a ready-to-post social campaign across your platforms — created, approved, scheduled, and posted for you. Live in days, steady from there." />
-  <meta name="robots" content="noai, noimageai" />
-  <link rel="icon" type="image/png" href="https://perseidechocreations.com/bristlecone/assets/images/tranbackBristlecone.png" />
-  <link rel="apple-touch-icon" href="https://perseidechocreations.com/bristlecone/assets/images/tranbackBristlecone.png" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#F2EDE3" />
+<title>Bristlecone by Perseid Echo Creations — we make the posts, you approve them</title>
+<meta name="description" content="Bristlecone makes your social content and posts it. A two-week calibration, no onboarding fee, from $700 a month." />
+<meta name="robots" content="noai, noimageai" />
+<link rel="canonical" href="https://perseidechocreations.com/bristlecone/" />
+<link rel="icon" type="image/png" href="https://perseidechocreations.com/bristlecone/assets/images/tranbackBristlecone.png" />
+<link rel="apple-touch-icon" href="https://perseidechocreations.com/bristlecone/assets/images/tranbackBristlecone.png" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Bristlecone by Perseid Echo Creations" />
+<meta property="og:description" content="We make your social content and post it. A two-week calibration, no onboarding fee, from $700 a month." />
+<meta property="og:url" content="https://perseidechocreations.com/bristlecone/" />
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+  :root { --persimmon: #E15517; }
 
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Bristlecone by Perseid Echo Creations" />
-  <meta property="og:description" content="The marketing engine by Perseid Echo Creations. We turn your content into a steady, multi-platform social presence — created, approved, scheduled, and posted for you." />
-  <meta property="og:url" content="https://perseidechocreations.com/bristlecone/" />
+  /* co-brand lockup, as on the live page */
+  .brand-cluster { display:flex; flex-direction:column; gap:5px; }
+  .cobrand {
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--muted);
+    display:inline-flex; align-items:center; gap:7px; padding-left:2px;
+  }
+  .cobrand a { text-decoration:none; color:var(--muted); display:inline-flex; align-items:center; gap:7px; transition:color 200ms ease; }
+  .cobrand a:hover { color:var(--persimmon); }
+  .cobrand img { height:15px; width:auto; display:block; opacity:.92; }
+  .cobrand .by { opacity:.7; }
 
-  <link rel="stylesheet" href="https://perseidechocreations.com/bristlecone/assets/site.css" />
+  /* ---- specimen strip: work, immediately, under the hero ---- */
+  .specimen {
+    display:grid; grid-auto-flow:column; grid-auto-columns:minmax(112px,1fr);
+    gap:1px; background:var(--border-soft);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    overflow:hidden;
+  }
+  .specimen figure { margin:0; background:var(--bone); aspect-ratio:1; overflow:hidden; }
+  .specimen img { width:100%; height:100%; object-fit:cover; display:block; }
+  @media (max-width:900px){ .specimen { grid-auto-columns:minmax(84px,1fr); } }
 
-  <!-- Bristlecone × PEC co-brand additions (Bristlecone palette for the page; persimmon marks the PEC parts) -->
-  <style>
-    :root { --persimmon: #E15517; --persimmon-bright: #FF6A2A; }
+  .strip-note {
+    display:flex; gap:10px 26px; flex-wrap:wrap; align-items:baseline;
+    padding:14px 0 0;
+    font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+  }
+  .strip-note .amb { color:var(--amber-dim); }
 
-    /* Co-brand header lockup */
-    .brand-cluster { display: flex; flex-direction: column; gap: 5px; }
-    .cobrand {
-      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted);
-      display: inline-flex; align-items: center; gap: 7px; padding-left: 2px;
-    }
-    .cobrand a {
-      text-decoration: none; color: var(--muted);
-      display: inline-flex; align-items: center; gap: 7px;
-      transition: color 200ms ease;
-    }
-    .cobrand a:hover { color: var(--persimmon); }
-    .cobrand img { height: 15px; width: auto; display: block; opacity: 0.92; }
-    .cobrand .by { opacity: 0.7; }
+  /* ---- plates: the full body of work ---- */
+  .plates {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:1px;
+  }
+  /* ring each plate rather than tinting the container, so a short last row
+     never shows an empty slab of background */
+  .plate { position:relative; background:var(--bone); overflow:hidden;
+    box-shadow:0 0 0 1px var(--border-soft); }
+  .plate img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+  .plate .no {
+    position:absolute; top:0; left:0; z-index:2;
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; color:var(--muted);
+    background:var(--parchment); border-right:1px solid var(--border); border-bottom:1px solid var(--border);
+    padding:3px 6px;
+  }
 
-    /* PEC-accented inline link (used for the studio mention) */
-    .pec-link { color: var(--persimmon); text-decoration-color: rgba(225,85,23,0.4); }
-    .pec-link:hover { color: var(--persimmon); text-decoration-color: var(--persimmon); }
+  /* ---- pricing: four tiers on the live .tier component ---- */
+  .pricing-grid.four { grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media (max-width:1080px){ .pricing-grid.four { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .pricing-grid.four { grid-template-columns:1fr; } }
+  .tier .price .per { white-space:nowrap; }
+  .price-lede { max-width:64ch; margin:0 0 8px; font-size:clamp(19px,1.8vw,22px); line-height:1.5; color:var(--ink-soft); }
+  .terms-line {
+    margin-top:40px; padding-top:22px; border-top:1px solid var(--border);
+    display:flex; gap:clamp(20px,3.4vw,48px); flex-wrap:wrap;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+  }
+  .terms-line b { color:var(--ink); font-weight:500; }
 
-    /* Pricing: positioning lede + add-ons / onboarding notes (tiers use site.css .pricing-grid/.tier) */
-    .price-lede {
-      max-width: 64ch; margin: 0 0 8px;
-      font-size: clamp(19px, 1.8vw, 22px); line-height: 1.5;
-      color: var(--ink-soft); font-weight: 400;
-    }
-    .price-notes { max-width: 860px; margin: 44px auto 0; text-align: center; }
-    .price-notes .addons {
-      font-family: var(--mono); font-size: 12px; letter-spacing: 0.03em;
-      color: var(--muted); line-height: 2;
-    }
-    .price-notes .addons .k { color: var(--amber-dim); }
-    .price-notes .onboard {
-      font-family: var(--display); font-style: italic;
-      font-size: clamp(17px, 1.6vw, 19px); color: var(--ink-soft);
-      margin-top: 22px; max-width: 60ch; margin-left: auto; margin-right: auto;
-    }
-    .price-notes .onboard-detail {
-      font-size: 14px; line-height: 1.7; color: var(--ink-soft);
-      max-width: 68ch; margin: 24px auto 0;
-    }
-    .price-notes .onboard-detail .waive { color: var(--persimmon); font-weight: 600; }
-
-    /* Secondary text CTA under the primary button in the CTA band */
-    .cta-band .secondary {
-      display: block; margin-top: 20px;
-      font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .cta-band .secondary a { color: var(--muted); text-decoration-color: rgba(225,85,23,0.4); }
-    .cta-band .secondary a:hover { color: var(--persimmon); }
-
-    /* Slim, single-page footer */
-    .site-footer .row.slim { grid-template-columns: 1.4fr 1fr 1fr; }
-    @media (max-width: 880px) { .site-footer .row.slim { grid-template-columns: 1fr 1fr; } }
-  </style>
+  .site-footer .row.slim { grid-template-columns:1.4fr 1fr 1fr; }
+  @media (max-width:880px){ .site-footer .row.slim { grid-template-columns:1fr 1fr; } }
+</style>
 </head>
 <body>
 
-<!-- HEADER — co-branded: Bristlecone by Perseid Echo Creations -->
 <header class="site-header">
   <div class="shell row">
     <div class="brand-cluster">
       <a href="#top" class="brand-lockup" aria-label="Bristlecone — home">
-        <img class="mark" src="https://perseidechocreations.com/bristlecone/assets/images/tranbackBristlecone.png" alt="" />
+        <img class="mark" src="assets/images/tranbackBristlecone.png" alt="" />
         <span class="name">Bristlecone<span class="dot">.</span></span>
       </a>
       <span class="cobrand">
         <span class="by">by</span>
         <a href="https://perseidechocreations.com/" target="_blank" rel="noopener">
-          <img src="https://perseidechocreations.com/assets/images/PEC_Logo_Dark.png" alt="" />
+          <img src="assets/images/PEC_Logo_Dark.png" alt="" />
           Perseid Echo Creations
         </a>
       </span>
     </div>
     <nav class="nav" aria-label="Primary">
-      <a href="#how">How it works</a>
-      <a href="#proof">Why us</a>
+      <a href="#work">The work</a>
+      <a href="#experience">What it is like</a>
+      <a href="#calibration">How it starts</a>
       <a href="#pricing">Pricing</a>
-      <a href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" target="_blank" rel="noopener" class="cta">Book a call &#8599;</a>
+      <a href="#start" class="cta">Start a calibration &#8599;</a>
     </nav>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="bar"></span></button>
   </div>
@@ -108,265 +112,305 @@
 
 <main id="top">
 
-  <!-- HERO -->
   <section class="hero no-rule">
     <div class="shell">
       <div class="colophon-rule reveal">
         <span class="amb">Bristlecone</span>
         <span>The marketing engine by Perseid Echo Creations</span>
         <span class="line" aria-hidden="true"></span>
-        <span>Est. 2026 &middot; Perseid Echo Creations LLC</span>
+        <span id="colophon-count">Est. 2026</span>
       </div>
 
       <div class="hero-with-tree">
         <div>
-          <h1 class="reveal">Your marketing, live in <em class="amb">days</em>.<br/>Steady from there.</h1>
+          <h1 class="reveal">We make the posts.<br/>You <em class="amb">approve</em> them.<br/>They go out.</h1>
 
           <p class="deck reveal">
-            Each month we turn your ideas and long-form content into a ready-to-post social campaign across your
-            platforms &mdash; copy variants, visuals, scheduling, and publishing. Run through a
-            Goal&nbsp;&rarr;&nbsp;Strategy&nbsp;&rarr;&nbsp;Tactic pipeline, with you in command of every
-            consequential decision.
+            Most social companies want your content and then schedule it. We do the other part, the part nobody
+            wants to do &mdash; writing it, designing it, building the graphics, cutting the video. You get a link,
+            you tap approve, it publishes.
           </p>
 
-          <p class="small" style="margin-top:8px;">Bristlecone is the marketing engine inside <a href="https://perseidechocreations.com/" class="pec-link" target="_blank" rel="noopener">Perseid Echo Creations</a> &mdash; the studio that builds your site and AI systems, then keeps you visible.</p>
+          <p class="small" style="margin-top:8px;">Everything on this page is real client work, made here. Nothing below is a mockup or a stock template.</p>
 
-          <p class="reveal" style="margin-top:32px;"><a href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" class="btn btn-primary" target="_blank" rel="noopener">Book a free 20-min call <span class="arrow">&rarr;</span></a></p>
+          <p class="reveal" style="margin-top:32px;">
+            <a href="#start" class="btn btn-primary">Start a two-week calibration <span class="arrow">&rarr;</span></a>
+          </p>
         </div>
-        <img class="tree reveal" src="https://perseidechocreations.com/bristlecone/assets/images/tranbackBristlecone.png" alt="Hand-drawn bristlecone pine, weathered, with a single living branch in amber." loading="eager" />
-      </div>
-
-    </div>
-  </section>
-
-  <!-- § I — PROBLEM + AGITATE -->
-  <section id="problem">
-    <div class="shell-narrow">
-      <div class="section-mark reveal">
-        <span class="num">&sect; I</span>
-        <div class="title">
-          <h2>The hard part of marketing is not <em>stopping</em>.</h2>
-          <p class="sub">You know you should show up every week. Keeping it up &mdash; while you actually run the business &mdash; is the part nobody has time for.</p>
-        </div>
-      </div>
-
-      <div class="paper-card reveal">
-        <div class="label">Sound familiar?</div>
-        <ul>
-          <li>You start strong, then go quiet for a month.</li>
-          <li>Writing and scheduling posts is a second job you never wanted.</li>
-          <li>When work gets busy, marketing is the first thing to drop.</li>
-          <li>You only market when things are slow &mdash; exactly backwards.</li>
-        </ul>
-        <p class="closing">And quiet compounds the wrong way. Every week you don&rsquo;t show up, the audience drifts and referrals cool &mdash; then the next push starts from a standstill. It&rsquo;s rarely the best business that wins a market. It&rsquo;s the one that never disappears.</p>
+        <img class="tree reveal" src="assets/images/tranbackBristlecone.png" alt="Hand-drawn bristlecone pine, weathered, with a single living branch in amber." loading="eager" />
       </div>
     </div>
   </section>
 
-  <!-- § II — SOLUTION (#how) -->
-  <section id="how">
+  <div class="specimen" id="specimen" aria-label="Recent client work"></div>
+  <div class="shell"><div class="strip-note" id="stripnote"></div></div>
+
+  <section id="work">
     <div class="shell">
-      <div class="section-mark reveal">
-        <span class="num">&sect; II</span>
-        <div class="title">
-          <h2>Bristlecone keeps you <em>showing up</em>.</h2>
-          <p class="sub">Each month we turn your ideas and long-form content into a ready-to-post campaign &mdash; written in your voice, designed, scheduled, and published across your platforms. You approve what matters; we run the rest. Live in days, steady from there.</p>
-        </div>
-      </div>
-
-      <div class="three-up">
-        <div class="item reveal">
-          <h3>We learn your voice</h3>
-          <p>Your offer, your proof, your tone &mdash; mapped once at the start, so everything sounds like you, not a robot.</p>
-        </div>
-        <div class="item reveal">
-          <h3>We draft, you approve</h3>
-          <p>Every campaign comes to you before it ships. Commit it, tweak it, or hand it back &mdash; nothing posts without your sign-off.</p>
-        </div>
-        <div class="item reveal">
-          <h3>We post, every week</h3>
-          <p>On your real platforms, on schedule &mdash; live in days, and never quiet again. That consistency is the whole point.</p>
-        </div>
-      </div>
+      <span class="kicker">The work</span>
+      <h2>Five brands. None of them sound alike.</h2>
+      <p class="deck" style="max-width:60ch;">A poker club, a hosted-travel company, an industry newsletter, an AI builders' community, and our own studio. Same engine, five separate voices. That is the part that is hard to fake.</p>
+      <div class="plates reveal" id="plates" style="margin-top:36px;"></div>
     </div>
   </section>
 
-  <!-- § III — PROOF (#proof) -->
-  <section id="proof">
+  <section id="experience">
     <div class="shell">
-      <div class="section-mark reveal">
-        <span class="num">&sect; III</span>
-        <div class="title">
-          <h2>Why you can <em>trust</em> it.</h2>
-          <p class="sub">No black box, no hand-waving &mdash; here&rsquo;s what stands behind the work.</p>
-        </div>
-      </div>
+      <span class="kicker">What it is like</span>
+      <h2>One form, one link a month, and almost no meetings.</h2>
+      <p class="deck" style="max-width:60ch;">Being a client is deliberately boring. Here is the whole of it.</p>
 
-      <div class="three-up">
-        <div class="item reveal">
-          <h3>You talk to the operator</h3>
-          <p>Run by Bryan Piard &mdash; 21 years in corporate customer experience and digital transformation, now running Perseid Echo Creations. You work with the person doing the work.</p>
-        </div>
-        <div class="item reveal">
-          <h3>Evidence over claims</h3>
-          <p>Every post traces back to its inputs, and nothing goes out without your sign-off. No &ldquo;the AI did it&rdquo; &mdash; you can see how each campaign was built.</p>
-        </div>
-        <div class="item reveal">
-          <h3>You see what you get</h3>
-          <p>A clear plan and a publishing schedule from day one &mdash; real posts on real platforms, not dashboards and promises.</p>
-        </div>
+      <ol class="steps reveal" style="margin-top:36px;">
+        <li>
+          <span class="badge"></span>
+          <div>
+            <h3>You fill out one form</h3>
+            <p>Ten minutes, once. What you do, who buys from you, and anything you would never want said in your name. That is the entire onboarding.</p>
+          </div>
+        </li>
+        <li>
+          <span class="badge"></span>
+          <div>
+            <h3>We build the month</h3>
+            <p>Copy, graphics, carousels, video. You are not asked for assets, ideas, or a content calendar. If we need something only you have, we ask once.</p>
+          </div>
+        </li>
+        <li>
+          <span class="badge"></span>
+          <div>
+            <h3>You get one link</h3>
+            <p>Everything for the month in one place. Tap approve on what you like. Tap send back with a note on what you do not. Most clients spend about ten minutes here.</p>
+          </div>
+        </li>
+        <li>
+          <span class="badge"></span>
+          <div>
+            <h3>It posts itself</h3>
+            <p>On schedule, to every platform, without you logging into any of them. Nothing publishes that you have not approved.</p>
+          </div>
+        </li>
+        <li>
+          <span class="badge"></span>
+          <div>
+            <h3>You get a recap</h3>
+            <p>One page at the end of the month: what went out, what people responded to, what we are trying next. Read it or do not.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="terms-line">
+        <span>Your time <b>About 20 minutes a month</b></span>
+        <span>Standing calls <b>None</b></span>
+        <span>Publishes <b>Only what you approved</b></span>
       </div>
     </div>
   </section>
 
-  <!-- § VI — PRICING (#pricing) -->
+  <section id="calibration">
+    <div class="shell">
+      <span class="kicker">How it starts</span>
+      <h2>You do not pay until it sounds like <em style="font-style:italic;">you</em>.</h2>
+      <p class="deck" style="max-width:60ch;">Voice takes a couple of rounds to land. So the first two weeks are calibration, and they are free.</p>
+
+      <ol class="steps reveal" style="margin-top:36px;">
+        <li>
+          <span class="badge"></span>
+          <div>
+            <h3>Five posts</h3>
+            <p>Built from a short intake form. No kickoff call, no questionnaire marathon. You mark what lands and what misses, one tap per post.</p>
+          </div>
+        </li>
+        <li>
+          <span class="badge"></span>
+          <div>
+            <h3>Five more, tuned</h3>
+            <p>We adjust to what you marked. This is usually the round where it clicks.</p>
+          </div>
+        </li>
+        <li>
+          <span class="badge"></span>
+          <div>
+            <h3>Five more, dialed</h3>
+            <p>By now it either sounds like you or we are not the right fit. Either way the fifteen posts are yours to keep.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="terms-line">
+        <span>Duration <b>Fourteen days</b></span>
+        <span>Billing starts <b>Day fifteen</b></span>
+        <span>Cancel <b>Any time before</b></span>
+        <span>Capacity <b>Five slots a month</b></span>
+      </div>
+    </div>
+  </section>
+
   <section id="pricing">
     <div class="shell">
-      <div class="section-mark reveal">
-        <span class="num">&sect; IV</span>
-        <div class="title">
-          <h2>What a season costs.</h2>
-          <p class="sub">Every engagement opens with onboarding &mdash; we map your roots before a single post. Final scope is set on a call; you only pay for the platforms and cadence you need &mdash; start at any tier and scale up whenever you&rsquo;re ready.</p>
+      <span class="kicker">Pricing</span>
+      <h2>No onboarding fee. No contract.</h2>
+      <p class="price-lede">Month to month. The setup fees other agencies charge exist to cover staffing costs we do not carry, so we do not charge them.</p>
+
+      <div class="pricing-grid four" style="margin-top:36px;">
+        <div class="tier">
+          <p class="name">Starter</p>
+          <p class="for">One location, getting consistent</p>
+          <p class="price">$700<span class="per">/mo</span></p>
+          <ul>
+            <li>Two platforms</li>
+            <li>Twelve posts a month</li>
+            <li>Graphics and captions written for each</li>
+            <li>One-tap approval, no calls</li>
+          </ul>
+          <a href="#start" class="btn">Start here</a>
+        </div>
+
+        <div class="tier featured">
+          <p class="name">Growth</p>
+          <p class="for">Most clients land here</p>
+          <p class="price">$1,400<span class="per">/mo</span></p>
+          <ul>
+            <li>Three to four platforms</li>
+            <li>Twenty-four posts a month</li>
+            <li>Short-form video included</li>
+            <li>Carousels and stories</li>
+            <li>Monthly recap</li>
+          </ul>
+          <a href="#start" class="btn btn-primary">Start here</a>
+        </div>
+
+        <div class="tier">
+          <p class="name">Pro</p>
+          <p class="for">Competing on presence</p>
+          <p class="price">$2,800<span class="per">/mo</span></p>
+          <ul>
+            <li>Five platforms</li>
+            <li>Near-daily cadence</li>
+            <li>Video and ad creative</li>
+            <li>Monthly strategy call</li>
+          </ul>
+          <a href="#start" class="btn">Start here</a>
+        </div>
+
+        <div class="tier">
+          <p class="name">Multi-location</p>
+          <p class="for">Franchises and groups</p>
+          <p class="price">$5,000<span class="per">/mo +</span></p>
+          <ul>
+            <li>Per-location feeds</li>
+            <li>Shared brand, local content</li>
+            <li>Rolled-up reporting</li>
+          </ul>
+          <a href="#start" class="btn">Talk it through</a>
         </div>
       </div>
 
-      <div class="pricing-grid">
-        <!-- SAPLING -->
-        <div class="tier reveal">
-          <p class="name">Sapling</p>
-          <p class="for">Starter Repurpose Engine &middot; small teams, early proof</p>
-          <p class="price">$2,500<span class="per">/mo</span></p>
-          <p class="specs">+ $1,500 onboarding &middot; 2&ndash;3 platforms &middot; 2 topics / mo</p>
-          <ul>
-            <li>2 source articles or topics a month</li>
-            <li>8&ndash;12 posts, captions adapted per platform</li>
-            <li>Basic image generation &amp; direction</li>
-            <li>Scheduled &amp; posted for you</li>
-            <li>Light monthly recap</li>
-          </ul>
-          <p class="footnote">Above commodity posting, light enough to prove the value. Best as a starting relationship.</p>
-          <a class="btn btn-primary" href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" target="_blank" rel="noopener">Book a call <span class="arrow">&rarr;</span></a>
-        </div>
-
-        <!-- HEARTWOOD (featured) -->
-        <div class="tier featured reveal">
-          <p class="name">Heartwood</p>
-          <p class="for">Core Content Pipeline &middot; the one most operators choose</p>
-          <p class="price">$4,500<span class="per">/mo</span></p>
-          <p class="specs">+ $3,000 onboarding &middot; up to 5 platforms &middot; 4 topics / mo</p>
-          <ul>
-            <li>4 source articles or topics a month</li>
-            <li>A full content bundle per article<span class="gloss">hooks, captions, CTAs, hashtags, image specs</span></li>
-            <li>Platform-specific versions for LinkedIn, Facebook, Instagram &amp; short-form</li>
-            <li>Scheduled &amp; published, with your approval on what matters</li>
-            <li>Monthly performance summary &middot; one revision round per bundle</li>
-          </ul>
-          <p class="footnote">The package that matches what the engine actually produces. Our recommended anchor.</p>
-          <a class="btn btn-primary" href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" target="_blank" rel="noopener">Book a call <span class="arrow">&rarr;</span></a>
-        </div>
-
-        <!-- OLD-GROWTH -->
-        <div class="tier reveal">
-          <p class="name">Old-Growth</p>
-          <p class="for">Managed Content OS &middot; you own the content rhythm</p>
-          <p class="price">$8,500<span class="per">/mo</span></p>
-          <p class="specs">+ $7,500 onboarding &middot; 6&ndash;8 platforms &middot; weekly cadence</p>
-          <ul>
-            <li>Weekly or twice-weekly source content</li>
-            <li>Multi-format campaigns<span class="gloss">carousels, posters, reels, ad variants</span></li>
-            <li>6&ndash;8 platforms, full publishing calendar</li>
-            <li>Reporting, content recommendations, light optimization</li>
-            <li>Monthly strategy call &middot; priority, higher-touch support</li>
-          </ul>
-          <p class="footnote">No longer posting &mdash; managed content operations. Replaces a part-time social manager, copywriter, designer, scheduler, and QA.</p>
-          <a class="btn btn-primary" href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" target="_blank" rel="noopener">Book a call <span class="arrow">&rarr;</span></a>
-        </div>
-      </div>
-
-      <div class="price-notes reveal">
-        <p class="addons">
-          <span class="k">Add to any plan</span> &nbsp;&middot;&nbsp; extra content bundles $1,250 each &nbsp;&middot;&nbsp; additional platform +$500/mo &nbsp;&middot;&nbsp; extra revision rounds $250 / cycle &nbsp;&middot;&nbsp; short-form video +$750&ndash;$2,000/mo &nbsp;&middot;&nbsp; paid social from $1,000/mo + ad spend &nbsp;&middot;&nbsp; community management from $1,000/mo
-        </p>
-        <p class="onboard">The automation is ours to worry about. What you buy is consistency &mdash; a presence that shows up well, every week, without fail.</p>
-        <p class="onboard-detail"><b>What onboarding covers:</b> brand-voice training, your content engine wired to each platform, the templates we build for you, and your first content calendar &mdash; real setup work, and yours to keep even if you ever pause. <span class="waive">Onboarding is waived on a 6- or 12-month commitment</span> &mdash; a longer handshake lowers your upfront, never your service.</p>
-      </div>
-
-      <!-- FAQ — encodes the pricing guardrails -->
-      <div class="faq reveal">
-        <div>
-          <p class="q">Can you post every day?</p>
-          <p class="a">Daily posting across platforms is a different operation, not a small add-on &mdash; that&rsquo;s what the Old-Growth tier is built for.</p>
-        </div>
-        <div>
-          <p class="q">Can you reply to comments and DMs?</p>
-          <p class="a">Community management is its own discipline, so we price it separately &mdash; from $1,000/mo depending on volume. The plans above cover creating and publishing your content.</p>
-        </div>
-        <div>
-          <p class="q">What about video or paid ads?</p>
-          <p class="a">Both are add-ons. Short-form video and reels editing runs +$750&ndash;$2,000/mo; paid social management starts at $1,000/mo plus your ad spend.</p>
-        </div>
-        <div>
-          <p class="q">How many revisions do I get?</p>
-          <p class="a">One revision round per content bundle is included. Extra rounds are billed per cycle &mdash; it keeps quality high and turnaround honest.</p>
-        </div>
+      <div class="terms-line">
+        <span>Ad spend <b>Yours, straight to the platform</b></span>
+        <span>Cancel <b>Any time, you keep the work</b></span>
       </div>
     </div>
   </section>
 
-  <!-- CTA BAND -->
-  <section class="no-rule" style="padding-top: 24px;">
+  <section class="cta-band" id="start">
     <div class="shell">
-      <div class="cta-band reveal">
-        <span class="kicker">Ready when you are</span>
-        <h2>Begin a season.</h2>
-        <p>Bristlecone runs your marketing for you &mdash; created on-brand, posted on schedule, with your sign-off on what matters. Book a 20-minute call and we&rsquo;ll map where to start.</p>
-        <a href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" class="btn btn-primary" target="_blank" rel="noopener">Book a free 20-min call <span class="arrow">&rarr;</span></a>
-        <span class="secondary">or learn about the studio at <a href="https://perseidechocreations.com/" target="_blank" rel="noopener">Perseid Echo Creations &#8599;</a></span>
-      </div>
+      <span class="kicker">Start</span>
+      <h2>Fifteen posts with your name on them, before you pay anything.</h2>
+      <p>Tell us what you do and who buys from you. In two weeks you will not be imagining what this looks like. You will be holding it.</p>
+      <a href="mailto:bryan@perseidechocreations.com?subject=Bristlecone%20calibration" class="btn btn-primary">Start a calibration <span class="arrow">&rarr;</span></a>
+      <span class="secondary" style="display:block;margin-top:20px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">
+        or <a href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" target="_blank" rel="noopener">book a free 20-minute call</a>
+      </span>
     </div>
   </section>
 
 </main>
 
-<!-- FOOTER — slim, co-branded -->
 <footer class="site-footer">
-  <div class="shell">
-    <div class="row slim">
-      <div>
-        <a href="#top" class="brand-lockup-footer" aria-label="Bristlecone — home"><img src="https://perseidechocreations.com/bristlecone/assets/images/bristlecone_nobkgrd.png" alt="Bristlecone — Turn intent into accountable execution." /></a>
-        <p class="colon">A marketing engine for businesses built to last. Steady, on purpose. By Perseid Echo Creations.</p>
-      </div>
-      <div>
-        <h4>Bristlecone</h4>
-        <ul>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="#proof">Why us</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Studio</h4>
-        <ul>
-          <li><a href="https://perseidechocreations.com/" target="_blank" rel="noopener">Perseid Echo Creations</a></li>
-          <li><a href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" target="_blank" rel="noopener">Book a call</a></li>
-          <li><a href="mailto:bryan@perseidechocreations.com">Contact</a></li>
-        </ul>
-      </div>
+  <div class="shell row slim">
+    <div>
+      <h4>Bristlecone</h4>
+      <p style="color:var(--muted);font-size:14px;max-width:34ch;">The marketing engine by Perseid Echo Creations. We make the posts and publish them.</p>
     </div>
-
-    <div class="legal">
-      <span>&copy; 2026 Perseid Echo Creations LLC &middot; Bristlecone, its marketing engine &middot; <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a></span>
-      <span>
-        <a href="https://perseidechocreations.com/bristlecone/legal/privacy.html">Privacy</a>
-        <a href="https://perseidechocreations.com/bristlecone/legal/terms.html">Terms</a>
-        <a href="https://perseidechocreations.com/bristlecone/legal/subprocessors.html">Subprocessors</a>
-        <a href="https://perseidechocreations.com/bristlecone/legal/imprint.html">Imprint</a>
-        <a href="https://perseidechocreations.com/bristlecone/legal/accessibility.html">Accessibility</a>
-      </span>
+    <div>
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#work">The work</a></li>
+        <li><a href="#calibration">How it starts</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="https://perseidechocreations.com" target="_blank" rel="noopener">perseidechocreations.com</a></li>
+        <li><a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a></li>
+      </ul>
     </div>
   </div>
 </footer>
 
-<script src="https://perseidechocreations.com/bristlecone/assets/site.js" defer></script>
+<script src="assets/site.js"></script>
+<script>
+const PORTRAIT = /story|reel|tiktok/i;
+
+fetch('assets/data.json').then(r=>r.json()).then(data=>{
+  const total = data.reduce((n,p)=>n+p.images.length,0);
+  const brands = new Set(data.map(p=>p.client));
+
+  document.getElementById('colophon-count').textContent =
+    total + ' pieces · ' + brands.size + ' brands · all real';
+
+  document.getElementById('stripnote').innerHTML =
+    '<span class="amb">Every image on this page is real client work</span>'
+    + '<span>' + total + ' pieces</span>'
+    + '<span>' + data.length + ' posts</span>'
+    + '<span>' + brands.size + ' brands</span>';
+
+  const gallery=data;
+
+  // one image per post, clients interleaved, for the specimen strip
+  const leads = gallery.map(p=>({im:p.images[0],p}));
+  const spec = document.getElementById('specimen');
+  const inStrip = new Set();
+  leads.slice(0,14).forEach(f=>{
+    inStrip.add(f.im);
+    const fig=document.createElement('figure');
+    fig.innerHTML = `<img src="assets/work/${f.im}" loading="eager" decoding="async"
+      alt="${esc(f.p.client)} ${esc(f.p.format.replace(/[.-]/g,' '))}">`;
+    spec.appendChild(fig);
+  });
+
+  // plates: the wider body of work, clients interleaved
+  // cover slides only — interior carousel slides are often plain photography,
+  // and the gallery should read as designed work, not a photo roll
+  const byClient=new Map();
+  gallery.forEach(p=>{
+    const im=p.images[0];
+    if(inStrip.has(im)) return;           // already shown in the strip above
+    if(!byClient.has(p.client)) byClient.set(p.client,[]);
+    byClient.get(p.client).push({im,p});
+  });
+  const queues=[...byClient.values()], flat=[];
+  while(flat.length<48){
+    let added=false;
+    for(const q of queues){ if(q.length){ flat.push(q.shift()); added=true; } }
+    if(!added) break;
+  }
+  const plates=document.getElementById('plates');
+  flat.forEach((f,i)=>{   // never request more tiles than we have work for
+    const d=document.createElement('div');
+    d.className='plate';
+    d.innerHTML=`<span class="no">${String(i+1).padStart(2,'0')}</span>
+      <img src="assets/work/${f.im}" loading="${i<16?'eager':'lazy'}" decoding="async"
+           alt="${esc(f.p.client)} ${esc(f.p.format.replace(/[.-]/g,' '))}">`;
+    plates.appendChild(d);
+  });
+
+});
+
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function clip(s,n){s=(s||'').trim();if(s.length<=n)return s;const cut=s.slice(0,n);return cut.slice(0,cut.lastIndexOf(' ')).replace(/[,.;:]$/,'')+'…';}
+</script>
 </body>
 </html>
