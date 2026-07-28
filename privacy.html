@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · Perseid Echo Creations</title>
+<meta name="description" content="What this site collects, what it does not, and how to get anything removed. Written in plain English.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0B1018">
+<link rel="canonical" href="https://perseidechocreations.com/privacy.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --shop:oklch(0.155 0.018 268);
+  --hair:oklch(0.98 0.004 260 / 0.13);
+  --chalk:oklch(0.945 0.004 250);
+  --steel:oklch(0.712 0.011 258);
+  --steel-dim:oklch(0.645 0.012 258);
+  --paper:oklch(0.968 0.007 84);
+  --paper-2:oklch(0.936 0.010 82);
+  --paper-edge:oklch(0.855 0.014 80);
+  --ink:oklch(0.205 0.018 265);
+  --ink-soft:oklch(0.435 0.016 262);
+  --ink-faint:oklch(0.515 0.015 261);
+  --flame:oklch(0.702 0.191 40.5);
+  --lamp:oklch(0.795 0.112 68);
+  --ui:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'Spline Sans Mono',ui-monospace,Menlo,monospace;
+  --gut:clamp(20px,5.2vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:17px;line-height:1.66;-webkit-font-smoothing:antialiased;}
+a{color:oklch(0.52 0.14 40);}
+a:hover{color:var(--ink);}
+:focus-visible{outline:2.5px solid var(--flame);outline-offset:3px;}
+.wrap{width:100%;max-width:760px;margin-inline:auto;padding-inline:var(--gut);}
+
+.top{background:var(--shop);color:var(--chalk);padding-block:22px;}
+.top__in{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:baseline;justify-content:space-between;}
+.top__b{font-family:var(--mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel);text-decoration:none;}
+.top__b:hover{color:var(--flame);}
+.top__nav{display:flex;gap:20px;font-size:14.5px;}
+.top__nav a{color:var(--steel);text-decoration:none;}
+.top__nav a:hover{color:var(--flame);}
+
+.head{padding-block:clamp(44px,7vw,80px) clamp(24px,3vw,34px);}
+.tag{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:0.19em;text-transform:uppercase;color:oklch(0.52 0.10 55);}
+h1{font-size:clamp(32px,5.2vw,52px);font-weight:600;line-height:1.05;letter-spacing:-0.028em;margin-block:14px 18px;}
+.lede{font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--ink-soft);}
+.updated{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:20px;}
+
+.tldr{margin-block:clamp(26px,3.4vw,38px);padding:22px 24px;background:var(--paper-2);border:1px solid var(--paper-edge);border-radius:2px;}
+.tldr h2{font-size:19px;font-weight:600;letter-spacing:-0.012em;margin-bottom:10px;}
+.tldr p{color:var(--ink-soft);font-size:16px;}
+.tldr p + p{margin-top:9px;}
+
+main{padding-bottom:clamp(56px,8vw,96px);}
+section{margin-top:clamp(34px,4.4vw,52px);}
+h2{font-size:clamp(21px,2.2vw,27px);font-weight:600;line-height:1.2;letter-spacing:-0.018em;margin-bottom:12px;}
+h3{font-size:17.5px;font-weight:600;letter-spacing:-0.008em;margin-block:20px 7px;}
+p{margin-bottom:13px;max-width:68ch;}
+ul{margin:0 0 14px 0;list-style:none;}
+li{position:relative;padding-left:22px;margin-bottom:8px;color:var(--ink-soft);max-width:66ch;}
+li::before{content:'';position:absolute;left:2px;top:12px;width:9px;height:1.5px;background:var(--flame);}
+strong{font-weight:600;color:var(--ink);}
+.note{font-size:15px;color:var(--ink-faint);}
+
+table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:15.5px;}
+.scroll{overflow-x:auto;}
+th,td{text-align:left;padding:11px 14px 11px 0;border-bottom:1px solid var(--paper-edge);vertical-align:top;}
+th{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink-faint);}
+td{color:var(--ink-soft);}
+td:first-child{color:var(--ink);white-space:nowrap;padding-right:20px;}
+
+.foot{border-top:1px solid var(--paper-edge);margin-top:clamp(40px,5vw,64px);padding-top:26px;font-size:14.5px;color:var(--ink-faint);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="top__b" href="/">Perseid Echo Creations</a>
+    <nav class="top__nav" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/#fitcheck">Fit Check</a>
+      <a href="/partners.html">Partners</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap head">
+  <p class="tag">Privacy</p>
+  <h1>What this site collects, and what it does not.</h1>
+  <p class="lede">
+    I run a business that asks people to trust a system with their work. It would be strange to write a privacy policy nobody can read.
+    So here it is in plain English, including the parts that are slightly inconvenient for me.
+  </p>
+  <p class="updated">Last updated 28 July 2026</p>
+</div>
+
+<main class="wrap">
+
+  <div class="tldr">
+    <h2>The short version</h2>
+    <p>The Fit Check runs entirely in your browser. Your answers are not sent anywhere unless you type an email address and press the button asking me to send them to you.</p>
+    <p>I count anonymous usage so I can tell which pages are worth keeping. No cookies, no advertising networks, no attempt to work out who you are, and your IP address is never stored.</p>
+    <p>If you send me a message or a partner enquiry, I keep it so I can reply to you. That is the whole point of it.</p>
+  </div>
+
+  <section>
+    <h2>The Workflow Fit Check</h2>
+    <p>
+      The Fit Check is five questions and a result. All of it happens in your browser: the questions, the scoring, and the answer you read.
+      <strong>Your answers never leave your device</strong> unless you choose to send them.
+    </p>
+    <p>
+      That choice is the email box underneath the result. If you fill it in and press the button, your email address, your five answers, and the
+      result are sent to me so I can put the same thing in your inbox. If you close the tab instead, nothing about your workflow was ever
+      transmitted, and I have no way of knowing what you answered.
+    </p>
+    <p class="note">This is deliberate. Showing you the answer before asking for anything is the same principle the systems I build run on.</p>
+  </section>
+
+  <section>
+    <h2>Anonymous usage measurement</h2>
+    <p>
+      I measure how this site is used, because otherwise I am guessing about which writing is worth doing. It is a deliberately small amount of
+      information, recorded on my own server rather than handed to an advertising company.
+    </p>
+
+    <h3>What is recorded</h3>
+    <ul>
+      <li>Which page was viewed, and when</li>
+      <li>That a Fit Check was started, how far through it got, and which of the three results it produced</li>
+      <li>Which workflow category was chosen, for example scheduling or follow-up. Never the reasoning behind it, because the site never receives that</li>
+      <li>Whether a button was clicked, such as booking a call or opening the pricing section</li>
+      <li>Whether you arrived from a link I published, and which one, using the tracking tag in the address</li>
+      <li>Whether the screen was phone-sized or desktop-sized</li>
+      <li>A random number that ties one visit together, generated fresh each visit and discarded when you close the tab</li>
+    </ul>
+
+    <h3>What is never recorded</h3>
+    <ul>
+      <li><strong>Your IP address.</strong> The server that receives these events is written so that it does not log it</li>
+      <li><strong>Cookies.</strong> None are set, so there is no banner to dismiss</li>
+      <li><strong>Any identifier that survives your visit</strong> or follows you to another website</li>
+      <li><strong>Your Fit Check answers,</strong> unless you explicitly email them to yourself</li>
+      <li>Names, email addresses, or anything else that could identify you</li>
+    </ul>
+
+    <h3>If you would rather not be counted</h3>
+    <p>
+      This site checks for Global Privacy Control and the older Do Not Track setting before it records anything. If your browser sends either
+      signal, no usage events are sent at all, and the site works exactly the same. You do not have to ask me, and you do not have to trust that I
+      honoured it, because the check happens in your browser before anything is transmitted.
+    </p>
+  </section>
+
+  <section>
+    <h2>When you contact me</h2>
+    <p>
+      The contact form, the partner enquiry form, and the Fit Check email button all send what you typed to my inbox through a form-delivery
+      service called Web3Forms. That means your name, email address, and message, plus whatever you chose to tell me about your business.
+    </p>
+    <p>
+      I keep those messages so I can reply and, if we end up working together, so I have a record of what you originally asked for.
+      I do not sell them, add you to a marketing list, or pass them to anyone else. If you want a message deleted, ask me and I will delete it.
+    </p>
+  </section>
+
+  <section>
+    <h2>Other companies involved</h2>
+    <p>A short and complete list of every third party this site touches, and why.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Who</th><th>Why</th><th>What they can see</th></tr></thead>
+        <tbody>
+          <tr><td>GitHub Pages</td><td>Hosts these pages</td><td>Standard web server logs, including IP addresses, under GitHub's own policy</td></tr>
+          <tr><td>Google Fonts</td><td>Serves the two typefaces</td><td>Your IP address and browser, when the fonts load</td></tr>
+          <tr><td>Web3Forms</td><td>Delivers form submissions to my inbox</td><td>Only what you typed into a form, and only when you submit it</td></tr>
+          <tr><td>Google Calendar</td><td>The booking link</td><td>Only if you click through to book, at which point you are on Google's site</td></tr>
+          <tr><td>My own server</td><td>Receives the anonymous usage events</td><td>Only the events listed above. No IP address is stored</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">There are no advertising trackers, no analytics suites, no session recorders, and no social media pixels on this site.</p>
+  </section>
+
+  <section>
+    <h2>How long things are kept</h2>
+    <ul>
+      <li><strong>Messages and enquiries:</strong> kept while there is a reason to, then deleted on request at any time</li>
+      <li><strong>Usage events:</strong> kept for 12 months, then deleted. They are anonymous, so they cannot be traced back to you either way</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Your choices</h2>
+    <ul>
+      <li>Turn on Global Privacy Control or Do Not Track and no usage events are sent</li>
+      <li>Use the Fit Check without the email box and nothing about your workflow reaches me</li>
+      <li>Email me and ask what I hold about you, and I will tell you</li>
+      <li>Email me and ask me to delete it, and I will</li>
+    </ul>
+    <p>
+      Requests go to <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a>. One person reads that inbox, so you will
+      get an actual answer rather than a ticket number.
+    </p>
+  </section>
+
+  <section>
+    <h2>Children</h2>
+    <p>This is a site selling business services. It is not intended for children, and I do not knowingly collect anything from them.</p>
+  </section>
+
+  <section>
+    <h2>Changes</h2>
+    <p>
+      If I change what is collected, I will change this page and move the date at the top. I am not going to quietly start collecting more and
+      leave the old text up.
+    </p>
+  </section>
+
+  <div class="foot">
+    <p>Perseid Echo Creations &middot; Renton, Washington &middot; <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a></p>
+    <p style="margin-top:8px;"><a href="/">Back to the site</a></p>
+  </div>
+
+</main>
+</body>
+</html>
