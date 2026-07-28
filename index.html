@@ -926,6 +926,80 @@ p{ max-width:68ch; }
 </footer>
 
 <script>
+/* ---------- anonymous funnel measurement ----------
+   Answers one question: does the writing actually cause Fit Checks to start
+   and finish? No cookies, no third party, no IP stored server-side. The
+   opt-out check runs FIRST, so a visitor sending Global Privacy Control or
+   Do Not Track never causes a single request. Documented at /privacy.html. */
+window.pecTrack = function(){};
+(function(){
+  "use strict";
+  try {
+    if (navigator.globalPrivacyControl === true ||
+        navigator.doNotTrack === "1" || window.doNotTrack === "1" ||
+        navigator.msDoNotTrack === "1") return;
+  } catch (e) { return; }
+
+  var ENDPOINT = "https://approve.perseidechocreations.com/_e";
+  var PAGE = "home";
+
+  var sid;
+  try {
+    sid = sessionStorage.getItem("pec_s");
+    if (!sid) { sid = Math.random().toString(36).slice(2, 12); sessionStorage.setItem("pec_s", sid); }
+  } catch (e) { sid = Math.random().toString(36).slice(2, 12); }
+
+  var device = (window.innerWidth || 1024) < 700 ? "m" : "d";
+
+  /* Attribution rides the first event only and is remembered server-side for
+     the rest of the session. Referrer is reduced to a bare host: never a full
+     URL, which could carry someone else's query string. */
+  var attribution = {};
+  try {
+    var qs = new URLSearchParams(location.search);
+    if (qs.get("utm_source"))   attribution.src = qs.get("utm_source");
+    if (qs.get("utm_campaign")) attribution.cmp = qs.get("utm_campaign");
+    if (!attribution.src && document.referrer) {
+      var h = new URL(document.referrer).hostname;
+      if (h && h !== location.hostname) attribution.ref = h;
+    }
+  } catch (e) { /* attribution is a bonus, never a blocker */ }
+
+  var first = true;
+  function send(name, extra) {
+    try {
+      var body = { e: name, s: sid, p: PAGE, d: device };
+      if (first) { for (var k in attribution) body[k] = attribution[k]; first = false; }
+      if (extra) for (var j in extra) body[j] = extra[j];
+      var payload = JSON.stringify(body);
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(ENDPOINT, new Blob([payload], { type: "text/plain" }));
+      } else {
+        fetch(ENDPOINT, { method: "POST", body: payload, mode: "no-cors", keepalive: true,
+                          headers: { "Content-Type": "text/plain" } }).catch(function(){});
+      }
+    } catch (e) { /* measurement must never break the page */ }
+  }
+
+  window.pecTrack = send;
+  send("view");
+
+  /* Outbound intent, caught once at the document level. */
+  document.addEventListener("click", function(ev) {
+    try {
+      var a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      if (href.indexOf("calendar.app.google") > -1) send("cta_call");
+      else if (href.indexOf("partners.html") > -1) send("cta_partners");
+      else if (href.indexOf("#proof") > -1) send("cta_proof");
+      else if (href === "#cost") send("cta_cost");
+    } catch (e) { /* never interfere with the click itself */ }
+  }, true);
+})();
+</script>
+
+<script>
 (function(){
   "use strict";
 
@@ -1112,9 +1186,10 @@ p{ max-width:68ch; }
 
     stage.querySelectorAll('.opt').forEach(function(b){
       b.addEventListener('click', function(){
-        if (!startedAt) startedAt = Date.now();
+        if (!startedAt) { startedAt = Date.now(); window.pecTrack('fc_start'); }
         var o = QUESTIONS[step].opts[+b.dataset.i];
         answers[QUESTIONS[step].id] = { v: o.v, t: o.t };
+        window.pecTrack('fc_step', { q: step });
         step++;
         if (step >= QUESTIONS.length) renderResult(); else renderQuestion();
       });
@@ -1122,7 +1197,7 @@ p{ max-width:68ch; }
 
     var back = document.getElementById('fc-back');
     if (back) back.addEventListener('click', function(){
-      if (step > 0){ step--; renderQuestion(); }
+      if (step > 0){ step--; window.pecTrack('fc_back', { q: step }); renderQuestion(); }
     });
   }
 
@@ -1150,6 +1225,7 @@ p{ max-width:68ch; }
 
     drawTicks();
     status.textContent = 'Form WFC-01 · Complete' + (secs ? ' · ' + secs + 's' : '');
+    window.pecTrack('fc_done', { v: g.band, c: answers.job.v });
 
     var vClass, vText, headline;
     if (g.band === 'strong'){
@@ -1234,6 +1310,7 @@ p{ max-width:68ch; }
     stage.innerHTML = html;
 
     function restart(){
+      window.pecTrack('fc_restart');
       step = 0; answers = {}; startedAt = 0;
       renderQuestion();
       document.getElementById('fitcheck').scrollIntoView({ behavior:'smooth', block:'start' });
@@ -1293,6 +1370,7 @@ p{ max-width:68ch; }
       .then(function(r){ return r.json(); })
       .then(function(d){
         if (d && d.success){
+          window.pecTrack('fc_email', { v: g.band, c: answers.job.v });
           form.innerHTML = '<p class="cap__done">Sent. It is on its way to ' + esc(email.value) +
             ', and it landed in my inbox too, so you can just reply to it if you would rather not book a call.</p>';
         } else {
