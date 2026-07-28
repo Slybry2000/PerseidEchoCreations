@@ -8,7 +8,7 @@ brand
 
 Primary buyer: **SMB owners and operators at 10–100 person companies.** Hands-on leaders who feel operational pain personally and sign the check. They are past "should we use AI?" and are looking for someone who can actually ship something that earns its keep — not pilots, not theater, not a Big Four pitch. They evaluate vendors by whether the person on the call sounds like they have run an operation, and by how fast they can tell whether an engagement will land.
 
-Reading context: scanning the page late, between meetings, on a laptop. Five seconds to decide if it is worth a reply. They have seen a thousand AI-startup landing pages and a hundred consulting sites; the page must read different from both within the first scroll.
+Reading context: **arriving cold, on a phone, from a cold email or ad.** Five seconds to decide whether this is real. They have seen a thousand AI-startup landing pages and a hundred consulting sites; the page must read different from both within the first scroll, and the primary action has to be something a stranger will actually do. Assume mobile first and assume zero prior awareness of PEC.
 
 Secondary audiences (do not optimize for them, do not let them dilute the primary):
 - Founder / operator peers who refer or partner.
@@ -18,9 +18,22 @@ Explicitly **not** the audience: enterprise procurement, cheap-build shoppers, A
 
 ## Product Purpose
 
-Convert qualified SMB operators into "Start a Conversation" submissions for **Perseid Echo Creations**, Bryan Piard's AI Solutions Practice. The site exists to make the operator-led, outcomes-focused promise legible in the first scroll, then back it up with concrete services (audit / build / operate), three engagement models (Managed / Implementation / Build-Operate-Transfer), and a credible founder story (21 years in CX and digital transformation, most recently at T-Mobile).
+Get a cold visitor to run the **Workflow Fit Check** for **Perseid Echo Creations**, Bryan Piard's controlled-business-automation practice.
 
-Success metric: the right buyers self-qualify and reach out; the wrong ones self-deselect. A lower-traffic, higher-fit inbox beats a louder, noisier one.
+The site sells a four-step staircase, and the homepage's one job is step one. Do not promote a later step into the primary action:
+
+1. **Workflow Fit Check** (free, on-page, ~60 seconds). Five questions; the visitor immediately sees the workflow category, whether it looks suitable for automation, what should stay human, and the likely next step. **The result is never gated behind an email address.** Capture is offered after the answer, as a favour, not a toll.
+2. **20-minute fit call** (free). Qualifies whether the problem is expensive enough, repeats often enough, follows clear enough rules, and whether PEC is the right fit. Not free solution design.
+3. **Workflow Opportunity Map** ($750, one workflow). The paid entry product and the first real engagement. Produces a document the client keeps whether PEC builds anything or not. Credited toward a build signed within 30 days.
+4. **The build** (from $2,500, most $3,500 to $9,000), then keys / maintain / run.
+
+**Naming is load-bearing.** It is a "Workflow Opportunity Map," never an "Automation Map," "AI Audit," "AI Opportunity Assessment," or "AI Transformation Blueprint." The value is deciding whether automation belongs there at all, so the name must not start with the technology.
+
+**Never quote a build price from the Fit Check.** Fake precision from five questions destroys the trust the whole staircase is built on. Use range language and point at the map.
+
+**One of the Fit Check outcomes must be "do not automate this yet."** This is a feature, not a bug. It is the single strongest trust signal on the page and it must not be quietly tuned away to lift conversion.
+
+Success metric: cold visitors complete the Fit Check, and the qualified ones book the call. A lower-traffic, higher-fit inbox beats a louder, noisier one.
 
 The site is also a portfolio piece by implication. If the operator behind it cannot ship a marketing site that reads premium, the "we ship production-grade systems" claim is harder to believe.
 
@@ -46,7 +59,13 @@ Hard exclusions. The site must not look or read like any of these.
 - **Creative-studio portfolios.** No Awwwards-bait, no scroll-jacked transitions, no oversized type-as-decoration, no marquee tickers, no hover gimmicks, no kinetic-text reveals as the headline. The site sells outcomes, not visual chops.
 - **Crypto / web3 aesthetics.** No neon glow, no holographic gradients, no futuristic-sci-fi, no "protocol" framing. This is the second-order reflex AI sites fall into; we avoid it deliberately.
 
-**Design lane:** modern-monochrome with one signature color. Mostly tinted neutrals (paper / navy), one decisive orange accent doing ≤10% of the work, confident type at modern scale, bold through restraint plus one loud move per surface. Vercel / Arc / Linear territory in feel, calibrated for an operator-led services practice rather than a developer tool.
+**Design lane (updated 2026-07-28, homepage v3):** **the lit machine shop after dark.** The page ground is ink-drenched; the shop's own photography (`art/ind-*.webp`, PEC-commissioned, not stock) carries the hero and the section breaks. Persimmon is the working light, not a decorative accent.
+
+The load-bearing composition idea: **the page is the dark shop, and paper is where the work happens.** Anything the visitor is meant to act on or trust (the Fit Check, the map contents, pricing) sits on a warm paper surface, lit against the dark. That focal hierarchy is the design, so do not scatter paper panels decoratively or the hierarchy stops meaning anything.
+
+Type is **Archivo** (grotesque with industrial newspaper heritage) for everything, plus **Spline Sans Mono** strictly for system chrome: work-order numbers, statuses, form IDs, figures. The mono is justified here because the brand is literally machines and readouts, but it stays chrome and never becomes body copy. Poppins, EB Garamond, Lora, and IBM Plex Mono are retired from this surface.
+
+Superseded: the earlier "modern-monochrome, paper-dominant, accent ≤10%" lane. That was the light-background SaaS-adjacent look; it is what every competing automation site does, and it is what "do not be over-influenced by the current design" was pointing at.
 
 ## Design Principles
 

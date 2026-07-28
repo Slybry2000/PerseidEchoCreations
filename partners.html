@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perseid Echo Creations &middot; Turn your recommendations into working systems</title>
+<meta name="description" content="For coaches, consultants, and fractional operators. I build and support the systems you recommend to your clients, so the advice actually gets implemented. Refer, collaborate, or embed.">
+<meta name="theme-color" content="#0B1018">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Turn your recommendations into working systems">
+<meta property="og:description" content="You already know what your client needs to change. I build the system that makes it happen and own the technical delivery.">
+<meta property="og:url" content="https://perseidechocreations.com/partners.html">
+<meta property="og:image" content="https://perseidechocreations.com/art/ind-showroom2.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://perseidechocreations.com/partners.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===========================================================
+   Perseid Echo Creations · Partners
+   Same lane as the homepage: the lit machine shop after dark.
+   The page is the shop. The paper is where the work happens.
+   Two paper surfaces here, and only two: the standard you are
+   asked to trust, and the form you are asked to fill in.
+   =========================================================== */
+
+:root{
+  /* ground: the shop at night */
+  --shop:        oklch(0.155 0.018 268);
+  --shop-2:      oklch(0.205 0.020 265);
+  --shop-3:      oklch(0.258 0.021 264);
+  --hair:        oklch(0.98 0.004 260 / 0.13);
+  --hair-strong: oklch(0.98 0.004 260 / 0.24);
+
+  /* type on the ground */
+  --chalk:       oklch(0.945 0.004 250);
+  --steel:       oklch(0.712 0.011 258);
+  --steel-dim:   oklch(0.645 0.012 258);
+
+  /* the paper: documents, the bench, the standard */
+  --paper:       oklch(0.968 0.007 84);
+  --paper-2:     oklch(0.936 0.010 82);
+  --paper-edge:  oklch(0.855 0.014 80);
+  --ink:         oklch(0.205 0.018 265);
+  --ink-soft:    oklch(0.435 0.016 262);
+  --ink-faint:   oklch(0.515 0.015 261);
+
+  /* the working light */
+  --flame:       oklch(0.702 0.191 40.5);
+  --flame-deep:  oklch(0.615 0.183 38);
+  --lamp:        oklch(0.795 0.112 68);
+  --go:          oklch(0.745 0.132 158);
+
+  --ui:   'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'Spline Sans Mono', ui-monospace, Menlo, monospace;
+
+  --gut:  clamp(20px, 5.2vw, 76px);
+  --wide: 1280px;
+  --read: 1020px;
+
+  --e-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+body{
+  background:var(--shop);
+  color:var(--chalk);
+  font-family:var(--ui);
+  font-size:clamp(16px,1.05vw,17.5px);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+
+:focus-visible{
+  outline:2.5px solid var(--flame);
+  outline-offset:3px;
+  border-radius:3px;
+}
+
+::selection{ background:var(--flame); color:oklch(0.16 0.02 265); }
+
+.wrap{ width:100%; max-width:var(--wide); margin-inline:auto; padding-inline:var(--gut); }
+.narrow{ max-width:var(--read); }
+
+/* ---------- shared type ---------- */
+.tag{
+  font-family:var(--mono);
+  font-size:clamp(10.5px,1.05vw,12px);
+  font-weight:500;
+  letter-spacing:0.19em;
+  text-transform:uppercase;
+  color:var(--lamp);
+}
+.tag--ink{ color:oklch(0.52 0.10 55); }
+
+h1,h2,h3,h4{ font-weight:600; letter-spacing:-0.022em; line-height:1.06; }
+
+.h-xl{ font-size:clamp(38px,6.4vw,74px); line-height:1.02; letter-spacing:-0.032em; }
+.h-lg{ font-size:clamp(29px,4.1vw,50px); line-height:1.07; letter-spacing:-0.026em; }
+.h-md{ font-size:clamp(21px,2.1vw,27px); line-height:1.2;  letter-spacing:-0.016em; }
+.h-sm{ font-size:clamp(17px,1.5vw,19px); line-height:1.3;  letter-spacing:-0.01em; }
+
+.lede{ font-size:clamp(17px,1.5vw,21px); line-height:1.55; color:var(--steel); max-width:60ch; }
+.lede--ink{ color:var(--ink-soft); }
+p{ max-width:68ch; }
+
+.sec{ padding-block:clamp(64px,9vw,132px); }
+.sec--band{ background:var(--shop-2); }
+
+.head h2{ margin-block:14px 16px; }
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--ui); font-size:16px; font-weight:600; letter-spacing:-0.008em;
+  padding:16px 26px; border-radius:2px; border:1px solid transparent;
+  cursor:pointer; text-decoration:none; text-align:center;
+  transition:background-color .3s var(--e-out), color .3s var(--e-out), border-color .3s var(--e-out), transform .3s var(--e-out);
+}
+.btn--go{ background:var(--flame); color:oklch(0.16 0.02 265); }
+.btn--go:hover{ background:var(--flame-deep); transform:translateY(-1px); }
+.btn--line{ background:transparent; color:var(--chalk); border-color:var(--hair-strong); }
+.btn--line:hover{ border-color:var(--flame); color:var(--flame); }
+.btn--ink{ background:var(--ink); color:var(--paper); }
+.btn--ink:hover{ background:oklch(0.30 0.02 265); transform:translateY(-1px); }
+.btn--full{ width:100%; }
+
+/* ===========================================================
+   TOP BAR — the only chrome on the page
+   =========================================================== */
+.topbar{ border-bottom:1px solid var(--hair); }
+.topbar__in{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:6px 20px; padding-block:13px;
+}
+.topbar__b{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.15em; text-transform:uppercase; color:var(--chalk); text-decoration:none;
+}
+.topbar__b:hover{ color:var(--flame); }
+.topbar__l{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.13em;
+  text-transform:uppercase; color:var(--steel); text-decoration:none;
+}
+.topbar__l:hover{ color:var(--flame); }
+
+/* ===========================================================
+   HERO — the shop, machines already built
+   =========================================================== */
+.hero{ position:relative; isolation:isolate; overflow:hidden; }
+/* This shot is brighter than the homepage hero: a lit sign and three
+   glowing machines sit dead centre. Knock the highlights back with a
+   filter first (keeps the local contrast of the photo), then veil.
+   Mobile crops straight to the brightest part, so it goes harder. */
+.hero__art{
+  position:absolute; inset:0; z-index:-2;
+  background:url('art/ind-showroom2.webp') center 40% / cover no-repeat;
+  filter:brightness(0.56);
+}
+/* The shop's own sign sits dead centre at headline height, and semi-legible
+   words behind the headline fight it. So the horizontal veil holds almost
+   solid across the text column and only opens past 60%, over the machines. */
+.hero__scrim{
+  position:absolute; inset:0; z-index:-1;
+  background:
+    linear-gradient(to bottom, oklch(0.155 0.018 268 / 0.82) 0%, oklch(0.155 0.018 268 / 0.56) 34%, oklch(0.155 0.018 268 / 0.86) 80%, var(--shop) 100%),
+    linear-gradient(to right, oklch(0.155 0.018 268 / 0.93) 0%, oklch(0.155 0.018 268 / 0.90) 44%, oklch(0.155 0.018 268 / 0.30) 80%, oklch(0.155 0.018 268 / 0.52) 100%);
+}
+@media (max-width:760px){
+  .hero__art{ filter:brightness(0.46); }
+  .hero__scrim{
+    background:linear-gradient(to bottom, oklch(0.155 0.018 268 / 0.88) 0%, oklch(0.155 0.018 268 / 0.76) 30%, oklch(0.155 0.018 268 / 0.88) 78%, var(--shop) 100%);
+  }
+}
+.hero__inner{
+  padding-block:clamp(40px,8.5vw,108px) clamp(30px,5vw,64px);
+  display:grid; gap:clamp(18px,2.4vw,32px);
+}
+.hero__head{ max-width:19ch; }
+.hero__head em{ font-style:normal; color:var(--flame); }
+.hero__sub{ max-width:56ch; color:oklch(0.88 0.008 250); font-size:clamp(16.5px,1.5vw,21.5px); line-height:1.5; }
+.hero__acts{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+@media (max-width:560px){
+  .hero__acts{ display:grid; grid-template-columns:1fr; gap:9px; }
+  .hero__acts .btn{ width:100%; }
+}
+.hero__note{
+  font-family:var(--mono); font-size:12.5px; color:var(--steel);
+  display:flex; align-items:flex-start; gap:9px; letter-spacing:-0.005em; line-height:1.5;
+}
+.hero__note svg{ flex:none; color:var(--go); margin-top:3px; }
+
+/* the strip across the bottom of the hero */
+.strip{
+  border-top:1px solid var(--hair);
+  display:grid; grid-template-columns:1fr 1fr;
+}
+@media (min-width:900px){ .strip{ grid-template-columns:repeat(4,1fr); } }
+.strip__cell{
+  padding:15px clamp(13px,2.2vw,26px);
+  border-right:1px solid var(--hair);
+  border-bottom:1px solid var(--hair);
+  display:flex; flex-direction:column; gap:2px;
+}
+.strip__cell:nth-child(2n){ border-right:0; }
+@media (min-width:900px){
+  .strip__cell{ border-bottom:0; border-right:1px solid var(--hair); padding-block:20px; }
+  .strip__cell:nth-child(2n){ border-right:1px solid var(--hair); }
+  .strip__cell:last-child{ border-right:0; }
+}
+.strip__n{ font-family:var(--mono); font-size:clamp(17px,2.1vw,25px); font-weight:600; color:var(--chalk); letter-spacing:-0.02em; }
+.strip__l{ font-size:12.5px; color:var(--steel-dim); line-height:1.32; }
+
+/* ===========================================================
+   THE GAP — what the advice runs into
+   =========================================================== */
+.gaps{
+  list-style:none; display:grid; gap:0 clamp(24px,3vw,52px);
+  margin-top:clamp(26px,3.2vw,40px);
+}
+@media (min-width:720px){ .gaps{ grid-template-columns:1fr 1fr; } }
+.gaps li{
+  border-top:1px solid var(--hair);
+  padding:13px 0 13px 28px; position:relative;
+  font-size:16px; line-height:1.45; color:var(--steel);
+}
+.gaps li::before{
+  content:''; position:absolute; left:4px; top:21px;
+  width:9px; height:1.5px; background:var(--flame);
+}
+
+.note{
+  margin-top:clamp(24px,3vw,36px); padding:20px 22px;
+  background:var(--shop-2); border:1px solid var(--hair);
+}
+.sec--band .note{ background:var(--shop); }
+.note p{ color:var(--steel); font-size:16px; }
+.note strong{ color:var(--chalk); font-weight:600; }
+
+/* ===========================================================
+   CELL GRID — three ways to work, and what fits
+   =========================================================== */
+.cells{
+  margin-top:clamp(28px,3.6vw,44px);
+  display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+}
+@media (min-width:600px){ .cells{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:860px){ .cells{ grid-template-columns:repeat(3,1fr); } }
+.cell{ background:var(--shop); padding:clamp(22px,2.8vw,30px); display:grid; gap:9px; align-content:start; }
+.cell__n{
+  font-family:var(--mono); font-size:11.5px; font-weight:600;
+  letter-spacing:0.16em; text-transform:uppercase; color:var(--lamp);
+}
+.cell p{ color:var(--steel); font-size:15.5px; }
+.cell p.cell__best{
+  color:var(--steel-dim); font-size:14.5px;
+  margin-top:4px; padding-top:13px; border-top:1px solid var(--hair);
+}
+
+/* ===========================================================
+   WHO HANDLES WHAT
+   =========================================================== */
+.duo{ margin-top:clamp(28px,3.6vw,44px); display:grid; gap:clamp(28px,3.4vw,54px); }
+@media (min-width:860px){ .duo{ grid-template-columns:1fr 1fr; } }
+.duo__c h3{ margin-bottom:6px; }
+.duo__c > p{ color:var(--steel-dim); font-size:14.5px; margin-bottom:14px; }
+.duo ul{ list-style:none; display:grid; gap:0; border-top:1px solid var(--hair); }
+.duo li{
+  padding:11px 0 11px 28px; border-bottom:1px solid var(--hair);
+  position:relative; font-size:15.5px; line-height:1.45; color:var(--steel);
+}
+.duo li::before{
+  content:''; position:absolute; left:4px; top:19px;
+  width:9px; height:1.5px; background:var(--flame);
+}
+.duo__c--you li::before{ background:var(--lamp); }
+
+/* ===========================================================
+   ART-BACKED SECTIONS — a paper surface lit against the dark
+   =========================================================== */
+.lit{ position:relative; isolation:isolate; overflow:hidden; }
+/* Both shots have lit screens in them, and the section lede sits at the
+   thinnest part of the veil. Same treatment as the hero: knock the
+   highlights down, then veil, so steel-on-photo still clears AA. */
+.lit__art{ position:absolute; inset:0; z-index:-2; filter:brightness(0.58); }
+.lit__art--std{ background:url('art/ind-st04.webp') center 34% / cover no-repeat; }
+.lit__art--talk{ background:url('art/ind-bench.webp') center 30% / cover no-repeat; }
+.lit__scrim{
+  position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(to bottom, var(--shop) 0%, oklch(0.155 0.018 268 / 0.76) 22%, oklch(0.155 0.018 268 / 0.80) 72%, var(--shop) 100%);
+}
+.lit__inner{ padding-block:clamp(56px,7.5vw,104px) clamp(64px,9vw,120px); }
+.lit__head{ margin-bottom:clamp(26px,3.4vw,40px); }
+.lit__head h2{ margin-block:14px 16px; }
+
+/* ---------- the sheet ---------- */
+.sheet{
+  background:var(--paper); color:var(--ink);
+  max-width:840px;
+  border-radius:2px;
+  box-shadow:0 1px 0 oklch(0.99 0 0 / 0.5) inset, 0 40px 80px -28px oklch(0.06 0.02 265 / 0.85), 0 6px 16px -6px oklch(0.06 0.02 265 / 0.6);
+  overflow:hidden;
+}
+.sheet__top{
+  display:flex; flex-wrap:wrap; gap:8px 18px; align-items:baseline; justify-content:space-between;
+  padding:14px clamp(20px,3vw,34px);
+  background:var(--paper-2);
+  border-bottom:1px solid var(--paper-edge);
+  font-family:var(--mono); font-size:11.5px; letter-spacing:0.13em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.sheet__top b{ color:var(--ink-soft); font-weight:600; letter-spacing:0.13em; }
+.sheet__body{ padding:clamp(24px,3.6vw,42px) clamp(20px,3vw,44px) clamp(26px,3.6vw,42px); }
+
+/* ---------- the written standard ---------- */
+.std{ list-style:none; display:grid; }
+.std li{
+  display:grid; grid-template-columns:auto minmax(0,1fr); gap:0 18px;
+  padding:16px 0; border-bottom:1px solid var(--paper-edge);
+}
+.std li:first-child{ padding-top:0; }
+.std li:last-child{ border-bottom:0; padding-bottom:0; }
+.std b{
+  font-family:var(--mono); font-size:11.5px; font-weight:600;
+  letter-spacing:0.14em; color:oklch(0.52 0.10 55); padding-top:5px;
+}
+.std h3{ font-size:17px; line-height:1.3; letter-spacing:-0.012em; color:var(--ink); }
+.std p{ color:var(--ink-soft); font-size:15.5px; line-height:1.5; margin-top:6px; }
+
+.lit__after{ margin-top:clamp(24px,3vw,34px); max-width:840px; }
+
+/* ===========================================================
+   HOW AN OPPORTUNITY MOVES
+   =========================================================== */
+.steps{ margin-top:clamp(28px,3.6vw,44px); border-top:1px solid var(--hair); }
+.step{
+  display:grid; grid-template-columns:auto minmax(0,1fr); gap:6px 22px;
+  padding:clamp(20px,2.6vw,28px) 0; border-bottom:1px solid var(--hair);
+}
+@media (min-width:760px){ .step{ grid-template-columns:70px minmax(0,1fr); } }
+.step__n{ font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:0.12em; color:var(--flame); padding-top:5px; }
+.step h3{ margin-bottom:7px; }
+.step p{ color:var(--steel); font-size:16px; }
+
+/* ===========================================================
+   THE FORM — the second and last paper surface
+   =========================================================== */
+.pf{ display:grid; gap:17px; }
+.pf__f{ display:grid; gap:7px; }
+.pf__l{
+  font-family:var(--mono); font-size:11.5px; font-weight:600;
+  letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint);
+}
+.pf input, .pf textarea{
+  width:100%; font-family:var(--ui); font-size:16px; line-height:1.5; color:var(--ink);
+  background:oklch(1 0 0); border:1px solid var(--paper-edge); border-radius:2px;
+  padding:13px 14px; resize:vertical;
+}
+.pf input::placeholder, .pf textarea::placeholder{ color:var(--ink-faint); }
+.pf input:focus, .pf textarea:focus{ outline:2.5px solid var(--flame); outline-offset:1px; }
+.pf__note{ font-size:13px; color:var(--ink-faint); }
+.pf__note a{ color:inherit; }
+.pf__err{ font-size:14.5px; color:var(--flame-deep); font-weight:500; }
+.pf__done{ font-size:16px; line-height:1.55; color:oklch(0.42 0.11 158); font-weight:500; }
+.pf .btn{ justify-self:start; }
+@media (max-width:560px){ .pf .btn{ justify-self:stretch; width:100%; } }
+
+.honey{ position:absolute; left:-9999px; opacity:0; height:0; width:0; }
+
+.mail{
+  margin-top:clamp(22px,2.6vw,30px);
+  font-family:var(--mono); font-size:12.5px; color:var(--steel);
+  display:flex; align-items:flex-start; gap:9px; letter-spacing:-0.005em; line-height:1.5;
+}
+.mail svg{ flex:none; color:var(--go); margin-top:3px; }
+.mail a{ color:var(--lamp); }
+
+/* ===========================================================
+   FOOTER
+   =========================================================== */
+.foot{ border-top:1px solid var(--hair); padding-block:38px 44px; }
+.foot__in{ display:flex; flex-wrap:wrap; gap:18px 34px; justify-content:space-between; align-items:baseline; }
+.foot__b{ font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--steel); }
+.foot__nav{ display:flex; flex-wrap:wrap; gap:8px 22px; font-size:14.5px; }
+.foot__nav a{ color:var(--steel); text-decoration:none; }
+.foot__nav a:hover{ color:var(--flame); }
+.foot__fine{ margin-top:22px; font-size:13px; color:var(--steel-dim); max-width:74ch; }
+
+/* ---------- reveal ---------- */
+.rise{ opacity:0; transform:translateY(18px); transition:opacity .8s var(--e-out), transform .8s var(--e-out); }
+.rise.is-in{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  .rise{ opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero">
+  <div class="hero__art" role="img" aria-label="Three finished machines lit on plinths behind the glass front of a machine shop at night, under a sign reading Machines Already Built"></div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <div class="topbar">
+    <div class="wrap topbar__in">
+      <a class="topbar__b" href="index.html">Perseid Echo Creations</a>
+      <a class="topbar__l" href="index.html">For business owners</a>
+    </div>
+  </div>
+
+  <div class="wrap hero__inner">
+    <p class="tag">For coaches, consultants, and fractional operators</p>
+    <h1 class="h-xl hero__head">Turn your recommendations into <em>working systems.</em></h1>
+    <p class="hero__sub">
+      You already know what the client needs to change. I build the system that makes it happen and own the technical delivery.
+      You keep the advisory relationship, the strategy, and the context that made the recommendation right in the first place.
+    </p>
+    <div class="hero__acts">
+      <a class="btn btn--go" href="#talk">Bring me a client workflow</a>
+      <a class="btn btn--line" href="#ways">See the three ways to work together</a>
+    </div>
+    <p class="hero__note">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Nothing is quoted, scoped, or promised to your client until I have reviewed the actual workflow.
+    </p>
+  </div>
+
+  <div class="wrap">
+    <div class="strip">
+      <div class="strip__cell"><span class="strip__n">Three</span><span class="strip__l">Ways to work together: refer, collaborate, embed</span></div>
+      <div class="strip__cell"><span class="strip__n">One</span><span class="strip__l">Person reviews it, builds it, and picks up the phone</span></div>
+      <div class="strip__cell"><span class="strip__n">Written</span><span class="strip__l">Scope and responsibilities agreed before anything is sold</span></div>
+      <div class="strip__cell"><span class="strip__n">Yours</span><span class="strip__l">Your advisory relationship stays yours throughout</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= THE GAP ======================= -->
+<section class="sec" aria-labelledby="gap-h">
+  <div class="wrap">
+    <div class="narrow head rise">
+      <p class="tag">The gap</p>
+      <h2 class="h-lg" id="gap-h">The advice is right. The system never gets built.</h2>
+      <p class="lede">
+        You have probably already told a client some version of the list below. Knowing it should happen is rarely the hard part,
+        and hearing it again next quarter is not what changes anything.
+      </p>
+    </div>
+
+    <ul class="gaps rise">
+      <li>Follow up with every lead, every time</li>
+      <li>Write down the process that lives in one person's head</li>
+      <li>Stop retyping the same details into three different tools</li>
+      <li>Say the same thing to every customer, not whichever version somebody remembers</li>
+      <li>Get the weekly numbers without losing a Friday afternoon to them</li>
+      <li>Take the repetitive administrative work off skilled people</li>
+    </ul>
+
+    <div class="note narrow rise">
+      <p><strong>The hard part is getting it built, connected, adopted, and kept running</strong> after you have moved on to the next piece of work. That is the part I do, and it is all I do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= THREE WAYS ======================= -->
+<section class="sec sec--band" id="ways" aria-labelledby="ways-h">
+  <div class="wrap">
+    <div class="narrow head rise">
+      <p class="tag">Ways to work together</p>
+      <h2 class="h-lg" id="ways-h">Three ways to work together.</h2>
+      <p class="lede">
+        Which one fits depends on how involved you want to be, and how much of the client relationship you want to keep carrying yourself.
+        You can use different ones for different clients.
+      </p>
+    </div>
+
+    <div class="cells rise">
+      <div class="cell">
+        <span class="cell__n">Way 01</span>
+        <h3 class="h-sm">Refer</h3>
+        <p>You make the introduction. I scope, contract, build, and support the system directly with the client. You stay informed at whatever level the two of you want.</p>
+        <p class="cell__best">Best when you have spotted a strong opportunity and would rather not carry a technical project.</p>
+      </div>
+      <div class="cell">
+        <span class="cell__n">Way 02</span>
+        <h3 class="h-sm">Collaborate</h3>
+        <p>You stay in the discovery, the process design, and the adoption work. I take the technical review, the build, the testing, and the support afterwards.</p>
+        <p class="cell__best">Best when the system supports a larger coaching or consulting engagement you are already running.</p>
+      </div>
+      <div class="cell">
+        <span class="cell__n">Way 03</span>
+        <h3 class="h-sm">Embed</h3>
+        <p>Implementation delivered inside your own client offer. Branding, client communication, pricing, and who answers the phone are all settled in writing before anything is sold.</p>
+        <p class="cell__best">Offered once we have delivered a client engagement together and each of us knows how the other works.</p>
+      </div>
+    </div>
+
+    <div class="note narrow rise">
+      <p>How you are paid is agreed in writing before anything is sold, and it depends on which of the three you pick. <strong>Ask on the first call and you will get a straight number.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= WHO HANDLES WHAT ======================= -->
+<section class="sec" aria-labelledby="split-h">
+  <div class="wrap">
+    <div class="narrow head rise">
+      <p class="tag">Who handles what</p>
+      <h2 class="h-lg" id="split-h">The line is drawn on purpose.</h2>
+      <p class="lede">
+        Most joint work goes wrong because nobody wrote down who owns which half. So this is written down, and it is the same on every engagement.
+      </p>
+    </div>
+
+    <div class="duo rise">
+      <div class="duo__c">
+        <h3 class="h-md">What I handle</h3>
+        <p>The technical half, start to finish.</p>
+        <ul>
+          <li>Workflow mapping and technical feasibility review</li>
+          <li>Solution design, including what should stay human</li>
+          <li>The automation and integration build</li>
+          <li>Testing, and the approval controls around sensitive actions</li>
+          <li>Documentation the client keeps and controls</li>
+          <li>Training the people who will use it</li>
+          <li>Monitoring, maintenance, and tool-change adjustments</li>
+          <li>Exception handling, where the client has bought it</li>
+          <li>Technical support after launch</li>
+        </ul>
+      </div>
+      <div class="duo__c duo__c--you">
+        <h3 class="h-md">What you handle</h3>
+        <p>The half you were already doing, at whatever depth the engagement calls for.</p>
+        <ul>
+          <li>Spotting the business problem worth solving</li>
+          <li>The strategic context behind it</li>
+          <li>Supporting the process decisions</li>
+          <li>Preparing the client for the change</li>
+          <li>Reinforcing adoption once it is live</li>
+          <li>The wider coaching or consulting relationship</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note narrow rise">
+      <p><strong>You never have to scope technical requirements or say what a system will be able to do.</strong> I review the workflow first, and the read comes back to you before it goes anywhere near your client.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= THE STANDARD ======================= -->
+<section class="lit" aria-labelledby="std-h">
+  <div class="lit__art lit__art--std" aria-hidden="true"></div>
+  <div class="lit__scrim" aria-hidden="true"></div>
+
+  <div class="wrap lit__inner">
+    <div class="lit__head narrow rise">
+      <p class="tag">How your reputation is protected</p>
+      <h2 class="h-lg" id="std-h">Built to protect the relationship you earned.</h2>
+      <p class="lede">
+        Your name is attached to everyone you introduce. So every partner engagement runs on the same written rules,
+        and they do not bend for a deadline or a deal.
+      </p>
+    </div>
+
+    <div class="sheet rise">
+      <div class="sheet__top">
+        <span><b>Partner engagement standard</b></span>
+        <span>Form PS-01 &middot; Applies to every introduction</span>
+      </div>
+      <div class="sheet__body">
+        <ol class="std">
+          <li>
+            <b>01</b>
+            <div>
+              <h3>Nothing is promised before a technical review.</h3>
+              <p>No quote, no scope, no commitment until I have looked at the real workflow and the tools it runs on. Neither of us gets to guess in front of your client.</p>
+            </div>
+          </li>
+          <li>
+            <b>02</b>
+            <div>
+              <h3>The scope goes in writing.</h3>
+              <p>What the system does, what it deliberately does not do, what it costs to build, what it costs to run, and who is responsible for each part of it.</p>
+            </div>
+          </li>
+          <li>
+            <b>03</b>
+            <div>
+              <h3>The client always knows who supports what.</h3>
+              <p>No wondering whether a question goes to you or to me. Your client gets one clear answer about who to call, and it is written down before launch.</p>
+            </div>
+          </li>
+          <li>
+            <b>04</b>
+            <div>
+              <h3>Sensitive actions sit behind an approval.</h3>
+              <p>Customer-facing and high-impact actions receive the control level agreed with the client: draft only, approval required, or automatic within defined rules. Anything unusual stops instead of guessing.</p>
+            </div>
+          </li>
+          <li>
+            <b>05</b>
+            <div>
+              <h3>Everything is tested and documented before handoff.</h3>
+              <p>Your client gets documentation they own and training on the system they now depend on, so the knowledge does not live only with me.</p>
+            </div>
+          </li>
+          <li>
+            <b>06</b>
+            <div>
+              <h3>Problems get surfaced, not hidden.</h3>
+              <p>When a vendor changes something underneath a system, or a workflow outgrows the way it was built, you hear it from me first and you hear it early enough to do something with it.</p>
+            </div>
+          </li>
+          <li>
+            <b>07</b>
+            <div>
+              <h3>Access stays inside the project.</h3>
+              <p>Client data and system access cover what the automation actually needs, and the connection ends cleanly whenever the client says so.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="lede lit__after rise">
+      The point is not to impress your client with AI. The point is to make the process you recommended work the way you said it would.
+    </p>
+
+    <p class="lede lit__after rise" style="margin-top:18px;">
+      Principles are easy to write down. If you are about to put your name next to mine, go and look at the running systems instead:
+      <a href="index.html#proof" style="color:var(--lamp);">see what I currently operate &rarr;</a>
+    </p>
+  </div>
+</section>
+
+<!-- ======================= WHAT FITS ======================= -->
+<section class="sec sec--band" aria-labelledby="fits-h">
+  <div class="wrap">
+    <div class="narrow head rise">
+      <p class="tag">Qualifying an opportunity</p>
+      <h2 class="h-lg" id="fits-h">What kind of client problem fits.</h2>
+      <p class="lede">
+        The strong ones look alike. The work repeats often, it follows rules you could write down, it moves between more than one tool,
+        and it is the first thing to slip when the business gets busy. It eats skilled time without needing skilled judgement.
+      </p>
+    </div>
+
+    <div class="cells rise">
+      <div class="cell">
+        <span class="cell__n">Fit 01</span>
+        <h3 class="h-sm">Lead and quote follow-up</h3>
+        <p>Inquiries logged, answered quickly, and worked on a cadence instead of whenever somebody remembers.</p>
+      </div>
+      <div class="cell">
+        <span class="cell__n">Fit 02</span>
+        <h3 class="h-sm">Booking and reminders</h3>
+        <p>Confirmations and reminders that cut no-shows without a person spending their morning chasing them.</p>
+      </div>
+      <div class="cell">
+        <span class="cell__n">Fit 03</span>
+        <h3 class="h-sm">Quotes, invoices, and job paperwork</h3>
+        <p>Documents assembled from details already sitting in their systems, held for a person to approve.</p>
+      </div>
+      <div class="cell">
+        <span class="cell__n">Fit 04</span>
+        <h3 class="h-sm">Reactivation and reviews</h3>
+        <p>Past customers contacted again, and review requests sent on a schedule that actually holds.</p>
+      </div>
+      <div class="cell">
+        <span class="cell__n">Fit 05</span>
+        <h3 class="h-sm">Internal reporting</h3>
+        <p>The weekly numbers assembled on their own, sitting there before the meeting instead of after it.</p>
+      </div>
+      <div class="cell">
+        <span class="cell__n">Fit 06</span>
+        <h3 class="h-sm">Moving data between systems</h3>
+        <p>The same details ending their trip through three tools by hand, with one system agreed as the source of truth.</p>
+      </div>
+    </div>
+
+    <div class="note narrow rise">
+      <p>Not every process should be automated, and part of my job is telling you plainly which parts should stay human.
+      <strong>You can pass that answer to your client with your name on it.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= HOW IT MOVES ======================= -->
+<section class="sec" aria-labelledby="move-h">
+  <div class="wrap">
+    <div class="narrow head rise">
+      <p class="tag">How an opportunity moves</p>
+      <h2 class="h-lg" id="move-h">From your conversation to a working system.</h2>
+      <p class="lede">
+        Five steps, and you can stop after any of them. Nothing reaches your client until you have seen it first.
+      </p>
+    </div>
+
+    <div class="steps rise">
+      <div class="step">
+        <span class="step__n">01</span>
+        <div>
+          <h3 class="h-md">You bring the problem</h3>
+          <p>What the client is trying to improve, what happens today, and where it breaks down. A paragraph is enough to start. You do not need to know what the solution looks like.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__n">02</span>
+        <div>
+          <h3 class="h-md">I review the workflow</h3>
+          <p>What is feasible, what should stay human, which tools are involved, and what needs controlling. You get that read before your client does, so nothing lands in front of them that you have not already seen.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__n">03</span>
+        <div>
+          <h3 class="h-md">We pick the delivery model</h3>
+          <p>Refer, collaborate, or embed, based on how involved you want to be and what the client actually needs. Compensation is settled here, in writing, not after the fact.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__n">04</span>
+        <div>
+          <h3 class="h-md">The client gets a written scope</h3>
+          <p>The outcome, who is responsible for what, the build cost, the running costs, and the support arrangement. They sign knowing exactly what they are getting and who to call.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__n">05</span>
+        <div>
+          <h3 class="h-md">I build it and own the technical delivery</h3>
+          <p>The implementation, the testing, the documentation, and the training. After launch I remain responsible at the level included in the client's chosen maintenance or managed-service arrangement. You stay involved at the level we agreed and nowhere beyond it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CLOSE + FORM ======================= -->
+<section class="lit" id="talk" aria-labelledby="talk-h">
+  <div class="lit__art lit__art--talk" aria-hidden="true"></div>
+  <div class="lit__scrim" aria-hidden="true"></div>
+
+  <div class="wrap lit__inner">
+    <div class="lit__head narrow rise">
+      <p class="tag">Start here</p>
+      <h2 class="h-lg" id="talk-h">Bring me one client workflow.</h2>
+      <p class="lede">
+        Not a reseller agreement looking for somewhere to land. One real client, one process that keeps coming up in your sessions and never quite gets built.
+        I will look at it and tell you straight whether I am the right person to build it.
+      </p>
+    </div>
+
+    <div class="sheet rise">
+      <div class="sheet__top">
+        <span><b>Partner enquiry</b></span>
+        <span id="pf-status">Form PE-01 &middot; Read by the person who builds it</span>
+      </div>
+      <div class="sheet__body">
+        <form class="pf" id="pf" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="9dcf879b-c9aa-42b5-b01b-fbf09e383690">
+          <input type="hidden" name="subject" value="Partner enquiry from perseidechocreations.com">
+          <input type="hidden" name="from_name" value="PEC partners page">
+          <input type="text" name="botcheck" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="pf__f">
+            <label class="pf__l" for="pf-name">Your name</label>
+            <input type="text" id="pf-name" name="name" required autocomplete="name" placeholder="Jane Doe">
+          </div>
+          <div class="pf__f">
+            <label class="pf__l" for="pf-email">Email</label>
+            <input type="email" id="pf-email" name="email" required autocomplete="email" placeholder="you@yourpractice.com">
+          </div>
+          <div class="pf__f">
+            <label class="pf__l" for="pf-role">What you do for clients</label>
+            <input type="text" id="pf-role" name="role" required placeholder="Business coach, fractional COO, consultant">
+          </div>
+          <div class="pf__f">
+            <label class="pf__l" for="pf-msg">The client workflow you have in mind</label>
+            <textarea id="pf-msg" name="message" rows="4" required placeholder="What are they trying to improve, what happens today, and where does it break?"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--ink" id="pf-send">Send it over</button>
+          <div id="pf-msgbox" aria-live="polite"></div>
+          <p class="pf__note">
+            You will talk to the person who does the building. No account manager in between, no sales script.
+            What you send is stored so I can reply, plus your IP address to prevent abuse. See the
+            <a href="https://sites.perseidechocreations.com/privacy.html">privacy policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <p class="mail rise">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><polyline points="4 7 12 13 20 7"></polyline></svg>
+      Or write to me directly: <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__in">
+      <span class="foot__b">Perseid Echo Creations</span>
+      <nav class="foot__nav" aria-label="Footer">
+        <a href="index.html">For business owners</a>
+        <a href="index.html#fitcheck">Fit Check</a>
+        <a href="index.html#cost">Pricing</a>
+        <a href="index.html#proof">Proof</a>
+        <a href="https://sites.perseidechocreations.com/privacy.html">Privacy</a>
+        <a href="mailto:bryan@perseidechocreations.com">Email</a>
+      </nav>
+    </div>
+    <p class="foot__fine">
+      Renton, Washington. Built and operated by Bryan Piard.
+      Partner arrangements are agreed per engagement and put in writing before anything is sold to a client.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- reveal ---------- */
+  var risers = document.querySelectorAll('.rise');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    risers.forEach(function(el){ io.observe(el); });
+  } else {
+    risers.forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  /* ---------- partner enquiry ----------
+     Posts without leaving the page. Without JS the plain form
+     POST to web3forms still works, so nothing is lost. */
+  var form = document.getElementById('pf');
+  if (!form) return;
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+
+    var box   = document.getElementById('pf-msgbox');
+    var btn   = document.getElementById('pf-send');
+    var name  = document.getElementById('pf-name');
+    var email = document.getElementById('pf-email');
+    var role  = document.getElementById('pf-role');
+    var note  = document.getElementById('pf-msg');
+
+    box.innerHTML = '';
+
+    if (!name.value.trim()){
+      box.innerHTML = '<p class="pf__err">I need a name to reply to.</p>'; name.focus(); return;
+    }
+    if (!email.value || email.value.indexOf('@') < 1){
+      box.innerHTML = '<p class="pf__err">That email does not look right. Mind checking it?</p>'; email.focus(); return;
+    }
+    if (!role.value.trim()){
+      box.innerHTML = '<p class="pf__err">Tell me what you do for clients so I know which lane fits.</p>'; role.focus(); return;
+    }
+    if (!note.value.trim()){
+      box.innerHTML = '<p class="pf__err">Tell me a little about the workflow and I can give you a useful answer.</p>'; note.focus(); return;
+    }
+    if (form.botcheck && form.botcheck.value){ return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    var payload = {
+      access_key: '9dcf879b-c9aa-42b5-b01b-fbf09e383690',
+      subject: 'Partner enquiry: ' + name.value.trim(),
+      from_name: 'PEC partners page',
+      name: name.value.trim(),
+      email: email.value.trim(),
+      role: role.value.trim(),
+      message: 'PARTNER ENQUIRY\n\nName: ' + name.value.trim() +
+               '\nEmail: ' + email.value.trim() +
+               '\nWhat they do: ' + role.value.trim() +
+               '\n\nThe client workflow:\n' + note.value.trim()
+    };
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d && d.success){
+        document.getElementById('pf-status').textContent = 'Form PE-01 · Received';
+        form.innerHTML = '<p class="pf__done">Got it, ' + esc(name.value.trim()) +
+          '. I read every one of these myself, and I will come back to you with a first read on whether ' +
+          'the workflow is a sensible candidate.</p>';
+      } else {
+        throw new Error('rejected');
+      }
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Send it over';
+      box.innerHTML = '<p class="pf__err">That did not go through. Email me directly at ' +
+        '<a href="mailto:bryan@perseidechocreations.com" style="color:inherit;">bryan@perseidechocreations.com</a> and I will pick it up there.</p>';
+    });
+  });
+})();
+</script>
+</body>
+</html>
