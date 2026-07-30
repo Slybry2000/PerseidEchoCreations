@@ -1,0 +1,319 @@
+{
+  "_note": "Problem-shaped pages. These are NOT tool guides and must never become tool guides. The head terms ('quote automation', 'order intake automation') are owned by Salesforce, NetSuite, SPS Commerce and a wall of vendor blogs, and a one-operator shop does not out-rank them by writing the same article. What PEC can own is the question those searchers hit next and nobody neutral answers: buy a tool, or have something built? Every page here is that decision, honestly argued, with 'buy the tool' as a real and frequent answer. If a page starts recommending PEC in every case, it has become an advert and it will convert worse, not better.",
+
+  "workflows": [
+    {
+      "slug": "quote-follow-up",
+      "short": "Quote follow-up",
+      "title": "Quote follow-up: buy a tool, or build it?",
+      "metaDesc": "Quotes go out and never come back. An honest read on whether an off-the-shelf tool fixes that for you, or whether it needs building. Free 60-second Fit Check.",
+      "h1": "The quote went out. <em>Then what?</em>",
+      "sub": "Almost every owner-led business I look at is losing more money to un-chased quotes than to anything a new tool would fix. Here is how to tell which of the two you actually have.",
+      "problem": [
+        "The pattern is always the same. The quote gets sent on Tuesday. The owner means to check in on Friday. Friday is a fire. The following Tuesday it feels too late to chase without seeming desperate, so it does not get chased, and the quote quietly becomes a no.",
+        "Nobody decided to lose that job. There was no moment where somebody weighed it up and let it go. It fell through a gap in a process that was never designed, which is a different problem from being bad at sales and it has a different fix."
+      ],
+      "arithmetic": {
+        "lede": "Before deciding anything, work out your own number. Do not take mine, and do not take a vendor's.",
+        "steps": [
+          "Count the quotes you sent last month.",
+          "Count how many you followed up more than once. Be honest; the gap between those two numbers is the workflow.",
+          "Take your average job value and your rough close rate on quotes you <em>do</em> chase properly."
+        ],
+        "close": "One extra job a month from quotes you already sent, at your own average value, is the entire budget for this conversation. If that number turns out to be small, this is not your first build and you should stop reading here — that is a real outcome and it is the one the Fit Check is most likely to give you."
+      },
+      "buyOrBuild": {
+        "buy": [
+          "Your quotes all look broadly alike and come out of one system.",
+          "You are happy for the follow-up to be a generic 'just checking in' on a fixed timer.",
+          "You have nowhere else the follow-up needs to write to — no scheduling, no job record, no ops handoff.",
+          "You would rather pay a monthly fee than own anything."
+        ],
+        "build": [
+          "The quote lives in one place, the customer history in another, and the job record in a third, and the follow-up needs to know all three.",
+          "A generic chase would embarrass you, because what to say depends on what was quoted.",
+          "The follow-up should stop automatically when something else happens — the customer calls, the job gets booked, the work is cancelled — and no off-the-shelf timer knows about those events.",
+          "You have already bought a tool for this, and it is not being used, which usually means the tool asked your team to change how they work rather than fitting how they already work."
+        ],
+        "honest": "The first list is common and it is a genuinely good outcome. If you land there, buy the tool, spend an afternoon setting it up, and keep your money. I would rather tell you that than sell you a build you did not need — and if you want a second opinion on which list you are in, that is a free 20-minute call, not a project."
+      },
+      "build": [
+        {
+          "n": "It knows what was quoted",
+          "p": "The chase references the actual job, not a generic nudge. That is the difference between a follow-up that reads as attentive and one that reads as automated, and it is mostly a plumbing problem — getting the quote detail to the place that writes the message."
+        },
+        {
+          "n": "It stops on its own",
+          "p": "When the customer replies, books, or cancels, the sequence ends. Follow-up that keeps chasing after a yes is worse than no follow-up, and it is the single most common way a bought tool damages a relationship."
+        },
+        {
+          "n": "It drafts, you send — at first",
+          "p": "The sensible starting setting. You read each one for a couple of weeks, you see the pattern, and then you decide whether it graduates to sending on its own. That decision is yours and it is per-workflow."
+        }
+      ],
+      "notYet": "If you send a handful of quotes a month, or you already chase every single one properly, leave this alone. Automating a workflow you are already good at buys you nothing and gives you a system to maintain.",
+      "cities": ["Auburn", "Renton", "Issaquah"],
+      "faq": [
+        {
+          "q": "Will this make my business sound like a robot?",
+          "a": "It will if it is built badly, and that is the main risk with this particular workflow. The guard is that the chase carries real detail from the actual quote and stops the moment the customer does anything. If a build cannot clear that bar with your systems, I will tell you, because a follow-up that feels automated costs you more than the job it was chasing."
+        },
+        {
+          "q": "We use a CRM already. Does it not do this?",
+          "a": "Often partly. Most CRMs will send a message on a timer; far fewer will stop cleanly on the events that matter or reference what was actually quoted. Worth checking properly before spending anything: if yours does it, use it. If it half-does it, the honest question is whether the gap is worth closing, and that is what the Map answers."
+        }
+      ]
+    },
+
+    {
+      "slug": "field-paperwork-to-invoice",
+      "short": "Field paperwork",
+      "title": "Field paperwork to invoice: buy, or build?",
+      "metaDesc": "The job gets done, then somebody rebuilds it from photos and memory at seven in the evening. An honest read on whether to buy a tool or build the fix.",
+      "h1": "The job is done. <em>Now somebody retypes it.</em>",
+      "sub": "The waste in a field-service business is almost never in the field. It is in the trip the paperwork makes afterwards, and that trip is fixable.",
+      "problem": [
+        "Work happens at a site. Hours end up in a text message, materials on a paper ticket, photos on somebody's phone, and the note about what actually changed on the job in somebody's head. Later — usually much later, usually by whoever is still there — all of that gets reassembled into a job record and an invoice.",
+        "Every step of that reassembly is a chance to lose an hour, a detail, or a billable item. The billing goes out late, it goes out light, and the person doing it is normally the most expensive person available."
+      ],
+      "arithmetic": {
+        "lede": "Two numbers tell you whether this is worth anything, and you can get both this week.",
+        "steps": [
+          "How many days pass between work finishing and the invoice going out? Take the average, not the best case.",
+          "How often does a line item get missed or guessed because the record was rebuilt from memory?",
+          "How many hours a week does someone spend doing that reassembly, and what is that person's time worth?"
+        ],
+        "close": "The second number is usually the one that surprises people. Under-billing from reconstructed records tends to be invisible, because nobody ever sees the invoice that should have been larger."
+      },
+      "buyOrBuild": {
+        "buy": [
+          "Your work is uniform enough that one job form fits nearly all of it.",
+          "You are willing to move your scheduling and invoicing into the same product to get the integration.",
+          "Your crews will adopt a new app, and you are confident about that rather than hopeful.",
+          "You do not need the job record to reach anything outside that product."
+        ],
+        "build": [
+          "You already run scheduling in one system and accounts in another, and neither is moving.",
+          "Field-service platforms have been tried here before and did not stick.",
+          "What has to be captured varies enough by job type that a fixed form either asks too much or too little.",
+          "The office side, not the field side, is where the real time goes — the reassembly, not the recording."
+        ],
+        "honest": "The all-in-one field-service platforms are genuinely good and if you fit their shape you should buy one. The reason to build is almost always that you have existing systems you are not willing to abandon, and that is a legitimate reason, not stubbornness."
+      },
+      "build": [
+        {
+          "n": "Captured once, where it happens",
+          "p": "The hard rule: the person in the field does less than they did with the paper ticket, not more. If the capture step is heavier than what it replaces, it will not get used, and the build has failed regardless of how good the office side is."
+        },
+        {
+          "n": "The office side assembles itself",
+          "p": "Hours, materials, photos and notes land against the right job without anybody rekeying them. This is usually where most of the recovered time actually is."
+        },
+        {
+          "n": "Exceptions get raised, not buried",
+          "p": "A job that finished without hours logged, or with a photo and no note, gets flagged before it becomes an invoice. Catching the gap the same day is worth more than any amount of chasing later."
+        }
+      ],
+      "notYet": "If you run one or two crews and the paperwork already lands the same day, this is not your first build. The pattern is worth fixing when the reassembly has become somebody's evening job.",
+      "cities": ["Auburn", "Renton", "Kent"],
+      "faq": [
+        {
+          "q": "My crews will not use a complicated app.",
+          "a": "Then it is the wrong build, and I will say so rather than ship it. The bar is that the field step is lighter than the paper ticket it replaces. If I cannot get under that bar with your work, the honest answer is to fix the office side only and leave the field alone."
+        },
+        {
+          "q": "Can this work with the accounting system we already have?",
+          "a": "Usually, and connecting to it is normally cheaper than replacing it. That is the main argument for building rather than buying here: you keep the systems your business already runs on and close the gap between them, instead of migrating everything to get one feature."
+        }
+      ]
+    },
+
+    {
+      "slug": "order-intake-from-email",
+      "short": "Order intake",
+      "title": "Order intake from email: buy, or build?",
+      "metaDesc": "Orders arrive as attachments and somebody retypes them. An honest read on whether an off-the-shelf parser fixes it or whether it needs building.",
+      "h1": "Orders arrive as attachments. <em>Somebody retypes them.</em>",
+      "sub": "High volume, low judgement, expensive when a digit moves. This is the clearest case for building something — and the easiest one to over-build.",
+      "problem": [
+        "Customers send orders the way they always have: a PDF, a spreadsheet, an email body, a scan of a fax that was itself a scan. Someone opens each one and keys it into the system of record. It is not difficult work, which is exactly why it is usually being done by somebody whose time is worth a great deal more.",
+        "The cost is not really the typing. It is the transposed digit that ships the wrong quantity, the order that sat unopened over a weekend, and the fact that the whole thing stops when that one person is away."
+      ],
+      "arithmetic": {
+        "lede": "This is the workflow where the numbers are easiest to get and hardest to argue with.",
+        "steps": [
+          "Orders per week arriving as an attachment or email body rather than through a portal or EDI.",
+          "Minutes to key one in, times that volume. That is the floor.",
+          "What one keying error cost you the last time it happened — the reship, the credit, the customer conversation."
+        ],
+        "close": "If the volume is there, this workflow usually pays for itself faster than anything else on the list. If the volume is not there, no amount of clever building makes it worth doing."
+      },
+      "buyOrBuild": {
+        "buy": [
+          "Your customers' documents are consistent — same layouts, same handful of senders.",
+          "You run a mainstream ERP with a supported order-import path.",
+          "You are content to review every parsed order before it posts, permanently.",
+          "Volume justifies a per-document fee at the vendor's pricing."
+        ],
+        "build": [
+          "Every customer sends a different layout and no parser is trained on yours.",
+          "The order needs enriching before it can post — customer codes mapped, pricing checked, stock confirmed — and that logic lives in your head or a spreadsheet.",
+          "You need the exceptions routed to different people depending on what is wrong with them.",
+          "Your system of record has no clean import path, which is common with older or heavily customised installs."
+        ],
+        "honest": "Document parsing has genuinely got good, and there are solid products in this space. If your documents are consistent and your ERP is mainstream, buy one. Building here earns its keep in the messy middle: the enrichment and exception logic around the parse, not the parse itself."
+      },
+      "build": [
+        {
+          "n": "Parse, then check against reality",
+          "p": "Reading the document is the easy half. The half that matters is checking what it says against your customer records, your pricing and your stock, and refusing to guess when something does not line up."
+        },
+        {
+          "n": "Exceptions to the right person",
+          "p": "An unknown part number and a pricing mismatch are different problems for different people. Routing them separately is what stops an exception queue turning into the same manual job with extra steps."
+        },
+        {
+          "n": "Nothing posts silently at first",
+          "p": "This starts at 'it drafts, you approve' without exception. It graduates to posting on its own only once you have watched it be right for long enough to be bored, and even then with a switch you own."
+        }
+      ],
+      "notYet": "Under a handful of orders a day, or if your customers are already moving to a portal or EDI, leave this alone. The fix may be arriving on its own.",
+      "cities": ["Kent", "Auburn", "Tukwila"],
+      "faq": [
+        {
+          "q": "We already have an ERP. Does that make this pointless?",
+          "a": "Usually the opposite. The expensive work is almost never inside the system of record — it is in the gap between the customer's email and the record. That gap is where this build lives, and connecting to what you already pay for beats replacing it."
+        },
+        {
+          "q": "What happens when it misreads something?",
+          "a": "It should refuse rather than guess, and that is a design decision made before anything is built. A system that posts a confident wrong number is far worse than one that puts the document in front of a person and says it could not resolve the part code."
+        }
+      ]
+    },
+
+    {
+      "slug": "appointment-reminders",
+      "short": "No-shows",
+      "title": "Appointment reminders: buy a tool, or build?",
+      "metaDesc": "A booked appointment nobody confirms is a coin flip. An honest read on whether your booking system already handles this or whether it needs building.",
+      "h1": "A booking nobody confirms is <em>a coin flip</em>",
+      "sub": "This is the one where the honest answer is most often 'your existing system already does it, go and switch it on'. Check that before you spend anything.",
+      "problem": [
+        "The slot is booked, the day arrives, and nobody comes. The time cannot be resold at short notice, so it is simply gone — and in an appointment business a lost slot is close to pure lost margin, because the cost of being open was already paid.",
+        "The fix is genuinely well understood and mostly solved by software. Which is why the first thing worth doing here is not hiring anybody."
+      ],
+      "arithmetic": {
+        "lede": "The easiest number on this whole site to work out.",
+        "steps": [
+          "No-shows and late cancellations in a typical month.",
+          "The margin on one slot — not the revenue, the margin.",
+          "Multiply. That is the size of the prize, and it is usually smaller than people fear and larger than they bother to act on."
+        ],
+        "close": "Then check what your booking system already sends. A surprising number of practices are paying for reminders that were never enabled."
+      },
+      "buyOrBuild": {
+        "buy": [
+          "You have a booking or practice-management system — it almost certainly has reminders, and switching them on costs nothing.",
+          "Your appointments are uniform and a standard reminder fits all of them.",
+          "You do not need the reminder to know anything your booking system does not already know."
+        ],
+        "build": [
+          "The reminder needs to say different things for different appointment types, and your system only sends one message.",
+          "What happens <em>after</em> the reminder matters — filling the gap, rebooking, flagging repeat no-shows — and none of that is in the product.",
+          "Booking lives in one place and the customer record in another, and the two do not talk.",
+          "You want the same machinery to handle the neglected half of this: asking past customers back."
+        ],
+        "honest": "Of everything on this site, this is the workflow most likely to need no work from me at all. Go and look at your booking system's settings first. If reminders are in there and switched off, that is your afternoon sorted and you have kept your money."
+      },
+      "build": [
+        {
+          "n": "The reminder knows which appointment it is",
+          "p": "Different appointment types need different preparation and different notice. One generic message is what makes reminders easy to ignore."
+        },
+        {
+          "n": "What happens when someone cancels",
+          "p": "The valuable half and the half products rarely cover: a freed slot that gets offered to somebody rather than sitting empty."
+        },
+        {
+          "n": "The reactivation nobody has time for",
+          "p": "Same machinery, pointed at people who came once and did not come back. Only worth building if you can say what a returning customer is worth — and if you cannot, working that out is the first job, and it is not an automation job."
+        }
+      ],
+      "notYet": "If your no-show rate is already low, or your booking system's built-in reminders would cover it, do not build anything. This is the workflow I most often talk people out of.",
+      "cities": ["Issaquah", "Renton", "Bellevue"],
+      "faq": [
+        {
+          "q": "Is this not just text message reminders?",
+          "a": "The reminder is the easy part and your booking system probably already sends it. If a build makes sense here it is for the parts around it — filling cancelled slots, handling different appointment types, bringing past customers back. If all you need is the reminder, you do not need me."
+        },
+        {
+          "q": "How do we avoid annoying people?",
+          "a": "Frequency and relevance, both decided by you before anything is built, and a hard stop the moment somebody asks to be left alone. Any system that cannot honour an opt-out immediately should not be sending on your behalf at all."
+        }
+      ]
+    },
+
+    {
+      "slug": "client-intake-and-documents",
+      "short": "Client intake",
+      "title": "Client intake and documents: buy, or build?",
+      "metaDesc": "The onboarding checklist that lives in someone's head, and the fourth email asking for the same statement. An honest read on buying versus building.",
+      "h1": "The fourth email asking for <em>the same document</em>",
+      "sub": "New client onboarding is the worst possible place for your process to look improvised, and it is where it most often does.",
+      "problem": [
+        "A new client says yes. Then comes the checklist that lives in somebody's head, the welcome pack assembled by copying last time's, and the slow email tennis to collect documents that the client keeps meaning to send.",
+        "It is the first real experience the client has of how you operate, and it is usually the least designed part of the whole engagement. It also delays the point where billable work can start, which makes it expensive twice over."
+      ],
+      "arithmetic": {
+        "lede": "This one is worth measuring in days as well as hours.",
+        "steps": [
+          "Days from signed engagement to everything-in-hand. Average, across your last ten clients.",
+          "Hours of your team's time spent chasing during those days.",
+          "How many of those hours belong to someone who bills by the hour."
+        ],
+        "close": "Compressing that window is worth more than the admin hours it saves, because it moves the start of billable work forward on every engagement."
+      },
+      "buyOrBuild": {
+        "buy": [
+          "Your practice-management or portal product has onboarding workflows and you are not using them yet.",
+          "Every engagement needs broadly the same documents.",
+          "You are comfortable with clients using a vendor's portal branded as a vendor's portal.",
+          "Nothing needs to reach systems outside that product."
+        ],
+        "build": [
+          "What is needed varies by engagement type, and a fixed checklist either over-asks or under-asks.",
+          "The collected documents have to land somewhere specific — a matter file, a compliance record, a folder structure that already has rules.",
+          "You need the audit trail as much as the collection: who provided what, when, and what was still outstanding.",
+          "Client experience during onboarding is part of how you differentiate, and a generic portal undercuts that."
+        ],
+        "honest": "Most practice-management products handle a decent share of this and a lot of firms have simply not switched it on. Look there first. Build when the requirement genuinely varies per engagement, or when where the documents end up matters as much as getting them."
+      },
+      "build": [
+        {
+          "n": "The checklist comes out of the engagement type",
+          "p": "Not one list for everybody. What gets asked for follows from what the client actually signed up to, which is what stops the over-asking that makes onboarding feel bureaucratic."
+        },
+        {
+          "n": "The chase is polite, scheduled, and stops",
+          "p": "Escalating on a cadence you set, ending the moment the document arrives. Nobody should ever be asked twice for something they already sent — that is the failure that makes a firm look disorganised."
+        },
+        {
+          "n": "It files, and it leaves a trail",
+          "p": "Documents land where your rules say they land, and there is a record of what arrived when and what was outstanding. In a regulated practice the trail is often the point."
+        }
+      ],
+      "notYet": "If you take on a handful of new clients a year, this is a checklist problem, not a systems problem. Write the checklist down properly and see whether that fixes it before spending anything.",
+      "cities": ["Bellevue", "Issaquah", "Renton"],
+      "faq": [
+        {
+          "q": "We handle confidential client information. What does the system touch?",
+          "a": "Settled in writing before anything is built, workflow by workflow: which systems are read, which vendors are involved, what is retained and for how long, and what is explicitly excluded. No one-word promise that everything is safe — a specific list, and anything you are not comfortable with stays out of scope."
+        },
+        {
+          "q": "Can clients avoid another login?",
+          "a": "Usually yes, and it is normally the right call. Every account you ask a new client to create is friction at the exact moment you want none. Collection can happen through channels they already use, with the filing and the audit trail happening on your side where it belongs."
+        }
+      ]
+    }
+  ]
+}

@@ -129,7 +129,9 @@ p{ max-width:68ch; }
 }
 
 /* ---------- breadcrumb ---------- */
-.crumb{ font-family:var(--mono); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--steel-dim); }
+/* --steel-dim here sat at 4.05:1 over the brighter bench plate at 375px.
+   The crumb is small uppercase mono, so it gets the brighter grey. */
+.crumb{ font-family:var(--mono); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--steel); }
 .crumb ol{ list-style:none; display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; }
 .crumb a{ color:var(--steel); text-decoration:none; }
 .crumb a:hover{ color:var(--flame); }
@@ -198,6 +200,88 @@ p{ max-width:68ch; }
 .step__n{ font-family:var(--mono); font-size:11px; letter-spacing:0.19em; text-transform:uppercase; color:var(--lamp); }
 .step__p{ font-family:var(--mono); font-size:13px; color:var(--go); }
 .step p{ color:var(--steel); font-size:15px; max-width:none; }
+
+/* ---------- workflow pages: the bench, not the street ----------
+   Different photograph so a visitor who lands on a workflow page and then a
+   city page can tell they are in two different parts of the site. Same veil
+   treatment and the same reason: ind-bench.webp has lit surfaces in it. */
+.hero--bench .hero__art{
+  background-image:url('../../art/ind-bench.webp');
+  background-position:center 46%;
+  /* ind-bench is a much darker plate than ind-street, so the 0.68 tuned for
+     the street shot flattens it to near-black. Lifted here, and the veil
+     below is eased to match — the pair is always tuned together. */
+  filter:brightness(0.92);
+}
+.hero--bench .hero__scrim{
+  background:
+    linear-gradient(to bottom, oklch(0.155 0.018 268 / 0.72) 0%, oklch(0.155 0.018 268 / 0.48) 36%, oklch(0.155 0.018 268 / 0.84) 80%, var(--shop) 100%),
+    linear-gradient(to right, oklch(0.155 0.018 268 / 0.90) 0%, oklch(0.155 0.018 268 / 0.86) 48%, oklch(0.155 0.018 268 / 0.36) 76%, oklch(0.155 0.018 268 / 0.56) 100%);
+}
+
+/* ---------- numbered steps on paper ----------
+   These are instructions the reader is meant to act on, so the number has to
+   carry weight — a 12px mono label reads as chrome and gets skipped. Cards
+   sit on --paper-2 against the section's --paper so the edge is visible
+   without a heavy border. */
+.steps--ink{
+  list-style:none;
+  background:transparent; border:0;
+  gap:14px;
+  margin-top:clamp(20px,2.6vw,30px);
+}
+@media (min-width:820px){ .steps--ink{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+.steps--ink .step{
+  background:var(--paper-2);
+  border:1px solid var(--paper-edge);
+  border-radius:2px;
+  align-content:start;
+  gap:10px;
+}
+.steps--ink .step p{ color:var(--ink-soft); font-size:15.5px; max-width:none; }
+.steps--ink .step__n{
+  font-family:var(--mono);
+  font-size:26px; line-height:1;
+  font-weight:600; letter-spacing:-0.02em;
+  color:oklch(0.475 0.145 42);
+  text-transform:none;
+}
+
+/* ---------- the buy/build decision ---------- */
+.duo{ display:grid; gap:18px; margin-top:clamp(22px,2.8vw,32px); }
+@media (min-width:820px){ .duo{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px 40px; } }
+.duo__col{
+  border:1px solid var(--hair-strong); border-radius:2px;
+  padding:clamp(20px,2.2vw,26px);
+}
+.duo__h{ margin-bottom:13px; }
+.ticks{ list-style:none; display:grid; gap:11px; }
+.ticks li{
+  position:relative; padding-left:26px;
+  color:var(--steel); font-size:15.5px; line-height:1.5;
+}
+.ticks li::before{
+  content:''; position:absolute; left:2px; top:0.55em;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--steel-dim);
+}
+.ticks--flame li::before{ background:var(--flame); }
+
+/* ---------- do not build this yet ---------- */
+.notyet{
+  border-left:3px solid var(--lamp);
+  padding:clamp(18px,2vw,24px) clamp(18px,2.2vw,28px);
+  background:var(--shop-2);
+  border-radius:0 2px 2px 0;
+}
+.notyet p:not(.tag){ color:var(--steel); font-size:16px; }
+
+/* ink-surface variant of the pill links */
+.near--ink{
+  border-color:oklch(0.205 0.018 265 / 0.28) !important;
+  color:var(--ink-soft) !important;
+}
+.near--ink:hover{ border-color:var(--ink) !important; color:var(--ink) !important; }
 
 /* ---------- local strip ---------- */
 .here{ display:grid; gap:14px; }

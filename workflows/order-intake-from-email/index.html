@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order intake from email: buy, or build?</title>
+<meta name="description" content="Orders arrive as attachments and somebody retypes them. An honest read on whether an off-the-shelf parser fixes it or whether it needs building.">
+<meta name="theme-color" content="#0B1018">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orders arrive as attachments. Somebody retypes them.">
+<meta property="og:description" content="Orders arrive as attachments and somebody retypes them. An honest read on whether an off-the-shelf parser fixes it or whether it needs building.">
+<meta property="og:url" content="https://perseidechocreations.com/workflows/order-intake-from-email/">
+<meta property="og:image" content="https://perseidechocreations.com/art/ind-bench.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://perseidechocreations.com/workflows/order-intake-from-email/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/local/assets/local.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://perseidechocreations.com/workflows/order-intake-from-email/#article",
+  "headline": "Orders arrive as attachments. Somebody retypes them.",
+  "description": "Orders arrive as attachments and somebody retypes them. An honest read on whether an off-the-shelf parser fixes it or whether it needs building.",
+  "url": "https://perseidechocreations.com/workflows/order-intake-from-email/",
+  "author": {
+    "@type": "Person",
+    "name": "Bryan Piard"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Perseid Echo Creations",
+    "url": "https://perseidechocreations.com/"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Order intake"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "url": "https://perseidechocreations.com/workflows/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://perseidechocreations.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Workflows",
+      "item": "https://perseidechocreations.com/workflows/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Order intake",
+      "item": "https://perseidechocreations.com/workflows/order-intake-from-email/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "We already have an ERP. Does that make this pointless?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually the opposite. The expensive work is almost never inside the system of record — it is in the gap between the customer's email and the record. That gap is where this build lives, and connecting to what you already pay for beats replacing it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when it misreads something?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It should refuse rather than guess, and that is a design decision made before anything is built. A system that posts a confident wrong number is far worse than one that puts the document in front of a person and says it could not resolve the part code."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar__in">
+    <a class="topbar__b" href="https://perseidechocreations.com/">Perseid Echo Creations</a>
+    <nav class="topbar__in" style="gap:10px 22px;" aria-label="Primary">
+      <a href="/workflows/">Workflows</a>
+      <a href="/local/">Areas served</a>
+      <a href="https://perseidechocreations.com/#cost">Pricing</a>
+      <a href="https://perseidechocreations.com/#fitcheck">Run the Fit Check</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+<header class="hero hero--bench">
+  <div class="hero__art" role="presentation"></div>
+  <div class="hero__scrim" role="presentation"></div>
+  <div class="wrap hero__inner">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="https://perseidechocreations.com/">Home</a></li>
+        <li><a href="/workflows/">Workflows</a></li>
+        <li aria-current="page">Order intake</li>
+      </ol>
+    </nav>
+    <p class="tag">Order intake</p>
+    <h1 class="h-xl hero__head">Orders arrive as attachments. <em>Somebody retypes them.</em></h1>
+    <p class="hero__sub">High volume, low judgement, expensive when a digit moves. This is the clearest case for building something — and the easiest one to over-build.</p>
+    <div class="hero__acts">
+      <a class="btn btn--go" href="https://perseidechocreations.com/#fitcheck">Run the 60-second Fit Check</a>
+      <a class="btn btn--line" href="#decide">Buy or build?</a>
+    </div>
+  </div>
+</header>
+
+<!-- the problem, in the owner's words -->
+<section class="sec" aria-labelledby="prob-h">
+  <div class="wrap narrow rise">
+    <p class="tag">What actually happens</p>
+    <h2 class="h-lg" id="prob-h" style="margin-block:14px 16px;">Nobody decided to let this happen.</h2>
+    <p class="lede" style="margin-bottom:14px;">Customers send orders the way they always have: a PDF, a spreadsheet, an email body, a scan of a fax that was itself a scan. Someone opens each one and keys it into the system of record. It is not difficult work, which is exactly why it is usually being done by somebody whose time is worth a great deal more.</p>
+    <p class="lede" style="margin-bottom:14px;">The cost is not really the typing. It is the transposed digit that ships the wrong quantity, the order that sat unopened over a weekend, and the fact that the whole thing stops when that one person is away.</p>
+  </div>
+</section>
+
+<!-- work out your own number -->
+<section class="sec sec--paper" aria-labelledby="cost-h">
+  <div class="wrap narrow rise">
+    <p class="tag tag--ink">Work out your own number</p>
+    <h2 class="h-lg" id="cost-h" style="margin-block:14px 16px;">What is this costing you?</h2>
+    <p class="lede lede--ink">This is the workflow where the numbers are easiest to get and hardest to argue with.</p>
+    <ol class="steps steps--ink">
+      <li class="step">
+        <span class="step__n">1</span>
+        <p>Orders per week arriving as an attachment or email body rather than through a portal or EDI.</p>
+      </li>
+      <li class="step">
+        <span class="step__n">2</span>
+        <p>Minutes to key one in, times that volume. That is the floor.</p>
+      </li>
+      <li class="step">
+        <span class="step__n">3</span>
+        <p>What one keying error cost you the last time it happened — the reship, the credit, the customer conversation.</p>
+      </li>
+    </ol>
+    <p class="lede lede--ink" style="margin-top:22px;">If the volume is there, this workflow usually pays for itself faster than anything else on the list. If the volume is not there, no amount of clever building makes it worth doing.</p>
+  </div>
+</section>
+
+<!-- the decision -->
+<section class="sec sec--band" id="decide" aria-labelledby="dec-h">
+  <div class="wrap narrow rise">
+    <p class="tag">The honest version</p>
+    <h2 class="h-lg" id="dec-h" style="margin-block:14px 16px;">Buy a tool, or build it?</h2>
+    <div class="duo">
+      <div class="duo__col">
+        <h3 class="h-sm duo__h">Buy the tool if</h3>
+        <ul class="ticks">
+          <li>Your customers' documents are consistent — same layouts, same handful of senders.</li>
+          <li>You run a mainstream ERP with a supported order-import path.</li>
+          <li>You are content to review every parsed order before it posts, permanently.</li>
+          <li>Volume justifies a per-document fee at the vendor's pricing.</li>
+        </ul>
+      </div>
+      <div class="duo__col">
+        <h3 class="h-sm duo__h">Build it if</h3>
+        <ul class="ticks ticks--flame">
+          <li>Every customer sends a different layout and no parser is trained on yours.</li>
+          <li>The order needs enriching before it can post — customer codes mapped, pricing checked, stock confirmed — and that logic lives in your head or a spreadsheet.</li>
+          <li>You need the exceptions routed to different people depending on what is wrong with them.</li>
+          <li>Your system of record has no clean import path, which is common with older or heavily customised installs.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:26px;">Document parsing has genuinely got good, and there are solid products in this space. If your documents are consistent and your ERP is mainstream, buy one. Building here earns its keep in the messy middle: the enrichment and exception logic around the parse, not the parse itself.</p>
+  </div>
+</section>
+
+<!-- what a build looks like -->
+<section class="sec" aria-labelledby="build-h">
+  <div class="wrap narrow rise">
+    <p class="tag">If it is the second one</p>
+    <h2 class="h-lg" id="build-h" style="margin-block:14px 16px;">What a build actually has to do</h2>
+    <div class="cards">
+      <article class="card">
+        <span class="card__n">Part 1</span>
+        <h3 class="h-sm">Parse, then check against reality</h3>
+        <p>Reading the document is the easy half. The half that matters is checking what it says against your customer records, your pricing and your stock, and refusing to guess when something does not line up.</p>
+      </article>
+      <article class="card">
+        <span class="card__n">Part 2</span>
+        <h3 class="h-sm">Exceptions to the right person</h3>
+        <p>An unknown part number and a pricing mismatch are different problems for different people. Routing them separately is what stops an exception queue turning into the same manual job with extra steps.</p>
+      </article>
+      <article class="card">
+        <span class="card__n">Part 3</span>
+        <h3 class="h-sm">Nothing posts silently at first</h3>
+        <p>This starts at 'it drafts, you approve' without exception. It graduates to posting on its own only once you have watched it be right for long enough to be bored, and even then with a switch you own.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- when not to -->
+<section class="sec" style="padding-block:clamp(34px,4.4vw,54px);" aria-labelledby="not-h">
+  <div class="wrap narrow rise">
+    <div class="notyet">
+      <p class="tag">When to leave this alone</p>
+      <h2 class="h-md" id="not-h" style="margin-block:11px 8px;">Do not build this yet if&hellip;</h2>
+      <p>Under a handful of orders a day, or if your customers are already moving to a portal or EDI, leave this alone. The fix may be arriving on its own.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" aria-labelledby="ctrl-h">
+  <div class="wrap narrow rise">
+    <p class="tag">The part most people worry about</p>
+    <h2 class="h-lg" id="ctrl-h" style="margin-block:14px 16px;">Nothing gets authority by accident.</h2>
+    <p class="lede">Every workflow I build has a setting for how much it is allowed to do on its own, and you pick it per workflow rather than once for the whole business.</p>
+    <div class="cards">
+      <article class="card">
+        <span class="card__n">Setting one</span>
+        <h3 class="h-sm">It drafts, you send</h3>
+        <p>The system does the assembling and the remembering. A person reads it and presses the button. Where most work should start, and where a lot of it should stay.</p>
+      </article>
+      <article class="card">
+        <span class="card__n">Setting two</span>
+        <h3 class="h-sm">It runs, you get told</h3>
+        <p>It acts on the rules you agreed and reports what it did. Suitable once a workflow has proven itself and the cost of a wrong move is small.</p>
+      </article>
+      <article class="card">
+        <span class="card__n">Setting three</span>
+        <h3 class="h-sm">It runs, you can stop it</h3>
+        <p>Fully hands-off with a switch you own and a record of every action. Appropriate for high-volume, low-judgement work, and not much else.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec sec--band" aria-labelledby="wfaq-h">
+  <div class="wrap narrow rise">
+    <p class="tag">Straight answers</p>
+    <h2 class="h-lg" id="wfaq-h" style="margin-block:14px 8px;">Questions this one always raises</h2>
+    <div class="faq">
+      <details>
+        <summary>We already have an ERP. Does that make this pointless?</summary>
+        <div class="faq__a"><p>Usually the opposite. The expensive work is almost never inside the system of record — it is in the gap between the customer's email and the record. That gap is where this build lives, and connecting to what you already pay for beats replacing it.</p></div>
+      </details>
+      <details>
+        <summary>What happens when it misreads something?</summary>
+        <div class="faq__a"><p>It should refuse rather than guess, and that is a design decision made before anything is built. A system that posts a confident wrong number is far worse than one that puts the document in front of a person and says it could not resolve the part code.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" style="padding-block:clamp(34px,4.4vw,54px);" aria-labelledby="wc-h">
+  <div class="wrap narrow rise">
+    <p class="tag">Where this comes up</p>
+    <h2 class="h-md" id="wc-h" style="margin-block:11px 6px;">Most common in these areas</h2>
+    <p style="color:var(--steel); font-size:16px;">Not a rule, just where I see it most. I work across south and east King County.</p>
+    <div class="near">
+      <a href="/local/workflow-automation-kent-wa/">Kent, WA</a>
+      <a href="/local/workflow-automation-auburn-wa/">Auburn, WA</a>
+      <a href="/local/workflow-automation-tukwila-wa/">Tukwila, WA</a>
+      <a href="/workflows/">Other workflows</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec sec--band" aria-labelledby="close-h">
+  <div class="wrap narrow close rise">
+    <p class="tag">Start at the bottom of the staircase</p>
+    <h2 class="h-lg" id="close-h" style="margin-block:14px 16px;">Sixty seconds, and you will know whether this is worth another minute.</h2>
+    <p class="lede">
+      No account, no calendar, no waiting for a reply. Run the Fit Check and you get the read on your own screen.
+      If it says the work is worth mapping, the next step is a free 20-minute call. If it says leave it alone, you have lost a minute and I have lost a customer I should not have had.
+    </p>
+    <div class="close__acts">
+      <a class="btn btn--go" href="https://perseidechocreations.com/#fitcheck">Run the 60-second Fit Check</a>
+      <a class="btn btn--line" href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" rel="noopener">Skip it, book the 20-minute call</a>
+    </div>
+    <p class="hero__note" style="margin-top:22px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><polyline points="4 7 12 13 20 7"></polyline></svg>
+      Or just write to me: <a href="mailto:bryan@perseidechocreations.com" style="color:var(--lamp);">bryan@perseidechocreations.com</a>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__in">
+      <span class="foot__b">Perseid Echo Creations</span>
+      <nav class="foot__nav" aria-label="Footer">
+        <a href="https://perseidechocreations.com/#fitcheck">Fit Check</a>
+        <a href="https://perseidechocreations.com/#cost">Pricing</a>
+        <a href="/workflows/">Workflows</a>
+        <a href="/local/">Areas served</a>
+        <a href="https://perseidechocreations.com/partners.html">Partners</a>
+        <a href="https://perseidechocreations.com/privacy.html">Privacy</a>
+        <a href="mailto:bryan@perseidechocreations.com">Email</a>
+      </nav>
+    </div>
+    <p class="foot__fine">
+      Based in Renton, Washington. Built and operated by Bryan Piard.
+      Any figures shown in the work I point at come from systems I own and run; they are not client results and are not a forecast of yours.
+    </p>
+  </div>
+</footer>
+
+<script>window.PEC_PAGE = "wf:order-intake-from-email";</script>
+<script src="/local/assets/track.js" defer></script>
+</body>
+</html>
