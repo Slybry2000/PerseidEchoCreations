@@ -351,6 +351,9 @@ function page (c) {
 <title>${esc(c.title)}</title>
 <meta name="description" content="${esc(c.metaDesc)}">
 <meta name="theme-color" content="#0B1018">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="geo.region" content="US-WA">
 <meta name="geo.placename" content="${esc(c.city)}, ${esc(c.regionLong)}">
 
@@ -466,6 +469,9 @@ function hub () {
 <title>Areas served · Workflow automation in King County, WA</title>
 <meta name="description" content="I am based in Renton and build workflow systems for owner-led businesses across King County. Renton, Kent, Bellevue, Tukwila, Auburn and Issaquah.">
 <meta name="theme-color" content="#0B1018">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Workflow automation across south and east King County">

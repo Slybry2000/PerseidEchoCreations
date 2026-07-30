@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Perseid Echo Creations">
+  <!-- A perseid over the shop's dark ground: tapered trail, hot head.
+       Drawn as filled polygons rather than strokes so the trail actually
+       narrows to a point — a constant-width stroke reads as a matchstick.
+       Checked at 16px: no detail smaller than about 3px at that scale. -->
+  <rect width="64" height="64" rx="12" fill="#0B1018"/>
+
+  <!-- the echo: a shorter, dimmer trail running just behind the main one -->
+  <path d="M40.5 30.5 L35.5 25.5 L15 51 Z" fill="#B4491F" opacity="0.5"/>
+
+  <!-- the perseid -->
+  <path d="M49 27 L41 19 L13 47 L18 52 Z" fill="#F26B36"/>
+
+  <!-- the head, hottest point, sitting on the leading tip -->
+  <circle cx="46" cy="22" r="8" fill="#F9A03F"/>
+</svg>
