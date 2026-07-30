@@ -44,6 +44,8 @@ for (const w of workflows) {
 
 const CAL   = 'https://calendar.app.google/XgzHeDeyYp9DyvYJ6';
 const EMAIL = 'bryan@perseidechocreations.com';
+const PHONE = '425-243-3473';
+const PHONE_HREF = 'tel:+14252433473';
 
 /* ---------- helpers ---------- */
 const esc = s => String(s)
@@ -242,6 +244,7 @@ function closeBlock (city) {
     <p class="hero__note" style="margin-top:22px;">
       ${mail()}
       Or just write to me: <a href="mailto:${EMAIL}" style="color:var(--lamp);">${EMAIL}</a>
+      &middot; or call <a href="${PHONE_HREF}" style="color:var(--lamp);">${PHONE}</a>
     </p>
   </div>
 </section>`;
@@ -261,6 +264,7 @@ function footer (city) {
         <a href="${ORIGIN}/partners.html">Partners</a>
         <a href="${ORIGIN}/privacy.html">Privacy</a>
         <a href="mailto:${EMAIL}">Email</a>
+        <a href="${PHONE_HREF}">${PHONE}</a>
       </nav>
     </div>
     <p class="foot__fine">
@@ -303,6 +307,7 @@ function jsonLd (c) {
     url,
     founder: { '@type': 'Person', name: 'Bryan Piard' },
     email: EMAIL,
+    telephone: '+1-425-243-3473',
     image: `${ORIGIN}/art/ind-street.webp`,
     priceRange: '$750 - $9,000',
     address: {
@@ -492,7 +497,13 @@ function hub () {
     '@type': 'CollectionPage',
     name: 'Areas served · Perseid Echo Creations',
     url,
-    about: { '@type': 'ProfessionalService', name: 'Perseid Echo Creations' },
+    about: {
+      '@type': 'ProfessionalService',
+      '@id': `${ORIGIN}/#business`,
+      name: 'Perseid Echo Creations',
+      telephone: '+1-425-243-3473',
+      email: EMAIL
+    },
     hasPart: cities.map(c => ({
       '@type': 'WebPage',
       name: `Workflow automation in ${c.city}, ${c.region}`,
