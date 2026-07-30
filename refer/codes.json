@@ -1,12 +1,12 @@
 {
   "_note": "Referral codes, one per client. Opaque and stable: a code that changes orphans every link already sent. Never encode a name, email or company — the code travels in a URL the referred person can see. Add a row when a client reaches the point where referring is a reasonable thing to ask.",
 
-  "_status": "MERGED TO MAIN 2026-07-30, NOT YET PUSHED. No code here has been used in a live link. Bryan reviewed the list on 2026-07-30: dream-travel and rowan-report are fair to ask; the other three stay unapproved for now. Thanks stay unpriced — no percentage, no points, no bounty. First names still outstanding, so no link goes out with ?n= yet.",
+  "_status": "MERGED TO MAIN 2026-07-30, NOT YET PUSHED. No code here has been used in a live link. Bryan reviewed the list on 2026-07-30: dream-travel (Rene) and rowan-guide (Tim) are fair to ask; the other three stay unapproved for now. Thanks stay unpriced — no percentage, no points, no bounty.",
 
   "codes": [
-    { "client": "dream-travel",    "code": "dt7q2m", "name": "",     "hub": "/dream-travel",     "approved": true,  "live": false },
-    { "client": "rowan-report",    "code": "rr4x8k", "name": "",     "hub": "/rowan-report",     "approved": true,  "live": false },
-    { "client": "rowan-guide",     "code": "rg5v1n", "name": "",     "hub": "/rowan-buyers-guide", "approved": false, "live": false },
+    { "client": "dream-travel",    "code": "dt7q2m", "name": "Rene", "hub": "/dream-travel",     "approved": true,  "live": false },
+    { "client": "rowan-report",    "code": "rr4x8k", "name": "",     "hub": "/rowan-report",     "approved": false, "live": false },
+    { "client": "rowan-guide",     "code": "rg5v1n", "name": "Tim",  "hub": "/rowan-buyers-guide", "approved": true,  "live": false },
     { "client": "twine-and-dandy", "code": "td9h3p", "name": "",     "hub": "/twine-and-dandy",  "approved": false, "live": false },
     { "client": "noemie",          "code": "np2w6r", "name": "",     "hub": "/noemie",           "approved": false, "live": false }
   ],
