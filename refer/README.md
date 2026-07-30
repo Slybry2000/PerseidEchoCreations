@@ -50,9 +50,36 @@ If you want to change that, change it deliberately — but a published percentag
 2. **The names.** `name` is empty on every row rather than guessed.
 3. **Whether the thanks stay unpriced.** Recommendation is yes, per above. Your business, your call.
 
+## Status, 2026-07-30
+
+Steps 1 and 2 below have been run. **Step 2 failed, and the failure was the point of running it.**
+
+- Merged and pushed. `/refer/` is live, `noindex`, absent from the sitemap, and linked from nowhere. The only string matching `/refer/` on the homepage is a code comment.
+- `codes.json` filled in: **dream-travel (Rene)** and **rowan-guide (Tim)** approved. Note the correction — it is the Buyer's Guide that is fair to ask, not the Report, which is back to `approved: false`.
+- End-to-end test run against `/refer/?r=dt7q2m&n=Rene`. The page rendered "Thanks, Rene" and produced `https://perseidechocreations.com/?ref=dt7q2m#fitcheck`. A full five-question Fit Check was completed through that link under session `ayzx71ftg7`.
+- **`rc` never arrived.** The visit was filed under `(direct)`.
+
+### The bug
+
+`content_pipe/lib/site-events.js` whitelists incoming event fields explicitly. It accepted `src`, `cmp` and `ref` — and silently dropped `rc`. The code was discarded at ingest, so it was never stored, and no reporting change could ever have surfaced it.
+
+This is the precise failure this step exists to catch. Had the module gone out to a client hub first, every referral would have read as zero and the honest conclusion would have been "referrals do not work" — when what actually did not work was the counting.
+
+### The fix, written and syntax-checked, NOT deployed
+
+Three parts, all in `site-events.js`:
+
+1. Accept `rc` at ingest, capped at 32 chars, in its own field. Not folded into `src`: a referred visit is still `(direct)` by channel, and "who introduced them" is a different question from "how did they arrive".
+2. Hold `rc` against the session in the rollup. It rides only the first event of a visit, exactly like `src`, so without this a completion could not be credited to the introduction that caused it.
+3. Return a `referrals` map. No `(direct)` bucket — the absence of a referral is not a referrer, and padding that table would make the channel look busier than it is.
+
+`fitcheck-stats` then needs a "WHO SENT THEM" section to print it, alongside "WHERE THEY CAME FROM".
+
+**Blocked on permission to write to the VPS.** Until this ships, the channel is unmeasurable, and an unmeasurable referral channel is the one thing this ticket said not to build. No module goes on any client hub before it lands.
+
 ## Launch sequence, when you want it
 
-Nothing below has been run.
+Steps 1 and 2 are done — see Status above. Step 2 is not passed until the VPS fix ships.
 
 ```bash
 cd /c/Projects/PECWEB
