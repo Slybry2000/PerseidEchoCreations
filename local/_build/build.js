@@ -365,7 +365,7 @@ function page (c) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/local/_assets/local.css">
+<link rel="stylesheet" href="/local/assets/local.css">
 
 ${jsonLd(c)}
 </head>
@@ -436,7 +436,7 @@ ${closeBlock(c.city)}
 ${footer(c.city)}
 
 <script>window.PEC_PAGE = ${JSON.stringify('local:' + c.slug)};</script>
-<script src="/local/_assets/track.js" defer></script>
+<script src="/local/assets/track.js" defer></script>
 </body>
 </html>
 `;
@@ -478,7 +478,7 @@ function hub () {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/local/_assets/local.css">
+<link rel="stylesheet" href="/local/assets/local.css">
 
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
@@ -530,7 +530,7 @@ ${closeBlock('King County')}
 ${footer('')}
 
 <script>window.PEC_PAGE = "local:hub";</script>
-<script src="/local/_assets/track.js" defer></script>
+<script src="/local/assets/track.js" defer></script>
 </body>
 </html>
 `;

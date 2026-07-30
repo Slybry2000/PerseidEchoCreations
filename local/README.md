@@ -1,6 +1,8 @@
 # Local service pages
 
-Built 2026-07-29. **Not deployed.** Generated but not yet pushed to GitHub Pages — see "Going live".
+Built and shipped 2026-07-30. **Live** at `perseidechocreations.com/local/`. Rollback tag: `pec-pre-local-2026-07-30`.
+
+> **GitHub Pages runs Jekyll, and Jekyll silently refuses to serve any directory whose name starts with `_`.** The first deploy shipped the stylesheet at `/local/_assets/local.css`, which 404'd in production while working perfectly on the local server — the pages were live and completely unstyled. Assets now live at `local/assets/`. `_build/` keeps its underscore deliberately: the generator should not be served, and Jekyll excluding it is the mechanism. **Never put a runtime asset under a `_`-prefixed path in this repo, and always check a real production URL after deploying — a passing local server proves nothing about this failure mode.**
 
 ## What this is
 
@@ -62,7 +64,7 @@ Deliberately absent: `aggregateRating`, `review`, `telephone`. Nothing real to p
 
 ## Measurement
 
-Each page sets `window.PEC_PAGE = "local:<slug>"` before loading `_assets/track.js`, so the existing funnel at `approve.perseidechocreations.com/_e` can attribute a Fit Check start to the city page that produced it. Same privacy contract as the homepage: opt-out check runs first, no cookies, no third party.
+Each page sets `window.PEC_PAGE = "local:<slug>"` before loading `assets/track.js`, so the existing funnel at `approve.perseidechocreations.com/_e` can attribute a Fit Check start to the city page that produced it. Same privacy contract as the homepage: opt-out check runs first, no cookies, no third party.
 
 `cta_fitcheck` is the event that matters here — it is the handoff to the homepage, and it is this directory's entire job.
 
@@ -92,7 +94,7 @@ Everything is additive except two one-line footer edits, so the blast radius is 
 
 New:
 ```
-local/                        (7 pages, _assets/, _build/)
+local/                        (7 pages, assets/, _build/)
 sitemap.xml                   regenerated
 robots.txt                    + Disallow: /local/_build/
 ```
