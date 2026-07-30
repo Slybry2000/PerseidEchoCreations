@@ -9,5 +9,9 @@ Disallow: /offline-original/
 Disallow: /api/
 Disallow: /dist/
 Disallow: /node_modules/
+Disallow: /local/_build/
+
+# /local/_assets/ is deliberately crawlable: Google needs the stylesheet to
+# render the local pages, and a blocked stylesheet reads as a broken page.
 
 Sitemap: https://perseidechocreations.com/sitemap.xml

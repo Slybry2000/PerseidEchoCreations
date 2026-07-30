@@ -1,0 +1,222 @@
+{
+  "_note": "Per-city content for the local service pages. Every 'here' and 'first' block must describe something true about that city's actual business base. If you cannot say something specific and true about a city, do not add the city. Thin near-duplicate pages are what Google penalises, and they are also just bad writing.",
+
+  "cities": [
+    {
+      "slug": "workflow-automation-renton-wa",
+      "city": "Renton",
+      "region": "WA",
+      "regionLong": "Washington",
+      "home": true,
+      "zip": "98056",
+      "lat": "47.4829",
+      "lng": "-122.2171",
+      "title": "Workflow Automation in Renton, WA · Perseid Echo Creations",
+      "metaDesc": "I am in Renton and I build the systems that handle repetitive work for owner-led businesses here. Free 60-second Fit Check, no account needed.",
+      "h1": "Workflow automation for <em>Renton</em> businesses",
+      "sub": "I live and work here. If you run a business in Renton and the same job keeps eating an afternoon a week, that is the kind of thing I take off your plate — carefully, one workflow at a time.",
+      "here": [
+        "Renton is not one economy, it is three sitting on top of each other. There is the Boeing supply chain and the machine shops and fabricators that feed it. There is a deep bench of owner-led trades — electrical, HVAC, auto, landscaping, remodels — a lot of them running two vans and a whiteboard. And there is the Highlands and downtown service layer: clinics, dental practices, restaurants, studios.",
+        "What those three have in common is that the back office never got built. The work got bigger, the paperwork got bigger with it, and nobody ever stopped to design the part where information moves from one place to another. That gap is where I do most of my work."
+      ],
+      "first": [
+        {
+          "n": "Quotes that go out and never come back",
+          "p": "The single most common one I find in Renton trades. The quote gets sent, the owner means to follow up, the week happens. A system that chases every quote on a schedule you set is usually the cheapest thing on the list and the fastest to pay for itself."
+        },
+        {
+          "n": "The job-to-invoice handoff",
+          "p": "Work gets done in the field, then somebody retypes it in the office at night. Photos in one place, hours in another, the invoice built from memory. This is normally a plumbing problem, not an AI problem, and it fixes cleanly."
+        },
+        {
+          "n": "Intake for practices and clinics",
+          "p": "New patient or new client turns into a stack of forms somebody keys in by hand, and the same details get asked for three times. Worth mapping when it happens often enough, and worth leaving alone if it does not."
+        }
+      ],
+      "faq": {
+        "q": "Do you actually work with businesses in Renton, or is this a page for the search engine?",
+        "a": "I am in Renton. That is where the business is registered and where I work from, so a first conversation here can be in person if you would rather do it that way. I have deliberately not written pages for cities I could not get to."
+      }
+    },
+
+    {
+      "slug": "workflow-automation-kent-wa",
+      "city": "Kent",
+      "region": "WA",
+      "regionLong": "Washington",
+      "zip": "98032",
+      "lat": "47.3809",
+      "lng": "-122.2348",
+      "title": "Workflow Automation in Kent, WA · Perseid Echo Creations",
+      "metaDesc": "Kent Valley warehouse, wholesale and fabrication businesses run on paperwork moved by hand. I build the systems that move it instead. Free Fit Check.",
+      "h1": "Workflow automation for <em>Kent</em> businesses",
+      "sub": "The Kent Valley runs on order paperwork, and most of it still moves by hand. I build and run the systems that carry it, from a shop fifteen minutes up the hill.",
+      "here": [
+        "Kent has one of the densest concentrations of warehousing, distribution and light manufacturing on the West Coast. That produces a very particular kind of repetitive work: order intake off email and PDFs, purchase orders matched against invoices, inventory counts reconciled between a spreadsheet and whatever the system says, driver and dispatch paperwork chased down after the fact.",
+        "It is high-volume, low-judgement work, and it is almost always being done by somebody who is too senior to be doing it. That combination — frequent, tedious, and expensive when it goes wrong — is the clearest case for building something. It is also the case where I am most likely to tell you the fix is a better process rather than a bigger tool."
+      ],
+      "first": [
+        {
+          "n": "Order intake off email and PDFs",
+          "p": "Orders arrive as attachments and somebody retypes them into the system. High frequency, real cost when a digit moves. Usually the first thing I look at in a Kent Valley business."
+        },
+        {
+          "n": "PO and invoice matching",
+          "p": "Three documents that should agree, checked by eye. This is where the money quietly leaks, and it is well-suited to a system that flags the exceptions and leaves the judgement calls to a person."
+        },
+        {
+          "n": "Field and driver paperwork",
+          "p": "Proof of delivery, hours, damage notes — captured on paper or in a phone, then chased at the end of the week. Getting it captured once, at the point it happens, is often the whole fix."
+        }
+      ],
+      "faq": {
+        "q": "We already have an ERP or a WMS. Does that make this pointless?",
+        "a": "Usually the opposite. The expensive work is almost never inside the system of record, it is in the gaps around it — the email that has to become a record, the spreadsheet that reconciles two systems, the report somebody rebuilds every Monday. I would rather connect what you already pay for than sell you something new."
+      }
+    },
+
+    {
+      "slug": "workflow-automation-bellevue-wa",
+      "city": "Bellevue",
+      "region": "WA",
+      "regionLong": "Washington",
+      "zip": "98004",
+      "lat": "47.6101",
+      "lng": "-122.2015",
+      "title": "Workflow Automation in Bellevue, WA · Perseid Echo Creations",
+      "metaDesc": "Client intake, document chasing and recurring reporting eat billable hours in Bellevue firms. I build controlled systems that carry them. Free Fit Check.",
+      "h1": "Workflow automation for <em>Bellevue</em> firms",
+      "sub": "In a practice that bills for time, the admin around the work is the most expensive thing in the building. That is usually where I start.",
+      "here": [
+        "Bellevue's business base leans professional: law, accounting, wealth management, real estate, and a wide layer of consultancies and small firms serving the tech economy around them. The repetitive work in those firms has a specific shape — client intake, document collection and chasing, engagement paperwork, scheduling, recurring client reporting, and the compliance trail underneath all of it.",
+        "It also has a specific constraint. A firm handling client money or client records cannot hand a process to something that acts on its own, and should not want to. Everything I build has a setting for how much authority it gets, and for most of this work the honest answer is: it prepares, a person approves, then it sends."
+      ],
+      "first": [
+        {
+          "n": "Client intake and document chasing",
+          "p": "The onboarding checklist that lives in somebody's head, and the four emails asking again for the same statement. Frequent, unglamorous, and a real drag on the first impression a new client gets."
+        },
+        {
+          "n": "Recurring client reporting",
+          "p": "The same report rebuilt monthly or quarterly from the same three sources. Worth building when the cadence is fixed and the format rarely changes."
+        },
+        {
+          "n": "Scheduling and the follow-up trail",
+          "p": "Booking, confirming, reminding, rescheduling, and the note that has to end up in the file afterwards. The reminder part is easy; the part that keeps the record straight is the part worth designing."
+        }
+      ],
+      "faq": {
+        "q": "We handle confidential client information. What does the system actually touch?",
+        "a": "That gets settled in writing before anything is built, workflow by workflow: which systems are read, which vendors are involved, what is retained and for how long, and what is explicitly excluded. I will not give you a one-word promise that everything is safe — I will give you a specific list, and anything you are not comfortable with stays out of scope."
+      }
+    },
+
+    {
+      "slug": "workflow-automation-tukwila-wa",
+      "city": "Tukwila",
+      "region": "WA",
+      "regionLong": "Washington",
+      "zip": "98188",
+      "lat": "47.4739",
+      "lng": "-122.2607",
+      "title": "Workflow Automation in Tukwila, WA · Perseid Echo Creations",
+      "metaDesc": "Retail, hospitality and multi-site service businesses near Southcenter run on scheduling and vendor paperwork. I build the systems that carry it.",
+      "h1": "Workflow automation for <em>Tukwila</em> businesses",
+      "sub": "When the same job has to happen at three locations, the coordination becomes the job. That is the part worth building.",
+      "here": [
+        "Tukwila's business base is shaped by the Southcenter corridor and the freight and airport traffic around it: retail, food and hospitality, service franchises, and a warehousing layer near the river. A lot of it is multi-site, and multi-site is what changes the maths.",
+        "The moment a business runs more than one location, the expensive work stops being the work and starts being the coordination — shift schedules, vendor invoices arriving in different formats, numbers rolled up by hand so the owner can see all sites at once. None of that is complicated. All of it is frequent, which is what makes it worth a system."
+      ],
+      "first": [
+        {
+          "n": "Scheduling and shift coverage",
+          "p": "Built weekly, broken by Tuesday, patched over text. The build here is usually less about the schedule and more about what happens when it changes."
+        },
+        {
+          "n": "Vendor invoices in five formats",
+          "p": "Different suppliers, different documents, one person keying them in. Frequent and error-prone, which is the combination that pays for a build."
+        },
+        {
+          "n": "One number across every location",
+          "p": "The owner wants yesterday's figures for all sites in one place without asking three managers for them. Often the fastest visible win, because everyone notices when it appears."
+        }
+      ],
+      "faq": {
+        "q": "We have three locations. Do we need three of everything?",
+        "a": "No, and that is the point. What is worth building is usually the layer that sits above the locations and makes them report the same way. One system, one place to look. If the locations run genuinely different operations, I will tell you that up front rather than pretending one build covers it."
+      }
+    },
+
+    {
+      "slug": "workflow-automation-auburn-wa",
+      "city": "Auburn",
+      "region": "WA",
+      "regionLong": "Washington",
+      "zip": "98002",
+      "lat": "47.3073",
+      "lng": "-122.2285",
+      "title": "Workflow Automation in Auburn, WA · Perseid Echo Creations",
+      "metaDesc": "Auburn trades and field-service businesses lose hours moving paperwork from the job to the office. I build the systems that move it. Free Fit Check.",
+      "h1": "Workflow automation for <em>Auburn</em> businesses",
+      "sub": "Most of the waste I find in a field-service business is not in the field. It is in the trip the paperwork makes afterwards.",
+      "here": [
+        "Auburn carries the south end of the Kent Valley industrial belt plus a strong base of trades and field-service businesses — contractors, equipment and repair outfits, landscaping, transport. The defining feature is that the work happens away from the office, and the record of it has to travel.",
+        "So the same pattern shows up again and again: a job is done, then someone reconstructs it later from photos, texts, a paper ticket and memory, and turns that into a schedule update, an invoice and a follow-up. Each step is a chance to lose an hour or a detail. Capturing it once, where it happens, is normally the whole build."
+      ],
+      "first": [
+        {
+          "n": "Field capture to office record",
+          "p": "Hours, photos, materials and notes taken once at the job and landing in the right place without a second pass. The highest-value fix in most field businesses."
+        },
+        {
+          "n": "Quoting and the chase after it",
+          "p": "Getting the quote out faster matters less than making sure it gets followed up. A system that never forgets is worth more here than a system that writes prettier quotes."
+        },
+        {
+          "n": "Scheduling around the day falling apart",
+          "p": "Routes and crews are set, then a job overruns. The build worth doing is the one that handles the reshuffle and tells the customer, not the one that draws the original plan."
+        }
+      ],
+      "faq": {
+        "q": "My crews are not going to use a complicated app.",
+        "a": "Then it is the wrong build. If the capture step asks a crew to do more work than the paper ticket did, it will not get used and I will have wasted your money. The bar I hold is that the person in the field does less, not more. If I cannot get under that bar for your work, I will say so."
+      }
+    },
+
+    {
+      "slug": "workflow-automation-issaquah-wa",
+      "city": "Issaquah",
+      "region": "WA",
+      "regionLong": "Washington",
+      "zip": "98027",
+      "lat": "47.5301",
+      "lng": "-122.0326",
+      "title": "Workflow Automation in Issaquah, WA · Perseid Echo Creations",
+      "metaDesc": "Owner-led clinics, home services and practices in Issaquah lose bookings to missed follow-up. I build the machinery around the calendar. Free Fit Check.",
+      "h1": "Workflow automation for <em>Issaquah</em> businesses",
+      "sub": "A booked appointment that nobody confirms is a coin flip. Most of what I build in Issaquah is the unglamorous machinery around the calendar.",
+      "here": [
+        "Issaquah's commercial base is mostly owner-led and appointment-driven: clinics and dental practices, home-services businesses, studios, trades serving the surrounding residential base, and small professional practices. Volume per business is lower than in the valley, but the value of a single booking is higher, which changes what is worth automating.",
+        "When each appointment or quote is worth a lot, the expensive failure is not the tedium — it is the miss. The no-show nobody reminded, the estimate nobody followed up, the past customer nobody asked back. That is a different build than a warehouse needs, and it usually costs less."
+      ],
+      "first": [
+        {
+          "n": "Booking, confirming, reminding",
+          "p": "The lowest-effort build with the most obvious number attached, because a recovered no-show is measurable. Worth doing first in almost any appointment business."
+        },
+        {
+          "n": "Estimate follow-up",
+          "p": "For home services especially: the estimate goes out and the follow-up depends on someone remembering. A system that runs the sequence you would have run anyway."
+        },
+        {
+          "n": "Asking past customers back",
+          "p": "The reactivation nobody has time for. Worth building only if you can say what a returning customer is worth — if you cannot, that is the first thing to work out, and it is not an automation job."
+        }
+      ],
+      "faq": {
+        "q": "We are small. Is this going to be worth it at our size?",
+        "a": "Sometimes not, and I would rather say so than sell you a build. The test is not headcount, it is whether the same job repeats on a schedule and whether a miss costs something you can name. If the answer to either is no, the Fit Check will tell you not to automate it yet, and it means it."
+      }
+    }
+  ]
+}
