@@ -1,0 +1,21 @@
+{
+  "_note": "Referral codes, one per client. Opaque and stable: a code that changes orphans every link already sent. Never encode a name, email or company — the code travels in a URL the referred person can see. Add a row when a client reaches the point where referring is a reasonable thing to ask.",
+
+  "_status": "STAGED, NOT LAUNCHED. No code here has been used in a live link. Bryan reviews the client list before any of this goes out — see refer/README.md.",
+
+  "codes": [
+    { "client": "dream-travel",    "code": "dt7q2m", "name": "",     "hub": "/dream-travel",     "live": false },
+    { "client": "rowan-report",    "code": "rr4x8k", "name": "",     "hub": "/rowan-report",     "live": false },
+    { "client": "rowan-guide",     "code": "rg5v1n", "name": "",     "hub": "/rowan-buyers-guide", "live": false },
+    { "client": "twine-and-dandy", "code": "td9h3p", "name": "",     "hub": "/twine-and-dandy",  "live": false },
+    { "client": "noemie",          "code": "np2w6r", "name": "",     "hub": "/noemie",           "live": false }
+  ],
+
+  "_fields": {
+    "client": "Slug as used in the client hub path and PMOS lifecycle card.",
+    "code": "What rides the URL. [A-Za-z0-9_-], 32 max.",
+    "name": "First name for the 'Thanks, X' line on /refer/. Leave empty rather than guessing — Bryan fills these in.",
+    "hub": "Which client hub the module is placed on.",
+    "live": "Flipped to true only once the module is actually deployed to that surface."
+  }
+}

@@ -32,6 +32,14 @@ window.pecTrack = function(){};
     var qs = new URLSearchParams(location.search);
     if (qs.get("utm_source"))   attribution.src = qs.get("utm_source");
     if (qs.get("utm_campaign")) attribution.cmp = qs.get("utm_campaign");
+
+    /* Referral code from /refer/. Sanitised to an opaque token — it is a
+       code, never a name or an email, so nothing identifying about the
+       referrer or the person they sent leaves the page. Sent under its own
+       key so it does not collide with the referrer-host fallback below. */
+    var rc = qs.get("ref");
+    if (rc) attribution.rc = rc.replace(/[^A-Za-z0-9_-]/g, "").slice(0, 32);
+
     if (!attribution.src && document.referrer) {
       var h = new URL(document.referrer).hostname;
       if (h && h !== location.hostname) attribution.ref = h;
