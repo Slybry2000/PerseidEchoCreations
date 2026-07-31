@@ -1,6 +1,6 @@
 # Ticket #64 — point content_pipe and Zernio output at the local-search terms
 
-**Status: brief only. No steering has been changed.** This document exists so whoever picks the ticket up does not have to re-derive the target list.
+**Status: DONE 2026-07-30.** Steering changed, verified end to end. What shipped is recorded at the bottom of this document; the brief above it is left as written so the reasoning stays readable.
 
 ## The problem
 
@@ -59,3 +59,55 @@ Per the checklist established when the site was repositioned (see the `pec-conte
 ## What to check before starting
 
 The 90-day constraint (sell-only, ≤8 build-hours/week through Oct 4) still applies. This is steering configuration rather than a build, so it should be small — if it starts turning into a build, that is the signal to stop and re-scope.
+
+---
+
+## What shipped, 2026-07-30
+
+### The topic pool is the question bank
+
+The factory's topic pool for PEC is the customer-question bank (`data/question-bank.json`, written through `POST /pipe/api/question-bank/perseid-echo-creations`). It was rewritten: 28 questions, 27 of them mapped to one of the eleven pages, all in the pages' own owner language ("Why do the quotes I send on Tuesday quietly turn into a no by the following week?", not "quote lifecycle automation"). The five content lanes established in the voice repoint are preserved at roughly 39 / 25 / 18 / 11 / 7. The 28th question is the direct-offer one and is deliberately unmapped, so it falls back to the homepage.
+
+Adding a topic later is a bank edit, not a code change.
+
+### The destination now follows the topic
+
+A bank entry may carry a `link`. When the factory draws that question for a master, the page is stamped on the article, and at every posting exit the caption ends at that page instead of the homepage. Five small edits made that work:
+
+| File | Change |
+|---|---|
+| `lib/question-bank.js` | a bank entry keeps an optional `link`; new `linkForQuestion(slug, q)` |
+| `server.js` | the bank save/regenerate routes carry `link` through, and an LLM regeneration keeps the destination of any question whose text it leaves unchanged |
+| `codex.js` | when a drawn question names a page, stamp it on the article (only ever fills an empty `url`) |
+| `db.js` | `setArticleUrl(aid, url)` |
+| `lib/content-lint.js` | at the exit, an article's own destination beats the standing project link **when it is on the same host** |
+
+That same-host guard is what keeps this PEC-only. Other projects' articles carry scraped source URLs on foreign hosts, so they are ignored and every other project behaves exactly as before. Verified: dream-travel with a foreign article URL still resolves to its own standing link.
+
+An unmapped PEC piece still resolves to `perseidechocreations.com` with its rotating CTA, unchanged.
+
+### Attribution was broken and is now fixed
+
+The pages set `window.PEC_PAGE`, but the collector was silently discarding it: `lib/site-events.js` had a three-item page allowlist (`home`, `partners`, `privacy`), so every `local:<slug>` / `wf:<slug>` event was dropped on arrival, along with the `cta_fitcheck`, `cta_nearby` and `cta_email` events the service pages emit. Fixed:
+
+- page ids matching `local:<slug>` / `wf:<slug>` are accepted by shape, so a new city or workflow page reports the day it ships with no code change
+- the three missing events were added
+- the stats now carry a per-page funnel keyed on the visit's **entry** page (the Fit Check lives on the homepage, so the question worth answering is which page earned the visit that finished), and `fitcheck-stats` prints it as WHICH PAGE THEY LANDED ON
+
+### Verified end to end
+
+One real master generated on the rotation path drew the quote follow-up question and stamped the page. Resolved at the posting exit it reads:
+
+```
+Find the first job worth taking off your plate → https://perseidechocreations.com/workflows/quote-follow-up/?utm_source=linkedin&utm_medium=social&utm_campaign=art_…&utm_content=ast_…
+```
+
+Following that exact URL in a browser and clicking through to the Fit Check produced, in one session: a `view` on `wf:quote-follow-up` carrying `src=linkedin` and the campaign id, a `cta_fitcheck`, a `view` on `home`, and a Fit Check start. `fitcheck-stats 1` credits it to `wf:quote-follow-up` — 1 visit, 1 started. The test article was trashed afterwards.
+
+### Deliberately not done
+
+- **`brandStructured` was not touched.** It has no API setter and requires a pm2 stop/patch/start, and the owner language now arrives through the question text, which is the dominant steer on a master anyway. Editing the audience or category sentences to say the same thing again would risk the voice for no gain.
+- **Zernio needed nothing.** The link travels inside the caption; no channel config names a destination. PEC's five channels were left alone.
+- **X caption length is fine.** The workflow URLs are longer than the homepage, but X counts any URL as 23 characters and `maxChars` in `config/platform-rules.json` is prompt guidance, not a post-time gate.
+
+Backups on the VPS: `*.bak-t64-20260730` for `db.js`, `codex.js`, `lib/question-bank.js`, `lib/content-lint.js` and `fitcheck-stats`. `server.js` and `lib/site-events.js` are git-tracked in content_pipe, so their changes are revertable there.
