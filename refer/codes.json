@@ -1,16 +1,48 @@
 {
   "_note": "Referral codes, one per client. Opaque and stable: a code that changes orphans every link already sent. Never encode a name, email or company — the code travels in a URL the referred person can see. Add a row when a client reaches the point where referring is a reasonable thing to ask.",
-
-  "_status": "MERGED TO MAIN 2026-07-30, NOT YET PUSHED. No code here has been used in a live link. Bryan reviewed the list on 2026-07-30: dream-travel (Rene) and rowan-guide (Tim) are fair to ask; the other three stay unapproved for now. Thanks stay unpriced — no percentage, no points, no bounty.",
-
+  "_status": "LAUNCHED FOR DREAM TRAVEL 2026-07-31. rc attribution fix deployed to the VPS collector and verified end to end (qatest). Module live on go.perseidechocreations.com/dream-travel only. Rowan Buyer's Guide (Tim) is approved and queued — deploy after watching Rene's hub for a fortnight, per refer/README.md.",
   "codes": [
-    { "client": "dream-travel",    "code": "dt7q2m", "name": "Rene", "hub": "/dream-travel",     "approved": true,  "live": false },
-    { "client": "rowan-report",    "code": "rr4x8k", "name": "",     "hub": "/rowan-report",     "approved": false, "live": false },
-    { "client": "rowan-guide",     "code": "rg5v1n", "name": "Tim",  "hub": "/rowan-buyers-guide", "approved": true,  "live": false },
-    { "client": "twine-and-dandy", "code": "td9h3p", "name": "",     "hub": "/twine-and-dandy",  "approved": false, "live": false },
-    { "client": "noemie",          "code": "np2w6r", "name": "",     "hub": "/noemie",           "approved": false, "live": false }
+    {
+      "client": "dream-travel",
+      "code": "dt7q2m",
+      "name": "Rene",
+      "hub": "/dream-travel",
+      "approved": true,
+      "live": true
+    },
+    {
+      "client": "rowan-report",
+      "code": "rr4x8k",
+      "name": "",
+      "hub": "/rowan-report",
+      "approved": false,
+      "live": false
+    },
+    {
+      "client": "rowan-guide",
+      "code": "rg5v1n",
+      "name": "Tim",
+      "hub": "/rowan-buyers-guide",
+      "approved": true,
+      "live": false
+    },
+    {
+      "client": "twine-and-dandy",
+      "code": "td9h3p",
+      "name": "",
+      "hub": "/twine-and-dandy",
+      "approved": false,
+      "live": false
+    },
+    {
+      "client": "noemie",
+      "code": "np2w6r",
+      "name": "",
+      "hub": "/noemie",
+      "approved": false,
+      "live": false
+    }
   ],
-
   "_fields": {
     "client": "Slug as used in the client hub path and PMOS lifecycle card.",
     "code": "What rides the URL. [A-Za-z0-9_-], 32 max.",

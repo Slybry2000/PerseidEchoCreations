@@ -1,6 +1,14 @@
 # Referral and partner loops
 
-**STAGED, NOT LAUNCHED.** Built 2026-07-30 on branch `referral-loops`. Nothing is on `main`, nothing is deployed, no link has been sent, no client surface has been touched. Ticket #65.
+**LIVE FOR ONE CLIENT since 2026-07-31** — Dream Travel (Rene). Everything else stays staged. Ticket #65.
+
+## Status, 2026-07-31 — the blocker cleared and the first module shipped
+
+- **The rc ingest fix is deployed and verified.** `content_pipe/lib/site-events.js` on the VPS now accepts `rc` (own field, 32-char cap, never folded into `src`), credits the session to it in the rollup, and returns a `referrals` map with no `(direct)` bucket. `fitcheck-stats` gained a WHO SENT THEM section. Backups: `site-events.js.bak-rc-20260731`, `fitcheck-stats.bak-rc-20260731`.
+- **Verified end to end against production:** one browser visit through `?ref=qatest` → `WHO SENT THEM: qatest — 1 visit`. That single `qatest` row is test data; ignore it in reports.
+- **The module is live on Rene's hub only.** `PMOS/scripts/build-client-hub.js` gained a `REFER` map (dream-travel only) and renders the pass-it-on block under the document list. Backup: `build-client-hub.js.bak-refer-20260731`. Verified on `go.perseidechocreations.com/dream-travel` (block present, link carries `?r=dt7q2m&n=Rene`) and verified ABSENT on the other four hubs.
+- **Gotcha for future checks:** the pretty paths 308-redirect to a trailing slash. `curl` without `-L` sees an empty body and reports the module missing when it is not.
+- **Tim (Rowan Buyer's Guide) is approved and queued.** Per the sequence below: watch Rene's hub for a fortnight first, then add `"rowan-buyers-guide": { code: "rg5v1n", name: "Tim" }` to the `REFER` map and re-run `refresh-client-hubs.sh`.
 
 ## The gap this closes
 
