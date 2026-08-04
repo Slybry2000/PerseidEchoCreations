@@ -953,6 +953,20 @@ window.pecTrack = function(){};
         navigator.msDoNotTrack === "1") return;
   } catch (e) { return; }
 
+  /* Traffic that is not a stranger is MARKED, not blocked, so the funnel can
+     describe visitors only. navigator.webdriver covers every driven browser;
+     ?qa=1 sets a sticky marker for a real browser doing hand testing, and
+     ?qa=0 clears it again. Nothing about the visitor is stored either way —
+     the flag says "do not count this as a stranger" and nothing else. */
+  var qa = false;
+  try {
+    if (navigator.webdriver === true) qa = true;
+    var qaFlag = new URLSearchParams(location.search).get("qa");
+    if (qaFlag === "1") localStorage.setItem("pec_qa", "1");
+    else if (qaFlag === "0") localStorage.removeItem("pec_qa");
+    if (localStorage.getItem("pec_qa") === "1") qa = true;
+  } catch (e) { /* a locked-down browser just counts as an ordinary visitor */ }
+
   var ENDPOINT = "https://approve.perseidechocreations.com/_e";
   var PAGE = "partners";
 
@@ -982,6 +996,7 @@ window.pecTrack = function(){};
   function send(name, extra) {
     try {
       var body = { e: name, s: sid, p: PAGE, d: device };
+      if (qa) body.qa = 1;
       if (first) { for (var k in attribution) body[k] = attribution[k]; first = false; }
       if (extra) for (var j in extra) body[j] = extra[j];
       var payload = JSON.stringify(body);
