@@ -1,6 +1,7 @@
 {
   "_note": "Referral codes, one per client. Opaque and stable: a code that changes orphans every link already sent. Never encode a name, email or company — the code travels in a URL the referred person can see. Add a row when a client reaches the point where referring is a reasonable thing to ask.",
-  "_status": "LAUNCHED FOR DREAM TRAVEL 2026-07-31. rc attribution fix deployed to the VPS collector and verified end to end (qatest). Module live on go.perseidechocreations.com/dream-travel only. Rowan Buyer's Guide (Tim) is approved and queued — deploy after watching Rene's hub for a fortnight, per refer/README.md.",
+  "_status": "LAUNCHED FOR DREAM TRAVEL 2026-07-31. Module live on go.perseidechocreations.com/dream-travel only. Rowan Buyer's Guide (Tim) is approved and queued — deploy after watching Rene's hub for a fortnight, per refer/README.md.",
+  "_verified": "2026-08-05: whole chain re-walked live, hub link -> /refer/?r= -> ?ref= on the site -> rc on the event -> the code in the report. A dt7q2m probe landed in the store and appeared under WHO SENT THEM; the probe row was then deleted so Rene's count stays honest. NOTE for whoever reads this next: the collector answers 204 BEFORE it stores, and refuses any post without an Origin of the live site. A curl probe therefore returns 204 and writes nothing — that is correct behaviour, not an outage. `fitcheck-stats` now prints the refusal count so the two can be told apart. The live store is Projects/content_pipe/data/_state/site-events/; /home/deploy/_fstage1/... is a frozen copy and reading it will fake a data-loss incident.",
   "codes": [
     {
       "client": "dream-travel",
