@@ -3,39 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Partners &middot; Perseid Echo Creations</title>
-<meta name="description" content="For coaches, consultants, and fractional operators. You keep the advisory relationship; I build the system you recommended and stay accountable through launch. Refer, collaborate, or embed.">
-<link rel="canonical" href="https://perseidechocreations.com/partners.html">
+<title>Page not found · Perseid Echo Creations</title>
+<meta name="description" content="That page is not here. Run the 60-second Workflow Fit Check instead.">
+<meta name="robots" content="noindex">
 <meta name="theme-color" content="#0B1018">
 <meta name="color-scheme" content="dark">
-<meta name="author" content="Bryan Piard">
 
-<link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Perseid Echo Creations">
-<meta property="og:title" content="Turn your recommendations into working systems">
-<meta property="og:description" content="You already know what the client needs to change. I build the system that makes it happen and stay accountable through launch.">
-<meta property="og:url" content="https://perseidechocreations.com/partners.html">
-<meta property="og:image" content="https://perseidechocreations.com/art/og-map.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="A printed Workflow Opportunity Map open on a workbench under a lamp.">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Turn your recommendations into working systems">
-<meta name="twitter:description" content="You already know what the client needs to change. I build the system that makes it happen and stay accountable through launch.">
-<meta name="twitter:image" content="https://perseidechocreations.com/art/og-map.jpg">
-<meta name="twitter:image:alt" content="A printed Workflow Opportunity Map open on a workbench under a lamp.">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
 
 
 
@@ -1432,20 +1414,13 @@ main { display: block; }
   text-decoration: none;
   white-space: nowrap;
 }
-/* The real Perseid Echo mark replaces the orange square that stood in for it.
-   It is the only piece of proprietary geometry the brand owns, so it earns the
-   top-left of the page. Drawn as a real <img> rather than a CSS mask so the
-   mark's own surface shows and there is no dependency on mask support. */
-.nav-hero-brand__sigil{
-  flex: none;
-  width: 1.34em;
-  height: auto;
-  align-self: baseline;
-  transform: translateY(2px);
-  filter: drop-shadow(0 0 6px color-mix(in oklch, var(--flame) 38%, transparent));
-}
 .nav-hero-brand::before{
-  content: none;
+  content: "";
+  flex: none;
+  width: var(--s-2);
+  height: var(--s-2);
+  border-radius: var(--r-1);
+  background: var(--accent);
   /* `center` centred the mark on the flex LINE, not on the wordmark — 2px low
      at desktop and worse again at the 44px touch target. Hang it off the type
      instead: an empty flex item baseline-aligns on its bottom edge, so this
@@ -1453,11 +1428,12 @@ main { display: block; }
      container height. */
   align-self: baseline;
   transform: translateY(-1px);
-  /* The lamp still has to touch the mark, but a box-shadow is painted on the
-     element BOX — against a masked silhouette that reads as a square halo
-     around a round mark. drop-shadow follows the alpha instead, so the bloom
-     takes the shape of the spiral. */
-  filter: drop-shadow(0 0 6px color-mix(in oklch, var(--flame) 38%, transparent));
+  /* ROUND 7 — a hard 1px ring at 35% flame over --shop resolves to about L 0.34,
+     far darker than the 0.702 mark it surrounds, and on an 8px square 1px is
+     25% of the mark's linear size — so the site's only piece of brand geometry
+     wore a dark rust bevel that visibly softened it. An outward bloom instead:
+     the mark keeps its edge and the lamp still touches it. */
+  box-shadow: 0 0 7px 0 color-mix(in oklch, var(--flame) 40%, transparent);
 }
 .nav-hero-links{
   display: flex;
@@ -3473,7 +3449,6 @@ main { display: block; }
   box-shadow: inset 0 0 0 var(--hair-w) var(--accent);
 }
 .fitcheck-capture__error { color: var(--accent); font-weight: var(--w-med); }
-.fitcheck-capture__done  { font-weight: var(--w-med); }
 .fitcheck-restart { margin-top: var(--s-6); }
 
 
@@ -6229,19 +6204,6 @@ main { display: block; }
   color: var(--fg);
 
   max-width: none;
-
-  /* The mark sits with the wordmark rather than above it, so the footer closes
-     on one lockup instead of two stacked brand objects. */
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-}
-/* Full-colour here (not masked like the header): at this size the mark's own
-   surface — the slight texture of the physical sign — is worth showing. */
-.pc-mark__sigil {
-  flex: none;
-  width: 1.5em;
-  height: auto;
 }
 .pc-footer__place { margin-top: var(--s-4); font-size: var(--fs-meta); color: var(--fg-faint); }
 .pc-social { display: flex; gap: var(--s-3); margin-top: var(--s-5); }
@@ -6706,523 +6668,85 @@ main { display: block; }
   border-right-color: var(--ctl-right-h);
   border-bottom-color: oklch(0.205 0.018 265 / 0.46);
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   PARTNERS — page-local layer.
-   Everything above this line is the homepage's system, unchanged. Nothing
-   below invents a token, a shadow angle or a tier: the lamp is still upper
-   right, shadows still fall down-and-left at x = -0.55y, and every raised
-   object is T1 (--surface-1) or T2 (--surface-2) with the matching rim.
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* THE HEADER HAS NO PHOTOGRAPH TO SIT ON HERE. On the homepage the bar starts
-   transparent over the hero plate and solidifies on scroll. This page opens on
-   flat ground, so the bar is simply always in its solid state — same class,
-   same paint, no JS required to reach it. */
-.nav-hero-header{
-  background: color-mix(in oklch, var(--shop) 92%, transparent);
-  border-bottom-color: var(--edge);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
-  backdrop-filter: saturate(140%) blur(10px);
-}
-.nav-hero-header::before{ opacity: 0; }
-.nav-hero-links a[aria-current="page"]{ color: var(--fg); }
-.nav-hero-links a[aria-current="page"]::after{ transform: scaleX(1); }
-
-/* the 12-column section-head grammar, extended to this page's sections */
-@media (min-width: 1024px){
-  .pt-sec > .container > .section__head{
-    display: grid;
-    grid-template-columns: var(--grid-12);
-    column-gap: var(--grid-gap);
-    row-gap: var(--gap-kicker);
-    max-width: none;
-  }
-  .pt-sec > .container > .section__head > *{ margin-top: 0; }
-  .pt-sec > .container > .section__head > .kicker{ grid-column: 1 / span 12; }
-  .pt-sec > .container > .section__head > h2{ grid-column: 1 / span 6; max-width: none; }
-  .pt-sec > .container > .section__head > .lede{
-    grid-column: 8 / -1;
-    align-self: end;
-    max-width: none;
-  }
-}
-
-/* ── THE OPENING ──────────────────────────────────────────────────────────
-   No hero photograph on this page: the visitor arrived from the homepage and
-   has already seen the bench. What they need first is the sentence. The bloom
-   from --lit carries the lamp; the stat rail underneath is the same object the
-   homepage hero closes with, rebuilt on the ground rather than on the plate. */
-.pt-hero{ padding-block: calc(var(--sec-y) + var(--s-6)) var(--sec-y); }
-@media (max-width: 768px){
-  /* no photograph to fill it: the homepage's hero air is doing a job here that
-     nothing is doing on this page, so the phone opens on the sentence. */
-  .pt-hero{ padding-block: var(--s-8) var(--sec-y-sm); }
-}
-/* THE LONGEST WORD ON THE PAGE IS 15 CHARACTERS. At the shared display size a
-   390px column cannot set "recommendations" — it overhangs the gutter by ~20px.
-   The headline keeps display presence and stops overflowing; the desktop end of
-   the ramp is untouched. */
-@media (max-width: 560px){
-  .pt-hero h1{ font-size: clamp(2.125rem, 8.9vw, 2.75rem); letter-spacing: -0.02em; }
-}
-/* This page's nav CTA is a word longer than the homepage's, so the wordmark
-   needs its short form one breakpoint earlier. */
-@media (max-width: 430px){
-  .nav-hero-brand__full { display: none; }
-  .nav-hero-brand__abbr { display: inline; }
-}
-.pt-hero__grid{
-  display: grid;
-  grid-template-columns: var(--grid-12);
-  column-gap: var(--grid-gap);
-  row-gap: var(--s-6);
-  align-items: end;
-}
-.pt-hero__copy{ grid-column: 1 / span 12; }
-.pt-hero__copy > * + *{ margin-top: var(--gap-head); }
-.pt-hero__copy .kicker + h1{ margin-top: var(--gap-kicker); }
-.pt-hero h1{ max-width: 17ch; }
-.pt-hero__ledes{ grid-column: 1 / span 12; }
-.pt-hero__ledes > * + *{ margin-top: var(--s-4); }
-@media (min-width: 1024px){
-  .pt-hero__copy { grid-column: 1 / span 6; }
-  .pt-hero__ledes{ grid-column: 8 / -1; }
-}
-.pt-hero__cta{ margin-top: var(--s-7); }
-.pt-hero__note{
-  margin-top: var(--s-5);
-  position: relative;
-  padding-left: var(--s-4);
-  max-width: 56ch;
-  font-size: var(--fs-meta);
-  line-height: var(--lh-body);
-  color: var(--fg-faint);
-}
-.pt-hero__note::before{
-  content: "";
-  position: absolute;
-  left: 0; top: 0.42em; bottom: 0.42em;
-  width: var(--hair-w);
-  background: var(--edge-strong);
-}
-
-/* THE ASSURANCE RAIL. Same construction as the homepage hero's stat row:
-   a hairline above, cells divided by --rail-rule, mono label under a
-   heading-weight line. */
-.pt-rail{
-  margin-top: var(--sec-y-sm);
-  padding-top: var(--s-6);
-  border-top: var(--hair-w) solid var(--edge-strong);
-}
-.pt-rail__list{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--s-5);
-  margin: 0;
-}
-@media (max-width: 700px){
-  .pt-rail__list{ grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
-}
-.pt-rail__cell{ position: relative; padding-left: var(--s-6); }
-.pt-rail__cell:first-child{ padding-left: 0; }
-.pt-rail__cell + .pt-rail__cell::before{
-  content: "";
-  position: absolute;
-  left: 0; top: 0.15em; bottom: 0.15em;
-  width: var(--hair-w);
-  background: var(--rail-rule);
-}
-@media (max-width: 700px){
-  .pt-rail__cell{ padding-left: 0; padding-top: var(--s-4); }
-  .pt-rail__cell + .pt-rail__cell::before{
-    left: 0; right: 0; top: 0; bottom: auto;
-    width: auto; height: var(--hair-w);
-  }
-}
-.pt-rail__t{
-  margin: 0;
-  font-size: var(--fs-h3);
-  font-weight: var(--w-semi);
-  line-height: var(--lh-tight);
-  letter-spacing: var(--tr-h3);
-  color: var(--fg);
-}
-.pt-rail__d{
-  margin: var(--s-2) 0 0;
-  font-size: var(--fs-meta);
-  line-height: var(--lh-body);
-  color: var(--fg-mute);
-  max-width: 34ch;
-}
-
-/* ── THE GAP ──────────────────────────────────────────────────────────────
-   The six things the reader has already told a client. A ruled list, not
-   cards: these are lines from a transcript, and cards would over-dignify them. */
-/* ONE COLUMN, six ruled rows — the same grammar as the homepage's .pc-points.
-   Two columns were tried first and were wrong for a mechanical reason: two of
-   these six lines wrap and four do not, so the paired row rules landed on
-   different baselines and the section grew a set of broken hairlines. One
-   column, one rule per line, every rule terminating on the container rail. */
-.pt-said{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: var(--hair-w) solid var(--edge);
-}
-.pt-said li{
-  position: relative;
-  padding: var(--s-4) 0 var(--s-4) var(--s-6);
-  border-bottom: var(--hair-w) solid var(--edge);
-  color: var(--fg-mute);
-  line-height: var(--lh-body);
-}
-/* the ROW runs to the container rail like every other rule on the page; the
-   TEXT keeps its measure. Capping the <li> itself stopped the hairline at 68ch
-   while the kicker rule above it ran to the rail. */
-.pt-said li > span{ display: block; max-width: 68ch; }
-.pt-said li::before{
-  content: "";
-  position: absolute;
-  left: var(--s-2);
-  top: calc(0.5em * var(--lh-body) + var(--s-4) - 1px);
-  width: var(--s-3);
-  height: var(--hair-w-2);
-  background: var(--accent);
-}
-.pt-close{
-  margin-top: var(--s-7);
-  max-width: var(--measure);
-  color: var(--fg-mute);
-}
-.pt-close b{ color: var(--fg); }
-
-/* ── WHO HANDLES WHAT ─────────────────────────────────────────────────────
-   Two panels, deliberately unequal in elevation: the half I own is the
-   floating tier, the half you own lies flat on the bench. Same lamp. */
-.pt-split{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--s-5);
-  align-items: start;
-  margin-top: var(--gap-copy);
-}
-@media (max-width: 900px){ .pt-split{ grid-template-columns: minmax(0, 1fr); } }
-.pt-half{
-  padding: var(--s-6);
-  border-radius: var(--r-4);
-  background: var(--surface-1);
-  border: var(--hair-w) solid var(--edge);
-  box-shadow: var(--e-1);
-}
-.pt-half--mine{
-  background: var(--surface-2);
-  border-color: var(--edge-strong);
-  box-shadow: var(--e-2);
-}
-@media (max-width: 1024px){ .pt-half{ padding: var(--s-5); } }
-.pt-half__h{ font-size: var(--fs-h3); margin: 0; }
-.pt-half__sub{
-  margin: var(--s-3) 0 0;
-  color: var(--fg-faint);
-  font-size: var(--fs-meta);
-  line-height: var(--lh-body);
-}
-.pt-half__list{
-  margin: var(--s-5) 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: var(--hair-w) solid var(--edge);
-}
-.pt-half__list li{
-  padding: var(--s-3) 0;
-  border-bottom: var(--hair-w) solid var(--edge);
-  color: var(--fg-mute);
-  line-height: var(--lh-tight);
-}
-.pt-half__list li:last-child{ border-bottom: 0; padding-bottom: 0; }
-
-/* ── THE STANDARD (paper) ─────────────────────────────────────────────────
-   A document, so it is set on paper and given a printed form's furniture:
-   a ruled head with the form number, then seven numbered clauses. */
-.pt-doc__inner{
-  display: grid;
-  grid-template-columns: var(--grid-12);
-  column-gap: var(--grid-gap);
-  row-gap: var(--s-7);
-}
-.pt-doc__copy{ grid-column: 1 / span 12; }
-.pt-doc__sheet{ grid-column: 1 / span 12; }
-@media (min-width: 1024px){
-  .pt-doc__copy { grid-column: 1 / span 5; position: sticky; top: calc(var(--s-9) + var(--s-4)); align-self: start; }
-  .pt-doc__sheet{ grid-column: 7 / span 6; }
-}
-.pt-doc__copy > * + *{ margin-top: var(--gap-head); }
-.pt-doc__copy .kicker + *{ margin-top: var(--gap-kicker); }
-.pt-doc__note{ max-inline-size: var(--measure); color: var(--fg-mute); }
-.pt-doc__link{
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  margin-top: var(--s-5);
-  font-weight: var(--w-med);
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: var(--hair-w) solid currentColor;
-}
-.pt-doc__link:hover{ color: var(--press); }
-.pt-doc__link:active{ color: var(--press); transform: translateY(1px); }
-
-.pt-sheet{
-  background: var(--surface-2);
-  border-radius: var(--r-4);
-  border-top: var(--hair-w) solid var(--rim2-top);
-  border-right: var(--hair-w) solid var(--rim2-right);
-  border-left: var(--hair-w) solid var(--rim2-left);
-  border-bottom: var(--hair-w) solid var(--rim2-bottom);
-  box-shadow: var(--e-2);
-  overflow: clip;
-}
-.pt-sheet__head{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--s-3);
-  padding: var(--s-5) var(--s-6);
-  border-bottom: var(--hair-w-2) solid var(--edge-strong);
-  background: var(--surface-1);
-}
-.pt-sheet__title{
-  margin: 0;
-  font-size: var(--fs-lede);
-  font-weight: var(--w-semi);
-  letter-spacing: var(--tr-lede);
-  color: var(--fg);
-}
-.pt-clauses{
-  margin: 0;
-  padding: 0 var(--s-6);
-  list-style: none;
-  counter-reset: ptc;
-}
-@media (max-width: 560px){
-  .pt-sheet__head{ padding-inline: var(--s-5); }
-  .pt-clauses{ padding-inline: var(--s-5); }
-  /* a 48px number gutter is a third of the text column on a phone */
-  .pt-clauses > li{ grid-template-columns: var(--s-6) minmax(0, 1fr); column-gap: var(--s-3); }
-}
-.pt-clauses > li{
-  counter-increment: ptc;
-  display: grid;
-  grid-template-columns: var(--s-7) minmax(0, 1fr);
-  column-gap: var(--s-4);
-  padding: var(--s-5) 0;
-  border-bottom: var(--hair-w) solid var(--edge);
-}
-.pt-clauses > li:last-child{ border-bottom: 0; }
-.pt-clauses > li::before{
-  content: "0" counter(ptc);
-  font-family: var(--f-mono);
-  font-size: var(--fs-label);
-  font-weight: var(--w-med);
-  letter-spacing: var(--tr-label);
-  line-height: 1.9;
-  color: var(--fg-faint);
-}
-.pt-clause__t{
-  margin: 0;
-  font-size: var(--fs-lede);
-  font-weight: var(--w-semi);
-  line-height: var(--lh-tight);
-  letter-spacing: var(--tr-lede);
-  color: var(--fg);
-}
-.pt-clause__b{
-  margin: var(--s-2) 0 0;
-  color: var(--fg-mute);
-  max-width: 60ch;
-}
-.pt-doc__payoff{
-  grid-column: 1 / -1;
-  margin: 0;
-  padding-top: var(--s-6);
-  border-top: var(--hair-w) solid var(--edge);
-  font-size: var(--fs-lede);
-  line-height: var(--lh-lede);
-  letter-spacing: var(--tr-lede);
-  color: var(--fg);
-  max-width: 68ch;
-}
-
-/* ── FIT CARDS ────────────────────────────────────────────────────────────*/
-.pt-fits{ margin-top: var(--gap-copy); }
-.pt-fit{
+</style>
+<style>
+/* The 404 is one band on the shop floor, held at the same rail as every other
+   section on the site. No new tokens, no new components. */
+.nf {
   display: flex;
   flex-direction: column;
-  gap: var(--s-3);
-  padding: var(--s-6);
-  background: var(--surface-1);
-  border: var(--hair-w) solid var(--edge);
-  border-top-color: var(--rim1-top);
-  border-right-color: var(--rim1-right);
-  border-left-color: var(--rim1-left);
-  border-bottom-color: var(--rim1-bottom);
-  border-radius: var(--r-4);
-  box-shadow: var(--e-1);
-  transition: transform var(--t-ui) var(--e-out), box-shadow var(--t-ui) var(--e-out);
+  justify-content: center;
+  /* ROUND 7 — the header is 65px, not 64: --s-8 plus its own 1px bottom
+     hairline. Subtracting only --s-8 made the document exactly 1px taller than
+     the viewport at every size (1440x900 -> 901, 1920x1080 -> 1081,
+     1280x800 -> 801), so the one page whose whole design is an empty frame was
+     also the one page that scrolled for no reason. */
+  min-height: calc(100svh - var(--s-8) - var(--hair-w));
+  padding-block: var(--sec-y);
 }
-@media (max-width: 1024px){ .pt-fit{ padding: var(--s-5); } }
-.pt-fit__t{ margin: 0; font-size: var(--fs-h3); }
-.pt-fit__b{ margin: 0; color: var(--fg-mute); }
-@media (min-width: 769px){
-  .pt-fits{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
-/* ── FORM (paper) ─────────────────────────────────────────────────────────*/
-.pt-form-grid{
-  display: grid;
-  grid-template-columns: var(--grid-12);
-  column-gap: var(--grid-gap);
-  row-gap: var(--s-7);
-  align-items: start;
-}
-.pt-form-grid > .section__head{ grid-column: 1 / span 12; margin-bottom: 0; }
-.pt-form-wrap{ grid-column: 1 / span 12; }
-@media (min-width: 1024px){
-  .pt-form-grid > .section__head{ grid-column: 1 / span 5; position: sticky; top: calc(var(--s-9) + var(--s-4)); }
-  .pt-form-wrap{ grid-column: 7 / span 6; }
-}
-.pt-form{ padding: var(--s-6); display: grid; gap: var(--s-5); }
-@media (max-width: 560px){ .pt-form{ padding: var(--s-5); } }
-.pt-f{ display: grid; gap: var(--s-2); }
-.pt-l{
-  font-family: var(--f-mono);
-  font-size: var(--fs-label);
-  font-weight: var(--w-med);
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--fg-faint);
-}
-.pt-in{
+.nf__code { color: var(--fg-faint); }
+/* FIX R2-1 — the whole page hung off the left rail of a 1280 container, so a
+   ~700px block sat in the top-left of an otherwise empty 1440 frame and the
+   right half carried nothing at all. The block is a real column now, centred
+   in the container: left-set type, but the object itself is placed. */
+.nf__box {
   width: 100%;
-  font: inherit;
-  font-size: var(--fs-body);
-  color: var(--fg);
-  background: var(--surface);
-  border: var(--hair-w) solid var(--control-edge);
-  border-top-color: var(--ctl-top);
-  border-right-color: var(--ctl-right);
-  border-left-color: var(--ctl-left);
-  border-bottom-color: var(--ctl-bottom);
-  border-radius: var(--r-3);
-  padding: var(--s-3) var(--s-4);
-  min-height: 3rem;
-  transition: border-color var(--t-ui) var(--e-out), background-color var(--t-ui) var(--e-out);
+  /* ROUND 9 — 38rem, not 44rem. The kicker here is kicker--ruled, and on the
+     index that component works because its rule terminates exactly where the
+     body copy beside it also reaches (rule 1360, body 1346). In this centred
+     column that datum did not exist: at 1440 the rule ran 368 -> 1072 (704px)
+     while the h1 ended at 947.6, the lede wrapped at 934.1 and the button row —
+     the widest real element in the column — ended at 972.3. The page's one
+     horizontal statement overshot everything it was supposed to align to by
+     100px. 38rem = 608 caps the column ON the button row, so the rule is a datum
+     again rather than a line pointing at nothing. */
+  max-width: 38rem;
+  margin-inline: auto;
 }
-textarea.pt-in{ min-height: 8.5rem; resize: vertical; line-height: var(--lh-body); }
-.pt-in::placeholder{ color: var(--fg-faint); }
-.pt-in:hover{
-  border-top-color: var(--ctl-top-h);
-  border-right-color: var(--ctl-right-h);
-  border-left-color: var(--ctl-left-h);
-  border-bottom-color: var(--ctl-bottom-h);
+.nf h1 {
+  margin-top: var(--gap-kicker);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tr-h2);
+  font-weight: var(--w-h2);
+  max-width: var(--measure-h2);
 }
-.pt-note{
-  margin: 0;
-  font-size: var(--fs-meta);
-  line-height: var(--lh-body);
-  color: var(--fg-faint);
-}
-.pt-note a{ color: var(--fg-mute); }
-.pt-err{
-  margin: 0;
-  font-size: var(--fs-meta);
-  line-height: var(--lh-body);
-  color: var(--accent);
-  font-weight: var(--w-med);
-}
-.pt-done{
-  margin: 0;
-  font-size: var(--fs-lede);
-  line-height: var(--lh-lede);
-  color: var(--fg);
-}
-.pt-honey{
-  position: absolute !important;
-  width: 1px; height: 1px;
-  overflow: hidden; clip-path: inset(50%);
-  white-space: nowrap;
-}
-.pt-mail{
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s-2);
-  margin: 0;
-  padding-top: var(--s-6);
-  border-top: var(--hair-w) solid var(--edge);
-  color: var(--fg-mute);
-  font-size: var(--fs-meta);
-}
-.pt-mail svg{ flex: 0 0 auto; color: var(--fg-faint); }
-
-/* the footer's legal line on this page is a partner statement, not the
-   homepage's figures disclaimer — same slot, same type. */
-.pt-flight{ margin-top: var(--gap-copy); }
-/* No price column on this page — the homepage ladder's third track carried
-   terms, and an empty 300px track is a hole, not a column. Two tracks, and the
-   row rule still terminates on the container rail like every other rule here. */
-.pt-flight .ladder-step{ grid-template-columns: var(--s-6) minmax(0, 1fr); }
-.pt-flight .ladder-step[data-ladder-step="5"]{ margin-left: calc(var(--ladder-tread) * 4); }
-@media (max-width: 700px){
-  .pt-flight .ladder-step[data-ladder-step]{ margin-left: 0; }
-}
-
-/* TABLET, 700–1024. The homepage's third plan card carries a price block, so
-   its tablet composition splits into a 5/7 grid with four named areas. This
-   page's third card has no price, which left area 2/1 empty and read as a
-   broken column. Same full-width row, ordinary stacked card. */
-@media (min-width: 700px) and (max-width: 1024px){
-  #ways .pc-plans > .pc-plan:last-of-type{
-    display: flex;
-    flex-direction: column;
-    grid-column: 1 / -1;
-  }
-}
-
+.nf p { margin-top: var(--gap-head); color: var(--fg-mute); }
+.nf .btn-row { margin-top: var(--s-7); }
+/* ROUND 7 — THE 404 HAD NO FOOTER. The index footer carries the phone number,
+   the email, both social links, the figures disclaimer and the Renton / Bryan
+   Piard line; none of it existed here, so the only recovery routes off an error
+   page were two buttons. It is the same footer, with the fragment links pointed
+   back at the root. The empty frame still fills the fold exactly; the footer is
+   the terminus below it. */
 </style>
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
-
 <header class="nav-hero-header" id="nav-hero-header">
   <nav class="container nav-hero-bar" aria-label="Primary">
-    <a class="nav-hero-brand" href="index.html">
-      <img class="nav-hero-brand__sigil" src="art/pec-mark-128.webp" width="128" height="118" alt="" aria-hidden="true" decoding="async">
+    <a class="nav-hero-brand" href="/#top">
       <span class="nav-hero-brand__full">Perseid Echo Creations</span><span class="nav-hero-brand__abbr"><abbr title="Perseid Echo Creations">PEC</abbr></span>
     </a>
     <div class="nav-hero-links" id="nav-hero-links">
-      <a href="index.html">For business owners</a>
-      <a href="index.html#proof">Proof</a>
-      <a href="index.html#pricing">Pricing</a>
-      <a href="partners.html" aria-current="page">Partners</a>
-      <a href="index.html#faq">Straight answers</a>
-      <a href="local/">Areas served</a>
+      <a href="/#how-this-goes">How this goes</a>
+      <a href="/#proof">Proof</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#partners">Partners</a>
+      <a href="/#faq">Straight answers</a>
+      <a href="/local/">Areas served</a>
       <div class="nav-hero-sheet-foot">
         <p class="kicker nav-hero-sheet-foot__k">Perseid Echo Creations · Renton, WA</p>
-        <a class="btn btn--primary" href="#talk">Bring me a client workflow</a>
+        <a class="btn btn--primary" href="/#fc-sheet">Run the 60-second Fit Check</a>
         <p class="nav-hero-sheet-foot__c">
           <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a>
           <a class="nowrap" href="tel:+14252433473">425-243-3473</a>
         </p>
       </div>
     </div>
-    <a class="btn btn--secondary btn--sm" href="#talk">Start here</a>
+    <a class="btn btn--secondary btn--sm" href="/#fc-sheet">Fit Check</a>
     <button class="nav-hero-menu" id="nav-hero-menu" type="button" aria-label="Menu"
             aria-expanded="false" aria-controls="nav-hero-links" hidden>
       <span class="nav-hero-menu__bars" aria-hidden="true"></span>
@@ -7231,498 +6755,26 @@ textarea.pt-in{ min-height: 8.5rem; resize: vertical; line-height: var(--lh-body
   </nav>
 </header>
 
-<main id="main" tabindex="-1">
-
-<!-- ═══ THE OPENING ═══════════════════════════════════════════════════════ -->
-<section class="section lit pt-hero" id="top" aria-labelledby="pt-h1">
-  <div class="container">
-
-    <div class="pt-hero__grid">
-      <div class="pt-hero__copy rise">
-        <p class="kicker kicker--ruled kicker--quiet">For coaches, consultants, and fractional operators</p>
-        <h1 id="pt-h1" data-optic="t">Turn your recommendations into working systems.</h1>
-      </div>
-
-      <div class="pt-hero__ledes rise">
-        <p class="lede">
-          You already know what the client needs to change. I build the system that makes it happen
-          and stay accountable through launch.
-        </p>
-        <p class="lede">
-          You keep the advisory relationship, the strategy, and the context that made the
-          recommendation right in the first place.
-        </p>
-
-        <div class="btn-row pt-hero__cta">
-          <a class="btn btn--primary btn--lg" href="#talk">Bring me a client workflow
-            <svg class="btn__chev" viewBox="0 0 8 12" fill="none" aria-hidden="true">
-              <path d="M1.5 1.5 6 6l-4.5 4.5" stroke="currentColor" stroke-width="2.6"
-                    stroke-linecap="square" stroke-linejoin="miter"/>
-            </svg>
-          </a>
-          <a class="btn btn--secondary btn--lg" href="#ways">See the three ways to work together</a>
-        </div>
-
-        <p class="pt-hero__note">
-          Nothing is quoted, scoped, or promised to your client until I have reviewed the actual workflow.
-        </p>
-      </div>
-    </div>
-
-    <div class="pt-rail rise" aria-labelledby="pt-rail-h">
-      <h2 class="visually-hidden" id="pt-rail-h">Three ways to work together: refer, collaborate, embed</h2>
-      <dl class="pt-rail__list">
-        <div class="pt-rail__cell">
-          <dt class="pt-rail__t">One person</dt>
-          <dd class="pt-rail__d">reviews it, builds it, and picks up the phone</dd>
-        </div>
-        <div class="pt-rail__cell">
-          <dt class="pt-rail__t">Written</dt>
-          <dd class="pt-rail__d">scope and responsibilities agreed before anything is sold</dd>
-        </div>
-        <div class="pt-rail__cell">
-          <dt class="pt-rail__t">Yours</dt>
-          <dd class="pt-rail__d">your advisory relationship stays yours throughout</dd>
-        </div>
-      </dl>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══ THE GAP ═══════════════════════════════════════════════════════════ -->
-<section class="section pt-sec" id="gap" aria-labelledby="pt-gap-h">
-  <div class="container">
-    <header class="section__head rise">
-      <p class="kicker kicker--quiet kicker--ruled">The gap</p>
-      <h2 id="pt-gap-h" data-optic="t">The advice is right. The system never gets built.</h2>
-      <p class="lede">
-        You have probably already told a client some version of the list below. Knowing it should
-        happen is rarely the hard part, and hearing it again next quarter is not what changes anything.
-      </p>
-    </header>
-
-    <ul class="pt-said rise">
-      <li><span>Follow up with every lead, every time</span></li>
-      <li><span>Write down the process that lives in one person&rsquo;s head</span></li>
-      <li><span>Stop retyping the same details into three different tools</span></li>
-      <li><span>Say the same thing to every customer, not whichever version somebody remembers</span></li>
-      <li><span>Get the weekly numbers without losing a Friday afternoon to them</span></li>
-      <li><span>Take the repetitive administrative work off skilled people</span></li>
-    </ul>
-
-    <p class="pt-close lede rise">
-      The hard part is getting it built, connected, adopted, and kept running after you have moved
-      on to the next piece of work. <b>That is the implementation gap I fill.</b>
-    </p>
-  </div>
-</section>
-
-<!-- ═══ THREE WAYS ════════════════════════════════════════════════════════ -->
-<section class="section on-paper pt-sec" id="ways" aria-labelledby="pt-ways-h">
-  <div class="container">
-    <header class="section__head rise">
-      <p class="kicker kicker--quiet kicker--ruled">Ways to work together</p>
-      <h2 id="pt-ways-h" data-optic="t">Three ways to work together.</h2>
-      <p class="lede">
-        Which one fits depends on how involved you want to be, and how much of the client
-        relationship you want to keep carrying yourself. You can use different ones for different clients.
-      </p>
-    </header>
-
-    <ul class="grid grid-3 pc-plans rise">
-      <li class="pc-plan pc-plan--lead">
-        <div>
-          <span class="pc-plan__step">Way 01</span>
-          <h3 class="pc-plan__title" data-optic="round">Refer</h3>
-        </div>
-        <p class="pc-plan__body">
-          You make the introduction. I scope, contract, build, and support the system directly with
-          the client. You stay informed at whatever level the two of you want.
-        </p>
-        <ul class="pc-plan__list">
-          <li>Best when you have spotted a strong opportunity and would rather not carry a technical project.</li>
-        </ul>
-      </li>
-
-      <li class="pc-plan">
-        <div>
-          <span class="pc-plan__step">Way 02</span>
-          <h3 class="pc-plan__title" data-optic="round">Collaborate</h3>
-        </div>
-        <p class="pc-plan__body">
-          You stay in the discovery, the process design, and the adoption work. I take the technical
-          review, the build, the testing, and the support afterwards.
-        </p>
-        <ul class="pc-plan__list">
-          <li>Best when the system supports a larger coaching or consulting engagement you are already running.</li>
-        </ul>
-      </li>
-
-      <li class="pc-plan">
-        <div>
-          <span class="pc-plan__step">Way 03</span>
-          <h3 class="pc-plan__title" data-optic="stem">Embed</h3>
-        </div>
-        <p class="pc-plan__body">
-          Implementation delivered inside your own client offer. Branding, client communication,
-          pricing, and who answers the phone are all settled in writing before anything is sold.
-        </p>
-        <ul class="pc-plan__list">
-          <li>Offered once we have delivered a client engagement together and each of us knows how the other works.</li>
-        </ul>
-      </li>
-    </ul>
-
-    <div class="pc-plans-foot rise">
-      <div class="btn-row pc-plans-cta">
-        <a class="btn btn--primary btn--lg" href="#talk">Bring me a client workflow
+<main id="main">
+  <section class="section lit nf" aria-labelledby="nf-h">
+    <div class="container">
+     <div class="nf__box">
+      <p class="kicker kicker--ruled kicker--quiet nf__code">Error 404 &middot; page not found</p>
+      <h1 id="nf-h">That page is not on this site.</h1>
+      <p>The link may be old, or it may have a typo in it. Everything here starts in the same place.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary btn--lg" href="/#fitcheck">
+          Run the 60-second Fit Check
           <svg class="btn__chev" viewBox="0 0 8 12" fill="none" aria-hidden="true">
             <path d="M1.5 1.5 6 6l-4.5 4.5" stroke="currentColor" stroke-width="2.6"
                   stroke-linecap="square" stroke-linejoin="miter"/>
           </svg>
         </a>
+        <a class="btn btn--secondary btn--lg" href="/">Back to the front page</a>
       </div>
-      <div class="pc-finepr">
-        <p>How you are paid is agreed in writing before anything is sold, and it depends on which of
-          the three you pick. Ask on the first call and you will get a straight number.</p>
-      </div>
+     </div>
     </div>
-  </div>
-</section>
-
-<!-- ═══ WHO HANDLES WHAT ══════════════════════════════════════════════════ -->
-<section class="section section--band pt-sec" id="line" aria-labelledby="pt-line-h">
-  <div class="container">
-    <header class="section__head rise">
-      <p class="kicker kicker--quiet kicker--ruled">Who handles what</p>
-      <h2 id="pt-line-h" data-optic="t">The line is drawn on purpose.</h2>
-      <p class="lede">
-        Most joint work goes wrong because nobody wrote down who owns which half. So this is written
-        down, and it is the same on every engagement.
-      </p>
-    </header>
-
-    <div class="pt-split rise">
-      <div class="pt-half pt-half--mine">
-        <h3 class="pt-half__h" data-optic="diag">What I handle</h3>
-        <p class="pt-half__sub">The technical half, start to finish.</p>
-        <ul class="pt-half__list">
-          <li>Workflow mapping and technical feasibility review</li>
-          <li>Solution design, including what should stay human</li>
-          <li>The automation and integration build</li>
-          <li>Testing, and the approval controls around sensitive actions</li>
-          <li>Documentation the client keeps and controls</li>
-          <li>Training the people who will use it</li>
-          <li>Monitoring, maintenance, and tool-change adjustments</li>
-          <li>Exception handling, where the client has bought it</li>
-          <li>Technical support after launch</li>
-        </ul>
-      </div>
-
-      <div class="pt-half">
-        <h3 class="pt-half__h" data-optic="diag">What you handle</h3>
-        <p class="pt-half__sub">The half you were already doing, at whatever depth the engagement calls for.</p>
-        <ul class="pt-half__list">
-          <li>Spotting the business problem worth solving</li>
-          <li>The strategic context behind it</li>
-          <li>Supporting the process decisions</li>
-          <li>Preparing the client for the change</li>
-          <li>Reinforcing adoption once it is live</li>
-          <li>The wider coaching or consulting relationship</li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="pt-close lede rise">
-      You never have to scope technical requirements or say what a system will be able to do. I
-      review the workflow first, and the read comes back to you before it goes anywhere near your client.
-    </p>
-  </div>
-</section>
-
-<!-- ═══ THE STANDARD ══════════════════════════════════════════════════════ -->
-<section class="section on-paper pt-doc" id="standard" aria-labelledby="pt-std-h">
-  <div class="container">
-    <div class="pt-doc__inner">
-
-      <div class="pt-doc__copy rise">
-        <p class="kicker kicker--quiet kicker--ruled">How your reputation is protected</p>
-        <h2 id="pt-std-h" data-optic="diag">Built to protect the relationship you earned.</h2>
-        <p class="lede">
-          Your name is attached to everyone you introduce. So every partner engagement runs on the
-          same written rules, and they do not bend for a deadline or a deal.
-        </p>
-        <p class="pt-doc__note">
-          Principles are easy to write down. If you are about to put your name next to mine, go and
-          look at the running systems instead:
-        </p>
-        <a class="pt-doc__link" href="index.html#proof">see what I currently operate
-          <svg viewBox="0 0 8 12" width="7" height="10" fill="none" aria-hidden="true">
-            <path d="M1.5 1.5 6 6l-4.5 4.5" stroke="currentColor" stroke-width="2.6"
-                  stroke-linecap="square" stroke-linejoin="miter"/>
-          </svg>
-        </a>
-      </div>
-
-      <div class="pt-sheet pt-doc__sheet rise">
-        <div class="pt-sheet__head">
-          <p class="pt-sheet__title">Partner engagement standard</p>
-          <p class="kicker kicker--quiet">Form PS-01 · Applies to every introduction</p>
-        </div>
-        <ol class="pt-clauses">
-          <li>
-            <div>
-              <h3 class="pt-clause__t">Nothing is promised before a technical review.</h3>
-              <p class="pt-clause__b">No quote, no scope, no commitment until I have looked at the real
-                workflow and the tools it runs on. Neither of us gets to guess in front of your client.</p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3 class="pt-clause__t">The scope goes in writing.</h3>
-              <p class="pt-clause__b">What the system does, what it deliberately does not do, what it
-                costs to build, what it costs to run, and who is responsible for each part of it.</p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3 class="pt-clause__t">The client always knows who supports what.</h3>
-              <p class="pt-clause__b">No wondering whether a question goes to you or to me. Your client
-                gets one clear answer about who to call, and it is written down before launch.</p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3 class="pt-clause__t">Sensitive actions sit behind an approval.</h3>
-              <p class="pt-clause__b">Customer-facing and high-impact actions receive the control level
-                agreed with the client: draft only, approval required, or automatic within defined
-                rules. Anything unusual stops instead of guessing.</p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3 class="pt-clause__t">Everything is tested and documented before handoff.</h3>
-              <p class="pt-clause__b">Your client gets documentation they own and training on the system
-                they now depend on, so the knowledge does not live only with me.</p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3 class="pt-clause__t">Problems get surfaced, not hidden.</h3>
-              <p class="pt-clause__b">When a vendor changes something underneath a system, or a workflow
-                outgrows the way it was built, you hear it from me first and you hear it early enough
-                to do something with it.</p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3 class="pt-clause__t">Access stays inside the project.</h3>
-              <p class="pt-clause__b">Client data and system access cover what the automation actually
-                needs, and the connection ends cleanly whenever the client says so.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-
-      <p class="pt-doc__payoff rise" data-optic="t">
-        The point is not to impress your client with AI. The point is to make the process you
-        recommended work the way you said it would.
-      </p>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ QUALIFYING ════════════════════════════════════════════════════════ -->
-<section class="section pt-sec" id="fits" aria-labelledby="pt-fits-h">
-  <div class="container">
-    <header class="section__head rise">
-      <p class="kicker kicker--quiet kicker--ruled">Qualifying an opportunity</p>
-      <h2 id="pt-fits-h" data-optic="stem">What kind of client problem fits.</h2>
-      <p class="lede">
-        The strong ones look alike. The work repeats often, it follows rules you could write down,
-        it moves between more than one tool, and it is the first thing to slip when the business gets
-        busy. It eats skilled time without needing skilled judgement.
-      </p>
-    </header>
-
-    <ul class="grid pt-fits rise">
-      <li class="pt-fit">
-        <p class="kicker kicker--quiet">Fit 01</p>
-        <h3 class="pt-fit__t" data-optic="stem">Lead and quote follow-up</h3>
-        <p class="pt-fit__b">Inquiries logged, answered quickly, and worked on a cadence instead of whenever somebody remembers.</p>
-      </li>
-      <li class="pt-fit">
-        <p class="kicker kicker--quiet">Fit 02</p>
-        <h3 class="pt-fit__t" data-optic="stem">Booking and reminders</h3>
-        <p class="pt-fit__b">Confirmations and reminders that cut no-shows without a person spending their morning chasing them.</p>
-      </li>
-      <li class="pt-fit">
-        <p class="kicker kicker--quiet">Fit 03</p>
-        <h3 class="pt-fit__t" data-optic="round">Quotes, invoices, and job paperwork</h3>
-        <p class="pt-fit__b">Documents assembled from details already sitting in their systems, held for a person to approve.</p>
-      </li>
-      <li class="pt-fit">
-        <p class="kicker kicker--quiet">Fit 04</p>
-        <h3 class="pt-fit__t" data-optic="round">Reactivation and reviews</h3>
-        <p class="pt-fit__b">Past customers contacted again, and review requests sent on a schedule that actually holds.</p>
-      </li>
-      <li class="pt-fit">
-        <p class="kicker kicker--quiet">Fit 05</p>
-        <h3 class="pt-fit__t" data-optic="stem">Internal reporting</h3>
-        <p class="pt-fit__b">The weekly numbers assembled on their own, sitting there before the meeting instead of after it.</p>
-      </li>
-      <li class="pt-fit">
-        <p class="kicker kicker--quiet">Fit 06</p>
-        <h3 class="pt-fit__t" data-optic="stem">Moving data between systems</h3>
-        <p class="pt-fit__b">The same details ending their trip through three tools by hand, with one system agreed as the source of truth.</p>
-      </li>
-    </ul>
-
-    <p class="pt-close lede rise">
-      Not every process should be automated, and part of my job is telling you plainly which parts
-      should stay human. You can pass that answer to your client with your name on it.
-    </p>
-  </div>
-</section>
-
-<!-- ═══ HOW AN OPPORTUNITY MOVES ══════════════════════════════════════════ -->
-<section class="section ladder pt-sec" id="path" aria-labelledby="pt-path-h">
-  <div class="container">
-    <header class="section__head ladder-head rise">
-      <p class="kicker kicker--quiet kicker--ruled">How an opportunity moves</p>
-      <h2 id="pt-path-h" data-optic="stem">From your conversation to a working system.</h2>
-      <p class="lede">
-        Five steps, and you can stop after any of them. Nothing reaches your client until you have
-        seen it first.
-      </p>
-    </header>
-
-    <ol class="ladder-flight pt-flight">
-      <li class="ladder-step rise" data-ladder-step="1">
-        <p class="ladder-step__n" aria-hidden="true">01</p>
-        <div class="ladder-step__body">
-          <h3 class="ladder-step__title">You bring the problem</h3>
-          <p class="ladder-step__copy">What the client is trying to improve, what happens today, and
-            where it breaks down. A paragraph is enough to start. You do not need to know what the
-            solution looks like.</p>
-        </div>
-      </li>
-      <li class="ladder-step rise" data-ladder-step="2">
-        <p class="ladder-step__n" aria-hidden="true">02</p>
-        <div class="ladder-step__body">
-          <h3 class="ladder-step__title">I review the workflow</h3>
-          <p class="ladder-step__copy">What is feasible, what should stay human, which tools are
-            involved, and what needs controlling. You get that read before your client does, so
-            nothing lands in front of them that you have not already seen.</p>
-        </div>
-      </li>
-      <li class="ladder-step rise" data-ladder-step="3">
-        <p class="ladder-step__n" aria-hidden="true">03</p>
-        <div class="ladder-step__body">
-          <h3 class="ladder-step__title">We pick the delivery model</h3>
-          <p class="ladder-step__copy">Refer, collaborate, or embed, based on how involved you want to
-            be and what the client actually needs. Compensation is settled here, in writing, not
-            after the fact.</p>
-        </div>
-      </li>
-      <li class="ladder-step rise" data-ladder-step="4">
-        <p class="ladder-step__n" aria-hidden="true">04</p>
-        <div class="ladder-step__body">
-          <h3 class="ladder-step__title">The client gets a written scope</h3>
-          <p class="ladder-step__copy">The outcome, who is responsible for what, the build cost, the
-            running costs, and the support arrangement. They sign knowing exactly what they are
-            getting and who to call.</p>
-        </div>
-      </li>
-      <li class="ladder-step ladder-step--last rise" data-ladder-step="5">
-        <p class="ladder-step__n" aria-hidden="true">05</p>
-        <div class="ladder-step__body">
-          <h3 class="ladder-step__title">I build it and remain accountable through launch</h3>
-          <p class="ladder-step__copy">I handle the implementation, testing, documentation and
-            training. After launch, my responsibility follows the maintenance or managed-service
-            arrangement the client chooses. You stay involved at the level we agreed and nowhere
-            beyond it.</p>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ═══ START HERE ════════════════════════════════════════════════════════ -->
-<section class="section on-paper pt-talk" id="talk" aria-labelledby="pt-talk-h">
-  <div class="container pt-form-grid">
-
-    <header class="section__head rise">
-      <p class="kicker kicker--quiet kicker--ruled">Start here</p>
-      <h2 id="pt-talk-h" data-optic="diag">Bring me one client workflow.</h2>
-      <p class="lede">
-        Not a reseller agreement looking for somewhere to land. One real client, one process that
-        keeps coming up in your sessions and never quite gets built.
-      </p>
-      <p class="lede">
-        I will look at it and tell you straight whether I am the right person to build it.
-      </p>
-    </header>
-
-    <div class="pt-form-wrap rise">
-      <div class="pt-sheet">
-        <div class="pt-sheet__head">
-          <p class="pt-sheet__title">Partner enquiry</p>
-          <p class="kicker kicker--quiet" id="pf-status">Form PE-01 · Read by the person who builds it</p>
-        </div>
-        <form class="pt-form" id="pf" action="https://api.web3forms.com/submit" method="POST" novalidate>
-          <input type="hidden" name="access_key" value="9dcf879b-c9aa-42b5-b01b-fbf09e383690">
-          <input type="hidden" name="subject" value="Partner enquiry from perseidechocreations.com">
-          <input type="hidden" name="from_name" value="PEC partners page">
-          <p class="pt-honey" aria-hidden="true"><label for="pf-bot">Leave this empty</label>
-            <input type="text" id="pf-bot" name="botcheck" tabindex="-1" autocomplete="off"></p>
-
-          <div class="pt-f">
-            <label class="pt-l" for="pf-name">Your name</label>
-            <input class="pt-in" type="text" id="pf-name" name="name" required autocomplete="name" placeholder="Jane Doe">
-          </div>
-          <div class="pt-f">
-            <label class="pt-l" for="pf-email">Email</label>
-            <input class="pt-in" type="email" id="pf-email" name="email" required autocomplete="email" placeholder="you@yourpractice.com">
-          </div>
-          <div class="pt-f">
-            <label class="pt-l" for="pf-role">What you do for clients</label>
-            <input class="pt-in" type="text" id="pf-role" name="role" required placeholder="Business coach, fractional COO, consultant">
-          </div>
-          <div class="pt-f">
-            <label class="pt-l" for="pf-msg">The client workflow you have in mind</label>
-            <textarea class="pt-in" id="pf-msg" name="message" rows="5" required placeholder="What are they trying to improve, what happens today, and where does it break?"></textarea>
-          </div>
-
-          <div class="btn-row">
-            <button type="submit" class="btn btn--primary btn--lg" id="pf-send">Send it over
-              <svg class="btn__chev" viewBox="0 0 8 12" fill="none" aria-hidden="true">
-                <path d="M1.5 1.5 6 6l-4.5 4.5" stroke="currentColor" stroke-width="2.6"
-                      stroke-linecap="square" stroke-linejoin="miter"/>
-              </svg>
-            </button>
-          </div>
-          <div id="pf-msgbox" aria-live="polite"></div>
-          <p class="pt-note">
-            You will talk to the person who does the building. No account manager in between, no sales script.
-            What you send is stored so I can reply, plus your IP address to prevent abuse. See the
-            <a href="privacy.html">privacy policy</a>.
-          </p>
-        </form>
-      </div>
-    </div>
-
-    <p class="pt-mail rise">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><polyline points="4 7 12 13 20 7"></polyline></svg>
-      <span>Or write to me directly: <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a>
-      · or call <a class="nowrap" href="tel:+14252433473">425-243-3473</a></span>
-    </p>
-
-  </div>
-</section>
-
+  </section>
 </main>
 
 <footer class="pc-footer" role="contentinfo">
@@ -7730,12 +6782,27 @@ textarea.pt-in{ min-height: 8.5rem; resize: vertical; line-height: var(--lh-body
     <div class="pc-footer__top">
 
       <div>
-        <p class="pc-mark" data-optic="stem"><img class="pc-mark__sigil" src="art/pec-mark-128.webp" width="128" height="118" alt="" aria-hidden="true" loading="lazy" decoding="async">Perseid Echo Creations</p>
+        <p class="pc-mark" data-optic="stem">Perseid Echo Creations</p>
         <nav class="pc-social" aria-label="Perseid Echo Creations on social media">
           <a href="https://www.linkedin.com/company/perseid-echo-creations/" rel="noopener" aria-label="Perseid Echo Creations on LinkedIn">
+            <!-- the pair is OPTICALLY sized, not geometrically: an "in" is a wide
+                 mark and an "f" is a narrow one, so drawing both at the same box
+                 height leaves the wider one visibly heavier. Pixel-scanned at 8x
+                 in identical 44px chips, this 0.93 step and the f's full-height
+                 step land both marks on ~27% ink coverage. -->
             <svg viewBox="0 0 24 24" aria-hidden="true"><path transform="translate(0.84 0.84) scale(0.93)" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.07-1.95-3.07-1.96 0-2.26 1.46-2.26 2.97V21H9z"/></svg>
           </a>
           <a href="https://www.facebook.com/profile.php?id=61590842124281" rel="noopener" aria-label="Perseid Echo Creations on Facebook">
+            <!-- ROUND 9 — the SOLID LETTERFORM f, not the circle-f and not the
+                 outline f. A previous round replaced a thin outline f with a
+                 filled disc to close a 60.4 vs 123.8px² ink gap, and overshot in
+                 the other direction: the disc covered ~78% of its 20px box
+                 against the LinkedIn letterform's ~35%, so the Facebook tile
+                 became the louder of the two links. Bounding boxes matched
+                 throughout, which is why no geometric check caught either state.
+                 Both marks are now the same SPECIES — each brand's own solid
+                 letterform, no tile behind either — which is the only version of
+                 this pair where the weights match because the shapes agree. -->
             <svg viewBox="0 0 24 24" aria-hidden="true"><path transform="translate(4.5 0) scale(0.046875)" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
           </a>
         </nav>
@@ -7745,18 +6812,17 @@ textarea.pt-in{ min-height: 8.5rem; resize: vertical; line-height: var(--lh-body
         <div>
           <p class="pc-footer__h">Start</p>
           <nav class="pc-footer__nav" aria-label="Start">
-            <a href="index.html">For business owners</a>
-            <a href="index.html#fitcheck">Fit Check</a>
-            <a href="index.html#pricing">Pricing</a>
-            <a href="index.html#proof">Proof</a>
+            <a href="/#fitcheck">Fit Check</a>
+            <a href="/#pricing">Pricing</a>
+            <a href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6" rel="noopener">Book a call</a>
           </nav>
         </div>
         <div>
           <p class="pc-footer__h">More</p>
           <nav class="pc-footer__nav" aria-label="More">
-            <a href="local/">Areas served</a>
-            <a href="partners.html" aria-current="page">Partners</a>
-            <a href="privacy.html">Privacy</a>
+            <a href="/local/">Areas served</a>
+            <a href="/partners">Partners</a>
+            <a href="/privacy">Privacy</a>
           </nav>
         </div>
         <div>
@@ -7771,301 +6837,10 @@ textarea.pt-in{ min-height: 8.5rem; resize: vertical; line-height: var(--lh-body
     </div>
 
     <div class="pc-footer__legal">
-      <p>Partner arrangements are agreed per engagement and put in writing before anything is sold to a client.</p>
       <p class="pc-footer__place">Renton, Washington.<br>Built and operated by Bryan Piard.</p>
     </div>
   </div>
 </footer>
 
-<script>
-
-(function () {
-  "use strict";
-  var links = document.getElementById("nav-hero-links");
-  var menu  = document.getElementById("nav-hero-menu");
-  if (!links || !menu || !document.documentElement.classList) return;
-
-  var scrim = document.getElementById("nav-scrim");
-  var label = menu.querySelector(".nav-hero-menu__t");
-
-  function isOpen() { return links.classList.contains("is-open"); }
-
-  function paint(open) {
-    links.classList.toggle("is-open", open);
-    document.documentElement.classList.toggle("nav-open", open);
-    menu.setAttribute("aria-expanded", open ? "true" : "false");
-    menu.setAttribute("aria-label", open ? "Close menu" : "Menu");
-    if (label) label.textContent = open ? "Close" : "Menu";
-  }
-
-  function close(restoreFocus) {
-    if (!isOpen()) return;
-    paint(false);
-    if (restoreFocus) { try { menu.focus(); } catch (e) {} }
-  }
-
-  function open() {
-    paint(true);
-    var first = links.querySelector("a");
-    if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
-  }
-
-  try {
-    document.documentElement.classList.add("nav-js");
-    menu.hidden = false;
-
-    menu.addEventListener("click", function () {
-      if (isOpen()) close(true); else open();
-    });
-
-
-    if (scrim) scrim.addEventListener("click", function () { close(true); });
-
-    links.addEventListener("click", function (ev) {
-      if (ev.target && ev.target.closest && ev.target.closest("a")) close(false);
-    });
-
-    document.addEventListener("keydown", function (ev) {
-      if (!isOpen()) return;
-
-      if (ev.key === "Escape") { close(true); return; }
-
-      /* keep Tab inside the panel while it is the only thing on screen */
-      if (ev.key !== "Tab") return;
-      var stops = [menu].concat([].slice.call(links.querySelectorAll("a")));
-      var i = stops.indexOf(document.activeElement);
-      if (i < 0) { ev.preventDefault(); stops[0].focus(); return; }
-      var n = ev.shiftKey ? i - 1 : i + 1;
-      if (n < 0 || n >= stops.length) {
-        ev.preventDefault();
-        stops[n < 0 ? stops.length - 1 : 0].focus();
-      }
-    });
-  } catch (e) {
-
-    try {
-      document.documentElement.classList.remove("nav-js");
-      document.documentElement.classList.remove("nav-open");
-      menu.hidden = true;
-    } catch (e2) {}
-  }
-}());
-</script>
-<script>
-
-(function () {
-  "use strict";
-
-
-  try {
-    if ("IntersectionObserver" in window && document.documentElement.classList) {
-      var nodes = [].slice.call(document.querySelectorAll(".rise"));
-      if (nodes.length) {
-        document.documentElement.classList.add("js");
-        var io = new IntersectionObserver(function (entries) {
-          for (var i = 0; i < entries.length; i++) {
-            if (entries[i].isIntersecting) {
-              entries[i].target.classList.add("is-in");
-              io.unobserve(entries[i].target);
-            }
-          }
-        }, { rootMargin: "0px 0px -8% 0px", threshold: 0.03 });
-        for (var n = 0; n < nodes.length; n++) io.observe(nodes[n]);
-
-        window.addEventListener("error", function () {
-          document.documentElement.classList.remove("js");
-        });
-
-        window.addEventListener("beforeprint", function () {
-          for (var k = 0; k < nodes.length; k++) nodes[k].classList.add("is-in");
-        });
-      }
-    }
-  } catch (e) {
-    try { document.documentElement.classList.remove("js"); } catch (e2) {}
-  }
-
-
-  try {
-    document.addEventListener("click", function (ev) {
-      var a = ev.target && ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
-      if (!a || ev.defaultPrevented || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button) return;
-      var id = a.getAttribute("href").slice(1);
-      if (!id) return;
-      var t = document.getElementById(id);
-      if (!t) return;
-      var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      ev.preventDefault();
-      try { t.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" }); }
-      catch (e3) { t.scrollIntoView(); }
-      if (history.pushState) history.pushState(null, "", "#" + id);
-
-      if (!t.hasAttribute("tabindex")) t.setAttribute("tabindex", "-1");
-      t.focus({ preventScroll: true });
-    }, false);
-  } catch (e) {  }
-}());
-</script>
-<script>
-/* ---------- partner enquiry ----------
-   Posts without leaving the page. With scripting off the plain form POST to
-   web3forms still works, so nothing on this page depends on JS. */
-(function(){
-  "use strict";
-  var form = document.getElementById('pf');
-  if (!form) return;
-
-  function esc(s){
-    return String(s).replace(/[&<>"']/g, function(c){
-      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
-    });
-  }
-
-  form.addEventListener('submit', function(ev){
-    ev.preventDefault();
-
-    var box   = document.getElementById('pf-msgbox');
-    var btn   = document.getElementById('pf-send');
-    var name  = document.getElementById('pf-name');
-    var email = document.getElementById('pf-email');
-    var role  = document.getElementById('pf-role');
-    var note  = document.getElementById('pf-msg');
-
-    box.innerHTML = '';
-
-    if (!name.value.trim()){
-      box.innerHTML = '<p class="pt-err">I need a name to reply to.</p>'; name.focus(); return;
-    }
-    if (!email.value || email.value.indexOf('@') < 1){
-      box.innerHTML = '<p class="pt-err">That email does not look right. Mind checking it?</p>'; email.focus(); return;
-    }
-    if (!role.value.trim()){
-      box.innerHTML = '<p class="pt-err">Tell me what you do for clients so I know which lane fits.</p>'; role.focus(); return;
-    }
-    if (!note.value.trim()){
-      box.innerHTML = '<p class="pt-err">Tell me a little about the workflow and I can give you a useful answer.</p>'; note.focus(); return;
-    }
-    if (form.botcheck && form.botcheck.value){ return; }
-
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-
-    var payload = {
-      access_key: '9dcf879b-c9aa-42b5-b01b-fbf09e383690',
-      subject: 'Partner enquiry: ' + name.value.trim(),
-      from_name: 'PEC partners page',
-      name: name.value.trim(),
-      email: email.value.trim(),
-      role: role.value.trim(),
-      message: 'PARTNER ENQUIRY\n\nName: ' + name.value.trim() +
-               '\nEmail: ' + email.value.trim() +
-               '\nWhat they do: ' + role.value.trim() +
-               '\n\nThe client workflow:\n' + note.value.trim()
-    };
-
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      if (d && d.success){
-        document.getElementById('pf-status').textContent = 'Form PE-01 · Received';
-        form.innerHTML = '<p class="pt-done">Got it, ' + esc(name.value.trim()) +
-          '. I read every one of these myself, and I will come back to you with a first read on whether ' +
-          'the workflow is a sensible candidate.</p>';
-        try { window.pecTrack('partner_enquiry'); } catch (e) {}
-      } else {
-        throw new Error('rejected');
-      }
-    })
-    .catch(function(){
-      btn.disabled = false;
-      btn.textContent = 'Send it over';
-      box.innerHTML = '<p class="pt-err">That did not go through. Email me directly at ' +
-        '<a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a> and I will pick it up there.</p>';
-    });
-  });
-})();
-</script>
-<script>
-/* ---------- anonymous funnel measurement ----------
-   No cookies, no third party, no IP stored server-side. The opt-out check runs
-   FIRST, so a visitor sending Global Privacy Control or Do Not Track never
-   causes a single request. Documented at privacy.html. */
-window.pecTrack = function(){};
-(function(){
-  "use strict";
-  try {
-    if (navigator.globalPrivacyControl === true ||
-        navigator.doNotTrack === "1" || window.doNotTrack === "1" ||
-        navigator.msDoNotTrack === "1") return;
-  } catch (e) { return; }
-
-  var qa = false;
-  try {
-    if (navigator.webdriver === true) qa = true;
-    var qaFlag = new URLSearchParams(location.search).get("qa");
-    if (qaFlag === "1") localStorage.setItem("pec_qa", "1");
-    else if (qaFlag === "0") localStorage.removeItem("pec_qa");
-    if (localStorage.getItem("pec_qa") === "1") qa = true;
-  } catch (e) { /* a locked-down browser just counts as an ordinary visitor */ }
-
-  var ENDPOINT = "https://approve.perseidechocreations.com/_e";
-  var PAGE = "partners";
-
-  var sid;
-  try {
-    sid = sessionStorage.getItem("pec_s");
-    if (!sid) { sid = Math.random().toString(36).slice(2, 12); sessionStorage.setItem("pec_s", sid); }
-  } catch (e) { sid = Math.random().toString(36).slice(2, 12); }
-
-  var device = (window.innerWidth || 1024) < 700 ? "m" : "d";
-
-  var attribution = {};
-  try {
-    var qs = new URLSearchParams(location.search);
-    if (qs.get("utm_source"))   attribution.src = qs.get("utm_source");
-    if (qs.get("utm_campaign")) attribution.cmp = qs.get("utm_campaign");
-    if (!attribution.src && document.referrer) {
-      var h = new URL(document.referrer).hostname;
-      if (h && h !== location.hostname) attribution.ref = h;
-    }
-  } catch (e) { /* attribution is a bonus, never a blocker */ }
-
-  var first = true;
-  function send(name, extra) {
-    try {
-      var body = { e: name, s: sid, p: PAGE, d: device };
-      if (qa) body.qa = 1;
-      if (first) { for (var k in attribution) body[k] = attribution[k]; first = false; }
-      if (extra) for (var j in extra) body[j] = extra[j];
-      var payload = JSON.stringify(body);
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(ENDPOINT, new Blob([payload], { type: "text/plain" }));
-      } else {
-        fetch(ENDPOINT, { method: "POST", body: payload, mode: "no-cors", keepalive: true,
-                          headers: { "Content-Type": "text/plain" } }).catch(function(){});
-      }
-    } catch (e) { /* measurement must never break the page */ }
-  }
-
-  window.pecTrack = send;
-  send("view");
-
-  document.addEventListener("click", function (ev) {
-    try {
-      var a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
-      if (!a) return;
-      var href = a.getAttribute("href") || "";
-      if (href.indexOf("calendar.app.google") > -1) send("cta_call");
-      else if (href.indexOf("#proof") > -1) send("cta_proof");
-      else if (href === "#talk") send("cta_talk");
-      else if (href.indexOf("index.html") === 0) send("cta_owners");
-    } catch (e) { /* never interfere with the click itself */ }
-  }, true);
-})();
-</script>
 </body>
 </html>
