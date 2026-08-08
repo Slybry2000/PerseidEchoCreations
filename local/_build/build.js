@@ -56,6 +56,10 @@ const esc = s => String(s)
    meta tags and JSON-LD. */
 const plain = s => String(s).replace(/<\/?em>/g, '');
 
+/* "an Auburn business", not "a Auburn business". Every city name is a proper
+   noun read letter-for-letter, so the written vowel is the right test. */
+const an = s => (/^[aeiou]/i.test(String(s)) ? 'an' : 'a');
+
 const mail = svg => `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><polyline points="4 7 12 13 20 7"></polyline></svg>`;
 
 /* ---------- the shared trunk ----------
@@ -295,16 +299,23 @@ function topbar (city) {
    storefront and no published street address, so the entity is
    an area-served practice. Deliberately no "address" beyond
    city and region, and deliberately no aggregateRating or
-   review markup — there is nothing real to put in them yet. */
+   review markup — there is nothing real to put in them yet.
+
+   ONE entity, six pages. Every city page used to mint its own
+   @id (`…/local/<slug>/#business`), which declared six separate
+   companies sharing one name and one phone number. They now all
+   carry the homepage's canonical @id and the same url, so the
+   six documents describe a single practice. Anything genuinely
+   city-specific belongs on the page nodes below, not here. */
 function jsonLd (c) {
   const url = `${ORIGIN}/local/${c.slug}/`;
   const service = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    '@id': `${url}#business`,
+    '@id': `${ORIGIN}/#business`,
     name: 'Perseid Echo Creations',
-    description: plain(c.metaDesc),
-    url,
+    description: 'Workflow automation and custom internal tools for owner-led businesses. Based in Renton, WA and working remotely across the United States.',
+    url: `${ORIGIN}/`,
     founder: { '@type': 'Person', name: 'Bryan Piard' },
     email: EMAIL,
     telephone: '+1-425-243-3473',
@@ -316,17 +327,21 @@ function jsonLd (c) {
       addressRegion: 'WA',
       addressCountry: 'US'
     },
-    areaServed: cities.map(x => ({
-      '@type': 'City',
-      name: `${x.city}, ${x.region}`
-    })),
+    /* Renton is where he is, not a limit on who he serves: the work is
+       done remotely. The cities are named because each has its own page. */
+    areaServed: [
+      { '@type': 'Country', name: 'United States' },
+      ...cities.map(x => ({ '@type': 'City', name: `${x.city}, ${x.region}` }))
+    ],
     serviceType: [
       'Workflow automation',
       'Business process automation',
       'Custom internal tools',
       'Systems integration'
     ],
-    knowsAbout: c.first.map(f => f.n),
+    /* Union across every city, not just this one: the node is now the single
+       shared business entity, so all six pages must describe it identically. */
+    knowsAbout: [...new Set(cities.flatMap(x => x.first.map(f => f.n)))],
     makesOffer: [
       {
         '@type': 'Offer',
@@ -459,7 +474,7 @@ ${topbar(c.city)}
 <section class="sec sec--paper" aria-labelledby="first-h">
   <div class="wrap narrow rise">
     <p class="tag tag--ink">Where I would look first</p>
-    <h2 class="h-lg" id="first-h" style="margin-block:14px 16px;">Three jobs worth checking in a ${esc(c.city)} business</h2>
+    <h2 class="h-lg" id="first-h" style="margin-block:14px 16px;">Three jobs worth checking in ${an(c.city)} ${esc(c.city)} business</h2>
     <p class="lede lede--ink">These are the patterns I see most often in this part of the county. Not a promise that yours is one of them &mdash; that is what the Fit Check and the Map are for.</p>
     <div class="cards">
       ${c.first.map((f, i) => `<article class="card">
@@ -697,7 +712,7 @@ function wfPage (w) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(w.title)}</title>
+<title>${esc(w.title)} &middot; Perseid Echo Creations</title>
 <meta name="description" content="${esc(w.metaDesc)}">
 <meta name="theme-color" content="#0B1018">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -879,7 +894,7 @@ function wfHub () {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Workflows · Buy a tool, or build it?</title>
+<title>Workflows: buy a tool, or build it? &middot; Perseid Echo Creations</title>
 <meta name="description" content="The repetitive jobs I get asked about most, and an honest read on each: when an off-the-shelf tool is the right answer, and when it needs building.">
 <meta name="theme-color" content="#0B1018">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -934,7 +949,7 @@ ${topbar('')}
     <div class="hub">
       ${workflows.map(w => `<a class="hub__a" href="/workflows/${w.slug}/">
         <h3 class="h-md">${esc(w.short)}</h3>
-        <p>${esc(plain(w.sub).slice(0, 128))}&hellip;</p>
+        <p>${esc(plain(w.sub))}</p>
         <span class="go">Read the honest version &rarr;</span>
       </a>`).join('\n      ')}
     </div>

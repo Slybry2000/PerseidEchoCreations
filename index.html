@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Perseid Echo Creations · Find the first job worth taking off your plate</title>
+<!-- The <title> is a search surface, not the headline. It leads with the
+     category a stranger types; the H1 and og:title keep the narrative line
+     for people who already arrived. -->
+<title>Workflow automation for owner-led businesses · Perseid Echo Creations</title>
 <meta name="description" content="I build and run controlled systems that handle the repetitive work in owner-led businesses. Run the 60-second Workflow Fit Check and see what I would look at first.">
 <link rel="canonical" href="https://perseidechocreations.com/">
 <meta name="theme-color" content="#0B1018">
@@ -32,15 +35,17 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- LCP. Mirrors the hero <picture> exactly: portrait plate under 480, landscape
-     above it. `sizes: 100vw` + w-descriptors means a 1x browser takes the 1440
-     file up to a 1600px viewport and the 1920 file above it, and a 2x phone
-     still gets the sharp portrait. -->
+<!-- LCP. Mirrors the hero <picture> exactly: portrait plate under 1024 in
+     portrait, landscape above it. imagesizes MUST match the <picture>'s sizes
+     verbatim — the portrait source is drawn by object-fit:cover at ~1.66x the
+     viewport width on a phone, so a 100vw preload here resolves to a smaller
+     candidate than the layout then asks for and the phone downloads two hero
+     files, discarding the preloaded one. -->
 <link rel="preload" as="image" fetchpriority="high"
       media="(max-width: 1024px) and (orientation: portrait)"
       href="art/hero-map-mobile.webp"
       imagesrcset="art/hero-map-mobile-780.webp 780w, art/hero-map-mobile.webp 1088w, art/hero-map-mobile-1600.webp 1600w"
-      imagesizes="100vw">
+      imagesizes="(max-width: 640px) 166vw, 105vw">
 <link rel="preload" as="image" fetchpriority="high"
       media="(min-width: 1025px), (orientation: landscape)"
       href="art/hero-map.webp"
@@ -6727,6 +6732,7 @@ main { display: block; }
   "@type": "ProfessionalService",
   "@id": "https://perseidechocreations.com/#business",
   "name": "Perseid Echo Creations",
+  "description": "Workflow automation and custom internal tools for owner-led businesses. One workflow assessed end to end, then built, tested, documented and handed over.",
   "url": "https://perseidechocreations.com/",
   "image": "https://perseidechocreations.com/art/og-map.jpg",
   "founder": {
@@ -6742,13 +6748,162 @@ main { display: block; }
     "addressRegion": "WA",
     "addressCountry": "US"
   },
-  "areaServed": {
-    "@type": "City",
-    "name": "Renton, WA"
-  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "United States"
+    },
+    {
+      "@type": "City",
+      "name": "Renton, WA"
+    },
+    {
+      "@type": "City",
+      "name": "Kent, WA"
+    },
+    {
+      "@type": "City",
+      "name": "Bellevue, WA"
+    },
+    {
+      "@type": "City",
+      "name": "Tukwila, WA"
+    },
+    {
+      "@type": "City",
+      "name": "Auburn, WA"
+    },
+    {
+      "@type": "City",
+      "name": "Issaquah, WA"
+    }
+  ],
+  "serviceType": [
+    "Workflow automation",
+    "Business process automation",
+    "Custom internal tools",
+    "Systems integration"
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "Workflow Opportunity Map",
+      "description": "One workflow. One recommended first build. One decision-ready plan. Credited toward a build signed within 30 days.",
+      "price": "750",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Workflow build",
+      "description": "Mapped, built, tested, documented, handed over with training and a post-launch bug-fix window. Most builds land between $3,500 and $9,000.",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": "2500",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Keys",
+      "description": "You operate the system yourself after launch. Training included.",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Maintain",
+      "description": "Monitoring, fixes, and tool-change adjustments. Month to month.",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "minPrice": "750",
+        "priceCurrency": "USD",
+        "unitCode": "MON"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Run",
+      "description": "Day-to-day operation and exception handling. Month to month.",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "minPrice": "2000",
+        "priceCurrency": "USD",
+        "unitCode": "MON"
+      }
+    }
+  ],
   "sameAs": [
     "https://www.linkedin.com/company/perseid-echo-creations/",
     "https://www.facebook.com/profile.php?id=61590842124281"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://perseidechocreations.com/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What if the honest answer is that I should not automate this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Then that is what the map says, and I will tell you on the call before you spend the $750 if it is already obvious. Some work is not frequent enough to be worth building around. Some of it needs the process fixed before a machine is pointed at it. Some of it is genuinely a judgement call that should stay with a person. Selling you a build in those cases produces a system nobody trusts and a client who never comes back."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I will not tell you “it is completely safe,” because no honest systems person can promise that in one word. What I can do is tell you exactly where it goes. Before anything gets built, you get it in writing: which data the system touches, which third-party services process it (hosting, AI providers, whatever tools you already use), what is stored and for how long, who has access, what is deliberately excluded, and what happens to the connection when we stop working together. If a piece of that is not acceptable to you, we design around it or we do not build it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I own it, or am I renting it from you?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You own and control the project-specific system built for your business. You get the credentials, the configuration, the documentation, and a plain-English owner’s guide: everything needed to run it or hand it to someone else. The build price is the same whether you take the keys the day it launches or keep me on for years. Two honest caveats. Third-party tools keep their existing licenses, so you hold those accounts directly. And the reusable frameworks I build every client’s system on top of stay part of my toolkit unless your proposal says otherwise. Making it easy to leave is deliberate; it is the only version of this business I would want to buy from."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "You are one person. What happens if you disappear?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fair question, and the answer is not to pretend it cannot happen. Every system is documented well enough for another competent technical person to pick it up, monitored so failures announce themselves instead of going quiet, and built on tools you can access without me. You are never holding a black box whose only key is my phone number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when one of my tools changes and breaks it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It will happen eventually. Software vendors change things. That is exactly what the monthly maintenance option is for: I watch for it, fix it, and adjust the system as your tools and workflows change. If you have taken the keys instead, you can call me and pay for the fix, or handle it yourself with the documentation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to be technical?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You do not touch code or settings. You tell me what keeps repeating and what it costs you when it slips, I build it, and you go back to running your business. The part you do stay involved in is deciding what the system is allowed to do on its own, and that conversation is in plain English."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work through business coaches and consultants?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. I work directly with a client’s trusted advisor, join an existing coaching or consulting engagement, or contract separately as the implementation specialist. Your advisor does not need to design or manage the technical system. Responsibilities get agreed before the project starts, and nothing is quoted until I have reviewed the workflow. If you are the advisor rather than the owner, here is how partnering works."
+      }
+    }
   ]
 }
 </script>
@@ -7866,6 +8021,7 @@ window.pecTrack = function(){};
         <div>
           <p class="pc-footer__h">More</p>
           <nav class="pc-footer__nav" aria-label="More">
+            <a href="workflows/">Workflows</a>
             <a href="local/">Areas served</a>
             <a href="partners.html">Partners</a>
             <a href="privacy.html">Privacy</a>
