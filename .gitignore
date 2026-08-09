@@ -5,3 +5,16 @@ node_modules/
 .env
 assets/images/PEC_Modern_Large.png
 *.code-workspace
+
+# Not part of the published site. These stay on disk locally, but GitHub Pages
+# serves this branch verbatim, so anything tracked here is downloadable by
+# anyone. PRODUCT.md in particular described the funnel and named the customer
+# types we do not want. Removed 2026-08-08; still in history before that.
+/PRODUCT.md
+/server.js
+/test.js
+/package.json
+/package-lock.json
+/og-template.html
+/dist/
+/bristlecone/
