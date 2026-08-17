@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Rise: your social feed, already made. $299/mo.</title>
+<meta name="description" content="Done-for-you social media for specialty food & drink makers. 12 posts, 2 reels, and Google Business posts every month, built from your real photos. Approve everything with one link. $299/mo, cancel anytime.">
+<meta property="og:title" content="Second Rise: your social feed, already made.">
+<meta property="og:description" content="12 posts, 2 reels, Google Business posts. Built from your real photos. $299/mo, cancel anytime.">
+<!-- TODO(operator): before outreach, replace with a real absolute URL to a feed screenshot (og:image must be absolute) -->
+<meta property="og:image" content="OG_IMAGE_URL">
+<style>
+:root{
+  --bg:#14100d; --bg2:#1c1712; --card:#221b15; --line:#372c22;
+  --ink:#f2e9df; --ink2:#c9b8a5; --ink3:#9a8672;
+  --gold:#d4a259; --gold2:#e8c184; --choc:#5c3a24; --cream:#f5ead9;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:.01em}
+a{color:var(--gold2)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+
+/* hero */
+header{padding:72px 0 56px;border-bottom:1px solid var(--line);background:radial-gradient(1200px 500px at 50% -10%,#2a2017 0%,var(--bg) 70%)}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.12;max-width:15em}
+.sub{margin-top:18px;font-size:clamp(17px,2.4vw,20px);color:var(--ink2);max-width:34em}
+.sub strong{color:var(--ink);font-weight:600}
+.cta-row{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;padding:14px 28px;border-radius:4px;font-size:16px;text-decoration:none;font-weight:600;letter-spacing:.02em}
+.btn-gold{background:var(--gold);color:#241708}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink2)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--ink)}
+.hero-note{font-size:13px;color:var(--ink3)}
+
+/* sections */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(26px,4vw,36px);margin-bottom:10px}
+.lede{color:var(--ink2);max-width:36em;margin-bottom:36px}
+
+/* feed grid */
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:640px;margin:0 auto}
+.tile{aspect-ratio:1/1;border-radius:3px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:10px}
+.tile .cap{font-family:var(--serif);font-size:clamp(9px,1.5vw,13px);line-height:1.35;color:var(--cream);text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.tile .tag{position:absolute;top:8px;left:8px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,234,217,.75)}
+.tile .reel{position:absolute;top:7px;right:8px;font-size:9px;color:var(--cream);background:rgba(0,0,0,.4);border-radius:10px;padding:2px 7px;letter-spacing:.05em}
+.t1{background:linear-gradient(160deg,#4a2c17,#2b1a0e 65%),radial-gradient(120px 90px at 70% 30%,#7a4b28,transparent)}
+.t2{background:radial-gradient(180px 160px at 50% 35%,#8a5a33,#3a2413 70%)}
+.t3{background:linear-gradient(200deg,#6b4326 0%,#241508 80%)}
+.t4{background:linear-gradient(180deg,#2e2318,#181009),repeating-linear-gradient(90deg,transparent 0 26px,rgba(212,162,89,.06) 26px 28px)}
+.t5{background:radial-gradient(150px 150px at 40% 45%,#9c6b3c,#402812 75%)}
+.t6{background:linear-gradient(150deg,#54331b,#1d1209 70%),radial-gradient(90px 70px at 25% 25%,#c99a5f33,transparent)}
+.t7{background:linear-gradient(180deg,#3b2717,#150d06)}
+.t8{background:radial-gradient(160px 130px at 60% 40%,#7d4e2a,#2a1a0d 78%)}
+.t9{background:linear-gradient(170deg,#452a15,#20130a 75%),radial-gradient(100px 80px at 75% 65%,#e8c18422,transparent)}
+.feed-note{text-align:center;color:var(--ink3);font-size:13px;margin-top:16px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:26px 22px}
+.step .num{font-family:var(--serif);font-size:30px;color:var(--gold);margin-bottom:10px}
+.step h3{font-size:19px;margin-bottom:8px}
+.step p{color:var(--ink2);font-size:15px}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:800px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:32px 28px;display:flex;flex-direction:column}
+.plan.featured{border-color:var(--gold)}
+.plan h3{font-size:22px}
+.price{font-family:var(--serif);font-size:44px;margin:12px 0 2px;color:var(--gold2)}
+.price span{font-size:16px;color:var(--ink3);font-family:var(--sans)}
+.plan ul{list-style:none;margin:18px 0 26px;flex:1}
+.plan li{padding:7px 0;border-bottom:1px solid var(--line);color:var(--ink2);font-size:15px}
+.plan li:last-child{border-bottom:none}
+.plan .btn{text-align:center}
+
+/* faq */
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-family:var(--serif);font-size:18px;list-style:none;position:relative;padding-right:28px}
+.faq summary::after{content:"+";position:absolute;right:2px;top:0;color:var(--gold);font-size:20px}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin-top:10px;color:var(--ink2);font-size:15px;max-width:44em}
+
+/* form */
+form{max-width:560px}
+label{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:20px 0 6px}
+input,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:4px;color:var(--ink);padding:12px 14px;font-size:16px;font-family:var(--sans)}
+input:focus,textarea:focus{outline:none;border-color:var(--gold)}
+textarea{min-height:100px;resize:vertical}
+#intake-status{margin-top:14px;font-size:14px;min-height:20px}
+#intake-status.ok{color:#9fce9a}
+#intake-status.warn{color:#e0a95e}
+button.btn{border:none;cursor:pointer;margin-top:24px;font-family:var(--sans)}
+button.btn:disabled{opacity:.5;cursor:default}
+
+footer{padding:44px 0;color:var(--ink3);font-size:13px}
+footer .brand{color:var(--ink2);font-family:var(--serif);font-size:15px;margin-bottom:6px}
+
+@media(max-width:720px){
+  .steps,.plans{grid-template-columns:1fr}
+  section{padding:48px 0}
+  header{padding:52px 0 40px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Second Rise · For specialty food &amp; drink makers</div>
+    <h1>Your social feed, already made.</h1>
+    <p class="sub">A full month of posts for your chocolate shop, bakery, roastery, distillery, or creamery, written and designed for you from <strong>your real photos</strong>. You approve everything with one link. <strong>$299/mo, cancel anytime.</strong></p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#intake">Start with a 15-minute intake</a>
+      <a class="btn btn-ghost" href="#pricing">See pricing</a>
+    </div>
+    <p class="hero-note" style="margin-top:18px">One meeting at the start, then a link to approve each month. No contract.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">What a month looks like</div>
+    <h2>A feed that sells the craft.</h2>
+    <p class="lede">Below is a sample month for a small-batch chocolate shop. Yours gets the same treatment, built from your products and your photos.</p>
+    <div class="feed" aria-label="Sample social feed for a chocolate shop">
+      <div class="tile t1"><span class="tag">Post</span><span class="cap">Single-origin Tuesday: 72% Madagascar, tasting notes of red berry and honey.</span></div>
+      <div class="tile t2"><span class="tag">Post</span><span class="cap">Hand-rolled truffles, dusted this morning. Gone by Saturday, every week.</span></div>
+      <div class="tile t3"><span class="reel">▶ Reel</span><span class="cap">Watch the temper: 90 seconds from molten to that clean, glossy snap.</span></div>
+      <div class="tile t4"><span class="tag">Post</span><span class="cap">Behind the counter at 6 a.m. The ganache doesn't make itself.</span></div>
+      <div class="tile t5"><span class="tag">Post</span><span class="cap">Salted caramel bonbons are back. Limited batch of 40 boxes.</span></div>
+      <div class="tile t6"><span class="tag">Post</span><span class="cap">Meet the maker: why we conche for 48 hours when 24 would do.</span></div>
+      <div class="tile t7"><span class="reel">▶ Reel</span><span class="cap">Unboxing the holiday collection: 12 flavors, one very good gift.</span></div>
+      <div class="tile t8"><span class="tag">Post</span><span class="cap">Pairing night: our dark bars with the wine shop next door. Thursday, 7 p.m.</span></div>
+      <div class="tile t9"><span class="tag">Post</span><span class="cap">Five-star review of the week: "The pistachio praline ruined all other chocolate for me."</span></div>
+    </div>
+    <p class="feed-note">12 posts + 2 reels + Google Business posts, every month. Real copy like this, written for your shop.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>Three steps, then it runs.</h2>
+    <div class="steps" style="margin-top:32px">
+      <div class="step"><div class="num">1</div><h3>15-minute intake</h3><p>Tell us what you make and what's coming up this season. That's the last meeting on your calendar.</p></div>
+      <div class="step"><div class="num">2</div><h3>We build your month</h3><p>We write and design a full month of posts and reels using your real photos from your website and Google profile.</p></div>
+      <div class="step"><div class="num">3</div><h3>You approve with one link</h3><p>One link on your phone, whenever suits you. Approve the month, or swap anything you don't like. Nothing goes out without your yes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="eyebrow">Pricing</div>
+    <h2>Two plans. Both cancel anytime.</h2>
+    <div class="plans" style="margin-top:32px">
+      <div class="plan">
+        <h3>Self-Post</h3>
+        <div class="price">$299<span>/mo</span></div>
+        <ul>
+          <li>12 designed posts per month</li>
+          <li>2 short reels per month</li>
+          <li>Google Business posts included</li>
+          <li>Built from your real photos</li>
+          <li>Approve everything with one link</li>
+          <li>You post, and everything arrives ready to go</li>
+        </ul>
+        <a class="btn btn-ghost stripe-cta" href="#intake" data-stripe="https://buy.stripe.com/6oU28t8278h84TTeSfd7q06">Start Self-Post</a>
+      </div>
+      <div class="plan featured">
+        <h3>We-Post</h3>
+        <div class="price">$499<span>/mo</span></div>
+        <ul>
+          <li>Everything in Self-Post</li>
+          <li>We schedule and post it all for you</li>
+          <li>Instagram, Facebook &amp; Google Business</li>
+          <li>Posted on a steady weekly cadence</li>
+          <li>You still approve everything first</li>
+          <li>Hands-off, so you can stay on the product</li>
+        </ul>
+        <a class="btn btn-gold stripe-cta" href="#intake" data-stripe="https://buy.stripe.com/5kQ8wRdmrfJA721bG3d7q07">Start We-Post</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Questions</div>
+    <h2>The honest answers.</h2>
+    <div class="faq" style="margin-top:24px">
+      <details><summary>Where do the photos come from?</summary><p>From you. We use <strong>your real photos</strong>, pulled from your website and your Google Business profile, plus anything you send us. Your feed shows your products and your shop, not stock imagery of someone else's chocolate.</p></details>
+      <details><summary>Do I get to approve things before they go out?</summary><p>Always. Every month you get one link on your phone showing the full month of content. Approve it all in two minutes, or flag anything you want changed. Nothing publishes without your yes.</p></details>
+      <details><summary>Who owns the content?</summary><p>You do. Every post, caption, and reel we make for you is yours to keep and reuse, even if you cancel.</p></details>
+      <details><summary>What if I want to cancel?</summary><p>Cancel anytime, no contract, no wind-down fee. You keep everything already delivered.</p></details>
+      <details><summary>Is this AI-generated junk?</summary><p>No. It's your products, your photos, and copy written about what you make and sell. You don't have to take our word for it: ask for a free 3-post sample built from your own photos before you pay a cent.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="intake">
+  <div class="wrap">
+    <div class="eyebrow">Get started</div>
+    <h2>The 15-minute intake starts here.</h2>
+    <p class="lede">Tell us the basics and we'll reach out to set up your month. No payment needed to start the conversation.</p>
+    <form id="intake-form" novalidate>
+      <label for="f-business">Business name *</label>
+      <input id="f-business" name="business" type="text" required autocomplete="organization" placeholder="e.g. Marlowe &amp; Vine Chocolate Co.">
+      <label for="f-website">Website</label>
+      <input id="f-website" name="website" type="url" autocomplete="url" placeholder="https://…">
+      <label for="f-instagram">Instagram handle</label>
+      <input id="f-instagram" name="instagram" type="text" placeholder="@yourshop">
+      <label for="f-email">Email *</label>
+      <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@yourshop.com">
+      <label for="f-phone">Phone (optional)</label>
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555">
+      <label for="f-notes">Anything we should know?</label>
+      <textarea id="f-notes" name="notes" placeholder="Busy seasons, upcoming launches, what's selling, what you hate posting about…"></textarea>
+      <button class="btn btn-gold" type="submit" id="intake-send">Send it and we'll be in touch</button>
+      <p id="intake-status" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">Second Rise · a service of Perseid Echo Creations</div>
+    <div>Done-for-you social media for specialty food &amp; drink makers.</div>
+    <div style="margin-top:8px">&copy; 2026 Perseid Echo Creations. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // POST straight into the here.now Site Data "intake" collection declared in
+  // .herenow/data.json (insert:public, read:owner). Relative URL resolves to
+  // {slug}.here.now/.herenow/data/intake when hosted.
+  // Served from GitHub Pages (perseidechocreations.com/secondrise/), so the old
+  // same-origin here.now Site Data write no longer applies. Leads go to our own
+  // capture service on the VPS. If that route is unreachable the form degrades
+  // to a prefilled email rather than losing the lead.
+  var DATA_ENDPOINT = "https://approve.perseidechocreations.com/lead";
+  var FALLBACK_EMAIL = "pec_marketing@agentmail.to";
+  // Stripe CTAs: only become live payment links once data-stripe holds a real
+  // https URL; unreplaced placeholders keep the safe #intake fallback (no 404s).
+  Array.prototype.forEach.call(document.querySelectorAll(".stripe-cta"), function(a){
+    var u = a.getAttribute("data-stripe") || "";
+    if (/^https:\/\//i.test(u)) a.setAttribute("href", u);
+  });
+  var form = document.getElementById("intake-form");
+  var btn = document.getElementById("intake-send");
+  var statusEl = document.getElementById("intake-status");
+  function setStatus(msg, cls){ statusEl.textContent = msg; statusEl.className = cls || ""; }
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var business = document.getElementById("f-business").value.trim();
+    var email = document.getElementById("f-email").value.trim();
+    if (!business || !email || email.indexOf("@") < 1) { setStatus("Please add your business name and a valid email.", "warn"); return; }
+    var payload = {
+      business: business,
+      website: document.getElementById("f-website").value.trim(),
+      instagram: document.getElementById("f-instagram").value.trim(),
+      email: email,
+      phone: document.getElementById("f-phone").value.trim(),
+      notes: document.getElementById("f-notes").value.trim(),
+      plan: "",
+      page: location.pathname
+    };
+    btn.disabled = true;
+    setStatus("Sending…");
+    fetch(DATA_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json", "Idempotency-Key": "intake-" + email.toLowerCase() }, body:JSON.stringify(payload) })
+      .then(function(r){ if (r.ok) return r.json().catch(function(){ return {}; }); throw new Error("http_"+r.status); })
+      .then(function(){ setStatus("✓ Got it. We'll reach out within one business day.", "ok"); btn.textContent = "Sent ✓"; })
+      .catch(function(){
+        // Never drop a lead on a transport failure: hand them a prefilled email.
+        var subject = encodeURIComponent("Second Rise enquiry: " + business);
+        var body = encodeURIComponent(
+          "Business: " + business +
+          "\nWebsite: " + payload.website +
+          "\nInstagram: " + payload.instagram +
+          "\nEmail: " + email +
+          "\nPhone: " + payload.phone +
+          "\n\n" + payload.notes
+        );
+        var mail = "mailto:" + FALLBACK_EMAIL + "?subject=" + subject + "&body=" + body;
+        btn.disabled = false;
+        setStatus('Almost there. <a href="' + mail + '" style="color:inherit;text-decoration:underline">Click here to send it by email</a> and we\'ll take it from there.', "warn");
+      });
+  });
+})();
+</script>
+</body>
+</html>
