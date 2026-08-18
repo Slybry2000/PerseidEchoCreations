@@ -52,6 +52,35 @@ h2{font-size:clamp(25px,4vw,34px);margin-bottom:12px;max-width:16em}
 .card-tile .k{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(30,18,6,.62);font-weight:700}
 .card-tile .q{font-family:var(--serif);font-size:clamp(15px,2.6vw,23px);line-height:1.14;color:#241708;margin-top:9px}
 .feed-note{color:var(--ink3);font-size:13px;margin-top:18px;max-width:46em}
+.tile.extra{display:none}
+.sphere-hint{display:none}
+
+/* ---- rotatable sphere (progressive enhancement; the flat grid is the base) ---- */
+.feed.sphere{display:block;position:relative;height:clamp(360px,64vw,580px);
+  perspective:1100px;overflow:visible;touch-action:none;cursor:grab;user-select:none;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 62%,transparent 96%);
+          mask-image:radial-gradient(circle at 50% 50%,#000 62%,transparent 96%)}
+.feed.sphere:active{cursor:grabbing}
+.feed.sphere .tile.extra{display:block}
+.feed.sphere .tile{position:absolute;top:50%;left:50%;
+  width:clamp(76px,11.5vw,124px);aspect-ratio:1/1;margin:0;
+  transform-style:preserve-3d;will-change:transform,opacity;
+  box-shadow:0 10px 26px rgba(0,0,0,.45)}
+/* captions are unreadable at tile size on the sphere, so the picture carries it */
+.feed.sphere .tile .cap,.feed.sphere .tile .tag,.feed.sphere .tile .scrim{display:none}
+.feed.sphere .card-tile{padding:11%}
+.feed.sphere .card-tile .k{font-size:7.5px;letter-spacing:.14em}
+.feed.sphere .card-tile .q{font-size:clamp(11px,1.5vw,15px);margin-top:5px;line-height:1.1}
+.sphere-hint{display:block;text-align:center;color:var(--ink3);font-size:12.5px;
+  letter-spacing:.04em;margin-top:6px}
+@media (prefers-reduced-motion:reduce){
+  /* never build the sphere: the grid stays, and stays still */
+  .feed.sphere{display:grid;height:auto;perspective:none;-webkit-mask-image:none;mask-image:none}
+  .feed.sphere .tile{position:relative;top:auto;left:auto;width:auto;transform:none!important;opacity:1!important}
+  .feed.sphere .tile.extra{display:none}
+  .feed.sphere .tile .cap,.feed.sphere .tile .tag,.feed.sphere .tile .scrim{display:block}
+  .sphere-hint{display:none}
+}
 
 /* offer band */
 .offer{background:var(--bg2)}
@@ -135,7 +164,16 @@ footer{padding:34px 0 60px;color:var(--ink3);font-size:13px}
       <div class="tile"><img src="img/p4-counter.jpg" alt="Counter service at a small food shop"><div class="scrim"></div><span class="tag">Post</span><div class="cap">Ask what is good today. Someone behind the counter actually knows.</div></div>
       <div class="tile card-tile"><div class="k">Free shipping</div><div class="q">On every subscription, every time.</div></div>
       <div class="tile"><img src="img/p7-roaster.jpg" alt="Roasting coffee beans"><div class="scrim"></div><span class="tag">Reel</span><div class="cap">We taste it, adjust it, taste it again. Then it earns a bag.</div></div>
+      <!-- extras: hidden in the flat grid, used to give the sphere enough surface -->
+      <div class="tile extra"><img src="img/p8-pour.jpg" alt=""><div class="scrim"></div></div>
+      <div class="tile extra"><img src="img/p9-beans.jpg" alt=""><div class="scrim"></div></div>
+      <div class="tile extra"><img src="img/p10-confection.jpg" alt=""><div class="scrim"></div></div>
+      <div class="tile extra"><img src="img/p11-cake.jpg" alt=""><div class="scrim"></div></div>
+      <div class="tile extra"><img src="img/p12-bar.jpg" alt=""><div class="scrim"></div></div>
+      <div class="tile extra"><img src="img/p13-shop.jpg" alt=""><div class="scrim"></div></div>
+      <div class="tile card-tile extra"><div class="k">This month</div><div class="q">12 posts. 2 reels.</div></div>
     </div>
+    <p class="sphere-hint" id="sphere-hint">Drag to spin. Every tile is a real post.</p>
     <p class="feed-note">Straight answer on the imagery: these came from sample months we built for prospective clients, so they are our own work rather than a client's photos. On a live account we use your photographs first, and design the rest to match your brand.</p>
   </div>
 </section>
@@ -311,6 +349,116 @@ footer{padding:34px 0 60px;color:var(--ink3);font-size:13px}
         setStatus('Almost there. <a href="' + mail + '" style="color:inherit;text-decoration:underline">Click here to send it by email</a> and we will take it from there.', "warn");
       });
   });
+})();
+
+/* ── The work: rotatable sphere ────────────────────────────────────────────
+   Tiles sit on a Fibonacci sphere and always face the viewer, so every post
+   stays readable wherever it is in the rotation. Drag to spin, with inertia;
+   it idles into a slow drift. Pure CSS transforms, no library, and it only
+   runs when the section is on screen.
+   The flat grid in the markup is the real base state: if JS never runs, or
+   the visitor asked for reduced motion, they get the grid with captions.  */
+(function(){
+  var feed = document.querySelector('.feed');
+  if (!feed || !window.requestAnimationFrame) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var tiles = Array.prototype.slice.call(feed.querySelectorAll('.tile'));
+  if (tiles.length < 8) return;
+  feed.classList.add('sphere');
+
+  // Fibonacci sphere: evenly spread points, no clumping at the poles.
+  var GA = Math.PI * (3 - Math.sqrt(5));
+  var pts = tiles.map(function(_, i){
+    var y = 1 - (i / (tiles.length - 1)) * 2;
+    var r = Math.sqrt(Math.max(0, 1 - y * y));
+    var t = GA * i;
+    return { x: Math.cos(t) * r, y: y, z: Math.sin(t) * r };
+  });
+
+  var yaw = 0.6, pitch = -0.18, vYaw = 0.0022, vPitch = 0;
+  var dragging = false, lastX = 0, lastY = 0, visible = true, raf = null;
+
+  function radius(){
+    var w = feed.clientWidth, h = feed.clientHeight;
+    var tile = tiles[0].getBoundingClientRect().width || 90;
+    // never let a tile at the equator hang outside the section on narrow screens
+    var fits = (w / 2) - (tile / 2) - 6;
+    return Math.max(60, Math.min(Math.min(w, h) * 0.42, fits));
+  }
+
+  function frame(advance){
+    var R = radius();
+    var cy = Math.cos(yaw), sy = Math.sin(yaw);
+    var cp = Math.cos(pitch), sp = Math.sin(pitch);
+    for (var i = 0; i < tiles.length; i++){
+      var p = pts[i];
+      // rotate around Y then X
+      var x1 = p.x * cy + p.z * sy;
+      var z1 = -p.x * sy + p.z * cy;
+      var y2 = p.y * cp - z1 * sp;
+      var z2 = p.y * sp + z1 * cp;
+      var depth = (z2 + 1) / 2;               // 0 = far, 1 = near
+      var el = tiles[i];
+      el.style.transform = 'translate(-50%,-50%) translate3d(' +
+        (x1 * R).toFixed(2) + 'px,' + (y2 * R).toFixed(2) + 'px,' + (z2 * R).toFixed(2) + 'px)';
+      el.style.opacity = (0.16 + depth * 0.84).toFixed(3);
+      el.style.filter = depth < 0.55 ? 'saturate(' + (0.55 + depth * 0.8).toFixed(2) + ')' : '';
+      el.style.zIndex = String(Math.round(depth * 100));
+    }
+    if (!dragging){
+      yaw += vYaw; pitch += vPitch;
+      // ease back toward the idle drift instead of stopping dead
+      vYaw += (0.0022 - vYaw) * 0.03;
+      vPitch *= 0.92;
+      if (pitch > 0.6) pitch = 0.6; if (pitch < -0.6) pitch = -0.6;
+    }
+    // advance === false means "lay the sphere out once and stop"
+    raf = (advance !== false && visible) ? requestAnimationFrame(frame) : null;
+  }
+
+  // Lay it out immediately. Without this the tiles stay unpositioned (a stack in
+  // the middle of the section) until the observer first reports it on screen,
+  // which a fast scroll can beat.
+  frame(false);
+
+  function down(e){
+    dragging = true; feed.setPointerCapture && feed.setPointerCapture(e.pointerId);
+    lastX = e.clientX; lastY = e.clientY;
+  }
+  function move(e){
+    if (!dragging) return;
+    var dx = e.clientX - lastX, dy = e.clientY - lastY;
+    lastX = e.clientX; lastY = e.clientY;
+    yaw += dx * 0.006; pitch -= dy * 0.005;
+    if (pitch > 0.6) pitch = 0.6; if (pitch < -0.6) pitch = -0.6;
+    vYaw = dx * 0.006; vPitch = -dy * 0.005;   // carry momentum into the release
+    // Repaint on the drag itself. Waiting for the animation loop makes the
+    // sphere feel laggy, and in a throttled/background tab it would not move
+    // at all while the finger is down.
+    frame(false);
+    e.preventDefault();
+  }
+  function up(){
+    dragging = false;
+    // resume the idle drift (and let the throw decay) if the loop had stopped
+    if (!raf && visible) raf = requestAnimationFrame(frame);
+  }
+
+  feed.addEventListener('pointerdown', down);
+  feed.addEventListener('pointermove', move);
+  feed.addEventListener('pointerup', up);
+  feed.addEventListener('pointercancel', up);
+  feed.addEventListener('pointerleave', up);
+
+  // stop animating when the section is off screen; battery matters on phones
+  if (window.IntersectionObserver){
+    new IntersectionObserver(function(entries){
+      visible = entries[0].isIntersecting;
+      if (visible && !raf) raf = requestAnimationFrame(frame);
+    }, { threshold: 0.05 }).observe(feed);
+  }
+  raf = requestAnimationFrame(frame);
 })();
 </script>
 </body>
