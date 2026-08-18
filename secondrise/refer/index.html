@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Rise: who I'm looking for</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="What Second Rise does, and exactly who to introduce me to.">
+<style>
+:root{
+  --bg:#14100d; --card:#211a14; --line:#372c22;
+  --ink:#f2e9df; --ink2:#c9b8a5; --ink3:#9a8672;
+  --gold:#d4a259; --gold2:#e8c184;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:60px 22px 90px}
+h1,h2{font-family:var(--serif);font-weight:400}
+h1{font-size:clamp(28px,5.2vw,40px);line-height:1.14;margin-bottom:16px}
+h2{font-size:20px;margin:44px 0 12px;color:var(--ink)}
+p{color:var(--ink2);margin-bottom:14px}
+.eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+strong{color:var(--ink);font-weight:600}
+ul{list-style:none;margin:6px 0 14px}
+li{color:var(--ink2);padding:7px 0 7px 20px;position:relative}
+li:before{content:"·";color:var(--gold);position:absolute;left:4px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin:20px 0}
+.box.copy{border-left:3px solid var(--gold)}
+.copytext{font-family:var(--serif);color:var(--ink);font-size:16px;line-height:1.6}
+.btn{display:inline-block;padding:13px 26px;border-radius:4px;background:var(--gold);color:#241708;text-decoration:none;font-weight:600;font-size:15.5px;margin-top:6px}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink2)}
+a{color:var(--gold2)}
+.small{font-size:13.5px;color:var(--ink3)}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:20px;color:var(--ink3);font-size:13px}
+#copied{color:var(--gold2);font-size:13.5px;margin-left:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Second Rise</div>
+  <h1>If you know someone who makes food for a living, this is for them.</h1>
+  <p>Thanks for reading this. It is the short version of what I am doing now, written so you can forward it without having to explain anything yourself.</p>
+
+  <h2>What it is</h2>
+  <p><strong>I build the social media for small food and drink businesses.</strong> A full month of posts and reels, made from their own photos, delivered as one link they approve from their phone. $299 a month, cancel anytime. They never sit down to write a caption again.</p>
+
+  <h2>Who I am looking for</h2>
+  <ul>
+    <li>Bakeries, coffee roasters, chocolate shops, creameries, distilleries, delis, anything where the product photographs well</li>
+    <li>Owner-run, roughly one to five locations, someone who still makes the thing themselves</li>
+    <li><strong>The tell:</strong> their Instagram has a real following and has gone quiet for a few months. That is a busy owner, not a failing business, and it is exactly who this helps</li>
+  </ul>
+  <p class="small">Not a fit: chains, anyone with a marketing person already, restaurants that only want reservations, and anything cannabis-adjacent since the platforms will not allow it.</p>
+
+  <h2>The easy part</h2>
+  <p>You do not have to sell anything or make an introduction call. <strong>I will build them three finished posts for free, before anyone talks about money.</strong> They look at them and decide. If it is not for them, they keep the posts and I go away.</p>
+  <p>So the whole ask is: send them this page, or send me their name and I will do the rest.</p>
+
+  <div class="box copy">
+    <p class="small" style="margin-bottom:10px">Copy and paste this if it helps:</p>
+    <p class="copytext" id="blurb">A friend of mine, Bryan, does the Instagram and Facebook posts for small food businesses. He builds a whole month of them from your own photos, you approve it from your phone, and it is $299 a month. He will make you three posts for free first so you can see it before paying anything. Worth a look if the feed keeps falling to the bottom of your list: perseidechocreations.com/secondrise/</p>
+    <button class="btn" id="copybtn" type="button">Copy that</button><span id="copied"></span>
+  </div>
+
+  <h2>If you want to send them straight to it</h2>
+  <p><a href="https://perseidechocreations.com/secondrise/">perseidechocreations.com/secondrise/</a> has the pricing, examples of the work, and the free sample request. Nothing there will pressure them.</p>
+
+  <div class="box">
+    <p style="margin-bottom:10px"><strong>Or just reply to me with a name.</strong> That is genuinely the most useful thing. I will take it from there and you will never hear about it again unless you ask.</p>
+    <a class="btn ghost" href="mailto:pec_marketing@agentmail.to?subject=Someone%20you%20should%20talk%20to">Send me a name</a>
+  </div>
+
+  <footer>
+    Second Rise · a service of Perseid Echo Creations · Renton, Washington<br>
+    Bryan Piard. This page is unlisted and only reachable from a link I sent you.
+  </footer>
+</div>
+<script>
+document.getElementById('copybtn').addEventListener('click', function(){
+  var t = document.getElementById('blurb').textContent.trim();
+  navigator.clipboard.writeText(t).then(function(){
+    document.getElementById('copied').textContent = 'Copied.';
+  }, function(){
+    document.getElementById('copied').textContent = 'Select the text above and copy it.';
+  });
+});
+</script>
+</body>
+</html>
