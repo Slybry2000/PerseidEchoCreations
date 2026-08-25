@@ -373,6 +373,7 @@
             <button id="mAdd"    aria-pressed="true">＋ Place a customer</button>
             <button id="mCancel" aria-pressed="false">✕ Cancel a stop</button>
             <button id="mWatch" style="border-left:1px solid var(--line)">▶ Watch it work</button>
+            <button id="mMute" aria-label="Mute narration" aria-pressed="false" title="Mute narration" style="padding:6px 8px">🔊</button>
           </div>
           <div class="busy" id="busy"><span class="spin"></span><span id="busyTxt">Routing…</span></div>
           <div class="maphint" id="hint">Type a real address on the right, or click the map to drop a customer.</div>
@@ -1120,7 +1121,7 @@ function refresh(){
     renderRoutes(); renderMetrics(); renderRunSheet();
     if (first && !S.autoRan && S.view === "ops"){
       S.autoRan = true;
-      setTimeout(function(){ if (!S.demo && !S.lastChange) runDemo(); }, 900);
+      setTimeout(function(){ if (!S.demo && !S.lastChange) runDemo(false); }, 900);
     }
   });
 }
@@ -1639,30 +1640,101 @@ function findSlots(){
   }).then(function(){ busy(false); });
 }
 
+/* ------------------------------------------------------------- voice
+   Bryan narrating the walkthrough, generated locally with MOSS-TTS-Nano.
+
+   Browsers refuse to play audio without a user gesture, so the walkthrough
+   that runs by itself on arrival is SILENT by design -- trying to autoplay it
+   would either be blocked or, worse, blast sound at someone scrolling email in
+   an open-plan office. Clicking "Watch it work" is the gesture that unlocks it.
+
+   Every failure path here is silent-but-working: a missing file, a blocked
+   play(), a codec the browser dislikes -- the walkthrough still runs, just
+   without narration. */
+var VOICE = { dir: "vo/", lines: ["1","2","3","4","5"], loaded: null, muted: false, playing: null };
+
+function ensureVoice(){
+  if (VOICE.loaded) return VOICE.loaded;
+  VOICE.loaded = {};
+  VOICE.lines.forEach(function(id){
+    try {
+      var a = new Audio(VOICE.dir + "line" + id + ".mp3");
+      a.preload = "auto";
+      a.addEventListener("error", function(){ VOICE.loaded[id] = null; });
+      VOICE.loaded[id] = a;
+    } catch (e) { VOICE.loaded[id] = null; }
+  });
+  return VOICE.loaded;
+}
+
+function stopVoice(){
+  if (!VOICE.loaded) return;
+  Object.keys(VOICE.loaded).forEach(function(k){
+    var a = VOICE.loaded[k];
+    if (!a) return;
+    try { a.pause(); a.currentTime = 0; } catch (e) {}
+  });
+  VOICE.playing = null;
+}
+
+function playLine(id){
+  if (VOICE.muted) return;
+  var bank = ensureVoice();
+  var a = bank[id];
+  if (!a) return;
+  try {
+    a.currentTime = 0;
+    var p = a.play();
+    if (p && p.catch) p.catch(function(){ /* blocked or missing: stay silent */ });
+    VOICE.playing = a;
+  } catch (e) {}
+}
+
+function setMuted(m){
+  VOICE.muted = !!m;
+  if (VOICE.muted) stopVoice();
+  var b = $("mMute");
+  if (b){
+    b.textContent = VOICE.muted ? "🔇" : "🔊";
+    b.setAttribute("aria-label", VOICE.muted ? "Unmute narration" : "Mute narration");
+    b.setAttribute("aria-pressed", String(VOICE.muted));
+  }
+}
+
 /* --------------------------------------------------------- walkthrough
    A prospect who clicks nothing should still see what this does. Runs once
    on arrival, narrates each beat on the map, and any interaction cancels it
    -- it demonstrates, it doesn't hijack. */
 function stopDemo(){
+  stopVoice();
   if (!S.demo) return;
   S.demo.forEach(function(t){ clearTimeout(t); });
   S.demo = null;
   $("mWatch").textContent = "▶ Watch it work";
 }
 
-function runDemo(){
+function runDemo(voiced){
   stopDemo();
+  var withVoice = !!voiced;
   if (!S.hq || !S.crew.length || S.stops.length < 3) return;
   S.demo = [];
   $("mWatch").textContent = "■ Stop";
+  if (withVoice) ensureVoice();
 
   // somewhere off the depot, far enough that the trucks disagree
+  // Beat timings. Silent keeps the brisk original pacing; voiced is driven
+  // by the real length of each recorded line, measured at build time --
+  // 4-6s each, so the original 2.4s spacing would talk over itself.
+  var T = withVoice ? [0, 6270, 11580, 16010, 21000]
+                    : [0, 2400, 5200, 7600, 9800];
+
   var pt = { lat: S.hq.lat + 0.019, lng: S.hq.lng - 0.024, label: "New customer request" };
   var ranked = null;
 
   function beat(ms, fn){ S.demo.push(setTimeout(function(){ if (S.demo) fn(); }, ms)); }
 
-  beat(0, function(){
+  beat(T[0], function(){
+    if (withVoice) playLine("1");
     hint("A customer books online at 7:42pm. Nobody is in the office.");
     map.setView([pt.lat, pt.lng], Math.max(map.getZoom(), 12), { animate: true });
     layers.ghost.clearLayers();
@@ -1670,13 +1742,15 @@ function runDemo(){
       fillColor:"#fff", fillOpacity:1, dashArray:"3 3" }).addTo(layers.ghost);
   });
 
-  beat(2400, function(){
+  beat(T[1], function(){
+    if (withVoice) playLine("2");
     hint("Meridian checks what the job would cost every truck on the road.");
     ranked = evaluate(pt);
     showEval(pt, ranked);
   });
 
-  beat(5200, function(){
+  beat(T[2], function(){
+    if (withVoice) playLine("3");
     if (!ranked) return;
     var gap = ranked.length > 1 ? (ranked[1].addedMin - ranked[0].addedMin) : 0;
     hint(ranked[0].crew.name + " is already nearby — " +
@@ -1684,14 +1758,16 @@ function runDemo(){
                     : "and has room in the day."));
   });
 
-  beat(7600, function(){
+  beat(T[3], function(){
+    if (withVoice) playLine("4");
     if (!ranked) return;
     hint("Booked, confirmed, and the whole board re-checked. No phone call.");
     commitStop(pt, ranked[0].crew);
     refresh();
   });
 
-  beat(9800, function(){
+  beat(T[4], function(){
+    if (withVoice) playLine("5");
     focusChanges(true);
     hint("Orange is what just changed. Try it yourself — type an address on the right.");
     stopDemo();
@@ -1806,8 +1882,9 @@ function boot(){
     if (e.key === "Enter"){ e.preventDefault(); opsLookup(); }
   });
 
+  $("mMute").addEventListener("click", function(){ setMuted(!VOICE.muted); });
   $("mWatch").addEventListener("click", function(){
-    if (S.demo) stopDemo(); else runDemo();
+    if (S.demo) stopDemo(); else runDemo(true);
   });
   ["opsAddr","custAddr","inArea","inBiz","inTrade","btnReseed","mCancel"].forEach(function(id){
     var el = $(id); if (!el) return;
@@ -1865,7 +1942,8 @@ function boot(){
   setArea(startArea);
 
   window.__meridian = {
-    S:S, loadOf:loadOf, STREETS:STREETS, bakedFor:bakedFor,
+    S:S, loadOf:loadOf, VOICE:VOICE, playLine:playLine, setMuted:setMuted,
+    ensureVoice:ensureVoice, stopVoice:stopVoice, STREETS:STREETS, bakedFor:bakedFor,
     seedStops:seedStops, assignByGeography:assignByGeography, runDemo:runDemo, stopDemo:stopDemo, selectCrew:selectCrew, renderRunSheet:renderRunSheet,
     clockAt:clockAt, reasonFor:reasonFor, renderChanges:renderChanges,
     focusChanges:focusChanges, routeGeometry:routeGeometry, commitStop:commitStop,
