@@ -1,0 +1,1885 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Meridian · Route-aware scheduling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root{
+    --paper:      oklch(0.986 0.006 92);
+    --paper-2:    oklch(0.966 0.009 92);
+    --card:       oklch(0.99 0.004 95);
+    --ink:        oklch(0.29 0.02 165);
+    --ink-2:      oklch(0.50 0.02 165);
+    --ink-3:      oklch(0.64 0.015 165);
+    --line:       oklch(0.90 0.012 108);
+    --line-2:     oklch(0.94 0.009 100);
+    --accent:     oklch(0.52 0.09 165);
+    --accent-2:   oklch(0.62 0.10 160);
+    --accent-soft:oklch(0.94 0.025 158);
+    --warn:       oklch(0.55 0.12 55);
+    --warn-soft:  oklch(0.95 0.035 80);
+    --good:       oklch(0.52 0.10 150);
+    --good-soft:  oklch(0.944 0.015 145);
+    --shadow:     0 1px 2px oklch(0.29 0.02 165 / .05), 0 12px 30px -18px oklch(0.29 0.02 165 / .35);
+    --r: 10px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0; font-weight:600; text-wrap:balance}
+  .serif{font-family:"Instrument Serif",Georgia,serif; font-weight:400}
+  .mono{font-variant-numeric:tabular-nums}
+  button{font:inherit; cursor:pointer}
+  :focus-visible{outline:2px solid var(--accent-2); outline-offset:2px}
+
+  /* ---------- shell ---------- */
+  .shell{max-width:1400px; margin:0 auto; padding:20px 18px 40px; display:flex; flex-direction:column; gap:16px}
+  header.top{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line); padding-bottom:14px}
+  .brand{display:flex; flex-direction:column; gap:2px}
+  .brand .name{font-family:"Instrument Serif",Georgia,serif; font-size:30px; line-height:1}
+  .brand .sub{color:var(--ink-2); font-size:13.5px}
+  .simbadge{
+    display:inline-flex; align-items:center; gap:7px; align-self:center;
+    background:var(--warn-soft); color:var(--warn); border:1px solid currentColor;
+    padding:5px 11px; border-radius:999px; font-size:12px; font-weight:500;
+  }
+  .simbadge b{font-weight:600}
+
+  .views{display:flex; gap:2px; background:var(--paper-2); padding:3px; border-radius:999px; border:1px solid var(--line)}
+  .views button{border:0; background:transparent; color:var(--ink-2); padding:7px 16px; border-radius:999px; font-size:14px}
+  .views button[aria-selected="true"]{background:var(--card); color:var(--ink); box-shadow:var(--shadow); font-weight:500}
+
+  /* ---------- layout ---------- */
+  .grid{display:grid; grid-template-columns:300px minmax(0,1fr) 330px; gap:16px; align-items:start}
+  .rail-mid{display:flex; flex-direction:column; gap:16px; min-width:0}
+  @media (max-width:1180px){ .grid{grid-template-columns:280px minmax(0,1fr)} .rail-right{grid-column:1/-1} }
+  /* On a phone the map has to be the first thing on screen. Leading with a
+     settings panel means a prospect scrolls past 470px of input boxes before
+     seeing anything worth looking at -- and most of them won't. */
+  @media (max-width:820px){
+    .grid{grid-template-columns:1fr}
+    .rail-mid{order:1}
+    .rail-left{order:2}
+    .rail-right{order:3}
+    #map{height:min(58vh,440px)}
+  }
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow)}
+  .card>h3{padding:13px 15px; border-bottom:1px solid var(--line-2); font-size:13px; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--ink-2)}
+  .card .body{padding:15px; display:flex; flex-direction:column; gap:13px}
+
+  label.f{display:flex; flex-direction:column; gap:5px; font-size:12.5px; color:var(--ink-2)}
+  input[type=text],input[type=number],select{
+    font:inherit; font-size:14px; color:var(--ink); background:var(--paper);
+    border:1px solid var(--line); border-radius:7px; padding:8px 10px; width:100%;
+  }
+  input:focus,select:focus{border-color:var(--accent-2); outline:none}
+  .row{display:flex; gap:8px; align-items:flex-end}
+  .btn{
+    border:1px solid var(--accent); background:var(--accent); color:var(--paper);
+    padding:9px 14px; border-radius:7px; font-size:14px; font-weight:500;
+  }
+  .btn:hover{background:var(--accent-2); border-color:var(--accent-2)}
+  .btn.ghost{background:transparent; color:var(--accent); }
+  .btn.ghost:hover{background:var(--accent-soft)}
+  .btn[disabled]{opacity:.45; cursor:default}
+  .btn.sm{padding:6px 10px; font-size:13px}
+
+  /* ---------- compact setup rail ---------- */
+  .setup .body{gap:9px; padding:12px}
+  .setup input[type=text]{padding:6px 9px; font-size:13.5px}
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:7px}
+  .ctls{display:flex; flex-direction:column; gap:5px}
+  .ctl{display:flex; align-items:center; justify-content:space-between; gap:10px;
+    font-size:12.5px; color:var(--ink-2)}
+  .sep{height:1px; background:var(--line-2); margin:2px 0}
+  .stepper.mini{border-radius:6px}
+  .stepper.mini button{width:26px; height:26px; font-size:15px}
+  .stepper.mini .val{min-width:52px; font-size:12.5px}
+
+  /* ---------- crew ---------- */
+  /* 12 trucks would otherwise push the rail well past the map */
+  .crewlist{display:flex; flex-direction:column; gap:5px; max-height:140px; overflow-y:auto;
+    padding-right:2px}
+  .crew{display:flex; align-items:center; gap:8px}
+  .swatch{width:11px; height:11px; border-radius:3px; flex:none}
+  .crew input{flex:1; padding:4px 8px; font-size:13px}
+  .crew .drop{border:0; background:transparent; color:var(--ink-3); padding:2px 6px; font-size:16px; line-height:1; border-radius:5px}
+  .crew .drop:hover{color:var(--warn); background:var(--warn-soft)}
+  .stepper{display:flex; align-items:center; gap:0; border:1px solid var(--line); border-radius:7px; overflow:hidden}
+  .stepper button{border:0; background:var(--paper); color:var(--ink); width:34px; height:34px; font-size:17px; line-height:1}
+  .stepper button:hover{background:var(--accent-soft)}
+  .stepper .val{min-width:40px; text-align:center; font-variant-numeric:tabular-nums; font-weight:600}
+
+  /* ---------- map ---------- */
+  .mapwrap{position:relative; border-radius:var(--r); overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow)}
+  #map{height:min(70vh,620px); width:100%; background:var(--paper-2)}
+  .maptools{
+    position:absolute; z-index:600; top:10px; left:10px; display:flex; gap:4px;
+    background:oklch(0.99 0.004 95 / .93); border:1px solid var(--line); border-radius:8px; padding:3px;
+    backdrop-filter:blur(6px);
+  }
+  .maptools button{border:0; background:transparent; color:var(--ink-2); padding:6px 11px; border-radius:6px; font-size:13px}
+  .maptools button[aria-pressed="true"]{background:var(--accent); color:var(--paper); font-weight:500}
+  .maphint{
+    position:absolute; z-index:600; bottom:10px; left:10px; right:10px; margin:auto; width:fit-content; max-width:92%;
+    background:oklch(0.29 0.02 165 / .88); color:var(--paper); padding:7px 13px; border-radius:999px;
+    font-size:12.5px; pointer-events:none; transition:opacity .25s;
+  }
+  .busy{
+    position:absolute; z-index:700; top:10px; right:10px;
+    background:var(--card); border:1px solid var(--line); border-radius:999px; padding:5px 12px;
+    font-size:12px; color:var(--ink-2); display:none; align-items:center; gap:7px;
+  }
+  .busy.on{display:flex}
+  .spin{width:11px;height:11px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;
+    animation:sp .7s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* ---------- metrics ---------- */
+  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1px; background:var(--line-2)}
+  .metric{background:var(--card); padding:12px 14px; display:flex; flex-direction:column; gap:2px}
+  .metric .k{font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3)}
+  .metric .v{font-size:23px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.15}
+  .metric .n{font-size:12px; color:var(--ink-3)}
+
+  /* ---------- feed ---------- */
+  .feed{display:flex; flex-direction:column; gap:9px; max-height:300px; overflow-y:auto}
+  .ev{border-left:2px solid var(--line); padding:2px 0 2px 11px; font-size:13px; color:var(--ink-2)}
+  .ev b{color:var(--ink); font-weight:500}
+  .ev.good{border-left-color:var(--good)}
+  .ev.warn{border-left-color:var(--warn)}
+  .ev .t{font-size:11px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+
+  .opt{display:flex; align-items:center; justify-content:space-between; gap:9px; padding:9px 11px;
+    border:1px solid var(--line); border-radius:8px; background:var(--paper)}
+  .opt.best{border-color:var(--accent); background:var(--accent-soft)}
+  .opt .who{display:flex; align-items:center; gap:8px; font-size:13.5px; min-width:0}
+  .opt .who span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .opt .min{font-size:13px; font-variant-numeric:tabular-nums; color:var(--ink-2); white-space:nowrap}
+  .opt.best .min{color:var(--accent); font-weight:600}
+
+  /* ---------- customer view ----------
+     The operator's reasoning lives in its own column with its own label, so
+     it can never be mistaken for part of the customer's screen. */
+  .custgrid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,340px); gap:22px; align-items:start}
+  @media (max-width:900px){ .custgrid{grid-template-columns:1fr} }
+  .custcol,.opscol{display:flex; flex-direction:column; gap:8px; min-width:0}
+  .collabel{
+    display:flex; align-items:center; gap:7px;
+    font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; font-weight:600;
+    color:var(--ink-3); padding-bottom:2px;
+  }
+  .collabel.ops{color:var(--accent)}
+  .collabel .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .collabel .dot.cust{background:var(--ink-3)}
+  .collabel .dot.ops{background:var(--accent)}
+  .opscol{
+    border-left:2px dashed var(--accent);
+    padding-left:16px;
+  }
+  @media (max-width:900px){
+    .opscol{border-left:0; border-top:2px dashed var(--accent); padding-left:0; padding-top:14px}
+  }
+  #opsNotes{display:flex; flex-direction:column; gap:10px}
+  .whyhead{
+    font-size:12.5px; font-weight:600; color:var(--ink);
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .whyhead .rank{
+    font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+    background:var(--accent); color:var(--paper); border-radius:999px; padding:2px 7px;
+  }
+  .whyhead .rank.alt{background:transparent; color:var(--ink-3); border:1px solid var(--line)}
+  .cust{margin:0}
+  .slot{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 15px;
+    border:1px solid var(--line); border-radius:9px; background:var(--card); text-align:left; width:100%}
+  .slot:hover{border-color:var(--accent); background:var(--accent-soft)}
+  .slot .when{font-size:15px; font-weight:500}
+  .slot .why{font-size:12.5px; color:var(--ink-3)}
+  .slot .tag{font-size:11px; padding:3px 8px; border-radius:999px; background:var(--good-soft); color:var(--good); white-space:nowrap}
+  /* ---------- run sheet ---------- */
+  .runhead{display:flex; align-items:center; justify-content:space-between; gap:12px;
+    flex-wrap:wrap; padding-bottom:11px; border-bottom:1px solid var(--line-2); margin-bottom:11px}
+  .runhead .who{display:flex; align-items:center; gap:9px; font-size:16px; font-weight:600}
+  .runhead .sub{font-size:12.5px; color:var(--ink-2)}
+  .itin{display:flex; flex-direction:column}
+  .leg{display:grid; grid-template-columns:62px 20px minmax(0,1fr) auto; gap:10px; align-items:start}
+  .leg .clock{font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; padding-top:2px;
+    text-align:right}
+  .leg .track{display:flex; flex-direction:column; align-items:center; min-height:24px}
+  .leg .node{width:9px;height:9px;border-radius:50%;border:2px solid currentColor;background:var(--card);
+    margin-top:5px; flex:none}
+  .leg .wire{width:2px; flex:1; background:currentColor; opacity:.3; min-height:14px}
+  .leg .what{font-size:13.5px; padding-bottom:11px; min-width:0}
+  .leg .what b{font-weight:500}
+  .leg .what .drive{color:var(--ink-3); font-size:12px; display:block; padding-top:2px}
+  .leg .dur{font-size:12px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap;
+    background:var(--paper-2); border-radius:5px; padding:2px 7px}
+  .leg.depot .what b{color:var(--ink-2)}
+  .leg.newstop .what b{color:var(--warn)}
+  .runtot{display:flex; gap:16px; flex-wrap:wrap; padding-top:11px; margin-top:2px;
+    border-top:1px solid var(--line-2); font-size:12.5px; color:var(--ink-2)}
+  .runtot b{color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums}
+  .runtot .over{color:var(--warn)}
+  .crew .peek{border:0; background:transparent; color:var(--ink-3); padding:2px 5px; font-size:14px;
+    line-height:1; border-radius:5px}
+  .crew .peek:hover{color:var(--accent); background:var(--accent-soft)}
+  .crew.sel .peek{color:var(--accent)}
+  .crew.sel input{border-color:var(--accent)}
+
+  /* ---------- change highlighting ---------- */
+  .changes{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft), var(--shadow)}
+  .changes>h3{color:var(--accent)}
+  .chg{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; padding:9px 11px;
+    border-radius:8px; background:var(--paper); border:1px solid var(--line-2)}
+  .chg .pip{width:9px; height:9px; border-radius:50%; flex:none; margin-top:6px}
+  .chg.added .pip{background:var(--accent)}
+  .chg.moved .pip{background:var(--warn)}
+  .chg.gone  .pip{background:var(--ink-3)}
+  .chg b{font-weight:600}
+  .chg .sub{color:var(--ink-3); font-size:12.5px; display:block}
+  .legend{display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:var(--ink-3); padding:2px 0}
+  .legend span{display:inline-flex; align-items:center; gap:5px}
+  .legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .dimmed{opacity:.35; transition:opacity .3s}
+
+  /* ---------- operator reasoning ---------- */
+  .whybox{border:1px dashed var(--accent); background:var(--accent-soft); border-radius:8px;
+    padding:10px 12px; font-size:12.5px; color:var(--ink-2); display:flex; flex-direction:column; gap:5px}
+  .whybox .hdr{font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--accent); font-weight:600}
+  .whybox ul{margin:0; padding-left:16px; display:flex; flex-direction:column; gap:3px}
+  .opstoggle{display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--ink-2); cursor:pointer}
+  .full{background:var(--warn-soft); color:var(--warn); border:1px solid currentColor;
+    border-radius:6px; padding:2px 7px; font-size:11px; white-space:nowrap}
+  .degraded{
+    display:flex; flex-direction:column; gap:2px;
+    background:var(--warn); color:oklch(0.99 0.004 95);
+    border-radius:var(--r); padding:12px 16px; font-size:13.5px;
+  }
+  .degraded b{font-size:14.5px}
+  .degraded span{opacity:.9}
+  .hide{display:none !important}
+  .empty{color:var(--ink-3); font-size:13.5px; font-style:italic}
+  .err{background:var(--warn-soft); color:var(--warn); border:1px solid currentColor; border-radius:7px;
+    padding:9px 12px; font-size:13px}
+  .foot{border-top:1px solid var(--line); padding-top:14px; color:var(--ink-3); font-size:12.5px;
+    display:flex; flex-direction:column; gap:5px}
+  .leaflet-container{font-family:inherit}
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important; animation:none!important} }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="degraded hide" id="degraded">
+    <b>Approximate distances — road routing temporarily unavailable.</b>
+    <span>Minutes shown are straight-line estimates. Around water, bridges and hills they can be
+    far off the real drive.</span>
+  </div>
+
+  <header class="top">
+    <div class="brand">
+      <span class="name" id="bizName">Your Business</span>
+      <span class="sub" id="bizSub">Set it up on the left · one live schedule</span>
+    </div>
+    <span class="simbadge" id="simBadge">
+      <b>Simulation.</b><span id="simNote">Drive times are real road routes. Stops and crew are made up.</span>
+    </span>
+    <div class="views" role="tablist">
+      <button role="tab" aria-selected="true" data-view="ops">Operations</button>
+      <button role="tab" aria-selected="false" data-view="cust">What the customer sees</button>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- ================= LEFT: setup ================= -->
+    <div class="rail-left">
+      <section class="card setup">
+        <h3>Set up</h3>
+        <div class="body">
+          <div class="pair">
+            <input type="text" id="inBiz" maxlength="48" placeholder="Your Business" autocomplete="off" aria-label="Business name">
+            <input type="text" id="inTrade" maxlength="36" placeholder="service calls" autocomplete="off" aria-label="What you do">
+          </div>
+          <div class="row">
+            <input type="text" id="inArea" maxlength="80" placeholder="Seattle, WA" autocomplete="off" aria-label="Where you work">
+            <button class="btn sm" id="btnArea">Go</button>
+          </div>
+          <div id="areaErr" class="err hide"></div>
+
+          <div class="ctls">
+            <div class="ctl">
+              <span>Stops</span>
+              <span class="stepper mini">
+                <button id="stopsDown" aria-label="Fewer stops">−</button>
+                <span class="val mono" id="stopsVal">18</span>
+                <button id="stopsUp" aria-label="More stops">+</button>
+              </span>
+            </div>
+            <div class="ctl">
+              <span>Appointment</span>
+              <span class="stepper mini">
+                <button id="apptDown" aria-label="Shorter appointment">−</button>
+                <span class="val mono" id="apptVal">45 min</span>
+                <button id="apptUp" aria-label="Longer appointment">+</button>
+              </span>
+            </div>
+            <div class="ctl">
+              <span>Working day</span>
+              <span class="stepper mini">
+                <button id="dayDown" aria-label="Shorter day">−</button>
+                <span class="val mono" id="dayVal">8 h</span>
+                <button id="dayUp" aria-label="Longer day">+</button>
+              </span>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="ctl">
+            <span>Trucks</span>
+            <span class="stepper mini">
+              <button id="crewDown" aria-label="Fewer trucks">−</button>
+              <span class="val mono" id="crewVal">3</span>
+              <button id="crewUp" aria-label="More trucks">+</button>
+            </span>
+          </div>
+          <div class="crewlist" id="crewList"></div>
+          <button class="btn ghost sm" id="btnReseed">Redraw the week</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= CENTRE: map ================= -->
+    <div class="rail-mid">
+      <div id="opsView">
+        <div class="mapwrap">
+          <div id="map"></div>
+          <div class="maptools">
+            <button id="mAdd"    aria-pressed="true">＋ Place a customer</button>
+            <button id="mCancel" aria-pressed="false">✕ Cancel a stop</button>
+            <button id="mWatch" style="border-left:1px solid var(--line)">▶ Watch it work</button>
+          </div>
+          <div class="busy" id="busy"><span class="spin"></span><span id="busyTxt">Routing…</span></div>
+          <div class="maphint" id="hint">Type a real address on the right, or click the map to drop a customer.</div>
+        </div>
+        <div class="card hide" id="runsheet" style="margin-top:16px">
+          <h3 id="runTitle">Run sheet</h3>
+          <div class="body">
+            <div id="runBody"></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn ghost sm" id="runClose">Close run sheet</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card changes hide" id="changes" style="margin-top:16px">
+          <h3>What just changed</h3>
+          <div class="body">
+            <div id="changeList" style="display:flex;flex-direction:column;gap:8px"></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn sm" id="btnShowChange">Show me on the map</button>
+              <button class="btn ghost sm" id="btnClearChange">Back to normal view</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <div class="metrics" id="metrics"></div>
+        </div>
+      </div>
+
+      <!-- customer view -->
+      <div id="custView" class="hide">
+       <div class="custgrid">
+        <div class="custcol">
+         <div class="collabel"><span class="dot cust"></span>What your customer sees</div>
+         <div class="card cust">
+          <div class="body">
+            <div>
+              <div class="serif" style="font-size:23px" id="custTitle">Book your service</div>
+              <p style="color:var(--ink-2);font-size:14px;margin:5px 0 0">
+                Tell us where you are and when suits you. We'll show the times that work.
+              </p>
+            </div>
+            <label class="f">Service address
+              <input type="text" id="custAddr" maxlength="90" placeholder="Start typing an address…" autocomplete="off">
+            </label>
+            <label class="f">Preferred time of day
+              <select id="custPref">
+                <option value="any">Any time</option>
+                <option value="am">Mornings</option>
+                <option value="pm">Afternoons</option>
+              </select>
+            </label>
+            <button class="btn" id="custFind">Find available times</button>
+            <div id="custErr" class="err hide"></div>
+            <div id="custSlots" style="display:flex;flex-direction:column;gap:9px"></div>
+          </div>
+         </div>
+        </div>
+
+        <aside class="opscol">
+          <div class="collabel ops"><span class="dot ops"></span>Your view — never shown to the customer</div>
+          <div id="opsNotes">
+            <p class="empty">Enter an address on the left. The engine's reasoning for each
+              time it offers will appear here.</p>
+          </div>
+        </aside>
+       </div>
+      </div>
+    </div>
+
+    <!-- ================= RIGHT: engine ================= -->
+    <div class="rail-right" style="display:flex;flex-direction:column;gap:16px">
+      <section class="card">
+        <h3>Where should this one go?</h3>
+        <div class="body">
+          <label class="f">New customer's address
+            <div class="row">
+              <input type="text" id="opsAddr" maxlength="90"
+                     placeholder="1600 Pine St, Seattle" autocomplete="off">
+              <button class="btn sm" id="opsGo">Check</button>
+            </div>
+          </label>
+          <div id="opsErr" class="err hide"></div>
+          <div id="evalBox" style="display:flex;flex-direction:column;gap:11px">
+            <p class="empty">Type a real address above. Every truck gets ranked by the driving it actually adds.</p>
+          </div>
+        </div>
+      </section>
+      <section class="card">
+        <h3>What the engine did</h3>
+        <div class="body"><div class="feed" id="feed"></div></div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span>Meridian — route-aware scheduling. Built by Perseid Echo Creations.</span>
+    <span id="footNote">Road distances and route geometry from OSRM. Addresses from Nominatim. Map data
+      © OpenStreetMap contributors. Stops, crew and schedule are simulated.</span>
+    <span id="routerNote"></span>
+  </footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+"use strict";
+(function () {
+
+/* =====================================================================
+   Meridian playground.
+   Everything the visitor types is untrusted: names go in via textContent
+   or .value, never innerHTML. Every count is clamped. Every network call
+   is cached, throttled, and has a working fallback, because the point of
+   this build is that people are invited to try to break it.
+   ===================================================================== */
+
+var LIMITS = {
+  crewMin: 1, crewMax: 12,
+  stopsMin: 4, stopsMax: 90,
+  apptMin: 15, apptMax: 240,
+  dayMin: 4,  dayMax: 14,
+  nameLen: 24,
+  matrixCoords: 90,      // OSRM table request cap (URL length + server limits)
+  geoMinGapMs: 1100      // Nominatim asks for <= 1 req/sec
+};
+
+/* ---------------------------------------------------------------- router
+   The public OSRM demo server is TEMPORARY INFRASTRUCTURE, not a production
+   backend. It has no per-call API charge, but it is explicitly a demo: the
+   usage policy allows blocking for excessive use, guarantees no availability,
+   and requires attribution. When this demo gets real traffic, stand up an
+   OSRM instance on the VPS and change ROUTER.base here -- nothing else in
+   this file needs to move.
+
+   Why not Google Routes: Compute Route Matrix bills per origin/destination
+   element. A 20-stop board is a 20x20 = 400-element matrix per recalculation.
+   Past the 10k free monthly elements that is roughly $2 every time the matrix
+   rebuilds -- on a page strangers are invited to hammer. */
+var ROUTER = {
+  base:  "https://router.project-osrm.org",
+  label: "public OSRM demo server",
+  hosted: false            // flip to true when self-hosting
+};
+
+/* Baked street data for the cities we prospect in. Generated once by
+   tools/bake-streets.py; injected by tools/inject-streets.py. Every city
+   in here costs a visitor ZERO street lookups -- that was ~19 of the ~25
+   requests a visit used to make. Unknown cities still work, they just
+   fall back to naming stops live. */
+var STREETS = /*STREETS_START*/{"seattle, wa":{"c":[47.6062,-122.3321],"s":[[47.61362,-122.32212,"290 Harvard Avenue"],[47.5656,-122.35799,"660 19th Avenue Southwest"],[47.62321,-122.33531,"650 Republican Street"],[47.56156,-122.28493,"880 38th Avenue South"],[47.58159,-122.3555,"600 16th Avenue Southwest"],[47.5928,-122.32906,"390 4th Avenue South"],[47.62388,-122.30245,"850 23rd Avenue East"],[47.58552,-122.30993,"100 South Plum Street"],[47.61621,-122.34935,"970 2nd Avenue"],[47.63648,-122.39037,"370 26th Avenue West"],[47.61494,-122.30622,"340 20th Avenue"],[47.61561,-122.28123,"450 Lake Washington Boulevard"],[47.56567,-122.316,"910 13th Avenue South"],[47.56565,-122.36118,"980 22nd Avenue Southwest"],[47.63542,-122.28858,"980 Blenheim Drive East"],[47.61785,-122.32928,"580 Howell Street"],[47.64095,-122.26036,"280 Evergreen Point Floating Bridge"],[47.60202,-122.33986,"550 Colman Dock"],[47.62363,-122.31675,"530 12th Avenue East"],[47.65482,-122.33627,"250 Wallingford Avenue North"],[47.58553,-122.33958,"390 State Route 99"],[47.57839,-122.38025,"720 38th Avenue Southwest"],[47.59028,-122.33215,"950 Edgar Martinez Drive South"],[47.60495,-122.31287,"230 15th Avenue"],[47.6065,-122.30279,"840 23rd Avenue"],[47.63132,-122.35948,"470 West Lee Street"],[47.59603,-122.32506,"560 Maynard Avenue South"],[47.55698,-122.36173,"120 Puget Boulevard Southwest"],[47.59496,-122.38499,"430 Harbor Avenue Southwest"],[47.58731,-122.31858,"780 11th Avenue South"],[47.57552,-122.32956,"390 South Hanford Street"],[47.62937,-122.34494,"100 6th Avenue North"],[47.63067,-122.37768,"580 16th Avenue West"],[47.60518,-122.32079,"110 Broadway"],[47.61406,-122.33776,"920 6th Avenue"],[47.61644,-122.28035,"280 East Olive Lane"],[47.61469,-122.35042,"340 Vine Street"],[47.60532,-122.31419,"320 14th Avenue"],[47.64524,-122.35689,"600 Queen Anne Avenue North"],[47.60896,-122.34453,"320 Alaskan Way"],[47.58498,-122.38053,"980 Belvidere Avenue Southwest"],[47.57415,-122.31342,"690 15th Avenue South"],[47.65974,-122.3374,"760 Densmore Avenue North"],[47.59783,-122.30637,"290 20th Avenue South"],[47.59113,-122.30794,"230 Rainier Avenue South"],[47.59877,-122.33413,"300 1st Avenue South"],[47.65884,-122.31777,"670 Roosevelt Way Northeast"],[47.6267,-122.31459,"890 14th Avenue East"],[47.58141,-122.40049,"660 Hughes Avenue Southwest"],[47.59751,-122.32168,"960 South Weller Street"],[47.65849,-122.3273,"770 2nd Avenue Northeast"],[47.58942,-122.26277,"330 Lacey V. Murrow Memorial Bridge"],[47.60083,-122.32047,"510 South Washington Street"],[47.61483,-122.33707,"770 7th Avenue"],[47.63576,-122.29833,"140 Lake Washington Boulevard East"]]},"tacoma, wa":{"c":[47.2529,-122.4443],"s":[[47.27054,-122.45098,"310 North Schuster Parkway"],[47.25261,-122.47426,"870 South 9th Street"],[47.2508,-122.40125,"870 Milwaukee Way"],[47.27199,-122.48948,"450 North 27th Street"],[47.23164,-122.44657,"200 South Tacoma Way"],[47.2354,-122.4522,"390 South 28th Street"],[47.29789,-122.4338,"310 East Side Drive Northeast"],[47.25371,-122.39286,"630 Marshall Avenue"],[47.30117,-122.44341,"940 Tok A Lou Avenue Northeast"],[47.20468,-122.47651,"550 South 58th Street"],[47.21029,-122.49448,"890 South Tyler Street"],[47.24436,-122.46558,"830 South State Street"],[47.24876,-122.42245,"520 East J Street"],[47.26088,-122.46082,"480 North M Street"],[47.24279,-122.47515,"160 South 19th Street"],[47.2594,-122.42078,"180 East Portland Avenue"],[47.23553,-122.41952,"660 Upper Park Street"],[47.22035,-122.47362,"470 South Pine Street"],[47.25106,-122.42155,"200 Saint Paul Avenue"],[47.2332,-122.5051,"560 South Orchard Street"],[47.29168,-122.41049,"380 Marine View Drive"],[47.20193,-122.43135,"760 A Street"],[47.20962,-122.48751,"260 South Burlington Way"],[47.27195,-122.41426,"950 East Port Center Road"],[47.22005,-122.45762,"680 South 41st Street"],[47.23432,-122.378,"190 Berens Road"],[47.24573,-122.48903,"370 South Proctor Street"],[47.25981,-122.47,"610 North 11th Street"],[47.298,-122.39879,"350 36th Avenue Northeast"],[47.22796,-122.46026,"160 South 35th Street"],[47.25945,-122.50705,"800 North Dahl Drive"],[47.27283,-122.48212,"520 North 28th Street"],[47.27988,-122.37677,"850 53rd Avenue Northeast"],[47.23263,-122.46694,"360 South Trafton Street"],[47.24599,-122.38468,"580 12th Street East"],[47.24546,-122.49435,"920 South Mason Avenue"],[47.26464,-122.45894,"800 North I Street"],[47.22869,-122.44463,"300 South Thompson Avenue"],[47.22395,-122.42356,"450 East F Street"],[47.26937,-122.49171,"940 North Monroe Street"],[47.22951,-122.50385,"800 South 34th Street"],[47.25852,-122.42136,"330 East 11th Street"],[47.23605,-122.3903,"360 North Levee Road East"],[47.24856,-122.45439,"180 South 14th Street"],[47.22309,-122.41226,"290 East 38th Street"],[47.21546,-122.40715,"540 East 46th Street"],[47.20909,-122.48024,"480 South Birmingham Street"],[47.28139,-122.48181,"530 North 37th Street"],[47.28859,-122.38727,"140 Browns Point Boulevard Northeast"],[47.21776,-122.41081,"680 East N Street"],[47.2699,-122.46862,"360 Orchard Road"],[47.23237,-122.48124,"920 South Windom Street"],[47.26102,-122.40346,"960 Maxwell Way"],[47.24109,-122.4463,"120 South I Street"],[47.25752,-122.51451,"840 Bantz Boulevard"]]},"bellingham, wa":{"c":[48.7519,-122.4787],"s":[[48.75165,-122.4289,"400 Silver Beach Road"],[48.77236,-122.40958,"850 Glenmeadows Place"],[48.75743,-122.43892,"820 Kentucky Street"],[48.70266,-122.48406,"140 Old Samish Road"],[48.75445,-122.4921,"210 Hilton Avenue"],[48.79124,-122.44799,"130 Bakerview Spur"],[48.7013,-122.44669,"980 Lakeshore Drive"],[48.77178,-122.47717,"540 Coolidge Drive"],[48.70335,-122.5129,"280 Bayside Road"],[48.75455,-122.44533,"860 Woburn Street"],[48.74591,-122.47473,"220 High Street"],[48.74178,-122.46238,"290 Rutgers Boulevard"],[48.74898,-122.45061,"170 Toledo Court"],[48.72642,-122.5055,"790 Bennett Avenue"],[48.76695,-122.48265,"690 Russell Street"],[48.72035,-122.4625,"660 Mill Avenue"],[48.74361,-122.43856,"390 Likely Drive"],[48.71112,-122.48708,"480 South Street"],[48.73882,-122.49013,"690 Alder Street"],[48.74862,-122.41004,"600 Euclid Avenue"],[48.76055,-122.47811,"870 E Street"],[48.70637,-122.45786,"700 Wilkin Street"],[48.75716,-122.46209,"500 Lincoln Street"],[48.77834,-122.54557,"500 West Cliffside Drive"],[48.71611,-122.51756,"360 Shorewood Drive"],[48.77126,-122.52128,"560 Marigold Lane"],[48.7681,-122.46402,"490 East Illinois Street"],[48.78861,-122.42794,"170 Dewey Road"],[48.7644,-122.48464,"250 West North Street"],[48.72253,-122.44096,"960 Spring Valley Avenue"],[48.76177,-122.48321,"370 Irving Street"],[48.76651,-122.47073,"430 Franklin Street"],[48.7391,-122.46895,"320 East Maple Street"],[48.74627,-122.45284,"660 Saint Paul Lane"],[48.73245,-122.50123,"650 Bayview Drive"],[48.77147,-122.50552,"740 Cedarwood Avenue"],[48.75578,-122.43002,"100 Rhododendron Way"],[48.76508,-122.42392,"340 East Connecticut Street"],[48.71681,-122.49603,"810 Wilson Avenue"],[48.78295,-122.48606,"320 Meridian Street"],[48.76318,-122.50048,"180 Jefferson Street"],[48.76708,-122.52364,"320 Cement Plant Road"],[48.70848,-122.46487,"300 40th Street"],[48.77985,-122.46424,"220 James Street"],[48.76026,-122.4516,"920 Carolina Street"],[48.78245,-122.5163,"720 McLeod Road"],[48.73778,-122.45597,"930 Puget Street"],[48.72521,-122.49991,"360 14th Street"],[48.75899,-122.48116,"440 Halleck Street"],[48.77255,-122.48831,"690 East Victor Street"],[48.77198,-122.53095,"560 Locust Avenue"],[48.73365,-122.47366,"450 Byron Street"],[48.7302,-122.40458,"110 RD 2800"],[48.74393,-122.48874,"930 Beal Memorial Way"],[48.72296,-122.49718,"310 16th Street"]]},"vancouver, wa":{"c":[45.6387,-122.6615],"s":[[45.59179,-122.64446,"630 Northeast Edgewater Drive"],[45.63142,-122.66942,"950 C Street"],[45.66789,-122.67545,"570 Alki Road"],[45.58444,-122.64368,"400 Northeast Elrod Drive"],[45.64282,-122.64968,"500 East 30th Street"],[45.6275,-122.68068,"680 Jefferson Street"],[45.63768,-122.68215,"700 Markle Avenue"],[45.6867,-122.65308,"900 Northeast 19th Court"],[45.61486,-122.67699,"690 Interstate Bridge"],[45.64602,-122.63035,"920 Nicholson Road"],[45.64814,-122.7209,"860 Northwest Gateway Avenue"],[45.65901,-122.6502,"710 Northeast 51st Street"],[45.61387,-122.68014,"210 North Hayden Island Drive"],[45.64898,-122.64941,"750 U Street"],[45.65279,-122.62834,"930 Northeast 42nd Avenue"],[45.59367,-122.64968,"970 Northeast Golf Court"],[45.6477,-122.64125,"950 Northeast Saint Johns Road"],[45.6165,-122.63626,"900 Southeast Victory Avenue"],[45.64301,-122.65536,"160 P Street"],[45.62345,-122.7328,"960 North Marine Drive"],[45.65785,-122.64307,"120 Northeast 27th Court"],[45.64581,-122.66344,"690 East 34th Street"],[45.63742,-122.70343,"190 West 26th Avenue"],[45.64055,-122.67363,"450 Columbia Street"],[45.63385,-122.63901,"330 Murton Street"],[45.63475,-122.64723,"170 East 18th Street"],[45.61986,-122.68909,"510 North Menzies Drive"],[45.64462,-122.6442,"660 Saint Johns Boulevard"],[45.65356,-122.61739,"650 Northeast 44th Street"],[45.64648,-122.6536,"530 East 35th Street"],[45.6441,-122.65863,"380 M Street"],[45.63955,-122.67506,"700 Daniels Street"],[45.59177,-122.65521,"820 Northeast Lija Loop"],[45.61904,-122.59958,"540 Louisiana Drive"],[45.63102,-122.61167,"550 Montana Lane"],[45.64081,-122.62661,"180 Gibbons Street"],[45.65042,-122.72104,"650 Northwest Lower River Road"],[45.67873,-122.63322,"600 Northeast 78th Street"],[45.59706,-122.65273,"930 Northeast Faloma Road"],[45.63342,-122.67808,"720 Grant Street"],[45.68839,-122.69276,"250 Northwest 21st Avenue"],[45.65307,-122.67346,"960 Northwest Columbia Street"],[45.62161,-122.59106,"320 Virginia Lane"],[45.67282,-122.66013,"330 Northeast 12th Avenue"],[45.65482,-122.67923,"480 Northwest Grant Street"],[45.63097,-122.6319,"800 East 14th Street"],[45.65412,-122.6558,"870 Northeast Valley View Lane"],[45.64367,-122.64718,"170 W Street"],[45.63237,-122.6349,"960 East 15th Street"],[45.59129,-122.70497,"500 North Columbia Boulevard Frontage Road"],[45.58659,-122.68691,"950 North Denver Avenue"],[45.65754,-122.64846,"690 Northeast 50th Circle"],[45.66884,-122.66046,"760 Northeast 64th Street"],[45.65795,-122.69057,"410 Northwest Fruit Valley Road"],[45.66174,-122.68248,"110 Northwest Lincoln Avenue"]]},"portland, or":{"c":[45.5152,-122.6784],"s":[[45.56482,-122.66878,"420 North Vancouver Avenue"],[45.49301,-122.70549,"590 Southwest Chesapeak Avenue"],[45.47502,-122.67696,"430 South Corbett Avenue"],[45.49562,-122.64515,"530 Southeast Bush Street"],[45.52757,-122.623,"460 Northeast C\u00e9sar E. Ch\u00e1vez Boulevard"],[45.51974,-122.72855,"230 Northwest Barnes Road"],[45.5283,-122.64141,"450 Northeast 24th Avenue"],[45.46619,-122.66106,"610 Southeast Grand Avenue"],[45.4766,-122.64807,"940 Southeast 17th Avenue"],[45.50595,-122.75481,"670 Sunset Highway"],[45.48941,-122.61682,"100 Southeast 44th Avenue"],[45.52435,-122.69742,"210 Northwest 22nd Place"],[45.51029,-122.71602,"810 Southwest Zoo Road"],[45.53192,-122.73898,"940 Northwest Cornell Road"],[45.53617,-122.6606,"690 Northeast Grand Avenue"],[45.52006,-122.65269,"620 Southeast Oak Street"],[45.50124,-122.63232,"460 Southeast Brooklyn Street"],[45.54925,-122.66904,"220 North Gantenbein Avenue"],[45.47036,-122.63946,"710 Southeast McLoughlin Boulevard"],[45.51307,-122.72299,"340 Southwest Wyndham Lane"],[45.53719,-122.67613,"360 North River Street"],[45.51294,-122.66057,"340 Southeast Madison Street"],[45.49883,-122.74799,"700 Southwest Renee Drive"],[45.48228,-122.73962,"630 Southwest Pendleton Court"],[45.51299,-122.68701,"310 Southwest 11th Avenue"],[45.55184,-122.65276,"120 Northeast 13th Avenue"],[45.53968,-122.7091,"740 Northwest 28th Avenue"],[45.50308,-122.74272,"640 Southwest Meade Court"],[45.52128,-122.74387,"710 Northwest Skyline Boulevard"],[45.5008,-122.74033,"630 Southwest Woods Court"],[45.54191,-122.66912,"970 North Knott Street"],[45.50789,-122.69211,"440 Southwest Myrtle Drive"],[45.50597,-122.70645,"280 Southwest Fern Street"],[45.52858,-122.64018,"300 Northeast Oregon Street"],[45.51068,-122.60272,"120 Southeast 59th Avenue"],[45.49086,-122.68669,"710 Southwest Terwilliger Boulevard"],[45.52287,-122.64199,"160 East Burnside Street"],[45.52993,-122.69096,"790 Northwest Lovejoy Street"],[45.50435,-122.68697,"280 Southwest Commonwealth Avenue"],[45.48235,-122.65062,"620 Southeast Ellis Street"],[45.46827,-122.70158,"900 Southwest Troy Street"],[45.52255,-122.69159,"700 Southwest Morrison Street"],[45.53054,-122.67651,"170 Broadway Bridge"],[45.47931,-122.62821,"460 Southeast Woodstock Boulevard"],[45.51067,-122.63613,"790 Southeast 29th Avenue"],[45.47385,-122.65973,"600 Southeast Oaks Park Way"],[45.54815,-122.74494,"800 Northwest Forest Lane"],[45.47308,-122.72318,"800 Southwest 45th Avenue"],[45.51127,-122.6422,"450 Southeast 23rd Avenue"],[45.51783,-122.63914,"380 Southeast 26th Avenue"],[45.53359,-122.71914,"570 Northwest Mountain View Park Road"],[45.52815,-122.63449,"660 Northeast 30th Avenue"],[45.53407,-122.68458,"630 Northwest 13th Avenue"],[45.4905,-122.68219,"290 Southwest Hamilton Court"],[45.48384,-122.71511,"690 Southwest Beaverton Hillsdale Highway"]]},"ithaca, ny":{"c":[42.444,-76.5019],"s":[[42.4719,-76.46959,"950 Christopher Lane"],[42.41273,-76.47807,"600 Troy Road"],[42.46115,-76.50205,"820 Stewart Park Road"],[42.40976,-76.50301,"720 Danby Road"],[42.4234,-76.56087,"690 Bostwick Road"],[42.43599,-76.53641,"550 Elm Street Extension"],[42.46922,-76.45016,"170 Sapsucker Woods Road"],[42.44398,-76.49405,"850 University Avenue"],[42.45325,-76.50703,"330 Pier Road"],[42.4331,-76.49702,"460 Lower Morse Road"],[42.43115,-76.43645,"820 Ellis Hollow Road"],[42.45295,-76.5163,"400 Taughannock Boulevard"],[42.39857,-76.52066,"930 West King Road"],[42.4413,-76.47426,"920 Maple Avenue"],[42.47319,-76.54038,"780 Harris B Dates Drive"],[42.4148,-76.55127,"590 Calkins Road"],[42.48894,-76.51119,"740 East Shore Drive"],[42.42028,-76.47827,"750 Northview Road"],[42.43501,-76.51911,"700 Floral Avenue"],[42.42487,-76.53672,"800 Culver Road"],[42.4831,-76.47282,"160 Dart Drive"],[42.46811,-76.46765,"250 Kay Street"],[42.41017,-76.53913,"730 Elmira Road"],[42.42683,-76.43603,"330 Hungerford Road"],[42.43441,-76.50049,"670 South Geneva Street"],[42.39437,-76.52594,"100 Sandbank Road"],[42.45527,-76.4656,"440 Fairway Drive"],[42.41159,-76.55918,"810 Inlet Valley Way"],[42.45115,-76.50092,"820 Auburn Street"],[42.43837,-76.5075,"980 West Green Street"],[42.41923,-76.53879,"680 Apple Blossom Lane"],[42.42252,-76.49571,"490 Textor Circle"],[42.45927,-76.57128,"820 Bundy Road"],[42.42461,-76.46643,"920 Penny Lane"],[42.44432,-76.51857,"600 Hopper Place"],[42.44659,-76.44091,"620 Dryden Rail Trail"],[42.46377,-76.49472,"720 Devon Road"],[42.45919,-76.46099,"470 Bluegrass Lane"],[42.41389,-76.49971,"870 Flora Brown Drive"],[42.42556,-76.49547,"170 Farm Pond Road"],[42.45735,-76.5003,"140 State Route 13"],[42.46754,-76.49664,"540 North Sunset Drive"],[42.45277,-76.48799,"260 Fall Creek Drive"],[42.44086,-76.52618,"820 Haller Boulevard"],[42.44778,-76.51479,"770 Turtle Lane"],[42.46708,-76.54043,"510 Trumansburg Road"],[42.48632,-76.48618,"280 Graham Road"],[42.4001,-76.46854,"910 Southwood Drive"],[42.42316,-76.51339,"420 Spencer Road"],[42.44817,-76.52604,"960 Warren Place"],[42.41979,-76.49571,"770 Tower Skyline Drive"],[42.47181,-76.43893,"570 Hanshaw Road"],[42.48343,-76.49314,"380 The Loop Road"],[42.40938,-76.47094,"220 Coddington Road"],[42.44835,-76.53512,"960 Mecklenburg Road"]]},"ocean city, md":{"c":[38.3365,-75.0849],"s":[[38.34834,-75.07632,"750 19th Street"],[38.32489,-75.08651,"560 South 2nd Street"],[38.36387,-75.13597,"710 Robin Hood Trail"],[38.35446,-75.10178,"910 Indian Knoll Road"],[38.36126,-75.07096,"700 33rd Street"],[38.34292,-75.07877,"650 13th Street"],[38.32827,-75.10757,"540 Golf Course Road"],[38.38996,-75.09907,"650 Ocean City Expressway"],[38.3799,-75.06601,"130 56th Street"],[38.35744,-75.07252,"350 29th Street"],[38.34591,-75.08388,"860 Jacqueline Avenue"],[38.33862,-75.08112,"420 8th Street"],[38.35836,-75.07215,"220 30th Street"],[38.3515,-75.0969,"720 North Shore Road"],[38.36849,-75.06921,"700 42nd Street"],[38.34472,-75.07786,"380 15th Street"],[38.32971,-75.09644,"180 Old Bridge Road"],[38.37827,-75.06663,"350 54th Street"],[38.34774,-75.08453,"740 Teal Drive"],[38.35858,-75.11397,"820 Selsey Road"],[38.34724,-75.1183,"610 Pebble Court"],[38.37728,-75.12772,"330 Harlan Trace"],[38.37091,-75.06853,"390 45th Street"],[38.38225,-75.12644,"590 Alton Point"],[38.35653,-75.0729,"480 28th Street"],[38.33374,-75.09594,"620 Ocean Gateway"],[38.34743,-75.0767,"880 18th Street"],[38.35291,-75.07444,"110 24th Street"],[38.33839,-75.08665,"110 6th Street"],[38.36019,-75.0714,"860 32nd Street"],[38.34172,-75.10026,"250 Horn Island Drive"],[38.35677,-75.14624,"670 Gum Point Road"],[38.36366,-75.07051,"420 36th Street"],[38.32883,-75.09079,"590 Worcester Street"],[38.3438,-75.07831,"520 14th Street"],[38.33424,-75.11106,"300 Savage Road"],[38.34928,-75.07596,"620 20th Street"],[38.336,-75.08261,"840 5th Street"],[38.3332,-75.08408,"370 2nd Street"],[38.36104,-75.13905,"420 Red Cedar Lane"],[38.31647,-75.12976,"380 Sinepuxent Road"],[38.34563,-75.07746,"250 16th Street"],[38.36053,-75.13826,"390 Campground Lane"],[38.31445,-75.11338,"730 Ocean Reef Drive"],[38.34314,-75.11707,"900 Keyser Point Road"],[38.34039,-75.08016,"150 10th Street"],[38.32393,-75.10364,"590 Oceanview Lane"],[38.33045,-75.08896,"250 Dorchester Street"],[38.34527,-75.10658,"530 Thoroughfare Farms Road"],[38.3664,-75.13376,"240 Ocean Parkway"],[38.32151,-75.14719,"730 Holly Grove Road"],[38.3634,-75.08535,"150 Penguin Drive"],[38.32858,-75.09748,"400 Marthas Landing Drive"],[38.32804,-75.09975,"680 Sunset Avenue"],[38.32117,-75.11385,"100 Windswept Drive"]]},"omaha, ne":{"c":[41.2565,-95.9345],"s":[[41.24086,-95.94949,"130 South 26th Street"],[41.22266,-95.89816,"380 37th Avenue"],[41.25519,-95.99519,"600 South 52nd Street"],[41.28742,-95.9207,"600 7th Street"],[41.23116,-95.87142,"410 30th Avenue"],[41.2889,-95.9148,"760 Dorene Boulevard"],[41.2367,-95.98663,"700 South 48th Avenue"],[41.26432,-95.93713,"110 North 16th Street"],[41.23045,-95.87936,"390 South 24th Street"],[41.23541,-95.9728,"330 Arbor Street"],[41.23244,-95.93381,"290 South 13th Court"],[41.23451,-95.95364,"290 South 28th Avenue"],[41.25658,-95.94446,"720 Harney Street"],[41.2375,-95.92066,"250 South 3rd Street Plaza"],[41.29884,-95.8998,"930 Terminal Drive"],[41.26901,-95.93915,"730 Izard Street"],[41.24773,-95.96618,"220 South 36th Street"],[41.23998,-95.93203,"250 South 12th Street"],[41.28066,-95.9012,"220 North 23rd Street East"],[41.22888,-95.91607,"650 Blake Street"],[41.26809,-95.90605,"180 Avenue G"],[41.27178,-95.89566,"550 Avenue K"],[41.25623,-95.87511,"940 6th Avenue"],[41.22701,-95.92164,"510 Grover Street"],[41.30233,-95.92341,"270 Carter Lake Drive North"],[41.26773,-95.9114,"750 North 39th Street"],[41.25825,-95.94232,"340 South 20th Street"],[41.28132,-95.91983,"240 Avenue H"],[41.2434,-95.94635,"450 Hickory Street"],[41.23421,-95.90581,"880 River Road"],[41.24066,-95.93967,"950 South 18th Street"],[41.28614,-95.93518,"400 North 14th Avenue"],[41.24866,-95.86511,"700 14th Avenue"],[41.25146,-95.94087,"880 South 19th Street"],[41.2524,-95.97151,"290 Leavenworth Street"],[41.25936,-95.94823,"820 South 25th Street"],[41.24813,-95.93611,"730 Pierce Street"],[41.24613,-95.92274,"490 South 5th Street"],[41.29696,-95.95219,"130 North Freeway"],[41.25871,-95.9493,"100 Douglas Street"],[41.2754,-95.97737,"350 North 43rd Street"],[41.26841,-95.96981,"300 Lincoln Boulevard"],[41.26191,-95.88343,"320 West Broadway"],[41.22686,-95.97214,"230 South 41st Street"],[41.25923,-95.91951,"630 River Edge Service Road"],[41.20446,-95.95892,"260 R Street"],[41.25906,-95.92413,"220 Riverfront Drive"],[41.24384,-95.90184,"410 Nebraska Avenue"],[41.26793,-95.95432,"570 Cuming Street"],[41.2462,-95.93839,"260 South 17th Street"],[41.2692,-95.97611,"850 North 42nd Street"],[41.21611,-95.96858,"950 I Street"],[41.22917,-95.97163,"840 South 40th Street"],[41.26036,-95.90855,"310 Southbound Frontage Road"],[41.28395,-95.95819,"250 Corby Street"]]}}/*STREETS_END*/;
+
+var COLORS = ["#2f7a63","#b4622d","#3c6b9b","#8a5a9e","#77862d","#a8474f",
+              "#2d7f8a","#8a6f28","#5b6ea8","#3f8347","#9c5478","#6a6a6a"];
+
+var TRUCK_NAMES = ["Marcus","Luis","Priya","Dana","Rae","Ivo","Nell","Omar",
+                   "Sasha","Tobias","Wren","Yuki"];
+
+var DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
+
+/* How close another job has to be before telling a customer we are "already
+   in your area". A service van 12 minutes away is genuinely the next
+   neighbourhood; beyond that the claim stops being true. */
+var NEARBY_MIN = 12;
+
+/* ---------------------------------------------------------------- state */
+var S = {
+  biz: "Your Business",
+  trade: "service calls",
+  areaLabel: "",
+  hq: null,                 // {lat,lng}
+  crew: [],                 // [{id,name,color,day}]
+  stops: [],                // [{id,lat,lng,label,crew}]
+  stopTarget: 18,
+  apptMin: 45,              // average time on site, minutes
+  dayHours: 8,              // working day per truck
+  lastChange: null,         // {added, moved:[], removed} from the most recent action
+  measured: false,          // true once real road times have landed
+  demo: null,               // running walkthrough timer ids
+  autoRan: false,           // walkthrough plays once per visit
+  selectedCrew: null,       // run sheet open for this truck
+  dayStart: 8,              // crews leave the depot at 8am
+  focusChange: false,       // map is dimming everything except what changed
+  mode: "add",
+  view: "ops",
+  nextId: 1,
+  gen: 0,                   // re-entrancy token: bumped on every reset
+  busy: 0,
+  routingLive: true         // false once OSRM has failed; we fall back
+};
+
+var map, layers = { routes: null, stops: null, hq: null, ghost: null };
+var durCache  = new Map();   // "lat,lng>lat,lng" -> seconds
+var geoCache  = new Map();
+var geomCache = new Map();   // route signature -> [[lat,lng],...] real road shape
+var lastGeoAt = 0;
+
+/* ---------------------------------------------------------------- utils */
+function $(id){ return document.getElementById(id); }
+function clamp(n, lo, hi){ n = Number(n); if (!isFinite(n)) n = lo; return Math.max(lo, Math.min(hi, Math.round(n))); }
+function key(a,b){ return a.lat.toFixed(5)+","+a.lng.toFixed(5)+">"+b.lat.toFixed(5)+","+b.lng.toFixed(5); }
+
+function cleanName(v, fallback){
+  var s = String(v == null ? "" : v).replace(/[\u0000-\u001f<>]/g, "")   // no control chars or tag characters
+            .replace(/\s+/g, " ").trim();
+  var cap = arguments.length > 2 ? arguments[2] : LIMITS.nameLen;
+  if (s.length > cap) s = s.slice(0, cap);
+  return s || fallback;
+}
+function busy(on, txt){
+  S.busy = Math.max(0, S.busy + (on ? 1 : -1));
+  var b = $("busy");
+  if (txt) $("busyTxt").textContent = txt;
+  b.classList.toggle("on", S.busy > 0);
+}
+function hint(t){ var h = $("hint"); h.textContent = t; h.style.opacity = "1"; }
+
+function feed(msg, cls){
+  var d = document.createElement("div");
+  d.className = "ev" + (cls ? " " + cls : "");
+  var t = document.createElement("span");
+  t.className = "t";
+  var now = new Date();
+  t.textContent = String(now.getHours()).padStart(2,"0")+":"+String(now.getMinutes()).padStart(2,"0")+"  ";
+  d.appendChild(t);
+  // msg may contain <b>; it is only ever built from our own strings plus
+  // names that went through cleanName(), which strips < and >.
+  d.insertAdjacentHTML("beforeend", msg);
+  var f = $("feed");
+  f.insertBefore(d, f.firstChild);
+  while (f.children.length > 40) f.removeChild(f.lastChild);
+}
+
+/* ------------------------------------------------------------ distances */
+function haversineMin(a, b){
+  var R = 6371, toR = Math.PI/180;
+  var dLat = (b.lat-a.lat)*toR, dLng = (b.lng-a.lng)*toR;
+  var la1 = a.lat*toR, la2 = b.lat*toR;
+  var h = Math.sin(dLat/2)*Math.sin(dLat/2) +
+          Math.cos(la1)*Math.cos(la2)*Math.sin(dLng/2)*Math.sin(dLng/2);
+  var km = 2*R*Math.asin(Math.min(1, Math.sqrt(h)));
+  return (km * 1.35) / 35 * 60;      // road-winding factor, 35 km/h town average
+}
+function cachedMin(a, b){
+  if (!a || !b) return 0;
+  var v = durCache.get(key(a,b));
+  return v == null ? haversineMin(a,b) : v/60;
+}
+
+/* Fetch a full duration table for `pts` and cache every pair. */
+function warmMatrix(pts){
+  if (!S.routingLive || pts.length < 2) return Promise.resolve();
+  var need = false;
+  for (var i=0;i<pts.length && !need;i++)
+    for (var j=0;j<pts.length;j++)
+      if (i!==j && !durCache.has(key(pts[i],pts[j]))) { need = true; break; }
+  if (!need) return Promise.resolve();
+
+  var use = pts.slice(0, LIMITS.matrixCoords);
+  var coords = use.map(function(p){ return p.lng.toFixed(5)+","+p.lat.toFixed(5); }).join(";");
+  var url = ROUTER.base+"/table/v1/driving/"+coords+"?annotations=duration";
+
+  busy(true, "Getting road times…");
+  var ctl = new AbortController();
+  var to = setTimeout(function(){ ctl.abort(); }, 12000);
+
+  return fetch(url, { signal: ctl.signal })
+    .then(function(r){ if (!r.ok) throw new Error("osrm "+r.status); return r.json(); })
+    .then(function(j){
+      if (!j || !j.durations) throw new Error("no durations");
+      for (var i=0;i<use.length;i++)
+        for (var k=0;k<use.length;k++){
+          var d = j.durations[i] && j.durations[i][k];
+          if (typeof d === "number" && isFinite(d)) durCache.set(key(use[i],use[k]), d);
+        }
+    })
+    .catch(function(){
+      if (S.routingLive){
+        S.routingLive = false;
+        degrade();
+      }
+    })
+    .then(function(){ clearTimeout(to); busy(false); });
+}
+
+/* Straight-line fallback is not a small inaccuracy. In a city split by water
+   -- Seattle, where this demo opens, is the obvious case -- crow-flies across
+   a lake can be a fraction of the real drive round it. So say so loudly and
+   keep saying it, rather than quietly serving worse numbers in the same UI. */
+function degrade(){
+  var bar = $("degraded");
+  bar.classList.remove("hide");
+  $("simNote").textContent = "Approximate distances — road routing temporarily unavailable.";
+  $("footNote").textContent =
+    "Road routing unavailable: distances are straight-line approximations and can be badly " +
+    "wrong around water, bridges and terrain. Stops, crew and schedule are simulated.";
+  feed("<b>Approximate distances — road routing temporarily unavailable.</b> Everything still " +
+       "works, but the minutes are straight-line estimates, not road times.", "warn");
+}
+
+/* Real road shape for a sequence of points. OSRM /route returns the actual
+   geometry the driver would follow, so the drawn line matches the minutes.
+   Falls back to straight segments if the service is unavailable. */
+function routeGeometry(seq){
+  if (seq.length < 2) return Promise.resolve(null);
+  var sig = seq.map(function(p){ return p.lat.toFixed(4)+","+p.lng.toFixed(4); }).join("|");
+  if (geomCache.has(sig)) return Promise.resolve(geomCache.get(sig));
+  if (!S.routingLive || seq.length > 25) return Promise.resolve(null);
+
+  var coords = seq.map(function(p){ return p.lng.toFixed(5)+","+p.lat.toFixed(5); }).join(";");
+  var url = ROUTER.base+"/route/v1/driving/"+coords+"?overview=full&geometries=geojson";
+  var ctl = new AbortController();
+  var to = setTimeout(function(){ ctl.abort(); }, 12000);
+
+  return fetch(url, { signal: ctl.signal })
+    .then(function(r){ if (!r.ok) throw new Error("route "+r.status); return r.json(); })
+    .then(function(j){
+      clearTimeout(to);
+      var g = j && j.routes && j.routes[0] && j.routes[0].geometry;
+      if (!g || !g.coordinates || !g.coordinates.length) throw new Error("no geometry");
+      var line = g.coordinates.map(function(c){ return [c[1], c[0]]; });
+      geomCache.set(sig, line);
+      if (geomCache.size > 200) geomCache.delete(geomCache.keys().next().value);
+      return line;
+    })
+    .catch(function(){ clearTimeout(to); geomCache.set(sig, null); return null; });
+}
+
+/* ------------------------------------------------------------- engine */
+function stopsOf(cid){ return S.stops.filter(function(s){ return s.crew === cid; }); }
+
+/* A day is drive time plus time actually on site. */
+function loadOf(cid){
+  var pts = stopsOf(cid);
+  var drive = loopMinutes(pts);
+  var onsite = pts.length * S.apptMin;
+  var cap = S.dayHours * 60;
+  return { drive: drive, onsite: onsite, total: drive + onsite, stops: pts.length,
+           cap: cap, fill: cap ? (drive + onsite) / cap : 0, over: (drive + onsite) > cap };
+}
+
+function nnTour(pts){
+  var rem = pts.slice(), tour = [], cur = S.hq, guard = 0;
+  while (rem.length && guard++ < 500){
+    var bi = 0, bd = Infinity;
+    for (var i=0;i<rem.length;i++){ var d = cachedMin(cur, rem[i]); if (d < bd){ bd = d; bi = i; } }
+    tour.push(rem[bi]); cur = rem[bi]; rem.splice(bi,1);
+  }
+  return tour;
+}
+function loopMinutes(pts){
+  if (!S.hq || !pts.length) return 0;
+  var seq = [S.hq].concat(nnTour(pts)).concat([S.hq]), t = 0;
+  for (var i=0;i<seq.length-1;i++) t += cachedMin(seq[i], seq[i+1]);
+  return t;
+}
+/* driving a stop adds to its own route right now */
+function marginalMin(stop){
+  var own = stopsOf(stop.crew);
+  return loopMinutes(own) - loopMinutes(own.filter(function(s){ return s.id !== stop.id; }));
+}
+/* extra driving to add pt to crew cid */
+function insertMin(pt, cid){
+  var base = stopsOf(cid);
+  return loopMinutes(base.concat([pt])) - loopMinutes(base);
+}
+function evaluate(pt){
+  return S.crew.map(function(c){
+    return { crew: c, addedMin: insertMin(pt, c.id) };
+  }).sort(function(a,b){ return a.addedMin - b.addedMin; });
+}
+
+/* After any change, reconsider every stop; move one only if it genuinely
+   saves more than the threshold. Honest: usually nothing moves. */
+function totalDrive(){
+  return S.crew.reduce(function(t, c){ return t + loopMinutes(stopsOf(c.id)); }, 0);
+}
+
+/* Reconsider every stop; move one only if it genuinely saves more than the
+   threshold. Passes can oscillate (A->B on pass 1, B->A on pass 2), so we
+   snapshot first and report only the NET result. Reporting every hop would
+   claim savings for a stop that ended up exactly where it started. */
+function rebalance(){
+  if (S.crew.length < 2) return { moves: [], saved: 0 };
+  var THRESH = 2;
+  var before = {}, driveBefore = totalDrive();
+  S.stops.forEach(function(s){ before[s.id] = s.crew; });
+
+  for (var pass=0; pass<3; pass++){
+    var moved = false;
+    for (var i=0;i<S.stops.length;i++){
+      var s = S.stops[i];
+      var stay = marginalMin(s);
+      var best = null;
+      for (var c=0;c<S.crew.length;c++){
+        var cid = S.crew[c].id;
+        if (cid === s.crew) continue;
+        var cost = insertMin(s, cid);
+        if (best === null || cost < best.cost) best = { cid: cid, cost: cost };
+      }
+      if (best && (stay - best.cost) > THRESH){ s.crew = best.cid; moved = true; }
+    }
+    if (!moved) break;
+  }
+
+  // If the churn made things worse overall, put everything back.
+  var driveAfter = totalDrive();
+  if (driveAfter > driveBefore - 0.01){
+    S.stops.forEach(function(s){ s.crew = before[s.id]; });
+    return { moves: [], saved: 0 };
+  }
+
+  var moves = [];
+  S.stops.forEach(function(s){
+    if (before[s.id] && before[s.id] !== s.crew){
+      var from = crewById(before[s.id]), to = crewById(s.crew);
+      if (from && to) moves.push({ stop:s, from:from, to:to });
+    }
+  });
+  return { moves: moves, saved: driveBefore - driveAfter };
+}
+
+/* ------------------------------------------------------------- crew */
+function makeCrew(n){
+  n = clamp(n, LIMITS.crewMin, LIMITS.crewMax);
+  var out = [];
+  for (var i=0;i<n;i++){
+    var prev = S.crew[i];
+    out.push({
+      id: prev ? prev.id : "c"+(S.nextId++),
+      name: prev ? prev.name : TRUCK_NAMES[i % TRUCK_NAMES.length],
+      color: COLORS[i % COLORS.length],
+      day: DAYS[i % DAYS.length]
+    });
+  }
+  return out;
+}
+function renderCrew(){
+  var box = $("crewList");
+  box.textContent = "";
+  S.crew.forEach(function(c, i){
+    var row = document.createElement("div"); row.className = "crew";
+    var sw = document.createElement("span"); sw.className = "swatch"; sw.style.background = c.color;
+    var inp = document.createElement("input");
+    inp.type = "text"; inp.value = c.name; inp.maxLength = LIMITS.nameLen;
+    inp.setAttribute("aria-label", "Name for truck " + (i+1));
+    inp.addEventListener("input", function(){
+      c.name = cleanName(inp.value, "Truck " + (i+1));
+      renderRoutes(); renderMetrics();
+    });
+    inp.addEventListener("blur", function(){ inp.value = c.name; });
+    if (c.id === S.selectedCrew) row.classList.add("sel");
+    sw.style.cursor = "pointer";
+    sw.addEventListener("click", function(){ selectCrew(c.id); });
+    var peek = document.createElement("button");
+    peek.className = "peek"; peek.textContent = "☰";
+    peek.title = "Run sheet for " + c.name;
+    peek.setAttribute("aria-label", "Show run sheet for " + c.name);
+    peek.addEventListener("click", function(){ selectCrew(c.id); });
+    row.appendChild(sw); row.appendChild(inp); row.appendChild(peek);
+    if (S.crew.length > LIMITS.crewMin){
+      var del = document.createElement("button");
+      del.className = "drop"; del.textContent = "×";
+      del.setAttribute("aria-label", "Remove " + c.name);
+      del.addEventListener("click", function(){ dropCrew(c.id); });
+      row.appendChild(del);
+    }
+    box.appendChild(row);
+  });
+  $("crewVal").textContent = S.crew.length;
+}
+function dropCrew(cid){
+  if (S.crew.length <= LIMITS.crewMin) return;
+  var gone = S.crew.filter(function(c){ return c.id === cid; })[0];
+  S.crew = S.crew.filter(function(c){ return c.id !== cid; });
+  var orphans = S.stops.filter(function(s){ return s.crew === cid; });
+  orphans.forEach(function(s){ s.crew = evaluate(s)[0].crew.id; });
+  renderCrew();
+  feed("<b>"+(gone?gone.name:"A truck")+"</b> came off the road. "+orphans.length+
+       " stop"+(orphans.length===1?"":"s")+" reassigned to the cheapest remaining route.", "warn");
+  refresh();
+}
+function setCrewCount(n){
+  var want = clamp(n, LIMITS.crewMin, LIMITS.crewMax);
+  if (want === S.crew.length) return;
+  var shrinking = want < S.crew.length;
+  var removed = S.crew.slice(want);
+  S.crew = makeCrew(want);
+  if (shrinking){
+    var valid = {}; S.crew.forEach(function(c){ valid[c.id] = 1; });
+    var moved = 0;
+    S.stops.forEach(function(s){ if (!valid[s.crew]){ s.crew = evaluate(s)[0].crew.id; moved++; } });
+    feed("Down to <b>"+want+" truck"+(want===1?"":"s")+"</b>. "+moved+" stop"+(moved===1?"":"s")+" redistributed.", "warn");
+  } else {
+    feed("Added a truck — now <b>"+want+"</b> on the road. Rebalancing.", "good");
+  }
+  renderCrew();
+  refresh();
+}
+
+/* ------------------------------------------------------------- seeding */
+function seedStops(n){
+  if (!S.hq) return;
+  n = clamp(n, LIMITS.stopsMin, LIMITS.stopsMax);
+  S.stops = [];
+  var k = Math.max(1, S.crew.length);
+
+  // Baked cities give us real addresses on real roads for free -- no lookups
+  // at all, and the stops sit on actual streets instead of in the water.
+  var baked = bakedFor(S.areaLabel) || bakedFor($("inArea") ? $("inArea").value : "");
+  if (baked && baked.s && baked.s.length >= 8){
+    var pool = baked.s.slice();
+    // deterministic-ish shuffle so a reload doesn't look identical
+    for (var i = pool.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+    pool.slice(0, n).forEach(function(p, idx){
+      S.stops.push({ id:"s"+(S.nextId++), lat:p[0], lng:p[1], label:p[2],
+                     crew: S.crew[idx % S.crew.length].id, origin:"seed" });
+    });
+    // cluster them so each truck gets a coherent territory, not a scatter
+    assignByGeography();
+    return;
+  }
+
+  for (var i2=0;i2<n;i2++){
+    var sector = i2 % k;
+    var base = (sector / k) * Math.PI * 2;
+    var ang = base + (Math.random()-0.5) * (Math.PI*2/k) * 0.85;
+    var rad = 0.012 + Math.random()*0.055;
+    S.stops.push({
+      id: "s"+(S.nextId++),
+      lat: S.hq.lat + Math.sin(ang)*rad,
+      lng: S.hq.lng + Math.cos(ang)*rad/Math.max(0.2, Math.cos(S.hq.lat*Math.PI/180)),
+      label: "Stop " + (i2+1),
+      crew: S.crew[sector % S.crew.length].id,
+      origin: "seed"
+    });
+  }
+}
+
+/* Look up a baked city by whatever the operator typed. */
+function bakedFor(q){
+  var key = String(q || "").trim().toLowerCase().replace(/\s+/g, " ");
+  if (!key) return null;
+  if (STREETS[key]) return STREETS[key];
+  // "1301 Alaskan Way, Seattle, WA" -> try the tail, then the town alone
+  var parts = key.split(",").map(function(x){ return x.trim(); }).filter(Boolean);
+  for (var i=0;i<parts.length;i++){
+    var tail = parts.slice(i).join(", ");
+    if (STREETS[tail]) return STREETS[tail];
+  }
+  var town = parts.length ? parts[0] : key;
+  for (var kk in STREETS){ if (kk.split(",")[0].trim() === town) return STREETS[kk]; }
+  return null;
+}
+
+/* Split stops between trucks by angle from the depot, so each route reads as
+   a territory rather than a scribble across town. */
+function assignByGeography(){
+  if (!S.hq || !S.crew.length) return;
+  var k = S.crew.length;
+  S.stops.forEach(function(st){
+    var ang = Math.atan2(st.lat - S.hq.lat, st.lng - S.hq.lng);
+    if (ang < 0) ang += Math.PI * 2;
+    var idx = Math.min(k - 1, Math.floor(ang / (Math.PI * 2) * k));
+    st.crew = S.crew[idx].id;
+  });
+}
+
+/* Give seeded stops real street names. OSRM /nearest snaps a coordinate to
+   the road it sits on and hands back that road's name -- one cheap call per
+   stop against a service we already use, rather than bulk-reverse-geocoding
+   Nominatim, which its usage policy asks you not to do. Runs in the
+   background and updates labels as they land; nothing blocks on it. */
+function nameStops(gen){
+  var queue = S.stops.slice();
+  var seen = {};
+  function next(){
+    if (gen !== S.gen || !queue.length) return;             // superseded, stop
+    var s = queue.shift();
+    var ctl = new AbortController();
+    var to = setTimeout(function(){ ctl.abort(); }, 8000);
+    // number=5: the closest segment is often an unnamed residential way, and
+    // OSRM returns "" for those. Take the first candidate that has a name.
+    fetch(ROUTER.base+"/nearest/v1/driving/"+
+          s.lng.toFixed(5)+","+s.lat.toFixed(5)+"?number=5", { signal: ctl.signal })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){
+        clearTimeout(to);
+        if (gen !== S.gen) return;
+        var wps = (j && j.waypoints) || [];
+        var road = "";
+        for (var i=0;i<wps.length;i++){
+          if (wps[i] && wps[i].name && wps[i].name.trim()){ road = wps[i].name.trim(); break; }
+        }
+        if (road){
+          seen[road] = (seen[road] || 0) + 1;
+          var num = 100 + ((Math.abs(Math.round(s.lat*1e4 + s.lng*1e4)) % 89) * 10);
+          s.label = num + " " + road;
+        }
+      })
+      .catch(function(){ clearTimeout(to); })
+      .then(function(){
+        if (gen !== S.gen) return;
+        done++;
+        if (done % 4 === 0 || !queue.length) renderRoutes();  // labels appear as they land
+        if (queue.length) setTimeout(next, 40);
+      });
+  }
+  var done = 0;
+  for (var i=0;i<6;i++) setTimeout(next, i*60);
+}
+
+/* ------------------------------------------------------------- render */
+function renderRoutes(){
+  if (!map) return;
+  layers.routes.clearLayers();
+  layers.stops.clearLayers();
+  var ch = S.lastChange || {};
+  var movedIds = {};
+  (ch.moved || []).forEach(function(mv){ movedIds[mv.stopId] = mv; });
+
+  S.crew.forEach(function(c){
+    var pts = stopsOf(c.id);
+    var touched = pts.some(function(s){ return s.id === ch.addedId || movedIds[s.id]; });
+    var dim = (S.focusChange && !touched) ||
+              (S.selectedCrew && c.id !== S.selectedCrew);
+
+    if (pts.length){
+      var seq = [S.hq].concat(nnTour(pts)).concat([S.hq]);
+      // draw straight away so the map is never empty, then upgrade to roads
+      var line = L.polyline(seq.map(function(p){ return [p.lat, p.lng]; }), {
+        color: c.color, weight: 2, opacity: dim ? .15 : .35, dashArray: "4 5", lineJoin: "round"
+      }).addTo(layers.routes);
+      routeGeometry(seq).then(function(shape){
+        if (!shape || !layers.routes.hasLayer(line)) return;
+        layers.routes.removeLayer(line);
+        var road = L.polyline(shape, {
+          color: c.color, weight: dim ? 2.2 : 3.4, opacity: dim ? .18 : .82, lineJoin: "round"
+        }).addTo(layers.routes);
+        road.bindTooltip(c.name + " — click for the run sheet", { sticky: true });
+        road.on("click", function(e){ L.DomEvent.stop(e); selectCrew(c.id); });
+      });
+    }
+
+    pts.forEach(function(s){
+      var isNew = s.id === ch.addedId;
+      var mv = movedIds[s.id];
+      var m = L.circleMarker([s.lat, s.lng], {
+        radius: isNew ? 9 : (mv ? 7.5 : 6),
+        color: isNew ? "#b4622d" : c.color,
+        weight: isNew ? 3.5 : (mv ? 3 : 2),
+        fillColor: isNew ? "#b4622d" : "#fff",
+        fillOpacity: isNew ? .9 : 1,
+        dashArray: mv ? "3 3" : null,
+        opacity: dim ? .2 : 1, fillOpacity: dim ? .2 : (isNew ? .9 : 1)
+      });
+      var tip = s.label + " · " + c.name;
+      if (isNew) tip = "NEW — " + tip;
+      if (mv) tip = "MOVED from " + mv.fromName + " → " + c.name;
+      m.bindTooltip(tip, { direction: "top" });
+      m.on("click", function(e){
+        if (S.mode === "cancel"){ L.DomEvent.stop(e); cancelStop(s.id); }
+      });
+      m.addTo(layers.stops);
+      if (isNew || mv){
+        L.circleMarker([s.lat, s.lng], {
+          radius: isNew ? 17 : 14, color: isNew ? "#b4622d" : "#a8722d",
+          weight: 1.5, fill: false, opacity: dim ? .2 : .55, dashArray: "2 4"
+        }).addTo(layers.stops);
+      }
+    });
+  });
+  if (S.hq){
+    layers.hq.clearLayers();
+    L.circleMarker([S.hq.lat, S.hq.lng], {
+      radius: 8, color: "#2b3b34", weight: 3, fillColor: "#f5f2e8", fillOpacity: 1
+    }).bindTooltip(S.biz + " HQ", { direction: "top", permanent: false }).addTo(layers.hq);
+  }
+}
+function renderMetrics(){
+  var drive = 0, loads = [];
+  S.crew.forEach(function(c){
+    var ld = loadOf(c.id);
+    drive += ld.drive; loads.push({ c:c, ld:ld });
+  });
+  var stops = S.stops.length;
+  var perStop = stops ? drive/stops : 0;
+  var busiest = loads.slice().sort(function(a,b){ return b.ld.total - a.ld.total; })[0];
+  var over = loads.filter(function(x){ return x.ld.over; });
+  var wheel = drive + stops * S.apptMin;
+  var driveShare = wheel ? Math.round(drive / wheel * 100) : 0;
+
+  var m = $("metrics"); m.textContent = "";
+
+  // Nothing measured yet: say so rather than publishing an estimate.
+  if (!S.measured){
+    [ ["Drive time per stop", "—"], ["Driving vs working", "—"],
+      ["Fullest day", "—"], ["Over capacity", "—"]
+    ].forEach(function(row){
+      var d = document.createElement("div"); d.className = "metric";
+      var k = document.createElement("div"); k.className = "k"; k.textContent = row[0];
+      var v = document.createElement("div"); v.className = "v"; v.style.color = "var(--ink-3)";
+      v.textContent = row[1];
+      var n = document.createElement("div"); n.className = "n";
+      n.textContent = "measuring road times…";
+      d.appendChild(k); d.appendChild(v); d.appendChild(n); m.appendChild(d);
+    });
+    return;
+  }
+
+  [ ["Drive time per stop", perStop.toFixed(1)+" min", stops+" stops, "+S.crew.length+" truck"+(S.crew.length===1?"":"s")],
+    ["Driving vs working", driveShare+"%", "of the day is spent getting there"],
+    ["Fullest day", busiest ? Math.round(busiest.ld.fill*100)+"%" : "—",
+       busiest ? busiest.c.name+" · "+Math.round(busiest.ld.total)+" of "+busiest.ld.cap+" min" : ""],
+    ["Over capacity", over.length ? over.length+" truck"+(over.length===1?"":"s") : "None",
+       over.length ? over.map(function(x){ return x.c.name; }).join(", ")+" past the "+S.dayHours+"h day"
+                   : "everyone fits the "+S.dayHours+"h day"]
+  ].forEach(function(row){
+    var d = document.createElement("div"); d.className = "metric";
+    var k = document.createElement("div"); k.className = "k"; k.textContent = row[0];
+    var v = document.createElement("div"); v.className = "v"; v.textContent = row[1];
+    var n = document.createElement("div"); n.className = "n"; n.textContent = row[2];
+    d.appendChild(k); d.appendChild(v); d.appendChild(n); m.appendChild(d);
+  });
+}
+function renderHeader(){
+  $("bizName").textContent = S.biz;
+  $("bizSub").textContent = S.crew.length + " truck" + (S.crew.length===1?"":"s") +
+    (S.areaLabel ? " · " + S.areaLabel : "") + " · one live schedule";
+  $("custTitle").textContent = "Book your " + S.trade;
+}
+/* Paint the board straight away, then refine once real road times land.
+   The map is drawn immediately because shapes carry no claims; the metrics
+   deliberately wait, because showing a straight-line number for a second and
+   silently swapping it is exactly the kind of quiet wrongness we've been
+   stripping out of this thing. */
+function refresh(){
+  var pts = [S.hq].concat(S.stops).filter(Boolean);
+  renderRoutes(); renderHeader(); renderMetrics();
+  warmMatrix(pts).then(function(){
+    var first = !S.measured;
+    S.measured = true;
+    renderRoutes(); renderMetrics(); renderRunSheet();
+    if (first && !S.autoRan && S.view === "ops"){
+      S.autoRan = true;
+      setTimeout(function(){ if (!S.demo && !S.lastChange) runDemo(); }, 900);
+    }
+  });
+}
+
+/* ----------------------------------------------------------- run sheet
+   The dispatcher's view: the day in order, with the driving between each
+   job and a running clock. This is where the appointment length stops being
+   an abstract setting and turns into "you get back at 4:12". */
+function clockAt(min){
+  var t = S.dayStart * 60 + min;
+  var days = Math.floor(t / 1440);
+  var h = Math.floor(t / 60) % 24, m = Math.round(t % 60);
+  var ap = h >= 12 ? "pm" : "am", hh = h % 12; if (hh === 0) hh = 12;
+  // An overloaded day can run past midnight. Say so, or "1:17 am" reads as
+  // this morning rather than tomorrow.
+  return hh + ":" + String(m).padStart(2, "0") + " " + ap +
+         (days > 0 ? " (+" + days + "d)" : "");
+}
+function hm(min){
+  var h = Math.floor(min / 60), m = Math.round(min % 60);
+  return h ? h + " h " + String(m).padStart(2,"0") + " m" : m + " min";
+}
+
+function renderRunSheet(){
+  var card = $("runsheet");
+  var c = S.selectedCrew ? crewById(S.selectedCrew) : null;
+  if (!c){ card.classList.add("hide"); return; }
+  card.classList.remove("hide");
+  $("runTitle").textContent = "Run sheet — " + c.name;
+
+  var body = $("runBody"); body.textContent = "";
+  var pts = nnTour(stopsOf(c.id));
+  var ld = loadOf(c.id);
+  var newId = (S.lastChange || {}).addedId;
+
+  var head = document.createElement("div"); head.className = "runhead";
+  var who = document.createElement("div"); who.className = "who";
+  var sw = document.createElement("span"); sw.className = "swatch"; sw.style.background = c.color;
+  sw.style.width = "12px"; sw.style.height = "12px";
+  var nm = document.createElement("span"); nm.textContent = c.name + " · " + c.day;
+  who.appendChild(sw); who.appendChild(nm);
+  var sub = document.createElement("div"); sub.className = "sub";
+  sub.textContent = pts.length + " stop" + (pts.length === 1 ? "" : "s") +
+                    " · leaves " + clockAt(0) + ", back " + clockAt(ld.total);
+  head.appendChild(who); head.appendChild(sub);
+  body.appendChild(head);
+
+  if (!pts.length){
+    var e = document.createElement("p"); e.className = "empty";
+    e.textContent = "No stops on this route yet.";
+    body.appendChild(e);
+    return;
+  }
+
+  var itin = document.createElement("div"); itin.className = "itin";
+
+  function leg(cls, color, clock, title, driveTxt, dur, last){
+    var row = document.createElement("div"); row.className = "leg " + cls;
+    row.style.color = color;
+    var ck = document.createElement("div"); ck.className = "clock"; ck.textContent = clock;
+    var tr = document.createElement("div"); tr.className = "track";
+    var nd = document.createElement("span"); nd.className = "node"; tr.appendChild(nd);
+    if (!last){ var wi = document.createElement("span"); wi.className = "wire"; tr.appendChild(wi); }
+    var wt = document.createElement("div"); wt.className = "what"; wt.style.color = "var(--ink)";
+    var b = document.createElement("b"); b.textContent = title; wt.appendChild(b);
+    if (driveTxt){
+      var dv = document.createElement("span"); dv.className = "drive"; dv.textContent = driveTxt;
+      wt.appendChild(dv);
+    }
+    row.appendChild(ck); row.appendChild(tr); row.appendChild(wt);
+    if (dur){
+      var du = document.createElement("div"); du.className = "dur"; du.textContent = dur;
+      row.appendChild(du);
+    }
+    itin.appendChild(row);
+  }
+
+  var t = 0, prev = S.hq;
+  leg("depot", c.color, clockAt(0), S.biz + " — depot", "", "", false);
+  pts.forEach(function(s, i){
+    var d = cachedMin(prev, s);
+    t += d;
+    leg(s.id === newId ? "newstop" : "", c.color, clockAt(t), s.label,
+        "↓ " + d.toFixed(0) + " min drive from " +
+          (i === 0 ? "the depot" : "the last job"),
+        S.apptMin + " min", false);
+    t += S.apptMin;
+    prev = s;
+  });
+  var back = cachedMin(prev, S.hq);
+  t += back;
+  leg("depot", c.color, clockAt(t), "Back at the depot",
+      "↓ " + back.toFixed(0) + " min drive", "", true);
+  body.appendChild(itin);
+
+  var tot = document.createElement("div"); tot.className = "runtot";
+  [ ["Driving", hm(ld.drive)],
+    ["On site", hm(ld.onsite)],
+    ["Day total", hm(ld.total) + " of " + hm(ld.cap)],
+    ["Capacity", Math.round(ld.fill * 100) + "% full"]
+  ].forEach(function(p){
+    var s2 = document.createElement("span");
+    s2.appendChild(document.createTextNode(p[0] + " "));
+    var b2 = document.createElement("b");
+    b2.textContent = p[1];
+    if (p[0] === "Capacity" && ld.over) b2.className = "over";
+    s2.appendChild(b2); tot.appendChild(s2);
+  });
+  if (ld.over){
+    var w = document.createElement("span"); w.className = "over";
+    w.textContent = "· past the " + S.dayHours + "h day";
+    tot.appendChild(w);
+  }
+  body.appendChild(tot);
+}
+
+function selectCrew(cid){
+  S.selectedCrew = (S.selectedCrew === cid) ? null : cid;
+  renderCrew();
+  renderRunSheet();
+  renderRoutes();
+  if (S.selectedCrew){
+    var pts = stopsOf(S.selectedCrew);
+    if (pts.length) map.fitBounds(L.latLngBounds(
+      pts.map(function(p){ return [p.lat, p.lng]; }).concat([[S.hq.lat, S.hq.lng]])).pad(0.25),
+      { animate: true });
+  }
+}
+
+/* -------------------------------------------------- what changed panel */
+function crewById(id){ return S.crew.filter(function(c){ return c.id === id; })[0]; }
+
+function renderChanges(){
+  var box = $("changes"), list = $("changeList"), ch = S.lastChange;
+  if (!ch){ box.classList.add("hide"); return; }
+  box.classList.remove("hide");
+  list.textContent = "";
+
+  function row(cls, title, sub){
+    var d = document.createElement("div"); d.className = "chg " + cls;
+    var pip = document.createElement("span"); pip.className = "pip";
+    var body = document.createElement("div");
+    var b = document.createElement("b"); b.textContent = title;
+    var s = document.createElement("span"); s.className = "sub"; s.textContent = sub;
+    body.appendChild(b); body.appendChild(s);
+    d.appendChild(pip); d.appendChild(body); list.appendChild(d);
+  }
+
+  if (ch.addedId){
+    var st = S.stops.filter(function(x){ return x.id === ch.addedId; })[0];
+    var c = st && crewById(st.crew);
+    row("added", "1 new stop added",
+        (ch.addedLabel || "New customer") + (c ? " → " + c.name : "") +
+        " · adds " + (ch.addedMin != null ? ch.addedMin.toFixed(1) : "?") + " min of driving");
+  }
+  if (ch.removedLabel){
+    row("gone", "1 stop cancelled",
+        ch.removedLabel + " · frees " + (ch.removedMin != null ? ch.removedMin.toFixed(1) : "?") + " min");
+  }
+  (ch.moved || []).forEach(function(mv){
+    row("moved", "Reassigned " + mv.label, mv.fromName + " → " + mv.toName);
+  });
+  if (ch.moved && ch.moved.length){
+    row("moved", "Net saving " + (ch.saved || 0).toFixed(1) + " min",
+        "Total driving across the week, before vs after. Counted once — stops that " +
+        "shuffled and came back aren't counted at all.");
+  } else {
+    row("moved", "Nothing else moved",
+        "Every other stop was re-checked and is already on the cheapest route for it.");
+  }
+
+  var leg = document.createElement("div"); leg.className = "legend";
+  [["#b4622d","new stop"],["#a8722d","moved stop"],["var(--ink-3)","unchanged"]].forEach(function(p){
+    var s = document.createElement("span");
+    var i = document.createElement("i"); i.style.background = p[0];
+    var t = document.createTextNode(" " + p[1]);
+    s.appendChild(i); s.appendChild(t); leg.appendChild(s);
+  });
+  list.appendChild(leg);
+}
+
+function focusChanges(on){
+  S.focusChange = !!on;
+  renderRoutes();
+  if (!on) return;
+  var ch = S.lastChange; if (!ch) return;
+  var pts = [];
+  if (ch.addedId){
+    var st = S.stops.filter(function(x){ return x.id === ch.addedId; })[0];
+    if (st) pts.push([st.lat, st.lng]);
+  }
+  (ch.moved || []).forEach(function(mv){
+    var st = S.stops.filter(function(x){ return x.id === mv.stopId; })[0];
+    if (st) pts.push([st.lat, st.lng]);
+  });
+  if (pts.length === 1) map.setView(pts[0], Math.max(map.getZoom(), 14), { animate: true });
+  else if (pts.length > 1) map.fitBounds(L.latLngBounds(pts).pad(0.4), { animate: true });
+}
+
+/* Minutes from a point to the closest stop already on that crew's route.
+   Used to decide whether "we're already in your area" is actually true. */
+function nearestOnRoute(pt, cid){
+  var pts = stopsOf(cid);
+  if (!pts.length) return null;
+  var best = Infinity;
+  for (var i=0;i<pts.length;i++){
+    var d = cachedMin(pt, pts[i]);
+    if (d < best) best = d;
+  }
+  return isFinite(best) ? best : null;
+}
+
+/* ------------------------------------------ operator reasoning for a slot */
+function reasonFor(ranked, i){
+  var r = ranked[i], next = ranked[i+1], out = [];
+  var ld = loadOf(r.crew.id);
+  var after = ld.total + r.addedMin + S.apptMin;
+  var cap = ld.cap;
+
+  if (i === 0 && next){
+    var delta = next.addedMin - r.addedMin;
+    out.push(delta < 0.5
+      ? "Effectively tied with " + next.crew.name + " — either works."
+      : "Cheapest option: " + delta.toFixed(1) + " min less driving than " + next.crew.name + ".");
+  } else if (i === 0){
+    out.push("Only truck on the road, so it goes here by default.");
+  } else {
+    out.push("Costs " + (r.addedMin - ranked[0].addedMin).toFixed(1) +
+             " min more driving than " + ranked[0].crew.name + ".");
+  }
+  var near = arguments.length > 2 ? nearestOnRoute(arguments[2], r.crew.id) : null;
+  out.push(r.crew.name + " is out on " + r.crew.day + " with " + ld.stops +
+           " stop" + (ld.stops === 1 ? "" : "s") + " on that route" +
+           (near != null ? ", closest " + near.toFixed(0) + " min away." : "."));
+  if (near != null){
+    out.push(near <= NEARBY_MIN
+      ? "Customer is told “we're already working in your area” — true, there's a stop " +
+        near.toFixed(0) + " min away."
+      : "Nothing close by, so the customer just sees “we can fit you in”.");
+  }
+  out.push("Day would go from " + Math.round(ld.total) + " to " + Math.round(after) +
+           " min of " + cap + " (" + Math.round(after/cap*100) + "% full), counting a " +
+           S.apptMin + " min appointment.");
+  if (after > cap) out.push("That pushes " + r.crew.name + " past the " + S.dayHours + "h day.");
+  return { lines: out, over: after > cap, fill: after/cap };
+}
+
+/* ------------------------------------------------------------- actions */
+function showEval(pt, ranked){
+  var box = $("evalBox"); box.textContent = "";
+  var p = document.createElement("p");
+  p.style.cssText = "font-size:13px;color:var(--ink-2);margin:0";
+  p.textContent = "Extra driving each truck would take on. Cheapest wins.";
+  box.appendChild(p);
+  ranked.forEach(function(r, i){
+    var row = document.createElement("div");
+    row.className = "opt" + (i===0 ? " best" : "");
+    var who = document.createElement("div"); who.className = "who";
+    var sw = document.createElement("span"); sw.className = "swatch"; sw.style.background = r.crew.color;
+    var nm = document.createElement("span"); nm.textContent = r.crew.name;
+    who.appendChild(sw); who.appendChild(nm);
+    var mn = document.createElement("div"); mn.className = "min";
+    mn.textContent = "+" + r.addedMin.toFixed(1) + " min";
+    row.appendChild(who); row.appendChild(mn);
+    box.appendChild(row);
+  });
+  var b = document.createElement("button");
+  b.className = "btn"; b.textContent = "Book with " + ranked[0].crew.name;
+  b.addEventListener("click", function(){ commitStop(pt, ranked[0].crew); });
+  box.appendChild(b);
+}
+function placeAt(lat, lng, label){
+  if (!S.hq) return;
+  S.pendingLabel = label || null;
+  if (S.stops.length >= LIMITS.stopsMax){
+    hint("That's the cap for this demo — " + LIMITS.stopsMax + " stops. Cancel one to add another.");
+    return;
+  }
+  var pt = { lat: lat, lng: lng };
+  layers.ghost.clearLayers();
+  L.circleMarker([lat,lng], { radius:8, color:"#b4622d", weight:3, fillColor:"#fff", fillOpacity:1,
+                              dashArray:"3 3" }).addTo(layers.ghost);
+  busy(true, "Checking every route…");
+  warmMatrix([S.hq].concat(S.stops).concat([pt])).then(function(){
+    busy(false);
+    showEval(pt, evaluate(pt));
+    hint("Ranked by the driving each truck would actually take on.");
+  });
+}
+function commitStop(pt, crew){
+  layers.ghost.clearLayers();
+  var s = { id:"s"+(S.nextId++), lat:pt.lat, lng:pt.lng,
+            label: pt.label || S.pendingLabel || "New customer", crew: crew.id };
+  S.pendingLabel = null;
+  s.origin = "added";
+  S.stops.push(s);
+  var added = marginalMin(s);
+  var rb = rebalance();
+  var finalCrew = crewById(s.crew) || crew;
+  feed("Booked with <b>"+finalCrew.name+"</b> — adds "+added.toFixed(1)+" min of driving.", "good");
+  S.lastChange = {
+    addedId: s.id, addedLabel: s.label, addedMin: added, saved: rb.saved,
+    // The new stop is already reported as "added -> <final crew>". Listing it
+    // again under reassignments reads as two separate events.
+    moved: rb.moves.filter(function(mv){ return mv.stop.id !== s.id; })
+      .map(function(mv){
+        return { stopId: mv.stop.id, label: mv.stop.label,
+                 fromName: mv.from.name, toName: mv.to.name };
+      })
+  };
+  if (rb.moves.length){
+    feed("Reshuffled <b>"+rb.moves.length+" stop"+(rb.moves.length===1?"":"s")+
+         "</b> — saves "+rb.saved.toFixed(1)+" min of driving across the week.", "good");
+  } else {
+    feed("Re-checked every other stop. Nothing moved — they're already where they should be.");
+  }
+  renderChanges();
+  $("evalBox").textContent = "";
+  var p = document.createElement("p"); p.className = "empty";
+  p.textContent = "Drop another customer anywhere on the map.";
+  $("evalBox").appendChild(p);
+  refresh();
+}
+function cancelStop(id){
+  var s = S.stops.filter(function(x){ return x.id === id; })[0];
+  if (!s) return;
+  var c = S.crew.filter(function(x){ return x.id === s.crew; })[0];
+  var freed = marginalMin(s);
+  S.stops = S.stops.filter(function(x){ return x.id !== id; });
+  feed("Cancelled <b>"+s.label+"</b>"+(c ? " on "+c.name+"'s route" : "")+
+       " — frees "+freed.toFixed(1)+" min.", "warn");
+  var rb = rebalance();
+  S.lastChange = {
+    removedLabel: s.label, removedMin: freed, saved: rb.saved,
+    moved: rb.moves.map(function(mv){
+      return { stopId: mv.stop.id, label: mv.stop.label,
+               fromName: mv.from.name, toName: mv.to.name };
+    })
+  };
+  if (rb.moves.length){
+    feed("Reshuffled <b>"+rb.moves.length+" stop"+(rb.moves.length===1?"":"s")+
+         "</b> — saves "+rb.saved.toFixed(1)+" min.", "good");
+  }
+  renderChanges();
+  refresh();
+}
+function setMode(m){
+  S.mode = m;
+  $("mAdd").setAttribute("aria-pressed", String(m === "add"));
+  $("mCancel").setAttribute("aria-pressed", String(m === "cancel"));
+  hint(m === "add" ? "Click anywhere on the map to drop a customer."
+                   : "Click a stop to cancel it.");
+}
+
+/* ------------------------------------------------------------- geocode */
+function geocode(q){
+  q = String(q || "").trim();
+  if (!q) return Promise.reject(new Error("empty"));
+  if (geoCache.has(q)) return Promise.resolve(geoCache.get(q));
+  var wait = Math.max(0, LIMITS.geoMinGapMs - (Date.now() - lastGeoAt));
+  return new Promise(function(res){ setTimeout(res, wait); }).then(function(){
+    lastGeoAt = Date.now();
+    var ctl = new AbortController();
+    var to = setTimeout(function(){ ctl.abort(); }, 12000);
+    return fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q="+
+                 encodeURIComponent(q), { signal: ctl.signal, headers: { "Accept":"application/json" } })
+      .then(function(r){ if (!r.ok) throw new Error("geo "+r.status); return r.json(); })
+      .then(function(j){
+        clearTimeout(to);
+        if (!j || !j.length) throw new Error("notfound");
+        var hit = { lat: parseFloat(j[0].lat), lng: parseFloat(j[0].lon),
+                    label: String(j[0].display_name || q).split(",").slice(0,2).join(", ") };
+        if (!isFinite(hit.lat) || !isFinite(hit.lng)) throw new Error("bad");
+        geoCache.set(q, hit);
+        return hit;
+      });
+  });
+}
+/* The default location is known, so don't spend a Nominatim round-trip (plus
+   its 1.1s politeness throttle) discovering Seattle on every cold load. */
+var KNOWN = { "seattle, wa": { lat: 47.6062, lng: -122.3321, label: "Seattle, WA" } };
+
+function setArea(q){
+  var err = $("areaErr");
+  err.classList.add("hide");
+  var pre = KNOWN[String(q || "").trim().toLowerCase()];
+  if (pre && !geoCache.has(q)) geoCache.set(q, pre);
+  busy(true, "Finding that place…");
+  geocode(q).then(function(hit){
+    S.hq = { lat: hit.lat, lng: hit.lng };
+    // Show what was typed, not Nominatim's display_name, which yields things
+    // like "Seattle,  King County" -- sloppy on a page meant to impress.
+    S.areaLabel = cleanName(q, hit.label, 40);
+    durCache.clear();
+    S.measured = false;
+    S.gen++;
+    seedStops(S.stopTarget);
+    if (!bakedFor(S.areaLabel)) nameStops(S.gen);
+    map.setView([hit.lat, hit.lng], 12);
+    feed("Service area set to <b>"+hit.label+"</b>. Seeded "+S.stops.length+" recurring stops.", "good");
+    refresh();
+  }).catch(function(e){
+    err.textContent = (String(e.message) === "notfound")
+      ? "Couldn't find that place. Try a city and state, like \"Tacoma, WA\"."
+      : "Address lookup is unavailable right now. The map still works — click it to place your depot.";
+    err.classList.remove("hide");
+  }).then(function(){ busy(false); });
+}
+
+/* ------------------------------------------------------- customer view */
+function windowFor(crew, pref, i){
+  var slots = pref === "am" ? ["8:00–10:00 am","9:30–11:30 am","10:00 am–12:00 pm"]
+            : pref === "pm" ? ["1:00–3:00 pm","2:30–4:30 pm","3:00–5:00 pm"]
+            : ["8:00–10:00 am","11:00 am–1:00 pm","2:00–4:00 pm"];
+  // deterministic per option so the three choices never come back identical
+  return crew.day + ", " + slots[(i || 0) % slots.length];
+}
+function findSlots(){
+  var addr = $("custAddr").value;
+  var pref = $("custPref").value;
+  var err = $("custErr"), out = $("custSlots"), notes = $("opsNotes");
+  err.classList.add("hide"); out.textContent = ""; notes.textContent = "";
+  if (!S.hq){ err.textContent = "Set a service area first."; err.classList.remove("hide"); return; }
+  if (!String(addr).trim()){ err.textContent = "Enter an address so we can find your nearest crew."; err.classList.remove("hide"); return; }
+
+  busy(true, "Finding times…");
+  geocode(addr).then(function(hit){
+    var pt = { lat: hit.lat, lng: hit.lng,
+               label: cleanName(addr, hit.label, 44) };
+    return warmMatrix([S.hq].concat(S.stops).concat([pt])).then(function(){
+      var ranked = evaluate(pt).slice(0, 3);
+      out.textContent = "";
+      ranked.forEach(function(r, i){
+        var b = document.createElement("button");
+        b.className = "slot";
+        var left = document.createElement("div");
+        var w = document.createElement("div"); w.className = "when"; w.textContent = windowFor(r.crew, pref, i);
+        var y = document.createElement("div"); y.className = "why";
+        // Customer-facing wording only -- drive-time arithmetic and crew names
+        // are the operator's business and live in the other column. Still has
+        // to be true: only claim "nearby" when a stop really is close.
+        var near = nearestOnRoute(pt, r.crew.id);
+        y.textContent = (near != null && near <= NEARBY_MIN)
+          ? "We're already working in your area that day"
+          : "We can fit you in on this run";
+        left.appendChild(w); left.appendChild(y);
+        b.appendChild(left);
+        if (i === 0){
+          var tag = document.createElement("span"); tag.className = "tag"; tag.textContent = "Best fit";
+          b.appendChild(tag);
+        }
+        b.addEventListener("click", function(){
+          var label = w.textContent;
+          commitStop(pt, r.crew);
+          out.textContent = "";
+          var ok = document.createElement("div");
+          ok.className = "err"; ok.style.background = "var(--good-soft)"; ok.style.color = "var(--good)";
+          ok.textContent = "Booked — " + label + ".";
+          out.appendChild(ok);
+          var go = document.createElement("button");
+          go.className = "btn"; go.textContent = "See the changes on your map →";
+          go.addEventListener("click", function(){
+            setView("ops");
+            setTimeout(function(){ focusChanges(true); renderChanges(); }, 120);
+          });
+          out.appendChild(go);
+          // keep the operator column in step with the booking
+          notes.textContent = "";
+          var done = document.createElement("div"); done.className = "whybox";
+          var dh = document.createElement("div"); dh.className = "whyhead";
+          var dt = document.createElement("span"); dt.textContent = "Booked";
+          dh.appendChild(dt); done.appendChild(dh);
+          var dl = document.createElement("ul");
+          [ "Went to " + r.crew.name + " — the option that added the least driving.",
+            "The other two are off the table now; the board has been re-optimised.",
+            "Switch to Operations to see exactly which stops moved."
+          ].forEach(function(t){ var li = document.createElement("li"); li.textContent = t; dl.appendChild(li); });
+          done.appendChild(dl); notes.appendChild(done);
+        });
+        out.appendChild(b);
+
+        // Operator's read on the same option, rendered into the separate
+        // operator column -- headed by the slot it explains, so the pairing
+        // is obvious without the two columns lining up pixel for pixel.
+        var why = reasonFor(ranked, i, pt);
+        var wb = document.createElement("div"); wb.className = "whybox";
+        var hd = document.createElement("div"); hd.className = "whyhead";
+        var ht = document.createElement("span"); ht.textContent = w.textContent;
+        var rk = document.createElement("span");
+        rk.className = "rank" + (i === 0 ? "" : " alt");
+        rk.textContent = i === 0 ? "Best fit" : (i === 1 ? "2nd" : "3rd");
+        hd.appendChild(ht); hd.appendChild(rk);
+        wb.appendChild(hd);
+        var ul = document.createElement("ul");
+        why.lines.forEach(function(t){
+          var li = document.createElement("li"); li.textContent = t; ul.appendChild(li);
+        });
+        wb.appendChild(ul);
+        if (why.over){
+          var f = document.createElement("span"); f.className = "full";
+          f.textContent = "Over the working day";
+          wb.appendChild(f);
+        }
+        notes.appendChild(wb);
+      });
+      var note = document.createElement("p");
+      note.style.cssText = "font-size:12.5px;color:var(--ink-3);margin:4px 0 0";
+      note.textContent = "Two fields. No callback, no waiting — the times shown are the ones that keep the crew's route tight.";
+      out.appendChild(note);
+    });
+  }).catch(function(e){
+    err.textContent = (String(e.message) === "notfound")
+      ? "Couldn't find that address. Try adding the city."
+      : "Address lookup is unavailable right now — try again in a moment.";
+    err.classList.remove("hide");
+  }).then(function(){ busy(false); });
+}
+
+/* --------------------------------------------------------- walkthrough
+   A prospect who clicks nothing should still see what this does. Runs once
+   on arrival, narrates each beat on the map, and any interaction cancels it
+   -- it demonstrates, it doesn't hijack. */
+function stopDemo(){
+  if (!S.demo) return;
+  S.demo.forEach(function(t){ clearTimeout(t); });
+  S.demo = null;
+  $("mWatch").textContent = "▶ Watch it work";
+}
+
+function runDemo(){
+  stopDemo();
+  if (!S.hq || !S.crew.length || S.stops.length < 3) return;
+  S.demo = [];
+  $("mWatch").textContent = "■ Stop";
+
+  // somewhere off the depot, far enough that the trucks disagree
+  var pt = { lat: S.hq.lat + 0.019, lng: S.hq.lng - 0.024, label: "New customer request" };
+  var ranked = null;
+
+  function beat(ms, fn){ S.demo.push(setTimeout(function(){ if (S.demo) fn(); }, ms)); }
+
+  beat(0, function(){
+    hint("A customer books online at 7:42pm. Nobody is in the office.");
+    map.setView([pt.lat, pt.lng], Math.max(map.getZoom(), 12), { animate: true });
+    layers.ghost.clearLayers();
+    L.circleMarker([pt.lat, pt.lng], { radius:9, color:"#b4622d", weight:3,
+      fillColor:"#fff", fillOpacity:1, dashArray:"3 3" }).addTo(layers.ghost);
+  });
+
+  beat(2400, function(){
+    hint("Meridian checks what the job would cost every truck on the road.");
+    ranked = evaluate(pt);
+    showEval(pt, ranked);
+  });
+
+  beat(5200, function(){
+    if (!ranked) return;
+    var gap = ranked.length > 1 ? (ranked[1].addedMin - ranked[0].addedMin) : 0;
+    hint(ranked[0].crew.name + " is already nearby — " +
+         (gap > 0.5 ? gap.toFixed(0) + " min less driving than anyone else."
+                    : "and has room in the day."));
+  });
+
+  beat(7600, function(){
+    if (!ranked) return;
+    hint("Booked, confirmed, and the whole board re-checked. No phone call.");
+    commitStop(pt, ranked[0].crew);
+    refresh();
+  });
+
+  beat(9800, function(){
+    focusChanges(true);
+    hint("Orange is what just changed. Try it yourself — type an address on the right.");
+    stopDemo();
+  });
+}
+
+/* ------------------------------------------------------------- wiring */
+function setView(v){
+  S.view = v;
+  $("opsView").classList.toggle("hide", v !== "ops");
+  $("custView").classList.toggle("hide", v !== "cust");
+  document.querySelectorAll(".views button").forEach(function(b){
+    b.setAttribute("aria-selected", String(b.dataset.view === v));
+  });
+  if (v === "ops" && map) setTimeout(function(){ map.invalidateSize(); }, 30);
+  if (location.hash.slice(1) !== v) history.replaceState(null, "", "#" + v);
+}
+
+function boot(){
+  map = L.map("map", { zoomControl: true, scrollWheelZoom: true })
+         .setView([47.6062, -122.3321], 12);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18, attribution: "© OpenStreetMap"
+  }).addTo(map);
+  layers.routes = L.layerGroup().addTo(map);
+  layers.stops  = L.layerGroup().addTo(map);
+  layers.hq     = L.layerGroup().addTo(map);
+  layers.ghost  = L.layerGroup().addTo(map);
+
+  map.on("click", function(e){
+    stopDemo();
+    if (S.view !== "ops") return;
+    if (S.mode === "add") placeAt(e.latlng.lat, e.latlng.lng);
+    else hint("Click directly on a stop to cancel it.");
+  });
+
+  S.crew = makeCrew(3);
+  renderCrew();
+
+  $("inBiz").addEventListener("input", function(){
+    S.biz = cleanName(this.value, "Your Business"); renderHeader(); renderRoutes();
+  });
+  $("inTrade").addEventListener("input", function(){
+    S.trade = cleanName(this.value, "service calls") ; renderHeader();
+  });
+  $("btnArea").addEventListener("click", function(){ setArea($("inArea").value); });
+  $("inArea").addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); setArea(this.value); } });
+
+  $("crewUp").addEventListener("click", function(){ setCrewCount(S.crew.length + 1); });
+  $("crewDown").addEventListener("click", function(){ setCrewCount(S.crew.length - 1); });
+  $("stopsUp").addEventListener("click", function(){
+    S.stopTarget = clamp(S.stopTarget + 2, LIMITS.stopsMin, LIMITS.stopsMax);
+    $("stopsVal").textContent = S.stopTarget;
+  });
+  $("stopsDown").addEventListener("click", function(){
+    S.stopTarget = clamp(S.stopTarget - 2, LIMITS.stopsMin, LIMITS.stopsMax);
+    $("stopsVal").textContent = S.stopTarget;
+  });
+  function bumpAppt(d){
+    S.apptMin = clamp(S.apptMin + d, LIMITS.apptMin, LIMITS.apptMax);
+    $("apptVal").textContent = S.apptMin + " min";
+    renderMetrics();
+    feed("Average appointment set to <b>"+S.apptMin+" min</b>. Capacity recalculated.");
+  }
+  $("apptUp").addEventListener("click", function(){ bumpAppt(15); });
+  $("apptDown").addEventListener("click", function(){ bumpAppt(-15); });
+  function bumpDay(d){
+    S.dayHours = clamp(S.dayHours + d, LIMITS.dayMin, LIMITS.dayMax);
+    $("dayVal").textContent = S.dayHours + " h";
+    renderMetrics();
+  }
+  $("dayUp").addEventListener("click", function(){ bumpDay(1); });
+  $("dayDown").addEventListener("click", function(){ bumpDay(-1); });
+  $("runClose").addEventListener("click", function(){ selectCrew(S.selectedCrew); });
+  $("btnShowChange").addEventListener("click", function(){ focusChanges(true); });
+  $("btnClearChange").addEventListener("click", function(){
+    focusChanges(false);
+    S.lastChange = null;
+    renderChanges();
+  });
+  $("btnReseed").addEventListener("click", function(){
+    if (!S.hq){ hint("Set a service area first, or click the map to drop your depot."); return; }
+    S.gen++;
+    seedStops(S.stopTarget);
+    if (!bakedFor(S.areaLabel)) nameStops(S.gen);
+    feed("Redrew the week — <b>"+S.stops.length+"</b> stops across "+S.crew.length+" truck"+(S.crew.length===1?"":"s")+".");
+    refresh();
+  });
+
+  function opsLookup(){
+    var q = $("opsAddr").value, err = $("opsErr");
+    err.classList.add("hide");
+    if (!String(q).trim()){
+      err.textContent = "Type an address — a street and city works best."; err.classList.remove("hide"); return;
+    }
+    if (!S.hq){ err.textContent = "Set a service area first."; err.classList.remove("hide"); return; }
+    busy(true, "Finding that address…");
+    geocode(q).then(function(hit){
+      map.setView([hit.lat, hit.lng], Math.max(map.getZoom(), 13));
+      // Label it with what was actually typed. Nominatim's display_name
+      // mangles into things like "Space Needle,  400".
+      placeAt(hit.lat, hit.lng, cleanName(q, hit.label, 44));
+    }).catch(function(e){
+      err.textContent = (String(e.message) === "notfound")
+        ? "Couldn't find that address. Try adding the city, like \"1600 Pine St, Seattle\"."
+        : "Address lookup is unavailable right now — try again in a moment.";
+      err.classList.remove("hide");
+    }).then(function(){ busy(false); });
+  }
+  $("opsGo").addEventListener("click", opsLookup);
+  $("opsAddr").addEventListener("keydown", function(e){
+    if (e.key === "Enter"){ e.preventDefault(); opsLookup(); }
+  });
+
+  $("mWatch").addEventListener("click", function(){
+    if (S.demo) stopDemo(); else runDemo();
+  });
+  ["opsAddr","custAddr","inArea","inBiz","inTrade","btnReseed","mCancel"].forEach(function(id){
+    var el = $(id); if (!el) return;
+    el.addEventListener("focus", stopDemo, true);
+    el.addEventListener("click", stopDemo);
+  });
+  $("mAdd").addEventListener("click", function(){ setMode("add"); });
+  $("mCancel").addEventListener("click", function(){ setMode("cancel"); });
+  $("custFind").addEventListener("click", findSlots);
+  $("custAddr").addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); findSlots(); } });
+  document.querySelectorAll(".views button").forEach(function(b){
+    b.addEventListener("click", function(){ setView(b.dataset.view); });
+  });
+
+  $("routerNote").textContent = ROUTER.hosted
+    ? "Routing served by a self-hosted OSRM instance."
+    : "Routing currently served by the " + ROUTER.label +
+      " — a shared demo service with no guaranteed availability, suitable for this " +
+      "prototype but not for production traffic.";
+
+  /* Personalisation from the link, so each prospect gets their own version:
+     ?biz=Exact+Electric&area=Seattle,+WA&trade=electrical+work&trucks=4&appt=60
+     Everything is optional and everything is clamped -- a mangled link must
+     still open to a working demo, never a broken one. */
+  var qs = new URLSearchParams(location.search);
+  var qBiz   = qs.get("biz");
+  var qTrade = qs.get("trade");
+  var qArea  = qs.get("area");
+  var qTruck = qs.get("trucks");
+  var qAppt  = qs.get("appt");
+  var qDay   = qs.get("day");
+
+  if (qBiz){   S.biz   = cleanName(qBiz, "Your Business", 48);  $("inBiz").value = S.biz; }
+  if (qTrade){ S.trade = cleanName(qTrade, "service calls", 36); $("inTrade").value = S.trade; }
+  if (qTruck){ S.crew = makeCrew(clamp(qTruck, LIMITS.crewMin, LIMITS.crewMax)); renderCrew(); }
+  if (qAppt){  S.apptMin  = clamp(qAppt, LIMITS.apptMin, LIMITS.apptMax);
+               $("apptVal").textContent = S.apptMin + " min"; }
+  if (qDay){   S.dayHours = clamp(qDay, LIMITS.dayMin, LIMITS.dayMax);
+               $("dayVal").textContent = S.dayHours + " h"; }
+
+  var names = qs.get("names");
+  if (names){
+    names.split(",").slice(0, LIMITS.crewMax).forEach(function(n, i){
+      if (S.crew[i]) S.crew[i].name = cleanName(n, S.crew[i].name);
+    });
+    renderCrew();
+  }
+
+  renderHeader();
+  setView(location.hash.slice(1) === "cust" ? "cust" : "ops");
+  setMode("add");
+
+  var startArea = qArea ? cleanName(qArea, "Seattle, WA", 80) : "Seattle, WA";
+  $("inArea").value = startArea;
+  setArea(startArea);
+
+  window.__meridian = {
+    S:S, loadOf:loadOf, STREETS:STREETS, bakedFor:bakedFor,
+    seedStops:seedStops, assignByGeography:assignByGeography, runDemo:runDemo, stopDemo:stopDemo, selectCrew:selectCrew, renderRunSheet:renderRunSheet,
+    clockAt:clockAt, reasonFor:reasonFor, renderChanges:renderChanges,
+    focusChanges:focusChanges, routeGeometry:routeGeometry, commitStop:commitStop,
+    evaluate:evaluate, insertMin:insertMin, marginalMin:marginalMin,
+    rebalance:rebalance, placeAt:placeAt, setCrewCount:setCrewCount,
+    seedStops:seedStops, loopMinutes:loopMinutes, setArea:setArea,
+    cachedMin:cachedMin, cancelStop:cancelStop, findSlots:findSlots, setView:setView
+  };
+}
+
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+else boot();
+
+})();
+</script>
+</body>
+</html>
