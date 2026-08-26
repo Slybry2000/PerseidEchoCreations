@@ -134,7 +134,7 @@ v3/index.html                 same edit, kept in sync (v3/ is untracked; local c
 
 The footer link is not optional. Without it `/local/` is an orphan, and orphaned pages do not get crawled or ranked.
 
-**Do not `git add -A` in this repo.** There is a lot of untracked scratch work in here (`.superpowers/`, `boldcut-preview/`, `bristlecone-v2/`, `offline-original/`, `sites/`, and `v3/` itself) that must not be committed. Stage the paths explicitly:
+**Do not `git add -A` in this repo.** There is still untracked scratch work in here (`floor/` and `v3/` itself) that must not be committed. (The older scratch directories — `.superpowers/`, `boldcut-preview/`, `bristlecone-preview/`, `bristlecone-v2/`, `offline-original/`, `preview-partners/`, `sites/` — were audited and deleted 2026-08-26. `.claude/`, `.herenow/`, and `assets/images/Archive/` are now gitignored rather than merely untracked.) Stage the paths explicitly:
 
 ```bash
 cd /c/Projects/PECWEB
