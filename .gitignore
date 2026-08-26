@@ -18,3 +18,10 @@ assets/images/PEC_Modern_Large.png
 /og-template.html
 /dist/
 /bristlecone/
+
+# Local tooling and agent scratch — never part of the published site.
+/.claude/
+/.herenow/
+
+# 132 MB logo master. Kept on disk, far too large to publish.
+/assets/images/Archive/
