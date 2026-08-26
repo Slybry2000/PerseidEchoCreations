@@ -46,7 +46,20 @@
   .shell{max-width:1400px; margin:0 auto; padding:20px 18px 40px; display:flex; flex-direction:column; gap:16px}
   header.top{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;
     border-bottom:1px solid var(--line); padding-bottom:14px}
-  .brand{display:flex; flex-direction:column; gap:2px}
+  .brand{display:flex; flex-direction:column; gap:3px}
+  /* The prospect's own business name is the hook, so it stays the biggest thing
+     on the page -- but without a product mark above it nobody can tell what the
+     tool is called or who built it, which is fatal for a sales asset. */
+  .product{display:flex; align-items:center; gap:7px; font-size:11.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .product b{font-weight:600}
+  .product i{font-style:normal; letter-spacing:.08em; color:var(--ink-3);
+    padding-left:7px; border-left:1px solid var(--line)}
+  .product .mark{width:13px; height:13px; flex:none; border-radius:50%;
+    border:1.5px solid var(--accent); position:relative}
+  .product .mark::after{content:""; position:absolute; inset:2.5px 2.5px auto auto;
+    width:4px; height:4px; border-radius:50%; background:var(--accent)}
+  @media (max-width:520px){ .product i{display:none} }
   .brand .name{font-family:"Instrument Serif",Georgia,serif; font-size:30px; line-height:1}
   .brand .sub{color:var(--ink-2); font-size:13.5px}
   .simbadge{
@@ -292,6 +305,11 @@
 
   <header class="top">
     <div class="brand">
+      <span class="product">
+        <span class="mark" aria-hidden="true"></span>
+        <b>Meridian</b>
+        <i>route-aware scheduling</i>
+      </span>
       <span class="name" id="bizName">Your Business</span>
       <span class="sub" id="bizSub">Set it up on the left · one live schedule</span>
     </div>
@@ -470,7 +488,7 @@
   </div>
 
   <footer class="foot">
-    <span>Meridian — route-aware scheduling. Built by Perseid Echo Creations.</span>
+    <span><b>Meridian</b> — route-aware scheduling for field-service teams. Built by Perseid Echo Creations, Renton WA.</span>
     <span id="footNote">Road distances and route geometry from OSRM. Addresses from Nominatim. Map data
       © OpenStreetMap contributors. Stops, crew and schedule are simulated.</span>
     <span id="routerNote"></span>
