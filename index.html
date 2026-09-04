@@ -3839,7 +3839,13 @@ main { display: block; }
 .ladder-fit {
   position: relative;
   display: grid;
-  grid-template-columns: var(--grid-12);
+  /* NOT --grid-12. The CTA is a fixed-width object, so giving it a 3/12 share
+     let its LABEL decide whether it fitted: at 1280 the button measured 320px
+     against a 290px cell, overhung it to the left, and painted over the end of
+     the copy. The last track is sized to the button instead and the nine fr
+     tracks take what is left, so the label can grow without ever reaching the
+     copy. Tracks 1-2 and 3-9 still carry the label and copy as before. */
+  grid-template-columns: repeat(9, minmax(0, 1fr)) max-content;
   column-gap: var(--grid-gap);
   row-gap: var(--s-5);
   align-items: baseline;
@@ -3865,7 +3871,7 @@ main { display: block; }
   max-width: 62ch;
 }
 .ladder-fit__act {
-  grid-column: 10 / -1;
+  grid-column: 10;
   justify-self: end;
   align-self: center;
 }
