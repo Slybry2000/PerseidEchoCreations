@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Page not found · Perseid Echo Creations</title>
+<title>Page not found · Perseid Echo</title>
 <meta name="description" content="That page is not here. Run the 60-second Workflow Fit Check instead.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0B1018">
@@ -6668,6 +6668,66 @@ main { display: block; }
   border-right-color: var(--ctl-right-h);
   border-bottom-color: oklch(0.205 0.018 265 / 0.46);
 }
+
+/* ══ THE LOCKUP ═══════════════════════════════════════════════════════════
+   The brand is no longer one word. The offer is named on the top line and the
+   company is credited underneath, which is the repositioning in four words.
+   That makes the mark a two-line object: it hangs off the lockup's CENTRE now,
+   not off a single wordmark's baseline, so the baseline nudges tuned for the
+   one-line version (top: 1.8px on the anchor, translateY(2px) on the sigil)
+   are cancelled here rather than left to fight the new box.
+═══════════════════════════════════════════════════════════════════════════ */
+.nav-hero-brand {
+  align-items: center;
+  top: 0;
+  white-space: normal;
+}
+.nav-hero-brand__sigil { align-self: center; transform: none; }
+
+.nav-hero-brand__lock {
+  display: grid;
+  gap: 2px;
+  line-height: 1;
+}
+.nav-hero-brand__tag {
+  font-family: var(--f-mono);
+  /* 10px, not --fs-label: at 12px with label tracking the descriptor measures
+     272px and the six nav links start colliding with the Fit Check button at
+     1024. This is the largest size that clears them at the narrowest desktop. */
+  font-size: 0.625rem;
+  font-weight: var(--w-med);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  white-space: nowrap;
+}
+.nav-hero-brand__full,
+.nav-hero-brand__abbr { white-space: nowrap; }
+
+@media (max-width: 1023px) {
+  .nav-hero-brand__tag { display: none; }
+  .nav-hero-brand { align-items: baseline; }
+  .nav-hero-brand__sigil { align-self: baseline; transform: translateY(2px); }
+}
+@media (max-width: 359px) {
+  .nav-hero-brand__full { display: none; }
+  .nav-hero-brand__abbr { display: inline; }
+}
+
+.pc-mark__lock {
+  display: grid;
+  gap: var(--s-2);
+}
+.pc-mark__tag {
+  font-family: var(--f-mono);
+  font-size: var(--fs-label);
+  font-weight: var(--w-med);
+  line-height: var(--lh-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.pc-mark__name { display: block; }
 </style>
 <style>
 /* The 404 is one band on the shop floor, held at the same rail as every other
@@ -6728,7 +6788,10 @@ main { display: block; }
 <header class="nav-hero-header" id="nav-hero-header">
   <nav class="container nav-hero-bar" aria-label="Primary">
     <a class="nav-hero-brand" href="/#top">
-      <span class="nav-hero-brand__full">Perseid Echo Creations</span><span class="nav-hero-brand__abbr"><abbr title="Perseid Echo Creations">PEC</abbr></span>
+      <span class="nav-hero-brand__lock">
+        <span class="nav-hero-brand__tag">Experience Workflow Transformation</span>
+        <span class="nav-hero-brand__full">by Perseid Echo</span><span class="nav-hero-brand__abbr">Perseid Echo</span>
+      </span>
     </a>
     <div class="nav-hero-links" id="nav-hero-links">
       <a href="/#how-this-goes">How this goes</a>
@@ -6738,7 +6801,7 @@ main { display: block; }
       <a href="/#faq">Straight answers</a>
       <a href="/local/">Areas served</a>
       <div class="nav-hero-sheet-foot">
-        <p class="kicker nav-hero-sheet-foot__k">Perseid Echo Creations · Renton, WA</p>
+        <p class="kicker nav-hero-sheet-foot__k">Perseid Echo · Renton, WA</p>
         <a class="btn btn--primary" href="/#fc-sheet">Run the 60-second Fit Check</a>
         <p class="nav-hero-sheet-foot__c">
           <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a>
@@ -6782,9 +6845,9 @@ main { display: block; }
     <div class="pc-footer__top">
 
       <div>
-        <p class="pc-mark" data-optic="stem">Perseid Echo Creations</p>
-        <nav class="pc-social" aria-label="Perseid Echo Creations on social media">
-          <a href="https://www.linkedin.com/company/perseid-echo-creations/" rel="noopener" aria-label="Perseid Echo Creations on LinkedIn">
+        <p class="pc-mark" data-optic="stem"><span class="pc-mark__lock"><span class="pc-mark__tag">Experience Workflow Transformation</span><span class="pc-mark__name">by Perseid Echo</span></span></p>
+        <nav class="pc-social" aria-label="Perseid Echo on social media">
+          <a href="https://www.linkedin.com/company/perseid-echo/" rel="noopener" aria-label="Perseid Echo on LinkedIn">
             <!-- the pair is OPTICALLY sized, not geometrically: an "in" is a wide
                  mark and an "f" is a narrow one, so drawing both at the same box
                  height leaves the wider one visibly heavier. Pixel-scanned at 8x
@@ -6792,7 +6855,7 @@ main { display: block; }
                  step land both marks on ~27% ink coverage. -->
             <svg viewBox="0 0 24 24" aria-hidden="true"><path transform="translate(0.84 0.84) scale(0.93)" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.07-1.95-3.07-1.96 0-2.26 1.46-2.26 2.97V21H9z"/></svg>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61590842124281" rel="noopener" aria-label="Perseid Echo Creations on Facebook">
+          <a href="https://www.facebook.com/profile.php?id=61590842124281" rel="noopener" aria-label="Perseid Echo on Facebook">
             <!-- ROUND 9 — the SOLID LETTERFORM f, not the circle-f and not the
                  outline f. A previous round replaced a thin outline f with a
                  filled disc to close a 60.4 vs 123.8px² ink gap, and overshot in

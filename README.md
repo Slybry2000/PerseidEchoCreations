@@ -1,11 +1,15 @@
-# Perseid Echo Creations
+# Perseid Echo
 
 Source for **[perseidechocreations.com](https://perseidechocreations.com/)**.
 
-Perseid Echo Creations builds workflow automation and custom internal tools for
-owner-led businesses. One workflow is assessed end to end, then built, tested,
-documented and handed over. Founded and run by Bryan Piard. Based in Renton,
-Washington; works with clients across the United States.
+Perseid Echo LLC finds where a customer's
+experience is creating avoidable work inside an owner-led business, then fixes
+the workflow behind it. Sometimes that fix is automation; sometimes it is
+clearer ownership, better customer communication, a removed step, or nothing at
+all yet. One workflow is assessed end to end, then built, tested, documented and
+handed over. Founded and run by Bryan Piard, who spent 21 years in customer
+experience and digital operations first. Based in Renton, Washington; works with
+clients across the United States.
 
 ## What the business does
 
@@ -22,8 +26,9 @@ intake from email, appointment reminders, client intake and documents. Each is
 written up as an honest buy-a-tool-or-build-it comparison under
 [/workflows/](https://perseidechocreations.com/workflows/).
 
-Sometimes the honest answer is not to automate something. That is a legitimate
-outcome of the assessment and it gets said out loud.
+Sometimes the honest answer is not to automate something, or not to build
+anything at all. That is a legitimate outcome of the assessment and it gets said
+out loud.
 
 ## This repository
 

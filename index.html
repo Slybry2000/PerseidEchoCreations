@@ -6,8 +6,8 @@
 <!-- The <title> is a search surface, not the headline. It leads with the
      category a stranger types; the H1 and og:title keep the narrative line
      for people who already arrived. -->
-<title>Workflow automation for owner-led businesses · Perseid Echo Creations</title>
-<meta name="description" content="I build and run controlled systems that handle the repetitive work in owner-led businesses. Run the 60-second Workflow Fit Check and see what I would look at first.">
+<title>Find the avoidable work in your business · Perseid Echo</title>
+<meta name="description" content="Customers call, chase and repeat themselves, and every one of those is work for your team. 21 years finding those seams, then fixing the workflow behind them. Free 60-second Fit Check.">
 <link rel="canonical" href="https://perseidechocreations.com/">
 <meta name="theme-color" content="#0B1018">
 <meta name="color-scheme" content="dark">
@@ -18,20 +18,20 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Perseid Echo Creations">
-<meta property="og:title" content="Find the first job worth taking off your plate">
-<meta property="og:description" content="Answer five quick questions about the repetitive work eating your team's time. You see the result before I ask you for anything.">
+<meta property="og:site_name" content="Perseid Echo">
+<meta property="og:title" content="Find the work your customer experience creates">
+<meta property="og:description" content="Customers call, chase and repeat themselves, and every one is work for somebody on your team. Five quick questions, and you see the result before I ask you for anything.">
 <meta property="og:url" content="https://perseidechocreations.com/">
-<meta property="og:image" content="https://perseidechocreations.com/art/og-map.jpg">
+<meta property="og:image" content="https://perseidechocreations.com/art/og-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="A printed Workflow Opportunity Map open on a workbench under a lamp.">
+<meta property="og:image:alt" content="Perseid Echo: a workbench blueprint tracing a customer question into work for the team, beside the line ‘I find where your customer experience is creating work your team should not have to do.’">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Find the first job worth taking off your plate">
-<meta name="twitter:description" content="Answer five quick questions about the repetitive work eating your team's time. You see the result before I ask you for anything.">
-<meta name="twitter:image" content="https://perseidechocreations.com/art/og-map.jpg">
-<meta name="twitter:image:alt" content="A printed Workflow Opportunity Map open on a workbench under a lamp.">
+<meta name="twitter:title" content="Find the work your customer experience creates">
+<meta name="twitter:description" content="Customers call, chase and repeat themselves, and every one is work for somebody on your team. Five quick questions, and you see the result before I ask you for anything.">
+<meta name="twitter:image" content="https://perseidechocreations.com/art/og-card.jpg">
+<meta name="twitter:image:alt" content="Perseid Echo: a workbench blueprint tracing a customer question into work for the team, beside the line ‘I find where your customer experience is creating work your team should not have to do.’">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -996,6 +996,7 @@ html { scrollbar-color: var(--shop-3) var(--shop-deep); scrollbar-width: thin; }
    of them: kicker on its own line, h2 in cols 1–6, lede in cols 7–11. */
 @media (min-width: 1024px) {
   .fitcheck > .container > .section__head,
+  .seam    > .container > .section__head,
   .ladder  > .container > .section__head,
   .proof   > .container > .section__head,
   .pc-faq  > .container > .section__head,
@@ -1008,6 +1009,7 @@ html { scrollbar-color: var(--shop-3) var(--shop-deep); scrollbar-width: thin; }
     max-width: none;
   }
   .fitcheck > .container > .section__head > *,
+  .seam    > .container > .section__head > *,
   .ladder  > .container > .section__head > *,
   .proof   > .container > .section__head > *,
   .pc-faq  > .container > .section__head > *,
@@ -1015,6 +1017,7 @@ html { scrollbar-color: var(--shop-3) var(--shop-deep); scrollbar-width: thin; }
   .pc-pricing > .container > .section__head > * { margin-top: 0; }
 
   .fitcheck > .container > .section__head > .kicker,
+  .seam    > .container > .section__head > .kicker,
   .ladder  > .container > .section__head > .kicker,
   .proof   > .container > .section__head > .kicker,
   .pc-faq  > .container > .section__head > .kicker,
@@ -1022,6 +1025,7 @@ html { scrollbar-color: var(--shop-3) var(--shop-deep); scrollbar-width: thin; }
   .pc-pricing > .container > .section__head > .kicker { grid-column: 1 / span 12; }
 
   .fitcheck > .container > .section__head > h2,
+  .seam    > .container > .section__head > h2,
   .ladder  > .container > .section__head > h2,
   .proof   > .container > .section__head > h2,
   .pc-faq  > .container > .section__head > h2,
@@ -1029,6 +1033,7 @@ html { scrollbar-color: var(--shop-3) var(--shop-deep); scrollbar-width: thin; }
   .pc-pricing > .container > .section__head > h2 { grid-column: 1 / span 6; max-width: none; }
 
   .fitcheck > .container > .section__head > .lede,
+  .seam    > .container > .section__head > .lede,
   .ladder  > .container > .section__head > .lede,
   .proof   > .container > .section__head > .lede,
   /* the FAQ's right column carries the control rather than a lede — same cell,
@@ -2840,7 +2845,7 @@ main { display: block; }
    the answer rows run 590px, and --measure-h2 capped the QUESTION at 381px — so
    the card's most important line wrapped to two with 300px of empty paper beside
    it. The question and the answers share one measure across the tablet range;
-   "What kind of work keeps repeating?" then sets on one line at 768 and 834. */
+   "What keeps landing back on you?" then sets on one line at 768 and 834. */
 @media (min-width: 600px) and (max-width: 1024px) {
   .fitcheck-q__ask { max-width: 32ch; }
 }
@@ -3598,6 +3603,100 @@ main { display: block; }
    than two levels. A bay is simply a stretch of floor further from the lamp,
    so tonal relief costs no elevation tier and the cards keep their absolute
    values — here a T1 card on a bay floor, a full 0.068 L clear of it. */
+/* == THE SEAM ==============================================================
+   The bridge between what a customer runs into and what it costs the business.
+   Ruled rows in the same grammar as .map-bounds-toc, and the right-hand cell
+   uses .auth__eg's hairline-on-the-left idiom so the two halves read as cause
+   and consequence rather than as two lists. Stays on the standard shop floor:
+   the tonal step down to the bay belongs to #how-this-goes, one section later.
+========================================================================== */
+.seam-cols { display: none; }
+
+.seam-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: var(--hair-w) solid var(--edge);
+}
+
+.seam-row {
+  display: grid;
+  gap: var(--s-3);
+  padding-block: var(--s-5);
+  border-bottom: var(--hair-w) solid var(--edge);
+  max-width: none;
+}
+
+.seam-row__says {
+  margin: 0;
+  max-width: 26ch;
+  color: var(--fg);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tr-h3);
+  font-weight: var(--w-semi);
+  text-wrap: balance;
+}
+
+.seam-row__work {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--fg-mute);
+  line-height: var(--lh-body);
+  text-wrap: pretty;
+}
+
+/* The phone gets the label the two-column header carries on desktop, because
+   stacked, the second line would otherwise read as a continuation of the quote
+   rather than as its cost. */
+.seam-row__work::before {
+  content: "What it costs you";
+  display: block;
+  margin-bottom: var(--s-2);
+  font-family: var(--f-mono);
+  font-size: var(--fs-label);
+  font-weight: var(--w-med);
+  line-height: var(--lh-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.seam-foot {
+  margin-top: var(--s-7);
+  max-width: var(--measure);
+  color: var(--fg);
+  text-wrap: pretty;
+}
+
+@media (min-width: 860px) {
+  .seam-cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--grid-gap);
+    margin-bottom: var(--s-3);
+  }
+  .seam-cols > p { margin: 0; }
+  .seam-cols > p + p { padding-left: var(--s-6); }
+
+  .seam-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--grid-gap);
+    align-items: stretch;
+    padding-block: var(--s-6);
+  }
+  /* The rule runs the full height of the row, the way .proof-order__copy's
+     does — a rule that only spanned its own text gave four different lengths
+     down one list. The copy is centred against it instead. */
+  .seam-row__work {
+    display: grid;
+    align-content: center;
+    padding-left: var(--s-6);
+    border-left: var(--hair-w) solid var(--edge);
+  }
+  .seam-row__work::before { content: none; }
+}
+
 #how-this-goes {
   --surface: var(--shop-bay);
   background: var(--surface);
@@ -3922,6 +4021,16 @@ main { display: block; }
   padding-left: var(--s-6);
   border-left: var(--hair-w) solid var(--edge-strong);
 }
+/* The one line that answers the question this page asks of every system: what
+   work did it take off a person? It sits INSIDE .proof-order__copy rather than
+   beside it, because the order body is a 12-column grid and a stray sibling
+   would auto-place itself into a cell that belongs to the figures. */
+.proof-order__work {
+  display: block;
+  margin-top: var(--s-4);
+  color: var(--fg);
+}
+.proof-order__work b { font-weight: var(--w-semi); color: var(--fg); }
 
 
 /* This is a spec sheet, so the figures run on a real column grid, not on
@@ -4679,7 +4788,7 @@ main { display: block; }
   color: var(--fg-faint);
   font-variant-numeric: tabular-nums;
 }
-.map-bounds-toc > li:nth-child(10)::before { content: counter(mapbounds); }
+.map-bounds-toc > li:nth-child(n+10)::before { content: counter(mapbounds); }
 
 
 
@@ -5633,6 +5742,10 @@ main { display: block; }
 .pc-bio__body > p,
 .map-bounds-doc__copy .lede,
 .map-bounds-note { max-inline-size: var(--measure); }
+/* The bio ran as one paragraph until it had to carry two: what the 21 years
+   were spent looking at, and what was learned afterwards. Two paragraphs need
+   a seam between them. */
+.pc-bio__body > p + p { margin-top: var(--s-5); }
 
 @media (max-width: 768px) { .pc-bio__body { max-width: none; } }
 .pc-points {
@@ -6724,6 +6837,70 @@ main { display: block; }
   border-right-color: var(--ctl-right-h);
   border-bottom-color: oklch(0.205 0.018 265 / 0.46);
 }
+
+/* ══ THE LOCKUP ═══════════════════════════════════════════════════════════
+   The brand is no longer one word. The offer is named on the top line and the
+   company is credited underneath, which is the repositioning in four words.
+   That makes the mark a two-line object: it hangs off the lockup's CENTRE now,
+   not off a single wordmark's baseline, so the baseline nudges tuned for the
+   one-line version (top: 1.8px on the anchor, translateY(2px) on the sigil)
+   are cancelled here rather than left to fight the new box.
+═══════════════════════════════════════════════════════════════════════════ */
+.nav-hero-brand {
+  align-items: center;
+  top: 0;
+  white-space: normal;
+}
+.nav-hero-brand__sigil { align-self: center; transform: none; }
+
+.nav-hero-brand__lock {
+  display: grid;
+  gap: 2px;
+  line-height: 1;
+}
+.nav-hero-brand__tag {
+  font-family: var(--f-mono);
+  /* 10px, not --fs-label: at 12px with label tracking the descriptor measures
+     272px and the six nav links start colliding with the Fit Check button at
+     1024. This is the largest size that clears them at the narrowest desktop. */
+  font-size: 0.625rem;
+  font-weight: var(--w-med);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  white-space: nowrap;
+}
+.nav-hero-brand__full,
+.nav-hero-brand__abbr { white-space: nowrap; }
+
+/* Below the desktop bar the hamburger and the Fit Check button take the room
+   the descriptor needs, and the footer still carries the full lockup. */
+@media (max-width: 1023px) {
+  .nav-hero-brand__tag { display: none; }
+  .nav-hero-brand { align-items: baseline; }
+  .nav-hero-brand__sigil { align-self: baseline; transform: translateY(2px); }
+}
+/* At 320 the header is the mark, the wordmark, the CTA and the menu on one
+   rail; "by" is the first thing that can go without losing the name. */
+@media (max-width: 359px) {
+  .nav-hero-brand__full { display: none; }
+  .nav-hero-brand__abbr { display: inline; }
+}
+
+.pc-mark__lock {
+  display: grid;
+  gap: var(--s-2);
+}
+.pc-mark__tag {
+  font-family: var(--f-mono);
+  font-size: var(--fs-label);
+  font-weight: var(--w-med);
+  line-height: var(--lh-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.pc-mark__name { display: block; }
 </style>
 
 <script type="application/ld+json">
@@ -6731,10 +6908,12 @@ main { display: block; }
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://perseidechocreations.com/#business",
-  "name": "Perseid Echo Creations",
-  "description": "Workflow automation and custom internal tools for owner-led businesses. One workflow assessed end to end, then built, tested, documented and handed over.",
+  "name": "Perseid Echo",
+  "legalName": "Perseid Echo LLC",
+  "slogan": "Experience Workflow Transformation",
+  "description": "Finds where a customer's experience is creating avoidable work inside an owner-led business, then fixes the workflow behind it. One workflow assessed end to end; automation only when it is the right treatment.",
   "url": "https://perseidechocreations.com/",
-  "image": "https://perseidechocreations.com/art/og-map.jpg",
+  "image": "https://perseidechocreations.com/art/og-card.jpg",
   "founder": {
     "@type": "Person",
     "name": "Bryan Piard"
@@ -6779,6 +6958,8 @@ main { display: block; }
     }
   ],
   "serviceType": [
+    "Customer experience and operations review",
+    "Business process improvement",
     "Workflow automation",
     "Business process automation",
     "Custom internal tools",
@@ -6788,7 +6969,7 @@ main { display: block; }
     {
       "@type": "Offer",
       "name": "Workflow Opportunity Map",
-      "description": "One workflow. One recommended first build. One decision-ready plan. Credited toward a build signed within 30 days.",
+      "description": "One workflow. One recommended first fix. One decision-ready plan. Credited toward a build signed within 30 days.",
       "price": "750",
       "priceCurrency": "USD"
     },
@@ -6836,7 +7017,7 @@ main { display: block; }
     }
   ],
   "sameAs": [
-    "https://www.linkedin.com/company/perseid-echo-creations/",
+    "https://www.linkedin.com/company/perseid-echo/",
     "https://www.facebook.com/profile.php?id=61590842124281"
   ]
 }
@@ -6853,7 +7034,7 @@ main { display: block; }
       "name": "What if the honest answer is that I should not automate this?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Then that is what the map says, and I will tell you on the call before you spend the $750 if it is already obvious. Some work is not frequent enough to be worth building around. Some of it needs the process fixed before a machine is pointed at it. Some of it is genuinely a judgement call that should stay with a person. Selling you a build in those cases produces a system nobody trusts and a client who never comes back."
+        "text": "Then that is what the map says, and I will tell you on the call before you spend the $750 if it is already obvious. Some work is not frequent enough to be worth building around. Some of it needs the process fixed before a machine is pointed at it. Some of it is genuinely a judgement call that should stay with a person. And a fair amount of it disappears once the customer can get the answer without ringing you, which costs a sentence rather than a build. Selling you a system in those cases produces something nobody trusts and a client who never comes back."
       }
     },
     {
@@ -7014,7 +7195,10 @@ window.pecTrack = function(){};
   <nav class="container nav-hero-bar" aria-label="Primary">
     <a class="nav-hero-brand" href="#top">
       <img class="nav-hero-brand__sigil" src="art/pec-mark-128.webp" width="128" height="118" alt="" aria-hidden="true" decoding="async">
-      <span class="nav-hero-brand__full">Perseid Echo Creations</span><span class="nav-hero-brand__abbr"><abbr title="Perseid Echo Creations">PEC</abbr></span>
+      <span class="nav-hero-brand__lock">
+        <span class="nav-hero-brand__tag">Experience Workflow Transformation</span>
+        <span class="nav-hero-brand__full">by Perseid Echo</span><span class="nav-hero-brand__abbr">Perseid Echo</span>
+      </span>
     </a>
     <div class="nav-hero-links" id="nav-hero-links">
       <a href="#how-this-goes">How this goes</a>
@@ -7024,7 +7208,7 @@ window.pecTrack = function(){};
       <a href="#faq">Straight answers</a>
       <a href="local/">Areas served</a>
       <div class="nav-hero-sheet-foot">
-        <p class="kicker nav-hero-sheet-foot__k">Perseid Echo Creations · Renton, WA</p>
+        <p class="kicker nav-hero-sheet-foot__k">Perseid Echo · Renton, WA</p>
         <a class="btn btn--primary" href="#fc-sheet">Run the 60-second Fit Check</a>
         <p class="nav-hero-sheet-foot__c">
           <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a>
@@ -7069,12 +7253,12 @@ window.pecTrack = function(){};
 
   <div class="container nav-hero-body">
     <div class="nav-hero-copy">
-      <p class="kicker nav-hero-kicker rise"><span class="nav-hero-kicker__brand">Perseid Echo Creations · </span>Renton, WA</p>
+      <p class="kicker nav-hero-kicker rise"><span class="nav-hero-kicker__brand">Perseid Echo · </span>Renton, WA</p>
 
-      <h1 class="nav-hero-h1 rise" id="nav-hero-h1" data-optic="stem">Find the first job worth taking off your plate.</h1>
+      <h1 class="nav-hero-h1 rise" id="nav-hero-h1" data-optic="stem">Find the work your customer experience creates.</h1>
 
-      <p class="lede nav-hero-lede rise">Answer five quick questions about the repetitive work eating your team&rsquo;s time.</p>
-      <p class="lede nav-hero-lede rise">You will see whether it looks worth investigating, what should stay human, and where I would look first.</p>
+      <p class="lede nav-hero-lede rise">They call because the website did not answer it. They chase because nobody told them what happens next. Every one of those is work for somebody on your team.</p>
+      <p class="lede nav-hero-lede rise">Finding those seams is what I did for 21 years. Sometimes the fix is automation. Often it is cheaper than that.</p>
 
       <div class="btn-row nav-hero-cta rise">
         <a class="btn btn--primary btn--lg" href="#fc-sheet">
@@ -7121,8 +7305,8 @@ window.pecTrack = function(){};
       <h2 id="fitcheck-h" data-optic="round">Start here. It takes about a minute.</h2>
       <p class="lede">
         This is not a quote form and the answer does not arrive three days later.
-        Five questions, an honest read at the end, and one of the possible answers is
-        &ldquo;do not automate this yet.&rdquo;
+        Five questions about the work that keeps landing back on you, an honest read at the
+        end, and one of the possible answers is &ldquo;do not automate this yet.&rdquo;
       </p>
     </div>
 
@@ -7149,9 +7333,9 @@ window.pecTrack = function(){};
           <fieldset class="fitcheck-q" data-q="job" data-step="0">
             <legend class="fitcheck-q__legend">
               <span class="fitcheck-q__count">Question 1 of 5</span>
-              <span class="fitcheck-q__ask">What kind of work keeps repeating?</span>
+              <span class="fitcheck-q__ask">What keeps landing back on you?</span>
               <span class="fitcheck-q__index" aria-hidden="true">
-                <span class="is-now"><i>01</i>What kind of work keeps repeating?</span>
+                <span class="is-now"><i>01</i>What keeps landing back on you?</span>
                 <span><i>02</i>How often does it happen?</span>
                 <span><i>03</i>Who handles it now?</span>
                 <span><i>04</i>What happens when it gets missed?</span>
@@ -7160,12 +7344,13 @@ window.pecTrack = function(){};
               <span class="fitcheck-q__hint">Pick the one that costs you the most. We can get to the rest later.</span>
             </legend>
             <div class="fitcheck-opts">
-              <label class="fitcheck-opt"><input type="radio" name="job" value="followup"  data-v="followup"><span class="fitcheck-opt__key" aria-hidden="true">A</span><span class="fitcheck-opt__t">Chasing leads, quotes, and estimates that go quiet</span></label>
-              <label class="fitcheck-opt"><input type="radio" name="job" value="scheduling" data-v="scheduling"><span class="fitcheck-opt__key" aria-hidden="true">B</span><span class="fitcheck-opt__t">Booking, scheduling, and reminders</span></label>
-              <label class="fitcheck-opt"><input type="radio" name="job" value="paperwork" data-v="paperwork"><span class="fitcheck-opt__key" aria-hidden="true">C</span><span class="fitcheck-opt__t">Quotes, invoices, and the paperwork around a job</span></label>
-              <label class="fitcheck-opt"><input type="radio" name="job" value="datasync"  data-v="datasync"><span class="fitcheck-opt__key" aria-hidden="true">D</span><span class="fitcheck-opt__t">Typing the same details into more than one app</span></label>
-              <label class="fitcheck-opt"><input type="radio" name="job" value="reporting" data-v="reporting"><span class="fitcheck-opt__key" aria-hidden="true">E</span><span class="fitcheck-opt__t">Pulling numbers together so somebody can see how it is going</span></label>
-              <label class="fitcheck-opt"><input type="radio" name="job" value="comms"     data-v="comms"><span class="fitcheck-opt__key" aria-hidden="true">F</span><span class="fitcheck-opt__t">Keeping up with posts, emails, and customer updates</span></label>
+              <label class="fitcheck-opt"><input type="radio" name="job" value="answers"   data-v="answers"><span class="fitcheck-opt__key" aria-hidden="true">A</span><span class="fitcheck-opt__t">Answering the same customer questions over and over</span></label>
+              <label class="fitcheck-opt"><input type="radio" name="job" value="followup"  data-v="followup"><span class="fitcheck-opt__key" aria-hidden="true">B</span><span class="fitcheck-opt__t">Chasing leads, quotes, and estimates that go quiet</span></label>
+              <label class="fitcheck-opt"><input type="radio" name="job" value="scheduling" data-v="scheduling"><span class="fitcheck-opt__key" aria-hidden="true">C</span><span class="fitcheck-opt__t">Booking, scheduling, and reminders</span></label>
+              <label class="fitcheck-opt"><input type="radio" name="job" value="paperwork" data-v="paperwork"><span class="fitcheck-opt__key" aria-hidden="true">D</span><span class="fitcheck-opt__t">Quotes, invoices, and the paperwork around a job</span></label>
+              <label class="fitcheck-opt"><input type="radio" name="job" value="datasync"  data-v="datasync"><span class="fitcheck-opt__key" aria-hidden="true">E</span><span class="fitcheck-opt__t">Typing the same details into more than one app</span></label>
+              <label class="fitcheck-opt"><input type="radio" name="job" value="reporting" data-v="reporting"><span class="fitcheck-opt__key" aria-hidden="true">F</span><span class="fitcheck-opt__t">Pulling numbers together so somebody can see how it is going</span></label>
+              <label class="fitcheck-opt"><input type="radio" name="job" value="comms"     data-v="comms"><span class="fitcheck-opt__key" aria-hidden="true">G</span><span class="fitcheck-opt__t">Keeping up with posts, emails, and customer updates</span></label>
             </div>
           </fieldset>
 
@@ -7175,7 +7360,7 @@ window.pecTrack = function(){};
               <span class="fitcheck-q__count">Question 2 of 5</span>
               <span class="fitcheck-q__ask">How often does it happen?</span>
               <span class="fitcheck-q__index" aria-hidden="true">
-                <span class="is-done"><i>01</i>What kind of work keeps repeating?</span>
+                <span class="is-done"><i>01</i>What keeps landing back on you?</span>
                 <span class="is-now"><i>02</i>How often does it happen?</span>
                 <span><i>03</i>Who handles it now?</span>
                 <span><i>04</i>What happens when it gets missed?</span>
@@ -7197,7 +7382,7 @@ window.pecTrack = function(){};
               <span class="fitcheck-q__count">Question 3 of 5</span>
               <span class="fitcheck-q__ask">Who handles it now?</span>
               <span class="fitcheck-q__index" aria-hidden="true">
-                <span class="is-done"><i>01</i>What kind of work keeps repeating?</span>
+                <span class="is-done"><i>01</i>What keeps landing back on you?</span>
                 <span class="is-done"><i>02</i>How often does it happen?</span>
                 <span class="is-now"><i>03</i>Who handles it now?</span>
                 <span><i>04</i>What happens when it gets missed?</span>
@@ -7218,7 +7403,7 @@ window.pecTrack = function(){};
               <span class="fitcheck-q__count">Question 4 of 5</span>
               <span class="fitcheck-q__ask">What happens when it gets missed?</span>
               <span class="fitcheck-q__index" aria-hidden="true">
-                <span class="is-done"><i>01</i>What kind of work keeps repeating?</span>
+                <span class="is-done"><i>01</i>What keeps landing back on you?</span>
                 <span class="is-done"><i>02</i>How often does it happen?</span>
                 <span class="is-done"><i>03</i>Who handles it now?</span>
                 <span class="is-now"><i>04</i>What happens when it gets missed?</span>
@@ -7240,7 +7425,7 @@ window.pecTrack = function(){};
               <span class="fitcheck-q__count">Question 5 of 5</span>
               <span class="fitcheck-q__ask">What is the work spread across?</span>
               <span class="fitcheck-q__index" aria-hidden="true">
-                <span class="is-done"><i>01</i>What kind of work keeps repeating?</span>
+                <span class="is-done"><i>01</i>What keeps landing back on you?</span>
                 <span class="is-done"><i>02</i>How often does it happen?</span>
                 <span class="is-done"><i>03</i>Who handles it now?</span>
                 <span class="is-done"><i>04</i>What happens when it gets missed?</span>
@@ -7292,6 +7477,52 @@ window.pecTrack = function(){};
   </div>
 </section>
 
+<section class="section seam" id="where-it-comes-from" aria-labelledby="seam-h">
+  <div class="container">
+
+    <header class="section__head rise">
+      <p class="kicker kicker--quiet kicker--ruled">Where the work comes from</p>
+      <h2 id="seam-h" data-optic="diag">Your customer feels it. Your team does it.</h2>
+      <p class="lede">
+        Almost none of this is anybody&rsquo;s actual job. It is work that got created earlier,
+        by a page that did not answer, a message that never went out, or a form that did not
+        carry the details through.
+      </p>
+    </header>
+
+    <div class="seam-cols" aria-hidden="true">
+      <p class="kicker kicker--quiet">What the customer runs into</p>
+      <p class="kicker kicker--quiet">What it costs you</p>
+    </div>
+
+    <ol class="seam-list rise">
+      <li class="seam-row">
+        <p class="seam-row__says">&ldquo;I haven&rsquo;t heard back.&rdquo;</p>
+        <p class="seam-row__work">Somebody stops what they are doing, finds the job, and writes the reply.</p>
+      </li>
+      <li class="seam-row">
+        <p class="seam-row__says">&ldquo;What&rsquo;s happening with my appointment?&rdquo;</p>
+        <p class="seam-row__work">Somebody opens the schedule and reads it back down the phone.</p>
+      </li>
+      <li class="seam-row">
+        <p class="seam-row__says">&ldquo;I already gave you that.&rdquo;</p>
+        <p class="seam-row__work">Somebody types the same details in for the second time.</p>
+      </li>
+      <li class="seam-row">
+        <p class="seam-row__says">&ldquo;Did you get my request?&rdquo;</p>
+        <p class="seam-row__work">Somebody goes and checks by hand, then confirms that yes, it arrived.</p>
+      </li>
+    </ol>
+
+    <p class="seam-foot rise">
+      Fix what caused it and the work stops arriving. Sometimes that takes a system I build.
+      Sometimes it takes one sentence on your booking page, or deciding whose job something
+      is. Telling those apart is most of what I am for.
+    </p>
+
+  </div>
+</section>
+
 <section class="section ladder" id="how-this-goes" aria-labelledby="ladder-h">
 
   <div class="container">
@@ -7313,9 +7544,9 @@ window.pecTrack = function(){};
         <div class="ladder-step__body">
           <h3 class="ladder-step__title">The Fit Check</h3>
           <p class="ladder-step__copy">
-            Five questions, right here on this page. You get a read on whether the work you are
-            describing is a sensible candidate, what should stay human, and whether it is worth
-            going further.
+            Five questions, right here on this page. You get a read on where the work is
+            probably coming from, what should stay human, what the likely first fix is, and
+            whether it is worth going further at all.
           </p>
         </div>
         <p class="ladder-step__terms">
@@ -7346,8 +7577,8 @@ window.pecTrack = function(){};
           <h3 class="ladder-step__title">The Workflow Opportunity Map</h3>
           <p class="ladder-step__copy">
             A paid working engagement on one recurring process. We document how the work happens
-            today, where it breaks, what can safely be automated, what decisions stay yours, and what
-            building it would actually involve. You keep the map either way.
+            today, what is actually causing it, where it breaks, what can safely be automated, what
+            decisions stay yours, and what building it would involve. You keep the map either way.
           </p>
         </div>
         <p class="ladder-step__terms">
@@ -7434,6 +7665,8 @@ window.pecTrack = function(){};
             deliverability monitoring, reply handling. It watches its own bounce rate and pauses
             before a sending domain gets burned, which is the part most people find out about
             too late.
+            <span class="proof-order__work"><b>Work it takes off a person:</b> checking deliverability
+            every day, and remembering who has already been contacted.</span>
           </p>
         </div>
       </li>
@@ -7464,6 +7697,8 @@ window.pecTrack = function(){};
             breaker that pauses everything at a 2% bounce rate and refuses to re-arm itself,
             one-click unsubscribe, and per-recipient suppression that survives a provider swap.
             This is the standard I build to when the thing has to hold up.
+            <span class="proof-order__work"><b>Work it takes off a person:</b> policing send windows
+            and bounce rates by hand, and finding out about a burned domain from somebody else.</span>
           </p>
         </div>
       </li>
@@ -7489,6 +7724,8 @@ window.pecTrack = function(){};
             Drafts the copy, generates the imagery, tailors each post to the platform it is going
             to, then holds everything at an approval gate until a person says yes. Nothing
             publishes on its own. It runs daily across several brands, including this one.
+            <span class="proof-order__work"><b>Work it takes off a person:</b> writing every post from
+            a blank page and reformatting it per platform. The yes stays human.</span>
           </p>
         </div>
       </li>
@@ -7560,16 +7797,17 @@ window.pecTrack = function(){};
       <div class="map-bounds-sheet rise">
         <div class="map-bounds-sheet__head">
           <p class="map-bounds-sheet__title">Workflow Opportunity Map</p>
-          <p class="kicker kicker--quiet">Contents · 10 sections</p>
+          <p class="kicker kicker--quiet">Contents · 11 sections</p>
         </div>
         <ol class="map-bounds-toc">
           <li>How the work actually happens today, mapped step by step</li>
+          <li>What the customer experiences at each step, and what that creates for you</li>
           <li>Where it breaks, stalls, or gets dropped</li>
           <li>What can safely be automated</li>
           <li>What should stay human, and why</li>
           <li>The approval and safety boundaries the system would run inside</li>
           <li>Tools, access, and dependencies it would need</li>
-          <li>The recommended first build</li>
+          <li>The recommended first fix, and whether it needs building at all</li>
           <li>How we would measure whether it worked</li>
           <li>Implementation scope and a price range</li>
           <li>A phased roadmap for anything that comes after</li>
@@ -7736,7 +7974,7 @@ window.pecTrack = function(){};
         <p class="pc-plan__price"><span class="num" data-optic="dollar"><span class="cur">$</span>750</span>
           <span class="pc-plan__note">credited toward a build signed within 30&nbsp;days</span>
         </p>
-        <p class="pc-plan__body">One workflow. One recommended first build. One decision-ready plan.</p>
+        <p class="pc-plan__body">One workflow. One recommended first fix. One decision-ready plan.</p>
         <ul class="pc-plan__list">
           <li>A working session, not a sales meeting</li>
           <li>The full written map, yours to keep</li>
@@ -7811,13 +8049,14 @@ window.pecTrack = function(){};
           <p class="kicker kicker--quiet kicker--ruled">Who you are dealing with</p>
           <h2 id="pc-bio-h" data-optic="round">One person, and he answers.</h2>
         </header>
-        <p>I am Bryan. I spent 21 years in corporate customer experience and digital operations before going independent, which means I have been on the other side of the table watching an agency bill for a discovery phase that produced a slide deck. The person on your first call is the person who builds your system and the person maintaining it a year later.</p>
+        <p>I am Bryan. I spent 21 years in corporate customer experience and digital operations: looking at why customers call, what they cannot get done for themselves, where a journey hands them off and drops them, and what every one of those moments sets off inside the business. That is the part most automation people skip. They take the work you describe and build a machine around it without ever asking why the work exists.</p>
+        <p>I learned to build the systems afterwards, which means once we know the real cause I can go and fix it rather than write you a report about it. The person on your first call is the person who builds it and the person maintaining it a year later.</p>
 
         <ol class="pc-points">
           <li><span class="pc-points__n" aria-hidden="true">01</span><span>You talk to the builder. There is no account team and no game of telephone.</span></li>
           <li><span class="pc-points__n" aria-hidden="true">02</span><span>Every system is documented, monitored, and transferable. If I get hit by a bus, you have the manual, the credentials, and a system somebody else can pick up.</span></li>
           <li><span class="pc-points__n" aria-hidden="true">03</span><span>I run these systems inside my own businesses first. I am not selling you a theory I have not used.</span></li>
-          <li><span class="pc-points__n" aria-hidden="true">04</span><span>If the honest answer is that you should not build this, that is the answer you get.</span></li>
+          <li><span class="pc-points__n" aria-hidden="true">04</span><span>If the honest answer is that you should not build this &mdash; that the fix is a clearer message, a step removed, or somebody owning it &mdash; that is the answer you get.</span></li>
         </ol>
       </div>
 
@@ -7870,7 +8109,7 @@ window.pecTrack = function(){};
       <details class="pc-q" name="pc-faq" open>
         <summary><span>What if the honest answer is that I should not automate this?</span><span class="pc-q__mark" aria-hidden="true"></span></summary>
         <div class="pc-q__a">
-          <p>Then that is what the map says, and I will tell you on the call before you spend the $750 if it is already obvious. Some work is not frequent enough to be worth building around. Some of it needs the process fixed before a machine is pointed at it. Some of it is genuinely a judgement call that should stay with a person. Selling you a build in those cases produces a system nobody trusts and a client who never comes back.</p>
+          <p>Then that is what the map says, and I will tell you on the call before you spend the $750 if it is already obvious. Some work is not frequent enough to be worth building around. Some of it needs the process fixed before a machine is pointed at it. Some of it is genuinely a judgement call that should stay with a person. And a fair amount of it disappears once the customer can get the answer without ringing you, which costs a sentence rather than a build. Selling you a system in those cases produces something nobody trusts and a client who never comes back.</p>
         </div>
       </details>
 
@@ -7962,9 +8201,9 @@ window.pecTrack = function(){};
     <div class="pc-footer__top">
 
       <div>
-        <p class="pc-mark" data-optic="stem"><img class="pc-mark__sigil" src="art/pec-mark-128.webp" width="128" height="118" alt="" aria-hidden="true" loading="lazy" decoding="async">Perseid Echo Creations</p>
-        <nav class="pc-social" aria-label="Perseid Echo Creations on social media">
-          <a href="https://www.linkedin.com/company/perseid-echo-creations/" rel="noopener" aria-label="Perseid Echo Creations on LinkedIn">
+        <p class="pc-mark" data-optic="stem"><img class="pc-mark__sigil" src="art/pec-mark-128.webp" width="128" height="118" alt="" aria-hidden="true" loading="lazy" decoding="async"><span class="pc-mark__lock"><span class="pc-mark__tag">Experience Workflow Transformation</span><span class="pc-mark__name">by Perseid Echo</span></span></p>
+        <nav class="pc-social" aria-label="Perseid Echo on social media">
+          <a href="https://www.linkedin.com/company/perseid-echo/" rel="noopener" aria-label="Perseid Echo on LinkedIn">
             <!-- the pair is OPTICALLY sized, not geometrically: an "in" is a wide
                  mark and an "f" is a narrow one, so drawing both at the same box
                  height leaves the wider one visibly heavier. Pixel-scanned at 8x
@@ -7972,7 +8211,7 @@ window.pecTrack = function(){};
                  step land both marks on ~27% ink coverage. -->
             <svg viewBox="0 0 24 24" aria-hidden="true"><path transform="translate(0.84 0.84) scale(0.93)" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.07-1.95-3.07-1.96 0-2.26 1.46-2.26 2.97V21H9z"/></svg>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61590842124281" rel="noopener" aria-label="Perseid Echo Creations on Facebook">
+          <a href="https://www.facebook.com/profile.php?id=61590842124281" rel="noopener" aria-label="Perseid Echo on Facebook">
             <!-- ROUND 9 — the SOLID LETTERFORM f, not the circle-f and not the
                  outline f. A previous round replaced a thin outline f with a
                  filled disc to close a 60.4 vs 123.8px² ink gap, and overshot in
@@ -8019,7 +8258,7 @@ window.pecTrack = function(){};
 
     <div class="pc-footer__legal">
       <p>The figures in the work orders above come from systems I own and run; they are not client results and are not a forecast of yours.</p>
-      <p class="pc-footer__place">Renton, Washington.<br>Built and operated by Bryan Piard.</p>
+      <p class="pc-footer__place">Renton, Washington. Built and operated by Bryan Piard.<br>Perseid Echo LLC.</p>
     </div>
   </div>
 </footer>
@@ -8160,39 +8399,56 @@ window.pecTrack = function(){};
      natural height on a phone now and the page scrolls, with the action bar
      docked to the viewport. The scroll cue that went with it is gone too.) */
 
+  /* `cause` is the row this whole business turns on: the work exists because
+     something in the customer's experience did not do its job. It is the FIRST
+     row of the read for that reason — the automation candidate, where there is
+     one, is a consequence of the cause rather than the headline. */
   var JOBS = {
+    answers: {
+      name: "Answering the same questions over and over",
+      cause: "The answer exists. It is just not where the customer looks for it, so they call, and somebody here says it out loud again.",
+      human: "The unusual questions, the upset ones, and anything where the right answer depends on the situation. Those want a person, and they are the calls worth having.",
+      first: "Which five questions come in most, where a customer goes looking before they pick up the phone, and what your site, your booking page and your confirmation message do not currently say.",
+      build: "Often the first fix here is not a machine at all: put the answer where they are already looking and the call stops arriving. What is left after that is usually an acknowledgement that goes out on its own, and somewhere a customer can check where things stand without ringing you."
+    },
     followup: {
       name: "Lead and quote follow-up",
+      cause: "The customer does not know where they stand. Nothing told them what happens next, so they went quiet, and now remembering to chase them is somebody\u2019s job.",
       human: "The pitch itself, the number you land on, and any conversation that has already gone sideways. Pricing exceptions and negotiation stay with you unless you deliberately set narrow rules.",
       first: "Where inquiries actually land, how long the first reply takes, and what happens on day three when nobody has answered.",
-      build: "Usually the first build here is simple: catch every inquiry the moment it arrives, get a reply out fast, and make sure nothing goes quiet without somebody deciding to let it."
+      build: "Usually the first fix here is simple: catch every inquiry the moment it arrives, get a reply out fast, and make sure nothing goes quiet without somebody deciding to let it."
     },
     scheduling: {
       name: "Booking, scheduling, and reminders",
+      cause: "The customer cannot see, confirm or change their own appointment, so every question about it has to become a phone call somebody takes.",
       human: "Anything that moves an existing customer, and any exception to your normal hours. Those are relationship decisions, not calendar math.",
       first: "How a booking gets confirmed today, who is currently sending reminders, and what a no-show actually costs you.",
-      build: "The first build is usually reminders and confirmations, because that is where the money leaks and it is the safest place to start."
+      build: "The first fix is usually reminders and confirmations, because that is where the money leaks and it is the safest place to start."
     },
     paperwork: {
       name: "Quotes, invoices, and job paperwork",
+      cause: "The details the paperwork needs are scattered where a person has to go and fetch them, so the document gets built by hand every single time.",
       human: "The price. A machine can assemble the document in seconds; you decide what the number is.",
       first: "Where the figures come from, how much gets retyped by hand, and how long a finished quote sits before somebody sends it.",
       build: "Usually: assemble the document from details you already have, hold it for your approval, then send and file it once you say yes."
     },
     datasync: {
       name: "The same details, typed into several places",
+      cause: "Nothing carries the customer\u2019s information forward, so a person is acting as the bridge between systems that were never introduced. The customer usually feels this too, as being asked for something they already gave you.",
       human: "Deciding what is true when two systems disagree. That is a judgement call and it should stay one.",
       first: "Which system is the source of truth, and every place where a person is currently acting as the integration.",
-      build: "The first build is usually one-directional: pick the system that is right, and let the others follow it automatically."
+      build: "The first fix is usually one-directional: pick the system that is right, and let the others follow it automatically."
     },
     reporting: {
       name: "Reporting and knowing where you stand",
+      cause: "The numbers are not assembled anywhere, so the only way to find out where you stand is for somebody to stop and build the answer.",
       human: "What the numbers mean and what you do about them. Automation gets you the numbers on time; it does not get to run the business.",
       first: "Where the numbers live, how often you genuinely need them, and which decision each one is supposed to drive.",
       build: "Usually a standing report that assembles itself on a schedule, so the answer is already waiting instead of costing you a Friday afternoon."
     },
     comms: {
       name: "Customer communication and content",
+      cause: "Nothing is prepared in advance, so every send starts from a blank page and lands on whoever has a minute, which is why it is the first thing to slip when the week gets busy.",
       human: "Approval. Nothing goes out in your name without you seeing it first, unless and until you decide otherwise.",
       first: "What you would actually want said, who signs it off, and how often it realistically needs to go out.",
       build: "Usually drafting plus an approval gate. The machine does the writing and the scheduling, you keep the yes."
@@ -8308,10 +8564,10 @@ window.pecTrack = function(){};
 
     var vText, headline;
     if (band === "strong") {
-      vText = "Strong candidate";
-      headline = "This looks like the kind of work worth building a machine around.";
+      vText = "Worth fixing";
+      headline = "This is costing you enough to be worth taking apart properly.";
     } else if (band === "mid") {
-      vText = "Worth mapping first";
+      vText = "Worth a look first";
       headline = "There is probably something here, but I would want to look before anyone spends money.";
     } else {
       vText = "Probably not first";
@@ -8320,16 +8576,16 @@ window.pecTrack = function(){};
 
     var nextStep;
     if (band === "strong") {
-      nextStep = "A Workflow Opportunity Map is a paid working engagement focused on this one process. We document how it runs today, where it breaks, what can safely be automated, which decisions stay yours, and what implementation would involve. Maps start at $750 and are credited toward a build signed within 30 days. Before that, there is a free 20-minute call to check I am the right person for it.";
+      nextStep = "A Workflow Opportunity Map is a paid working engagement focused on this one process. We document how it runs today, what is actually causing the work, where it breaks, what can safely be automated, which decisions stay yours, and what implementation would involve. Maps start at $750 and are credited toward a build signed within 30 days. Before that, there is a free 20-minute call to check I am the right person for it.";
     } else if (band === "mid") {
-      nextStep = "Start with the free 20-minute call rather than the paid map. Twenty minutes is usually enough to work out whether this is expensive enough to be worth solving, or whether a smaller change to the process would do the job for nothing.";
+      nextStep = "Start with the free 20-minute call rather than the paid map. Twenty minutes is usually enough to work out whether this is expensive enough to be worth solving, or whether a smaller change to the process, the wording, or who owns it would do the job for nothing.";
     } else {
       nextStep = "On what you have told me, the work is either not frequent enough or not expensive enough when it slips to earn back what a build would cost. That can change as you grow, and it may well be worth revisiting. If a different job on your plate is costing you more, run this again with that one in mind.";
     }
 
     var notes = [];
     if (unowned) {
-      notes.push("You said this work does not really have an owner. That matters more than it sounds: when nobody owns a process, automating it usually exposes the gap rather than closing it. It is fixable, but it is a design decision we would make deliberately rather than discover later.");
+      notes.push("You said this work does not really have an owner. That matters more than it sounds: when nobody owns a process, automating it usually exposes the gap rather than closing it. The first fix here is often ownership rather than software, and that one costs nothing.");
     }
     if (cN >= 2) {
       notes.push("Spread across four or more places, a fair share of the build is plumbing: getting systems to agree before anything clever happens. That is normal, and it is exactly the kind of thing a map is meant to price honestly rather than discover halfway through.");
@@ -8343,10 +8599,12 @@ window.pecTrack = function(){};
     h += '<h3 id="fc-result-h" class="fitcheck-result__cat">' + esc(J.name) + "</h3>";
     h += '<p class="fitcheck-result__line">' + esc(headline) + "</p>";
     h += '<dl class="fitcheck-rows">';
+    /* Cause first. Every other row is downstream of it. */
+    h += '<div class="fitcheck-row"><dt>Where this work is coming from</dt><dd>' + esc(J.cause) + "</dd></div>";
     h += '<div class="fitcheck-row"><dt>What should stay human</dt><dd>' + esc(J.human) + "</dd></div>";
     h += '<div class="fitcheck-row"><dt>Where I would look first</dt><dd>' + esc(J.first) + "</dd></div>";
     if (band !== "low") {
-      h += '<div class="fitcheck-row"><dt>The likely first build</dt><dd>' + esc(J.build) + "</dd></div>";
+      h += '<div class="fitcheck-row"><dt>The likely first fix</dt><dd>' + esc(J.build) + "</dd></div>";
     }
     h += '<div class="fitcheck-row"><dt>Your next step</dt><dd>' + esc(nextStep) + "</dd></div>";
     h += "</dl>";
@@ -8355,7 +8613,7 @@ window.pecTrack = function(){};
       for (var n = 0; n < notes.length; n++) { h += "<li>" + esc(notes[n]) + "</li>"; }
       h += "</ul></div>";
     }
-    h += '<p class="fitcheck-fine"><b>What this is not.</b> I am not going to quote you a build from five questions, and you should be suspicious of anyone who would. Projects like this begin with a paid map before implementation pricing can be confirmed, because the honest number depends on things I cannot see from here.</p>';
+    h += '<p class="fitcheck-fine"><b>What this is not.</b> I am not going to quote you a build from five questions, and you should be suspicious of anyone who would. I am also not assuming the fix is software: plenty of this work goes away by answering the question earlier, or by giving the step an owner. Where a build is genuinely the answer, the honest number comes out of the map, not out of a form.</p>';
 
     h += '<div class="fitcheck-acts">';
     if (band === "low") {
@@ -8464,9 +8722,10 @@ window.pecTrack = function(){};
           lines.push(ask + "  >>  " + pickedText);
         }
         lines.push("");
+        lines.push("Where this work is coming from: " + J.cause);
         lines.push("Should stay human: " + J.human);
         lines.push("Where I would look first: " + J.first);
-        if (band !== "low") lines.push("Likely first build: " + J.build);
+        if (band !== "low") lines.push("Likely first fix: " + J.build);
         lines.push("");
         lines.push("Next step: " + nextStep);
         for (var ni = 0; ni < notes.length; ni++) { lines.push(""); lines.push("Flagged: " + notes[ni]); }

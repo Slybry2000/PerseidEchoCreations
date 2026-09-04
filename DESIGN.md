@@ -1,5 +1,5 @@
 ---
-name: Perseid Echo Creations
+name: Perseid Echo
 description: Modern-monochrome design system for an operator-led AI Solutions Practice. Quiet Authority as North Star.
 colors:
   persimmon: "#FF6A2A"
@@ -105,7 +105,7 @@ components:
     height: "72px"
 ---
 
-# Design System: Perseid Echo Creations
+# Design System: Perseid Echo
 
 ## 1. Overview
 

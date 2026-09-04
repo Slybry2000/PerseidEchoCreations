@@ -259,7 +259,7 @@ function footer (city) {
 <footer class="foot">
   <div class="wrap">
     <div class="foot__in">
-      <span class="foot__b">Perseid Echo Creations</span>
+      <span class="foot__b">Perseid Echo</span>
       <nav class="foot__nav" aria-label="Footer">
         <a href="${ORIGIN}/#fitcheck">Fit Check</a>
         <a href="${ORIGIN}/#cost">Pricing</a>
@@ -283,7 +283,7 @@ function topbar (city) {
   return `
 <div class="topbar">
   <div class="wrap topbar__in">
-    <a class="topbar__b" href="${ORIGIN}/">Perseid Echo Creations</a>
+    <a class="topbar__b" href="${ORIGIN}/">Perseid Echo</a>
     <nav class="topbar__in" style="gap:10px 22px;" aria-label="Primary">
       <a href="/workflows/">Workflows</a>
       <a href="/local/">Areas served</a>
@@ -313,7 +313,7 @@ function jsonLd (c) {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     '@id': `${ORIGIN}/#business`,
-    name: 'Perseid Echo Creations',
+    name: 'Perseid Echo',
     description: 'Workflow automation and custom internal tools for owner-led businesses. Based in Renton, WA and working remotely across the United States.',
     url: `${ORIGIN}/`,
     founder: { '@type': 'Person', name: 'Bryan Piard' },
@@ -510,12 +510,12 @@ function hub () {
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Areas served · Perseid Echo Creations',
+    name: 'Areas served · Perseid Echo',
     url,
     about: {
       '@type': 'ProfessionalService',
       '@id': `${ORIGIN}/#business`,
-      name: 'Perseid Echo Creations',
+      name: 'Perseid Echo',
       telephone: '+1-425-243-3473',
       email: EMAIL
     },
@@ -674,7 +674,7 @@ function wfJsonLd (w) {
     description: plain(w.metaDesc),
     url,
     author:    { '@type': 'Person', name: 'Bryan Piard' },
-    publisher: { '@type': 'Organization', name: 'Perseid Echo Creations', url: `${ORIGIN}/` },
+    publisher: { '@type': 'Organization', name: 'Perseid Echo', url: `${ORIGIN}/` },
     about: { '@type': 'Thing', name: w.short },
     isPartOf: { '@type': 'CollectionPage', url: `${ORIGIN}/workflows/` }
   };
@@ -712,7 +712,7 @@ function wfPage (w) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(w.title)} &middot; Perseid Echo Creations</title>
+<title>${esc(w.title)} &middot; Perseid Echo</title>
 <meta name="description" content="${esc(w.metaDesc)}">
 <meta name="theme-color" content="#0B1018">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -880,7 +880,7 @@ function wfHub () {
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Workflows · Perseid Echo Creations',
+    name: 'Workflows · Perseid Echo',
     url,
     hasPart: workflows.map(w => ({
       '@type': 'Article',
@@ -894,7 +894,7 @@ function wfHub () {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Workflows: buy a tool, or build it? &middot; Perseid Echo Creations</title>
+<title>Workflows: buy a tool, or build it? &middot; Perseid Echo</title>
 <meta name="description" content="The repetitive jobs I get asked about most, and an honest read on each: when an off-the-shelf tool is the right answer, and when it needs building.">
 <meta name="theme-color" content="#0B1018">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -991,7 +991,7 @@ function referPage () {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pass it on · Perseid Echo Creations</title>
+<title>Pass it on · Perseid Echo</title>
 <meta name="description" content="If something I built for you is working, here is the easy way to hand me to someone else who needs it.">
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#0B1018">

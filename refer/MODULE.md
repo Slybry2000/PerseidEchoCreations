@@ -24,7 +24,7 @@ Self-contained: no external CSS, no script, inherits nothing. Safe to paste into
 
 ```html
 <!-- pass-it-on · appears only after the value has landed -->
-<aside class="pec-pass" aria-label="Refer Perseid Echo Creations">
+<aside class="pec-pass" aria-label="Refer Perseid Echo">
   <p class="pec-pass__k">If this is useful</p>
   <p class="pec-pass__t">
     Most of my work arrives because someone passed my name along.
