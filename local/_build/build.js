@@ -99,7 +99,15 @@ function firstCommitDate (rel) {
   const out = git(['log', '--diff-filter=A', '--format=%ad', '--date=short', '--', rel]);
   return out ? out.split('\n').pop() : TODAY;
 }
+/* Hand-written root pages declare their own dateModified in JSON-LD; the
+   sitemap repeats it so the two never disagree. Pages without one fall
+   back to git. */
 function rootLastmod (rel) {
+  try {
+    const html = fs.readFileSync(path.join(ROOT, rel), 'utf8');
+    const m = html.match(/"dateModified":\s*"(\d{4}-\d{2}-\d{2})"/);
+    if (m) return m[1];
+  } catch { /* fall through */ }
   if (git(['status', '--porcelain', '--', rel])) return TODAY;
   return git(['log', '-1', '--format=%ad', '--date=short', '--', rel]) || TODAY;
 }
