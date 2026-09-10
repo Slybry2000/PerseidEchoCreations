@@ -534,6 +534,7 @@ function page (c, d) {
 <link rel="stylesheet" href="/local/assets/local.css">
 
 ${jsonLd(c, d)}
+<script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="1xxvugkyQ7UIw1LFd" data-version="062024"></script>
 </head>
 <body>
 ${topbar(c.city)}
@@ -668,6 +669,7 @@ function hub (d) {
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
 </script>
+<script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="1xxvugkyQ7UIw1LFd" data-version="062024"></script>
 </head>
 <body>
 ${topbar('')}
@@ -854,6 +856,7 @@ function wfPage (w, d) {
 <link rel="stylesheet" href="/local/assets/local.css">
 
 ${wfJsonLd(w, d)}
+<script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="1xxvugkyQ7UIw1LFd" data-version="062024"></script>
 </head>
 <body>
 ${topbar('')}
@@ -1045,6 +1048,7 @@ function wfHub (d) {
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
 </script>
+<script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="1xxvugkyQ7UIw1LFd" data-version="062024"></script>
 </head>
 <body>
 ${topbar('')}
@@ -1132,6 +1136,7 @@ function referPage () {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/local/assets/local.css">
+<script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="1xxvugkyQ7UIw1LFd" data-version="062024"></script>
 </head>
 <body>
 ${topbar('')}
