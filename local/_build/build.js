@@ -47,6 +47,82 @@ const EMAIL = 'bryan@perseidechocreations.com';
 const PHONE = '425-243-3473';
 const PHONE_HREF = 'tel:+14252433473';
 
+/* ---------- identity ----------
+   One business, one person, the same links on every page. Search engines
+   and AI answer engines merge what they read about "Perseid Echo" only if
+   every page names the same entity the same way, so the profile links and
+   the person live here once and are stamped into every JSON-LD block.
+   alternateName is the name the domain, the LinkedIn slug and the Google
+   Business Profile still carry after the 2026-09 shortening. */
+const LINKEDIN_CO = 'https://www.linkedin.com/company/perseid-echo/';
+const FACEBOOK    = 'https://www.facebook.com/profile.php?id=61590842124281';
+const BRYAN_LI    = 'https://www.linkedin.com/in/bryan-piard-70575131/';
+const SAME_AS     = [LINKEDIN_CO, FACEBOOK];
+const ALT_NAME    = 'Perseid Echo Creations';
+
+const PERSON = {
+  '@type': 'Person',
+  '@id': `${ORIGIN}/#bryan`,
+  name: 'Bryan Piard',
+  url: `${ORIGIN}/#about`,
+  image: `${ORIGIN}/art/bryan.webp`,
+  jobTitle: 'Founder',
+  description: '21 years in corporate customer experience and digital operations. Finds where a customer experience is creating avoidable work inside an owner-led business, then builds the workflow that removes it.',
+  worksFor: { '@id': `${ORIGIN}/#business` },
+  sameAs: [BRYAN_LI]
+};
+
+const PUBLISHER = {
+  '@type': 'ProfessionalService',
+  '@id': `${ORIGIN}/#business`,
+  name: 'Perseid Echo',
+  alternateName: ALT_NAME,
+  url: `${ORIGIN}/`,
+  logo: `${ORIGIN}/apple-touch-icon.png`,
+  sameAs: SAME_AS
+};
+
+/* ---------- dates ----------
+   datePublished is the day the page first landed in git. dateModified is
+   the last build whose OUTPUT actually changed: a rebuild that renders the
+   same bytes keeps the committed date, so <lastmod> and the visible
+   "Updated" line stay truthful. Google drops lastmod entirely once it
+   catches a sitemap stamping every page with the build date. */
+const { execFileSync } = require('child_process');
+function git (args, raw) {
+  try {
+    const out = execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+    return raw ? out : out.trim();
+  } catch { return ''; }
+}
+function firstCommitDate (rel) {
+  const out = git(['log', '--diff-filter=A', '--format=%ad', '--date=short', '--', rel]);
+  return out ? out.split('\n').pop() : TODAY;
+}
+function rootLastmod (rel) {
+  if (git(['status', '--porcelain', '--', rel])) return TODAY;
+  return git(['log', '-1', '--format=%ad', '--date=short', '--', rel]) || TODAY;
+}
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const fmtDate = iso => {
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${d} ${MONTHS[m - 1]} ${y}`;
+};
+/* render(published, modified) -> html. Re-renders with the committed dates
+   first; if that reproduces the committed file byte for byte, nothing
+   changed and the old dateModified stands. */
+function dated (rel, render) {
+  const committed = git(['show', `HEAD:${rel}`], true);
+  const prevPub = (committed.match(/"datePublished":\s*"(\d{4}-\d{2}-\d{2})"/) || [])[1];
+  const prevMod = (committed.match(/"dateModified":\s*"(\d{4}-\d{2}-\d{2})"/) || [])[1];
+  const published = prevPub || firstCommitDate(rel);
+  if (prevPub && prevMod && render(prevPub, prevMod) === committed) {
+    return { html: committed, published, modified: prevMod };
+  }
+  return { html: render(published, TODAY), published, modified: TODAY };
+}
+const byline = (verb, d) => `<p class="hero__by">${verb} <a href="${ORIGIN}/#about">Bryan Piard</a> &middot; Published <time datetime="${d.published}">${fmtDate(d.published)}</time> &middot; Updated <time datetime="${d.modified}">${fmtDate(d.modified)}</time></p>`;
+
 /* ---------- helpers ---------- */
 const esc = s => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -267,6 +343,7 @@ function footer (city) {
         <a href="/local/">Areas served</a>
         <a href="${ORIGIN}/partners.html">Partners</a>
         <a href="${ORIGIN}/privacy.html">Privacy</a>
+        <a href="${LINKEDIN_CO}" rel="noopener">LinkedIn</a>
         <a href="mailto:${EMAIL}">Email</a>
         <a href="${PHONE_HREF}">${PHONE}</a>
       </nav>
@@ -307,16 +384,18 @@ function topbar (city) {
    carry the homepage's canonical @id and the same url, so the
    six documents describe a single practice. Anything genuinely
    city-specific belongs on the page nodes below, not here. */
-function jsonLd (c) {
+function jsonLd (c, d) {
   const url = `${ORIGIN}/local/${c.slug}/`;
   const service = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     '@id': `${ORIGIN}/#business`,
     name: 'Perseid Echo',
+    alternateName: ALT_NAME,
     description: 'Workflow automation and custom internal tools for owner-led businesses. Based in Renton, WA and working remotely across the United States.',
     url: `${ORIGIN}/`,
-    founder: { '@type': 'Person', name: 'Bryan Piard' },
+    sameAs: SAME_AS,
+    founder: PERSON,
     email: EMAIL,
     telephone: '+1-425-243-3473',
     image: `${ORIGIN}/art/ind-street.webp`,
@@ -393,13 +472,31 @@ function jsonLd (c) {
     ]
   };
 
-  return [service, crumbs, faq]
+  /* The page node is where the city-specific facts and the dates live;
+     the business node above stays identical across all six pages. */
+  const webpage = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${url}#webpage`,
+    url,
+    name: plain(c.title),
+    description: c.metaDesc,
+    inLanguage: 'en-US',
+    datePublished: d.published,
+    dateModified: d.modified,
+    author: PERSON,
+    publisher: { '@id': `${ORIGIN}/#business` },
+    about: { '@id': `${ORIGIN}/#business` },
+    isPartOf: { '@type': 'CollectionPage', url: `${ORIGIN}/local/` }
+  };
+
+  return [service, webpage, crumbs, faq]
     .map(o => `<script type="application/ld+json">\n${JSON.stringify(o, null, 2)}\n</script>`)
     .join('\n');
 }
 
 /* ---------- the page ---------- */
-function page (c) {
+function page (c, d) {
   const url = `${ORIGIN}/local/${c.slug}/`;
   return `<!DOCTYPE html>
 <html lang="en">
@@ -428,7 +525,7 @@ function page (c) {
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/local/assets/local.css">
 
-${jsonLd(c)}
+${jsonLd(c, d)}
 </head>
 <body>
 ${topbar(c.city)}
@@ -450,6 +547,7 @@ ${topbar(c.city)}
     <p class="tag">${esc(c.city)}, ${esc(c.regionLong)}</p>
     <h1 class="h-xl hero__head">${c.h1}</h1>
     <p class="hero__sub">${esc(c.sub)}</p>
+    ${byline('Written by', d)}
     <div class="hero__acts">
       <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
       <a class="btn btn--line" href="${ORIGIN}/#cost">See what it costs</a>
@@ -505,19 +603,27 @@ ${footer(c.city)}
 }
 
 /* ---------- the hub ---------- */
-function hub () {
+function hub (d) {
   const url = `${ORIGIN}/local/`;
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
+    '@id': `${url}#webpage`,
     name: 'Areas served · Perseid Echo',
     url,
+    inLanguage: 'en-US',
+    datePublished: d.published,
+    dateModified: d.modified,
+    author: PERSON,
+    publisher: PUBLISHER,
     about: {
       '@type': 'ProfessionalService',
       '@id': `${ORIGIN}/#business`,
       name: 'Perseid Echo',
+      alternateName: ALT_NAME,
       telephone: '+1-425-243-3473',
-      email: EMAIL
+      email: EMAIL,
+      sameAs: SAME_AS
     },
     hasPart: cities.map(c => ({
       '@type': 'WebPage',
@@ -611,11 +717,11 @@ ${footer('')}
    Root pages are listed explicitly rather than parsed out of the
    existing file, so a hand edit to sitemap.xml does not silently
    survive a rebuild. Add root pages here when the site gains one. */
-function sitemap () {
+function sitemap (lastmod) {
   const rootPages = [
-    { loc: `${ORIGIN}/`,               priority: '1.0', changefreq: 'monthly' },
-    { loc: `${ORIGIN}/partners.html`,  priority: '0.7', changefreq: 'monthly' },
-    { loc: `${ORIGIN}/privacy.html`,   priority: '0.3', changefreq: 'yearly'  }
+    { loc: `${ORIGIN}/`,               priority: '1.0', changefreq: 'monthly', lastmod: rootLastmod('index.html') },
+    { loc: `${ORIGIN}/partners.html`,  priority: '0.7', changefreq: 'monthly', lastmod: rootLastmod('partners.html') },
+    { loc: `${ORIGIN}/privacy.html`,   priority: '0.3', changefreq: 'yearly',  lastmod: rootLastmod('privacy.html') }
   ];
   const localPages = [
     { loc: `${ORIGIN}/local/`, priority: '0.8', changefreq: 'monthly' },
@@ -626,9 +732,11 @@ function sitemap () {
     }))
   ];
 
+  /* Generated pages report the date their content last changed (see
+     dated()); root pages report their last commit, or today if edited. */
   const entry = p => `  <url>
     <loc>${p.loc}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${p.lastmod || lastmod[p.loc] || TODAY}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
     <priority>${p.priority}</priority>
   </url>`;
@@ -664,7 +772,7 @@ ${[...rootPages, ...localPages, ...workflowPages].map(entry).join('\n')}
    convert worse. See workflows.json for the full rule.
    =========================================================== */
 
-function wfJsonLd (w) {
+function wfJsonLd (w, d) {
   const url = `${ORIGIN}/workflows/${w.slug}/`;
   const article = {
     '@context': 'https://schema.org',
@@ -673,8 +781,13 @@ function wfJsonLd (w) {
     headline: plain(w.h1),
     description: plain(w.metaDesc),
     url,
-    author:    { '@type': 'Person', name: 'Bryan Piard' },
-    publisher: { '@type': 'Organization', name: 'Perseid Echo', url: `${ORIGIN}/` },
+    mainEntityOfPage: url,
+    image: `${ORIGIN}/art/ind-bench.webp`,
+    inLanguage: 'en-US',
+    datePublished: d.published,
+    dateModified: d.modified,
+    author:    PERSON,
+    publisher: PUBLISHER,
     about: { '@type': 'Thing', name: w.short },
     isPartOf: { '@type': 'CollectionPage', url: `${ORIGIN}/workflows/` }
   };
@@ -701,7 +814,7 @@ function wfJsonLd (w) {
     .join('\n');
 }
 
-function wfPage (w) {
+function wfPage (w, d) {
   const url = `${ORIGIN}/workflows/${w.slug}/`;
   const cityLinks = (w.cities || [])
     .map(name => cities.find(c => c.city === name))
@@ -732,7 +845,7 @@ function wfPage (w) {
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/local/assets/local.css">
 
-${wfJsonLd(w)}
+${wfJsonLd(w, d)}
 </head>
 <body>
 ${topbar('')}
@@ -753,6 +866,7 @@ ${topbar('')}
     <p class="tag">${esc(w.short)}</p>
     <h1 class="h-xl hero__head">${w.h1}</h1>
     <p class="hero__sub">${esc(w.sub)}</p>
+    ${byline('By', d)}
     <div class="hero__acts">
       <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
       <a class="btn btn--line" href="#decide">Buy or build?</a>
@@ -875,13 +989,19 @@ ${footer('')}
 `;
 }
 
-function wfHub () {
+function wfHub (d) {
   const url = `${ORIGIN}/workflows/`;
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
+    '@id': `${url}#webpage`,
     name: 'Workflows · Perseid Echo',
     url,
+    inLanguage: 'en-US',
+    datePublished: d.published,
+    dateModified: d.modified,
+    author: PERSON,
+    publisher: PUBLISHER,
     hasPart: workflows.map(w => ({
       '@type': 'Article',
       name: plain(w.h1),
@@ -1190,43 +1310,41 @@ ${footer('')}
 `;
 }
 
-/* ---------- write ---------- */
+/* ---------- write ----------
+   emit() renders through dated(), so every generated page carries a real
+   datePublished / dateModified and the sitemap's lastmod is the same date. */
 let written = 0;
+const lastmod = {};   // public URL -> dateModified, consumed by sitemap()
+
+function emit (rel, publicUrl, render) {
+  const { html, modified } = dated(rel, (pub, mod) => render({ published: pub, modified: mod }));
+  const abs = path.join(ROOT, rel);
+  fs.mkdirSync(path.dirname(abs), { recursive: true });
+  fs.writeFileSync(abs, html, 'utf8');
+  if (publicUrl) lastmod[publicUrl] = modified;
+  console.log(`  ${rel}  (modified ${modified})`);
+  written++;
+}
 
 for (const c of cities) {
-  const dir = path.join(LOCAL, c.slug);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), page(c), 'utf8');
-  console.log(`  local/${c.slug}/index.html`);
-  written++;
+  emit(`local/${c.slug}/index.html`, `${ORIGIN}/local/${c.slug}/`, d => page(c, d));
 }
-
-fs.writeFileSync(path.join(LOCAL, 'index.html'), hub(), 'utf8');
-console.log('  local/index.html');
-written++;
+emit('local/index.html', `${ORIGIN}/local/`, d => hub(d));
 
 for (const w of workflows) {
-  const dir = path.join(WORKDIR, w.slug);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), wfPage(w), 'utf8');
-  console.log(`  workflows/${w.slug}/index.html`);
-  written++;
+  emit(`workflows/${w.slug}/index.html`, `${ORIGIN}/workflows/${w.slug}/`, d => wfPage(w, d));
 }
-
-fs.mkdirSync(WORKDIR, { recursive: true });
-fs.writeFileSync(path.join(WORKDIR, 'index.html'), wfHub(), 'utf8');
-console.log('  workflows/index.html');
-written++;
+emit('workflows/index.html', `${ORIGIN}/workflows/`, d => wfHub(d));
 
 /* /refer/ is noindex and stays out of the sitemap on purpose — see the
-   comment above referPage(). */
+   comment above referPage(). It carries no dates, so it is written plainly. */
 const REFDIR = path.join(ROOT, 'refer');
 fs.mkdirSync(REFDIR, { recursive: true });
 fs.writeFileSync(path.join(REFDIR, 'index.html'), referPage(), 'utf8');
 console.log('  refer/index.html  (noindex, not in sitemap)');
 written++;
 
-fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap(), 'utf8');
+fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap(lastmod), 'utf8');
 console.log('  sitemap.xml');
 
-console.log(`\n${written} pages written for ${cities.length} cities, lastmod ${TODAY}.`);
+console.log(`\n${written} pages written for ${cities.length} cities. Build date ${TODAY}; unchanged pages keep their committed dateModified.`);
