@@ -9,6 +9,7 @@
       "metaDesc": "Quotes go out and never come back. An honest read on whether an off-the-shelf tool fixes that for you, or whether it needs building. Free 60-second Fit Check.",
       "h1": "The quote went out. <em>Then what?</em>",
       "sub": "Almost every owner-led business I look at is losing more money to un-chased quotes than to anything a new tool would fix. Here is how to tell which of the two you actually have.",
+      "answer": "If your quotes all look about the same and a “just checking in” email on a timer is fine, buy a follow-up tool and keep your money. It's worth building when the follow-up needs to know about the job record or the customer history, and has to stop on its own when the customer calls or the job gets booked.",
       "problem": [
         "The pattern is always the same. The quote gets sent on Tuesday. The owner means to check in on Friday. Friday is a fire. The following Tuesday it feels too late to chase without seeming desperate, so it does not get chased, and the quote quietly becomes a no.",
         "Nobody decided to lose that job. There was no moment where somebody weighed it up and let it go. It fell through a gap in a process that was never designed, which is a different problem from being bad at sales and it has a different fix."
@@ -72,6 +73,7 @@
       "metaDesc": "The job gets done, then somebody rebuilds it from photos and memory at seven in the evening. An honest read on whether to buy a tool or build the fix.",
       "h1": "The job is done. <em>Now somebody retypes it.</em>",
       "sub": "The waste in a field-service business is almost never in the field. It is in the trip the paperwork makes afterwards, and that trip is fixable.",
+      "answer": "If one job form fits nearly all your work and you're willing to move scheduling and invoicing into one field-service app, buy the app, those platforms are good. Building makes sense when you already run scheduling in one system and accounts in another and neither one is moving, and the real time goes on the retyping back in the office.",
       "problem": [
         "Work happens at a site. Hours end up in a text message, materials on a paper ticket, photos on somebody's phone, and the note about what actually changed on the job in somebody's head. Later — usually much later, usually by whoever is still there — all of that gets reassembled into a job record and an invoice.",
         "Every step of that reassembly is a chance to lose an hour, a detail, or a billable item. The billing goes out late, it goes out light, and the person doing it is normally the most expensive person available."
@@ -135,6 +137,7 @@
       "metaDesc": "Orders arrive as attachments and somebody retypes them. An honest read on whether an off-the-shelf parser fixes it or whether it needs building.",
       "h1": "Orders arrive as attachments. <em>Somebody retypes them.</em>",
       "sub": "High volume, low judgement, expensive when a digit moves. This is the clearest case for building something — and the easiest one to over-build.",
+      "answer": "Buy a parsing product if your customers send the same layouts and you run a mainstream ERP with a supported import. Build when every customer sends something different, or the order needs codes mapped and prices checked before it posts and that logic lives in a spreadsheet. Under a handful of orders a day, I'd leave it alone.",
       "problem": [
         "Customers send orders the way they always have: a PDF, a spreadsheet, an email body, a scan of a fax that was itself a scan. Someone opens each one and keys it into the system of record. It is not difficult work, which is exactly why it is usually being done by somebody whose time is worth a great deal more.",
         "The cost is not really the typing. It is the transposed digit that ships the wrong quantity, the order that sat unopened over a weekend, and the fact that the whole thing stops when that one person is away."
@@ -198,6 +201,7 @@
       "metaDesc": "A booked appointment nobody confirms is a coin flip. An honest read on whether your booking system already handles this or whether it needs building.",
       "h1": "A booking nobody confirms is <em>a coin flip</em>",
       "sub": "This is the one where the honest answer is most often 'your existing system already does it, go and switch it on'. Check that before you spend anything.",
+      "answer": "Check your booking system first. It almost certainly has reminders already, and if they're switched off, turning them on costs you nothing. It is only worth building something when the reminder has to say different things for different appointment types, or when what happens after it matters, like filling the gap or flagging the people who keep not showing up.",
       "problem": [
         "The slot is booked, the day arrives, and nobody comes. The time cannot be resold at short notice, so it is simply gone — and in an appointment business a lost slot is close to pure lost margin, because the cost of being open was already paid.",
         "The fix is genuinely well understood and mostly solved by software. Which is why the first thing worth doing here is not hiring anybody."
@@ -260,6 +264,7 @@
       "metaDesc": "The onboarding checklist that lives in someone's head, and the fourth email asking for the same statement. An honest read on buying versus building.",
       "h1": "The fourth email asking for <em>the same document</em>",
       "sub": "New client onboarding is the worst possible place for your process to look improvised, and it is where it most often does.",
+      "answer": "Look in your practice-management software first, because a lot of firms have onboarding workflows sitting in there that they never switched on. Build something when the documents you need change depending on the engagement, or when where they end up matters as much as getting them, say a matter file or a compliance record that already has its own rules.",
       "problem": [
         "A new client says yes. Then comes the checklist that lives in somebody's head, the welcome pack assembled by copying last time's, and the slow email tennis to collect documents that the client keeps meaning to send.",
         "It is the first real experience the client has of how you operate, and it is usually the least designed part of the whole engagement. It also delays the point where billable work can start, which makes it expensive twice over."

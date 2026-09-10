@@ -15,6 +15,7 @@
       "metaDesc": "I am in Renton and I build the systems that handle repetitive work for owner-led businesses here. Free 60-second Fit Check, no account needed.",
       "h1": "Workflow automation for <em>Renton</em> businesses",
       "sub": "I live and work here. If you run a business in Renton and the same job keeps eating an afternoon a week, that is the kind of thing I take off your plate — carefully, one workflow at a time.",
+      "answer": "I'm Bryan Piard, I run Perseid Echo out of Renton, and I make the systems that take repetitive back-office work off owner-led businesses here, things like quotes nobody chases, the job-to-invoice handoff and intake for clinics. You can start with a free 60-second Fit Check, and a first conversation can be in person if you'd rather.",
       "here": [
         "Renton is not one economy, it is three sitting on top of each other. There is the Boeing supply chain and the machine shops and fabricators that feed it. There is a deep bench of owner-led trades — electrical, HVAC, auto, landscaping, remodels — a lot of them running two vans and a whiteboard. And there is the Highlands and downtown service layer: clinics, dental practices, restaurants, studios.",
         "What those three have in common is that the back office never got built. The work got bigger, the paperwork got bigger with it, and nobody ever stopped to design the part where information moves from one place to another. That gap is where I do most of my work."
@@ -51,6 +52,7 @@
       "metaDesc": "Kent Valley warehouse, wholesale and fabrication businesses run on paperwork moved by hand. I build the systems that move it instead. Free Fit Check.",
       "h1": "Workflow automation for <em>Kent</em> businesses",
       "sub": "The Kent Valley runs on order paperwork, and most of it still moves by hand. I build and run the systems that carry it, from a shop fifteen minutes up the hill.",
+      "answer": "I'm Bryan Piard, based in Renton, and I make systems for the order paperwork Kent businesses still move by hand. That means order intake off email and PDFs, purchase orders matched against invoices, and driver paperwork. Mostly it's connecting the ERP or WMS you already pay for, so you aren't buying another system.",
       "here": [
         "Kent has one of the densest concentrations of warehousing, distribution and light manufacturing on the West Coast. That produces a very particular kind of repetitive work: order intake off email and PDFs, purchase orders matched against invoices, inventory counts reconciled between a spreadsheet and whatever the system says, driver and dispatch paperwork chased down after the fact.",
         "It is high-volume, low-judgement work, and it is almost always being done by somebody who is too senior to be doing it. That combination — frequent, tedious, and expensive when it goes wrong — is the clearest case for building something. It is also the case where I am most likely to tell you the fix is a better process rather than a bigger tool."
@@ -87,6 +89,7 @@
       "metaDesc": "Client intake, document chasing and recurring reporting eat billable hours in Bellevue firms. I build controlled systems that carry them. Free Fit Check.",
       "h1": "Workflow automation for <em>Bellevue</em> firms",
       "sub": "In a practice that bills for time, the admin around the work is the most expensive thing in the building. That is usually where I start.",
+      "answer": "I'm Bryan Piard, based in Renton, and for Bellevue firms that bill for time I make systems for client intake, chasing documents, recurring client reports and scheduling. Where the work touches client money or client records, the system prepares it and a person approves it before anything goes out. What it's allowed to touch gets agreed in writing first.",
       "here": [
         "Bellevue's business base leans professional: law, accounting, wealth management, real estate, and a wide layer of consultancies and small firms serving the tech economy around them. The repetitive work in those firms has a specific shape — client intake, document collection and chasing, engagement paperwork, scheduling, recurring client reporting, and the compliance trail underneath all of it.",
         "It also has a specific constraint. A firm handling client money or client records cannot hand a process to something that acts on its own, and should not want to. Everything I build has a setting for how much authority it gets, and for most of this work the honest answer is: it prepares, a person approves, then it sends."
@@ -123,6 +126,7 @@
       "metaDesc": "Retail, hospitality and multi-site service businesses near Southcenter run on scheduling and vendor paperwork. I build the systems that carry it.",
       "h1": "Workflow automation for <em>Tukwila</em> businesses",
       "sub": "When the same job has to happen at three locations, the coordination becomes the job. That is the part worth building.",
+      "answer": "I'm Bryan Piard in Renton, and for Tukwila businesses with more than one location I make the layer that sits above the sites, so shift schedules, vendor invoices that come in different formats, and the numbers from each site all end up in one place. You don't need three of everything, you need every location reporting the same way.",
       "here": [
         "Tukwila's business base is shaped by the Southcenter corridor and the freight and airport traffic around it: retail, food and hospitality, service franchises, and a warehousing layer near the river. A lot of it is multi-site, and multi-site is what changes the maths.",
         "The moment a business runs more than one location, the expensive work stops being the work and starts being the coordination — shift schedules, vendor invoices arriving in different formats, numbers rolled up by hand so the owner can see all sites at once. None of that is complicated. All of it is frequent, which is what makes it worth a system."
@@ -159,6 +163,7 @@
       "metaDesc": "Auburn trades and field-service businesses lose hours moving paperwork from the job to the office. I build the systems that move it. Free Fit Check.",
       "h1": "Workflow automation for <em>Auburn</em> businesses",
       "sub": "Most of the waste I find in a field-service business is not in the field. It is in the trip the paperwork makes afterwards.",
+      "answer": "I'm Bryan Piard, based in Renton. For Auburn contractors and field-service outfits I make the piece that captures the job once, where it happens, and gets it to the office as a schedule update and an invoice without somebody reconstructing it that night. If your crews would have to do more than the paper ticket asks, I won't build it.",
       "here": [
         "Auburn carries the south end of the Kent Valley industrial belt plus a strong base of trades and field-service businesses — contractors, equipment and repair outfits, landscaping, transport. The defining feature is that the work happens away from the office, and the record of it has to travel.",
         "So the same pattern shows up again and again: a job is done, then someone reconstructs it later from photos, texts, a paper ticket and memory, and turns that into a schedule update, an invoice and a follow-up. Each step is a chance to lose an hour or a detail. Capturing it once, where it happens, is normally the whole build."
@@ -195,6 +200,7 @@
       "metaDesc": "Owner-led clinics, home services and practices in Issaquah lose bookings to missed follow-up. I build the machinery around the calendar. Free Fit Check.",
       "h1": "Workflow automation for <em>Issaquah</em> businesses",
       "sub": "A booked appointment that nobody confirms is a coin flip. Most of what I build in Issaquah is the unglamorous machinery around the calendar.",
+      "answer": "I'm Bryan Piard, based in Renton, and most of what I make for Issaquah businesses is the machinery around the calendar, things like confirming bookings, reminders, estimate follow-up and asking past customers back. It usually costs less than a warehouse build. If your work doesn't repeat on a schedule, or a miss costs nothing, the Fit Check says don't bother.",
       "here": [
         "Issaquah's commercial base is mostly owner-led and appointment-driven: clinics and dental practices, home-services businesses, studios, trades serving the surrounding residential base, and small professional practices. Volume per business is lower than in the valley, but the value of a single booking is higher, which changes what is worth automating.",
         "When each appointment or quote is worth a lot, the expensive failure is not the tedium — it is the miss. The no-show nobody reminded, the estimate nobody followed up, the past customer nobody asked back. That is a different build than a warehouse needs, and it usually costs less."
