@@ -67,7 +67,7 @@ const PERSON = {
   url: `${ORIGIN}/#about`,
   image: `${ORIGIN}/art/bryan.webp`,
   jobTitle: 'Founder',
-  description: '21 years in corporate customer experience and digital operations. Finds where a customer experience is creating avoidable work inside an owner-led business, then builds the workflow that removes it.',
+  description: 'More than 21 years in customer experience and operations, improving service journeys, frontline procedures, launch readiness, and cross-functional ways of working.',
   worksFor: { '@id': `${ORIGIN}/#business` },
   sameAs: [BRYAN_LI]
 };
@@ -162,7 +162,7 @@ function staircase (city) {
   <div class="wrap narrow rise">
     <p class="tag">How it goes</p>
     <h2 class="h-lg" id="path-h" style="margin-block:14px 16px;">Four steps, and you can stop after any of them.</h2>
-    <p class="lede">Nobody in ${esc(city)} needs to commit to a build to find out whether one is worth doing. The first two steps are free and the third is bounded.</p>
+    <p class="lede">Start with one recurring problem in your ${esc(city)} business. The first two steps are free; the Map gives you a plan to act on before any implementation is scoped.</p>
     <div class="steps">
       <div class="step">
         <span class="step__n">Step one</span>
@@ -180,13 +180,13 @@ function staircase (city) {
         <span class="step__n">Step three</span>
         <span class="step__p">$750</span>
         <h3 class="h-sm">The Workflow Opportunity Map</h3>
-        <p>One workflow, taken apart properly: what it costs you now, what should stay human, and what a build would actually involve. Credited toward a build signed within 30 days. <a href="/workflow-opportunity-map/" style="color:var(--lamp);">What is in a Map</a></p>
+        <p>One customer or operational workflow: the steps, ownership, likely causes, and a practical first improvement. Procedures, communication, and team guidance come before tools where that is the better fix. Credited toward a build signed within 30 days. <a href="/workflow-opportunity-map/" style="color:var(--lamp);">What is in a Map</a></p>
       </div>
       <div class="step">
         <span class="step__n">Step four</span>
         <span class="step__p">From $2,500</span>
         <h3 class="h-sm">The build</h3>
-        <p>Most land between $3,500 and $9,000 depending on how many systems have to agree. Then I hand you the keys, maintain it, or run it — your call.</p>
+        <p>When software is the right fix, most builds land between $3,500 and $9,000. Process guidance and team enablement are scoped separately. For systems, take the keys, choose maintenance, or ask me to run it.</p>
       </div>
     </div>
     <p class="hero__note" style="margin-top:24px;">
@@ -230,16 +230,16 @@ function proof (city) {
 <section class="sec sec--band" aria-labelledby="proof-h">
   <div class="wrap narrow rise">
     <p class="tag">Whether I can actually build</p>
-    <h2 class="h-lg" id="proof-h" style="margin-block:14px 16px;">The systems I point at are ones I own and run.</h2>
+    <h2 class="h-lg" id="proof-h" style="margin-block:14px 16px;">Practical work, with its scope made clear.</h2>
     <p class="lede">
-      I am one operator, not an agency with a case-study deck. So rather than show you somebody else's results, I will show you the machinery I built for my own business and still run daily &mdash; content production, outreach, lead handling, approvals, monitoring.
-      It is the same kind of work I would build for you, and it is the honest version of proof: you can ask me how any part of it works and I will know, because I am the one who fixes it when it breaks.
+      My experience includes improving service journeys, preparing frontline teams for new products, and creating tools that remove repetitive work. My own AI-assisted projects show the implementation side: approvals, reporting, content preparation, and workflow controls.
+      The examples distinguish prior internal work, prototypes, and historical project results. They are evidence of the work, not a forecast for your business.
     </p>
     <p class="lede" style="margin-top:14px;">
       What I will not do is show you a number from a business in ${esc(city)} that I have not worked with. If I have not done it, it does not go on the page.
     </p>
     <div class="close__acts">
-      <a class="btn btn--line" href="${ORIGIN}/#proof">See what I currently operate</a>
+      <a class="btn btn--line" href="${ORIGIN}/#proof">See examples of the work</a>
     </div>
   </div>
 </section>`;
@@ -323,11 +323,11 @@ function closeBlock (city) {
   return `
 <section class="sec sec--band" aria-labelledby="close-h">
   <div class="wrap narrow close rise">
-    <p class="tag">Start at the bottom of the staircase</p>
-    <h2 class="h-lg" id="close-h" style="margin-block:14px 16px;">Sixty seconds, and you will know whether this is worth another minute.</h2>
+    <p class="tag">Start with one recurring problem</p>
+    <h2 class="h-lg" id="close-h" style="margin-block:14px 16px;">Find a useful place to start.</h2>
     <p class="lede">
       No account, no calendar, no waiting for a reply. Run the Fit Check and you get the read on your own screen.
-      If it says the work is worth mapping, the next step is a free 20-minute call. If it says leave it alone, you have lost a minute and I have lost a customer I should not have had.
+      If the workflow looks worth exploring, the next step is a free 20-minute call about the problem, its impact, and whether I can help. The result is a starting point, not a diagnosis or a build quote.
     </p>
     <div class="close__acts">
       <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
@@ -350,7 +350,7 @@ function footer (city) {
       <span class="foot__b">Perseid Echo</span>
       <nav class="foot__nav" aria-label="Footer">
         <a href="${ORIGIN}/#fitcheck">Fit Check</a>
-        <a href="${ORIGIN}/#cost">Pricing</a>
+        <a href="${ORIGIN}/#pricing">Pricing</a>
         <a href="/workflows/">Workflows</a>
         <a href="/local/">Areas served</a>
         <a href="${ORIGIN}/partners.html">Partners</a>
@@ -362,7 +362,7 @@ function footer (city) {
     </div>
     <p class="foot__fine">
       Based in Renton, Washington. Built and operated by Bryan Piard.${city ? ` Serving ${esc(city)} and the surrounding King County area.` : ''}
-      Any figures shown in the work I point at come from systems I own and run; they are not client results and are not a forecast of yours.
+      Examples describe prior internal work and my own projects. Figures are historical, not promised results for your business.
     </p>
   </div>
 </footer>`;
@@ -376,7 +376,7 @@ function topbar (city) {
     <nav class="topbar__in" style="gap:10px 22px;" aria-label="Primary">
       <a href="/workflows/">Workflows</a>
       <a href="/local/">Areas served</a>
-      <a href="${ORIGIN}/#cost">Pricing</a>
+      <a href="${ORIGIN}/#pricing">Pricing</a>
       <a href="${ORIGIN}/#fitcheck">Run the Fit Check</a>
     </nav>
   </div>
@@ -404,7 +404,7 @@ function jsonLd (c, d) {
     '@id': `${ORIGIN}/#business`,
     name: 'Perseid Echo',
     alternateName: ALT_NAME,
-    description: 'Workflow automation and custom internal tools for owner-led businesses. Based in Renton, WA and working remotely across the United States.',
+    description: 'Customer experience and operations improvement through workflow diagnosis, clearer ownership, practical procedures, team guidance, and tools or automation where they fit. Based in Renton, WA and working remotely across the United States.',
     url: `${ORIGIN}/`,
     sameAs: SAME_AS,
     founder: PERSON,
@@ -425,6 +425,9 @@ function jsonLd (c, d) {
       ...cities.map(x => ({ '@type': 'City', name: `${x.city}, ${x.region}` }))
     ],
     serviceType: [
+      'Customer experience and operations review',
+      'Business process improvement',
+      'Frontline procedures and team guidance',
       'Workflow automation',
       'Business process automation',
       'Custom internal tools',
@@ -437,13 +440,13 @@ function jsonLd (c, d) {
       {
         '@type': 'Offer',
         name: 'Workflow Opportunity Map',
-        description: 'One workflow assessed end to end: current cost, what should stay human, and what a build would involve.',
+        description: 'One customer or operational workflow assessed end to end: the problem, handoffs, ownership, a recommended first improvement, and implementation options.',
         price: '750',
         priceCurrency: 'USD'
       },
       {
         '@type': 'Offer',
-        name: 'Workflow build',
+        name: 'Software workflow build',
         description: 'Design, build and handover of one controlled workflow system.',
         priceSpecification: {
           '@type': 'PriceSpecification',
@@ -565,7 +568,7 @@ ${topbar(c.city)}
     ${byline('Written by', d)}
     <div class="hero__acts">
       <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
-      <a class="btn btn--line" href="${ORIGIN}/#cost">See what it costs</a>
+      <a class="btn btn--line" href="${ORIGIN}/#pricing">See what it costs</a>
     </div>
     <p class="hero__note">
       ${mail()}
@@ -696,7 +699,7 @@ ${topbar('')}
     <p class="hero__sub">I am one operator based in Renton, so the list is short on purpose. These are the places I can get to, and each page says something specific about the businesses there rather than swapping a city name into the same paragraph.</p>
     <div class="hero__acts">
       <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
-      <a class="btn btn--line" href="${ORIGIN}/#cost">See what it costs</a>
+      <a class="btn btn--line" href="${ORIGIN}/#pricing">See what it costs</a>
     </div>
   </div>
 </header>
@@ -1121,26 +1124,26 @@ ${footer('')}
    Change them there and here together.
    =========================================================== */
 
-const MAP_DEF = 'A Workflow Opportunity Map is a $750 working engagement where I take one process in your business apart and write it up. It covers how the work runs today, where it breaks, what can be automated safely, what should stay human, and a price range for building it. You keep it whether I build anything or not.';
+const MAP_DEF = 'A Workflow Opportunity Map is a $750 working engagement focused on one customer or operational workflow. I map how it runs, investigate where it breaks, and recommend a first fix. The document covers ownership, procedures, customer communication, team guidance, and tools or automation where they fit. You keep it whether or not we continue.';
 
 const MAP_CONTENTS = [
   'How the work actually happens today, mapped step by step',
   'What the customer experiences at each step, and what that creates for you',
-  'Where it breaks, stalls, or gets dropped',
-  'What can safely be automated',
-  'What should stay human, and why',
-  'The approval and safety boundaries the system would run inside',
-  'Tools, access, and dependencies it would need',
-  'The recommended first fix, and whether it needs building at all',
+  'Where it breaks, stalls, or gets dropped, and the likely causes',
+  'Ownership, handoffs, and escalation paths',
+  'Procedures, customer messages, and guidance the team needs',
+  'What should stay human, and where automation could safely help',
+  'Tools, access, dependencies, and approval boundaries',
+  'The recommended first fix, including whether a build is needed',
   'How we would measure whether it worked',
-  'Implementation scope and a price range',
+  'Implementation scope, a price range, and team adoption needs',
   'A phased roadmap for anything that comes after'
 ];
 
 const MAP_FAQ = [
   { q: 'What is a Workflow Opportunity Map?', a: MAP_DEF },
   { q: 'How much does a Workflow Opportunity Map cost?', a: '$750. If you sign a build within 30 days, the $750 is credited toward it. Builds start at $2,500 and most land between $3,500 and $9,000, and the Map is where the real number for yours comes from.' },
-  { q: 'Do I have to buy a build afterwards?', a: 'No. The map is yours either way. You can take it to someone else, build it in-house, or decide the process needs fixing before anything gets automated, and it still does its job.' }
+  { q: 'Do I have to buy a build afterwards?', a: 'No. The Map is yours either way. You can act on it with your own team, take it to someone else, or ask me to scope implementation. A process or communication change may be enough; a build is not required.' }
 ];
 
 function mapPage (d) {
@@ -1159,7 +1162,7 @@ function mapPage (d) {
     '@id': `${url}#webpage`,
     url,
     name: 'What is a Workflow Opportunity Map? · Perseid Echo',
-    description: 'A $750 fixed-fee engagement that takes one workflow apart: how it runs today, where it breaks, what can be automated, what stays human, and a price range for building it.',
+    description: 'A $750 review of one customer or operational workflow: where it breaks, what causes the problem, and the process, guidance, or tools needed to improve it.',
     abstract: MAP_DEF,
     inLanguage: 'en-US',
     datePublished: d.published,
@@ -1247,7 +1250,7 @@ ${topbar('')}
   <div class="wrap narrow rise">
     <p class="tag">What you get</p>
     <h2 class="h-lg" id="in-h" style="margin-block:14px 16px;">Eleven sections, one workflow</h2>
-    <p class="lede" style="margin-bottom:18px;">It's a working session with me and then a written document, not a slide deck. This is what the document covers.</p>
+    <p class="lede" style="margin-bottom:18px;">We review one workflow together. I then write up the findings and a practical plan for improving it. The document covers:</p>
     <ul class="ticks">
       ${MAP_CONTENTS.map(x => `<li>${esc(x)}</li>`).join('\n      ')}
     </ul>
@@ -1258,8 +1261,8 @@ ${topbar('')}
   <div class="wrap narrow rise">
     <p class="tag tag--ink">What it costs</p>
     <h2 class="h-lg" id="cost-h" style="margin-block:14px 16px;">$750, and it comes off the build</h2>
-    <p class="lede lede--ink" style="margin-bottom:14px;">The Map is $750. If you sign a build within 30 days, the $750 is credited toward it. Builds start at $2,500 and most land between $3,500 and $9,000 depending on how many systems have to agree, and the Map is where the real number for yours comes from.</p>
-    <p class="lede lede--ink">A lot of people in this line of work will spend two unpaid hours designing your system, and that's really a sales meeting. I would rather charge a small fixed fee and hand you something you can use, including the parts that argue against building anything.</p>
+    <p class="lede lede--ink" style="margin-bottom:14px;">The Map is $750. If you sign a build within 30 days, the $750 is credited toward it. Builds start at $2,500 and most land between $3,500 and $9,000 depending on the agreed scope and tools involved. If a build is appropriate, the Map provides the basis for its scope and price.</p>
+    <p class="lede lede--ink">The fixed fee pays for a diagnosis and a document you can act on. A clearer procedure, a named owner, or better customer communication may be the right first step. Any implementation work is scoped separately.</p>
   </div>
 </section>
 
@@ -1267,7 +1270,7 @@ ${topbar('')}
   <div class="wrap narrow rise">
     <p class="tag">Whether or not I build it</p>
     <h2 class="h-lg" id="keep-h" style="margin-block:14px 16px;">You keep the map</h2>
-    <p class="lede">If you take it to someone else, or build it in-house, or decide the honest answer is to fix the process before automating anything, the document still does its job. It's yours either way.</p>
+    <p class="lede">You can use the recommendations with your own team, take the document to another provider, or ask me to scope the next step. The value is a clearer account of the problem and what to change, even when no new software is needed.</p>
   </div>
 </section>
 
@@ -1276,7 +1279,7 @@ ${topbar('')}
     <div class="notyet">
       <p class="tag">Before you buy one</p>
       <h2 class="h-md" id="before-h" style="margin-block:11px 8px;">Two free steps come first</h2>
-      <p>Run the 60-second Fit Check, then there's a free 20-minute call to check I'm the right person for it. If the Fit Check tells you to leave the work alone, you don't need a Map, and I would rather you didn't buy one.</p>
+      <p>Run the 60-second Fit Check, then use a free 20-minute call to check whether the problem fits my experience. The Fit Check can recommend against automation. The call helps establish whether a paid Map would still be useful for the underlying workflow.</p>
     </div>
   </div>
 </section>

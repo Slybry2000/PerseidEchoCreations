@@ -2,18 +2,18 @@
 
 Source for **[perseidechocreations.com](https://perseidechocreations.com/)**.
 
-Perseid Echo LLC finds where a customer's
-experience is creating avoidable work inside an owner-led business, then fixes
-the workflow behind it. Sometimes that fix is automation; sometimes it is
+Perseid Echo LLC helps businesses find where customer journeys and internal
+workflows break down, then improves the processes, tools, and guidance behind them. Sometimes that fix is automation; sometimes it is
 clearer ownership, better customer communication, a removed step, or nothing at
-all yet. One workflow is assessed end to end, then built, tested, documented and
-handed over. Founded and run by Bryan Piard, who spent 21 years in customer
-experience and digital operations first. Based in Renton, Washington; works with
+all yet. One workflow is assessed end to end; the recommended improvement may cover
+ownership, procedures, customer communication, team guidance, or tools.
+Implementation is scoped separately and prepared for the team to use. Founded and run by Bryan Piard, who spent more than 21 years in customer
+experience and operations first. Based in Renton, Washington; works with
 clients across the United States.
 
 ## What the business does
 
-- **Workflow Opportunity Map** — one workflow, one recommended first build, one
+- **Workflow Opportunity Map** — one workflow, one recommended first improvement, one
   decision-ready plan. $750, credited toward a build signed within 30 days.
 - **Build** — mapped, built, tested, documented, handed over with training and a
   post-launch bug-fix window. Most builds land between $3,500 and $9,000.
