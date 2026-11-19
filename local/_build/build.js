@@ -747,6 +747,10 @@ function sitemap (lastmod) {
     { loc: `${ORIGIN}/design/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('design/index.html') },
     { loc: `${ORIGIN}/video/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('video/index.html') },
     { loc: `${ORIGIN}/playbooks/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('playbooks/index.html') },
+    { loc: `${ORIGIN}/work/`, priority: '0.8', changefreq: 'monthly', lastmod: rootLastmod('work/index.html') },
+    { loc: `${ORIGIN}/work/lost-inquiries-contact-form/`, priority: '0.8', changefreq: 'monthly', lastmod: rootLastmod('work/lost-inquiries-contact-form/index.html') },
+    { loc: `${ORIGIN}/work/vendor-sign-ups-and-payments/`, priority: '0.8', changefreq: 'monthly', lastmod: rootLastmod('work/vendor-sign-ups-and-payments/index.html') },
+    { loc: `${ORIGIN}/work/scoring-app-website/`, priority: '0.8', changefreq: 'monthly', lastmod: rootLastmod('work/scoring-app-website/index.html') },
     { loc: `${ORIGIN}/partners.html`,  priority: '0.7', changefreq: 'monthly', lastmod: rootLastmod('partners.html') },
     { loc: `${ORIGIN}/privacy.html`,   priority: '0.3', changefreq: 'yearly',  lastmod: rootLastmod('privacy.html') }
   ];
