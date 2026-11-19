@@ -9,7 +9,7 @@ blocks = [json.loads(b) for b in re.findall(r'<script type="application/ld\+json
 biz, page = blocks[0], blocks[1]          # the FAQ block is dropped: those questions are not on the new page
 assert biz['@type'] == 'ProfessionalService' and page['@type'] == 'WebPage'
 biz['founder']['url'] = 'https://perseidechocreations.com/#bryan'
-TITLE = 'Perseid Echo Creations: seven services, done for you'
+TITLE = 'Cold email, social media and automation, done for you · Perseid Echo Creations'
 DESC = 'Cold email, social media, automation, customer experience, digital design, video and team playbooks, done for small businesses by one person.'
 page['name'] = TITLE
 page['dateModified'] = '2026-11-19'
