@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Customer Experience</title>
+<meta name="viewport" content="width=1440">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;overflow:hidden;background:#F6F6F4}
+svg{display:block;width:1440px;height:900px}
+text{font-family:'Archivo','Helvetica Neue',Arial,sans-serif}
+.sn{font-weight:600;font-size:16px;letter-spacing:1.4px;fill:#0D1321}
+.nm{font-weight:600;font-size:11px;letter-spacing:1px;fill:#0D1321;fill-opacity:.5}
+.zt{font-weight:600;font-size:11px;letter-spacing:2px;fill:#0D1321;fill-opacity:.7}
+.idx text{font-weight:600;font-size:11px;letter-spacing:1px;fill:#0D1321;fill-opacity:.5}
+.idx line,.idx path{stroke:#0D1321;stroke-opacity:.4;stroke-width:1;fill:none}
+.fl-t{font-weight:700;font-size:13px;letter-spacing:1.2px;fill:#0D1321}
+.lg-h{font-weight:700;font-size:11px;letter-spacing:3px;fill:#0D1321}
+.lg-t{font-weight:500;font-size:13.5px;fill:#0D1321}
+.sm{font-weight:600;font-size:11px;letter-spacing:2.5px;fill:#0D1321;fill-opacity:.6}
+.tl-n{font-weight:800;font-size:19px;letter-spacing:1px;fill:#0D1321}
+.tl-s{font-weight:600;font-size:12px;letter-spacing:3.4px;fill:#0D1321}
+.h1{font-weight:800;font-size:120px;letter-spacing:-4px;fill:#0D1321}
+.ds{font-weight:400;font-size:20px;fill:#0D1321}
+.term{font-weight:800;font-size:25px;letter-spacing:1px;fill:#0D1321}
+.lnpill{font-weight:700;font-size:12px;letter-spacing:2px;fill:#F6F6F4}
+.mk,.stp,.sparkg,.rg,.lb,.nm{transform-box:fill-box;transform-origin:center}
+.spark,.rg{display:none}
+.play .spark,.play .rg{display:inline}
+
+html{--fly:cubic-bezier(.35,.05,.7,.75);--out:cubic-bezier(.16,.84,.3,1);--io:cubic-bezier(.5,.05,.25,1)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes wipeX{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes rise{from{transform:translateY(34px);clip-path:inset(0 0 100% 0)}to{transform:none;clip-path:inset(0 0 0 0)}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pop{from{transform:scale(.25);opacity:0}60%{opacity:1}to{transform:scale(1);opacity:1}}
+@keyframes lbin{from{opacity:0;transform:translate(-8px,0)}to{opacity:1;transform:none}}
+@keyframes ring{0%{transform:scale(.35);opacity:0}2%{opacity:.9}100%{transform:scale(3.2);opacity:0}}
+@keyframes ringT{0%{transform:scale(.7);opacity:0}2%{opacity:.9}100%{transform:scale(3);opacity:0}}
+@keyframes mkpop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes inkdraw{0%{stroke-dashoffset:1}14.583%{stroke-dashoffset:1}45.833%{stroke-dashoffset:0.7785}100%{stroke-dashoffset:0}}
+@keyframes flight{0.000%{transform:translate(-26.0px,360.0px)}2.083%{transform:translate(-24.9px,358.1px)}4.167%{transform:translate(-23.2px,355.1px)}6.250%{transform:translate(-21.1px,351.5px)}8.333%{transform:translate(-18.8px,347.5px)}10.417%{transform:translate(-16.1px,343.2px)}12.500%{transform:translate(-13.2px,338.6px)}14.583%{transform:translate(-10.0px,333.8px)}16.667%{transform:translate(-6.5px,328.7px)}18.750%{transform:translate(-2.9px,323.6px)}20.833%{transform:translate(1.1px,318.3px)}22.917%{transform:translate(5.3px,312.9px)}25.000%{transform:translate(9.8px,307.5px)}27.083%{transform:translate(14.6px,302.0px)}29.167%{transform:translate(19.6px,296.5px)}31.250%{transform:translate(25.0px,291.1px)}33.333%{transform:translate(30.7px,285.7px)}35.417%{transform:translate(36.7px,280.3px)}37.500%{transform:translate(43.0px,275.2px)}39.583%{transform:translate(49.7px,270.2px)}41.667%{transform:translate(56.7px,265.4px)}43.750%{transform:translate(64.0px,260.9px)}45.833%{transform:translate(71.8px,256.7px)}47.917%{transform:translate(79.9px,252.9px)}50.000%{transform:translate(88.3px,249.6px)}52.083%{transform:translate(97.0px,246.8px)}54.167%{transform:translate(106.1px,244.6px)}56.250%{transform:translate(115.4px,243.0px)}58.333%{transform:translate(124.9px,242.1px)}60.417%{transform:translate(134.6px,241.9px)}62.500%{transform:translate(144.4px,242.5px)}64.583%{transform:translate(154.2px,243.9px)}66.667%{transform:translate(164.0px,246.1px)}68.750%{transform:translate(173.7px,249.0px)}70.833%{transform:translate(183.3px,252.7px)}72.917%{transform:translate(192.7px,257.1px)}75.000%{transform:translate(201.8px,262.2px)}77.083%{transform:translate(210.7px,267.9px)}79.167%{transform:translate(219.4px,274.2px)}81.250%{transform:translate(227.7px,281.0px)}83.333%{transform:translate(235.8px,288.2px)}85.417%{transform:translate(243.6px,296.0px)}87.500%{transform:translate(251.0px,304.1px)}89.583%{transform:translate(258.2px,312.7px)}91.667%{transform:translate(265.1px,321.5px)}93.750%{transform:translate(271.7px,330.7px)}95.833%{transform:translate(278.1px,340.2px)}97.917%{transform:translate(284.2px,350.0px)}100.000%{transform:translate(290.0px,360.0px)}}
+@keyframes tail1{0.000%{stroke-dashoffset:0.2000}2.083%{stroke-dashoffset:0.1946}4.167%{stroke-dashoffset:0.1863}6.250%{stroke-dashoffset:0.1763}8.333%{stroke-dashoffset:0.1651}10.417%{stroke-dashoffset:0.1528}12.500%{stroke-dashoffset:0.1396}14.583%{stroke-dashoffset:0.1257}16.667%{stroke-dashoffset:0.1110}18.750%{stroke-dashoffset:0.0956}20.833%{stroke-dashoffset:0.0797}22.917%{stroke-dashoffset:0.0632}25.000%{stroke-dashoffset:0.0461}27.083%{stroke-dashoffset:0.0285}29.167%{stroke-dashoffset:0.0105}31.250%{stroke-dashoffset:-0.0080}33.333%{stroke-dashoffset:-0.0269}35.417%{stroke-dashoffset:-0.0463}37.500%{stroke-dashoffset:-0.0660}39.583%{stroke-dashoffset:-0.0862}41.667%{stroke-dashoffset:-0.1067}43.750%{stroke-dashoffset:-0.1276}45.833%{stroke-dashoffset:-0.1488}47.917%{stroke-dashoffset:-0.1704}50.000%{stroke-dashoffset:-0.1923}52.083%{stroke-dashoffset:-0.2145}54.167%{stroke-dashoffset:-0.2371}56.250%{stroke-dashoffset:-0.2599}58.333%{stroke-dashoffset:-0.2830}60.417%{stroke-dashoffset:-0.3065}62.500%{stroke-dashoffset:-0.3302}64.583%{stroke-dashoffset:-0.3542}66.667%{stroke-dashoffset:-0.3785}68.750%{stroke-dashoffset:-0.4030}70.833%{stroke-dashoffset:-0.4278}72.917%{stroke-dashoffset:-0.4529}75.000%{stroke-dashoffset:-0.4782}77.083%{stroke-dashoffset:-0.5037}79.167%{stroke-dashoffset:-0.5295}81.250%{stroke-dashoffset:-0.5555}83.333%{stroke-dashoffset:-0.5818}85.417%{stroke-dashoffset:-0.6083}87.500%{stroke-dashoffset:-0.6350}89.583%{stroke-dashoffset:-0.6620}91.667%{stroke-dashoffset:-0.6892}93.750%{stroke-dashoffset:-0.7166}95.833%{stroke-dashoffset:-0.7442}97.917%{stroke-dashoffset:-0.7720}100.000%{stroke-dashoffset:-0.8000}}
+@keyframes tail2{0.000%{stroke-dashoffset:0.0900}2.083%{stroke-dashoffset:0.0846}4.167%{stroke-dashoffset:0.0763}6.250%{stroke-dashoffset:0.0663}8.333%{stroke-dashoffset:0.0551}10.417%{stroke-dashoffset:0.0428}12.500%{stroke-dashoffset:0.0296}14.583%{stroke-dashoffset:0.0157}16.667%{stroke-dashoffset:0.0010}18.750%{stroke-dashoffset:-0.0144}20.833%{stroke-dashoffset:-0.0303}22.917%{stroke-dashoffset:-0.0468}25.000%{stroke-dashoffset:-0.0639}27.083%{stroke-dashoffset:-0.0815}29.167%{stroke-dashoffset:-0.0995}31.250%{stroke-dashoffset:-0.1180}33.333%{stroke-dashoffset:-0.1369}35.417%{stroke-dashoffset:-0.1563}37.500%{stroke-dashoffset:-0.1760}39.583%{stroke-dashoffset:-0.1962}41.667%{stroke-dashoffset:-0.2167}43.750%{stroke-dashoffset:-0.2376}45.833%{stroke-dashoffset:-0.2588}47.917%{stroke-dashoffset:-0.2804}50.000%{stroke-dashoffset:-0.3023}52.083%{stroke-dashoffset:-0.3245}54.167%{stroke-dashoffset:-0.3471}56.250%{stroke-dashoffset:-0.3699}58.333%{stroke-dashoffset:-0.3930}60.417%{stroke-dashoffset:-0.4165}62.500%{stroke-dashoffset:-0.4402}64.583%{stroke-dashoffset:-0.4642}66.667%{stroke-dashoffset:-0.4885}68.750%{stroke-dashoffset:-0.5130}70.833%{stroke-dashoffset:-0.5378}72.917%{stroke-dashoffset:-0.5629}75.000%{stroke-dashoffset:-0.5882}77.083%{stroke-dashoffset:-0.6137}79.167%{stroke-dashoffset:-0.6395}81.250%{stroke-dashoffset:-0.6655}83.333%{stroke-dashoffset:-0.6918}85.417%{stroke-dashoffset:-0.7183}87.500%{stroke-dashoffset:-0.7450}89.583%{stroke-dashoffset:-0.7720}91.667%{stroke-dashoffset:-0.7992}93.750%{stroke-dashoffset:-0.8266}95.833%{stroke-dashoffset:-0.8542}97.917%{stroke-dashoffset:-0.8820}100.000%{stroke-dashoffset:-0.9100}}
+@keyframes ride{0.000%{transform:translate(290.7px,360.0px)}1.667%{transform:translate(308.4px,360.0px)}3.333%{transform:translate(326.1px,360.0px)}5.000%{transform:translate(343.9px,360.0px)}6.667%{transform:translate(361.6px,360.0px)}8.333%{transform:translate(379.3px,360.0px)}10.000%{transform:translate(397.0px,360.0px)}11.667%{transform:translate(414.8px,360.0px)}13.333%{transform:translate(432.5px,360.0px)}15.000%{transform:translate(450.2px,360.0px)}16.667%{transform:translate(468.0px,360.0px)}18.333%{transform:translate(485.7px,360.0px)}20.000%{transform:translate(503.4px,360.0px)}21.667%{transform:translate(521.2px,360.0px)}23.333%{transform:translate(538.9px,360.0px)}25.000%{transform:translate(556.6px,360.0px)}26.667%{transform:translate(574.3px,360.0px)}28.333%{transform:translate(592.1px,360.0px)}30.000%{transform:translate(609.8px,360.0px)}31.667%{transform:translate(627.5px,360.3px)}33.333%{transform:translate(643.1px,368.1px)}35.000%{transform:translate(655.6px,380.6px)}36.667%{transform:translate(668.2px,393.1px)}38.333%{transform:translate(684.3px,399.9px)}40.000%{transform:translate(702.0px,400.0px)}41.667%{transform:translate(719.8px,400.0px)}43.333%{transform:translate(737.5px,400.0px)}45.000%{transform:translate(755.2px,400.0px)}46.667%{transform:translate(772.9px,400.0px)}48.333%{transform:translate(790.7px,400.0px)}50.000%{transform:translate(808.4px,400.0px)}51.667%{transform:translate(826.1px,400.0px)}53.333%{transform:translate(843.9px,400.0px)}55.000%{transform:translate(861.6px,400.0px)}56.667%{transform:translate(879.3px,400.0px)}58.333%{transform:translate(897.1px,400.0px)}60.000%{transform:translate(914.8px,400.0px)}61.667%{transform:translate(931.5px,394.9px)}63.333%{transform:translate(944.3px,382.7px)}65.000%{transform:translate(956.8px,370.2px)}66.667%{transform:translate(971.6px,360.9px)}68.333%{transform:translate(989.3px,360.0px)}70.000%{transform:translate(1007.0px,360.0px)}71.667%{transform:translate(1024.7px,360.0px)}73.333%{transform:translate(1042.5px,360.0px)}75.000%{transform:translate(1060.2px,360.0px)}76.667%{transform:translate(1077.9px,360.0px)}78.333%{transform:translate(1095.7px,360.0px)}80.000%{transform:translate(1113.4px,360.0px)}81.667%{transform:translate(1131.1px,360.0px)}83.333%{transform:translate(1148.9px,360.0px)}85.000%{transform:translate(1166.6px,360.0px)}86.667%{transform:translate(1184.3px,360.0px)}88.333%{transform:translate(1202.0px,360.0px)}90.000%{transform:translate(1219.4px,362.7px)}91.667%{transform:translate(1232.9px,373.9px)}93.333%{transform:translate(1245.5px,386.5px)}95.000%{transform:translate(1259.2px,397.5px)}96.667%{transform:translate(1276.5px,400.0px)}98.333%{transform:translate(1294.3px,400.0px)}100.000%{transform:translate(1312.0px,400.0px)}}
+@keyframes sparkfade{0%{opacity:0}6%{opacity:1}90%{opacity:1}100%{opacity:0}}
+@keyframes legin{from{opacity:0;transform:translate(1142px,74px)}to{opacity:1;transform:translate(1142px,60px)}}
+
+.play .gA{stroke-dasharray:1 2;animation:draw .85s var(--out) .35s backwards}
+.play .gB{stroke-dasharray:1 2;animation:draw .8s var(--out) .5s backwards}
+.play .river{stroke-dasharray:1 2;animation:draw 1s var(--io) .15s backwards}
+.play .park{animation:fade .6s linear .5s backwards}
+.play .zone{animation:fade .5s linear .3s backwards}
+.play .idx{animation:fade .5s linear 0s backwards}
+.play .tk{animation:fade .45s linear .95s backwards}
+.play .fl{animation:fade .45s linear 1.0s backwards}
+.play .stub{animation:fade .3s linear .95s backwards}
+.play .ink{stroke-dasharray:1 2;animation:inkdraw 2.4s linear 0s backwards}
+.play .core{stroke-dasharray:1 2;animation:draw 1.30s linear 1.30s backwards}
+.play .pill{animation:fade .35s linear .6s backwards}
+.play .sparkg{animation:flight 1.2s linear 0.1s backwards}
+.play .sparkall{animation:sparkfade 1.2s linear 0.1s both}
+.play .tl1{stroke-dasharray:0.2 5;animation:tail1 1.2s linear 0.1s backwards}
+.play .tl2{stroke-dasharray:0.09 5;animation:tail2 1.2s linear 0.1s backwards}
+.play .mkride{animation:ride 1.30s linear 1.30s backwards}
+.play .mkpop{animation:mkpop .32s var(--out) 1.30s backwards}
+.play .rg1{animation:ring .95s cubic-bezier(.2,.6,.3,1) 1.3s both}
+.play .rg2{animation:ring .95s cubic-bezier(.2,.6,.3,1) 1.42s both}
+.play .rg3{animation:ring .95s cubic-bezier(.2,.6,.3,1) 1.54s both}
+.play .rt1{animation:ringT .9s cubic-bezier(.2,.6,.3,1) 2.60s both}
+.play .rt2{animation:ringT .9s cubic-bezier(.2,.6,.3,1) 2.72s both}
+.play .rt3{animation:ringT .9s cubic-bezier(.2,.6,.3,1) 2.84s both}
+.play .termlb{animation:wipeX .45s var(--out) 2.60s backwards}
+.play .tlab{animation:fadeUp .4s var(--out) 1.65s backwards}
+.play .trule{transform-box:fill-box;transform-origin:0 50%;animation:wipeX .45s var(--out) 1.7s backwards}
+.play .h1a{animation:rise .6s cubic-bezier(.2,.9,.25,1) 1.75s backwards}
+.play .h1b{animation:rise .6s cubic-bezier(.2,.9,.25,1) 1.92s backwards}
+.play .ds{animation:fadeUp .45s var(--out) 2.4s backwards}
+.play .legend{animation:legin .55s var(--out) 2.6s backwards}
+.play .remnant{animation:fade .5s linear 2.60s backwards}
+.play .foot{animation:fade .5s linear 2.9s backwards}
+.play .stp0{animation:pop .3s var(--out) 1.210s backwards}
+.play .lb0{animation:lbin .4s var(--out) 1.280s backwards}
+.play .nm0{animation:fade .3s linear 1.350s backwards}
+.play .stp1{animation:pop .3s var(--out) 1.389s backwards}
+.play .lb1{animation:lbin .4s var(--out) 1.459s backwards}
+.play .nm1{animation:fade .3s linear 1.529s backwards}
+.play .stp2{animation:pop .3s var(--out) 1.565s backwards}
+.play .lb2{animation:lbin .4s var(--out) 1.635s backwards}
+.play .nm2{animation:fade .3s linear 1.705s backwards}
+.play .stp3{animation:pop .3s var(--out) 1.763s backwards}
+.play .lb3{animation:lbin .4s var(--out) 1.833s backwards}
+.play .nm3{animation:fade .3s linear 1.903s backwards}
+.play .stp4{animation:pop .3s var(--out) 1.939s backwards}
+.play .lb4{animation:lbin .4s var(--out) 2.009s backwards}
+.play .nm4{animation:fade .3s linear 2.079s backwards}
+.play .stp5{animation:pop .3s var(--out) 2.137s backwards}
+.play .lb5{animation:lbin .4s var(--out) 2.207s backwards}
+.play .nm5{animation:fade .3s linear 2.277s backwards}
+.play .stp6{animation:pop .3s var(--out) 2.313s backwards}
+.play .lb6{animation:lbin .4s var(--out) 2.383s backwards}
+.play .nm6{animation:fade .3s linear 2.453s backwards}
+.play .stp7{animation:pop .3s var(--out) 2.510s backwards}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.spark,.rg{display:none!important}}
+</style></head>
+<body>
+<svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+<rect width="1440" height="900" fill="#F6F6F4"/>
+
+<!-- grid index -->
+<g class="idx"><g><line x1="0" y1="0" x2="0" y2="10" /><line x1="0" y1="890" x2="0" y2="900" /><line x1="240" y1="0" x2="240" y2="10" /><line x1="240" y1="890" x2="240" y2="900" /><line x1="480" y1="0" x2="480" y2="10" /><line x1="480" y1="890" x2="480" y2="900" /><line x1="720" y1="0" x2="720" y2="10" /><line x1="720" y1="890" x2="720" y2="900" /><line x1="960" y1="0" x2="960" y2="10" /><line x1="960" y1="890" x2="960" y2="900" /><line x1="1200" y1="0" x2="1200" y2="10" /><line x1="1200" y1="890" x2="1200" y2="900" /><line x1="1440" y1="0" x2="1440" y2="10" /><line x1="1440" y1="890" x2="1440" y2="900" /><line x1="0" y1="0" x2="10" y2="0" /><line x1="1430" y1="0" x2="1440" y2="0" /><line x1="0" y1="225" x2="10" y2="225" /><line x1="1430" y1="225" x2="1440" y2="225" /><line x1="0" y1="450" x2="10" y2="450" /><line x1="1430" y1="450" x2="1440" y2="450" /><line x1="0" y1="675" x2="10" y2="675" /><line x1="1430" y1="675" x2="1440" y2="675" /><line x1="0" y1="900" x2="10" y2="900" /><line x1="1430" y1="900" x2="1440" y2="900" /><path d="M233,225H247 M240,218V232" /><path d="M233,450H247 M240,443V457" /><path d="M473,225H487 M480,218V232" /><path d="M473,450H487 M480,443V457" /><path d="M713,225H727 M720,218V232" /><path d="M713,450H727 M720,443V457" /><path d="M953,225H967 M960,218V232" /><path d="M953,450H967 M960,443V457" /><path d="M953,675H967 M960,668V682" /><path d="M1193,225H1207 M1200,218V232" /><path d="M1193,450H1207 M1200,443V457" /><path d="M1193,675H1207 M1200,668V682" /></g><text x="120" y="26" text-anchor="middle">A</text><text x="360" y="26" text-anchor="middle">B</text><text x="600" y="26" text-anchor="middle">C</text><text x="840" y="26" text-anchor="middle">D</text><text x="1080" y="26" text-anchor="middle">E</text><text x="1320" y="26" text-anchor="middle">F</text><text x="600" y="893" text-anchor="middle">C</text><text x="840" y="893" text-anchor="middle">D</text><text x="1080" y="893" text-anchor="middle">E</text><text x="1320" y="893" text-anchor="middle">F</text><text x="22" y="116" text-anchor="middle">1</text><text x="22" y="341" text-anchor="middle">2</text><text x="22" y="566" text-anchor="middle">3</text><text x="22" y="791" text-anchor="middle">4</text><text x="1418" y="116" text-anchor="middle">1</text><text x="1418" y="341" text-anchor="middle">2</text><text x="1418" y="566" text-anchor="middle">3</text><text x="1418" y="791" text-anchor="middle">4</text></g>
+
+<!-- flat tint shapes -->
+<polygon class="park" points="1130,596 1330,596 1372,638 1372,778 1330,820 1130,820 1088,778 1088,638" fill="#0D1321" fill-opacity=".055"/>
+<text class="sm park" x="1118" y="618" style="font-size:11px">PARK</text>
+<path class="river" d="M905,-12 C945,110 990,215 950,325 C918,415 930,500 990,585 C1045,665 1068,770 1034,912" pathLength="1" fill="none" stroke="#0D1321" stroke-opacity=".075" stroke-width="50" stroke-linejoin="round"/>
+
+<!-- zone bands -->
+<g class="zone"><rect x="48" y="36" width="512" height="14" fill="#0D1321" fill-opacity="0.06"/><text x="58" y="47" class="zt">ZONE 1</text><rect x="560" y="36" width="390" height="14" fill="#0D1321" fill-opacity="0.11"/><text x="570" y="47" class="zt">ZONE 2</text><rect x="950" y="36" width="442" height="14" fill="#0D1321" fill-opacity="0.06"/><text x="960" y="47" class="zt">ZONE 3</text></g>
+
+<!-- grey lines: ways customers get lost -->
+<g fill="none" stroke-linejoin="round">
+ <path class="gA" d="M-12,520L344.40,520.00A28,28 0 0 0 364.20,511.80L427.80,448.20A28,28 0 0 0 436.00,428.40L436.00,178.00A28,28 0 0 0 408.00,150.00L262,150" pathLength="1" stroke="#646B78" stroke-width="10"/>
+ <path class="gB" d="M728,-12L728.00,458.40A28,28 0 0 0 736.20,478.20L789.80,531.80A28,28 0 0 0 809.60,540.00L900,540" pathLength="1" stroke="#8C919B" stroke-width="10"/>
+</g>
+<g class="tk" stroke="#646B78" stroke-width="3"><line x1="32.0" y1="512.0" x2="32.0" y2="528.0"/><line x1="62.0" y1="512.0" x2="62.0" y2="528.0"/><line x1="92.0" y1="512.0" x2="92.0" y2="528.0"/><line x1="122.0" y1="512.0" x2="122.0" y2="528.0"/><line x1="152.0" y1="512.0" x2="152.0" y2="528.0"/><line x1="182.0" y1="512.0" x2="182.0" y2="528.0"/><line x1="212.0" y1="512.0" x2="212.0" y2="528.0"/><line x1="242.0" y1="512.0" x2="242.0" y2="528.0"/><line x1="272.0" y1="512.0" x2="272.0" y2="528.0"/><line x1="302.0" y1="512.0" x2="302.0" y2="528.0"/><line x1="381.5" y1="483.2" x2="392.8" y2="494.5"/><line x1="428.0" y1="276.0" x2="444.0" y2="276.0"/><line x1="428.0" y1="246.0" x2="444.0" y2="246.0"/><line x1="428.0" y1="216.0" x2="444.0" y2="216.0"/><line x1="392.0" y1="158.0" x2="392.0" y2="142.0"/><line x1="362.0" y1="158.0" x2="362.0" y2="142.0"/><line x1="332.0" y1="158.0" x2="332.0" y2="142.0"/></g>
+<g class="tk" stroke="#8C919B" stroke-width="3"><line x1="736.0" y1="92.0" x2="720.0" y2="92.0"/><line x1="736.0" y1="122.0" x2="720.0" y2="122.0"/><line x1="736.0" y1="152.0" x2="720.0" y2="152.0"/><line x1="736.0" y1="182.0" x2="720.0" y2="182.0"/><line x1="736.0" y1="212.0" x2="720.0" y2="212.0"/><line x1="736.0" y1="242.0" x2="720.0" y2="242.0"/><line x1="736.0" y1="272.0" x2="720.0" y2="272.0"/><line x1="736.0" y1="302.0" x2="720.0" y2="302.0"/><line x1="764.8" y1="495.5" x2="753.5" y2="506.8"/><line x1="842.0" y1="532.0" x2="842.0" y2="548.0"/></g>
+<g class="stub"><line x1="262" y1="132" x2="262" y2="168" stroke="#646B78" stroke-width="7"/><line x1="900" y1="522" x2="900" y2="558" stroke="#8C919B" stroke-width="7"/></g>
+<g class="fl">
+ <rect x="92" y="134" width="156" height="32" rx="16" fill="#F6F6F4" stroke="#646B78" stroke-width="3"/>
+ <text class="fl-t" x="170" y="155" text-anchor="middle">NO REPLY LINE</text>
+ <rect x="918" y="524" width="272" height="32" rx="16" fill="#F6F6F4" stroke="#8C919B" stroke-width="3"/>
+ <text class="fl-t" x="1054" y="545" text-anchor="middle">FORGOT TO FOLLOW UP LINE</text>
+</g>
+
+<!-- main line: ink, then persimmon core where the traveler has ridden -->
+<g fill="none" stroke-linejoin="round">
+ <path class="ink" d="M-12,360L623.40,360.00A28,28 0 0 1 643.20,368.20L666.80,391.80A28,28 0 0 0 686.60,400.00L915.40,400.00A28,28 0 0 0 935.20,391.80L958.80,368.20A28,28 0 0 1 978.60,360.00L1207.40,360.00A28,28 0 0 1 1227.20,368.20L1250.80,391.80A28,28 0 0 0 1270.60,400.00L1312,400" pathLength="1" stroke="#0D1321" stroke-width="20"/>
+ <path class="core" d="M290,360L623.40,360.00A28,28 0 0 1 643.20,368.20L666.80,391.80A28,28 0 0 0 686.60,400.00L915.40,400.00A28,28 0 0 0 935.20,391.80L958.80,368.20A28,28 0 0 1 978.60,360.00L1207.40,360.00A28,28 0 0 1 1227.20,368.20L1250.80,391.80A28,28 0 0 0 1270.60,400.00L1312,400" pathLength="1" stroke="#FF6A2A" stroke-width="6"/>
+</g>
+<g class="pill"><rect x="26" y="340" width="168" height="40" rx="20" fill="#0D1321"/><text class="lnpill" x="110" y="365" text-anchor="middle">CUSTOMER LINE</text></g>
+
+<!-- stations, names -->
+<g class="stp stp0"><circle cx="290" cy="360" r="17" fill="#F6F6F4" stroke="#0D1321" stroke-width="6"/></g><g class="stp stp1"><rect x="417" y="321" width="38" height="78" rx="19" fill="#F6F6F4" stroke="#0D1321" stroke-width="6"/><circle cx="436" cy="360" r="9" fill="none" stroke="#0D1321" stroke-width="3"/></g><g class="stp stp2"><circle cx="582" cy="360" r="17" fill="#F6F6F4" stroke="#0D1321" stroke-width="6"/></g><g class="stp stp3"><rect x="709" y="361" width="38" height="78" rx="19" fill="#F6F6F4" stroke="#0D1321" stroke-width="6"/><circle cx="728" cy="400" r="9" fill="none" stroke="#0D1321" stroke-width="3"/></g><g class="stp stp4"><circle cx="874" cy="400" r="17" fill="#F6F6F4" stroke="#0D1321" stroke-width="6"/></g><g class="stp stp5"><circle cx="1020" cy="360" r="17" fill="#F6F6F4" stroke="#0D1321" stroke-width="6"/></g><g class="stp stp6"><circle cx="1166" cy="360" r="17" fill="#F6F6F4" stroke="#0D1321" stroke-width="6"/></g><g class="stp stp7"><circle cx="1312" cy="400" r="40" fill="#F6F6F4" stroke="#0D1321" stroke-width="10"/><circle cx="1312" cy="400" r="25" fill="none" stroke="#0D1321" stroke-width="3"/></g>
+<g transform="translate(316,332) rotate(-45)"><text class="sn lb lb0" x="0" y="0">FIRST HELLO</text></g><g transform="translate(462,332) rotate(-45)"><text class="sn lb lb1" x="0" y="0">QUOTE</text></g><g transform="translate(608,332) rotate(-45)"><text class="sn lb lb2" x="0" y="0">BOOKING</text></g><g transform="translate(754,372) rotate(-45)"><text class="sn lb lb3" x="0" y="0">REMINDER</text></g><g transform="translate(900,372) rotate(-45)"><text class="sn lb lb4" x="0" y="0">VISIT</text></g><g transform="translate(1046,332) rotate(-45)"><text class="sn lb lb5" x="0" y="0">THANK YOU</text></g><g transform="translate(1192,332) rotate(-45)"><text class="sn lb lb6" x="0" y="0">REVIEW</text></g>
+<text class="nm nm0" x="316" y="398">1</text><text class="nm nm1" x="462" y="398">2</text><text class="nm nm2" x="608" y="398">3</text><text class="nm nm3" x="754" y="438">4</text><text class="nm nm4" x="900" y="438">5</text><text class="nm nm5" x="1046" y="398">6</text><text class="nm nm6" x="1192" y="398">7</text>
+<g class="termlb"><text class="term" x="1312" y="488" text-anchor="middle">COMES BACK</text>
+<text class="sm" x="1312" y="508" text-anchor="middle">TERMINUS</text></g>
+
+<!-- terminus echo remnant -->
+<circle class="remnant" cx="1312" cy="400" r="56" fill="none" stroke="#FF6A2A" stroke-opacity=".55" stroke-width="1.5"/>
+
+<!-- traveler marker (at terminus when finished) -->
+<g class="mkride" style="transform:translate(1312px,400px)">
+ <g class="mk mkpop"><circle r="21" fill="none" stroke="#FF6A2A" stroke-width="4"/><circle r="9" fill="#FF6A2A"/></g>
+</g>
+
+<!-- echo rings (play only) -->
+<g class="spark">
+ <g transform="translate(290,360)"><circle class="rg rg1" r="26" fill="none" stroke="#FF6A2A" stroke-width="2.5"/><circle class="rg rg2" r="26" fill="none" stroke="#FF6A2A" stroke-width="2"/><circle class="rg rg3" r="26" fill="none" stroke="#FF6A2A" stroke-width="1.5"/></g>
+ <g transform="translate(1312,400)"><circle class="rg rt1" r="30" fill="none" stroke="#FF6A2A" stroke-width="2.5"/><circle class="rg rt2" r="30" fill="none" stroke="#FF6A2A" stroke-width="2"/><circle class="rg rt3" r="30" fill="none" stroke="#FF6A2A" stroke-width="1.5"/></g>
+ <g class="sparkall">
+  <path class="tl1" d="M-26,360 C60,205 200,200 290,360" pathLength="1" fill="none" stroke="#FF6A2A" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 5"/>
+  <path class="tl2" d="M-26,360 C60,205 200,200 290,360" pathLength="1" fill="none" stroke="#FF6A2A" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 5"/>
+  <g class="sparkg"><circle r="15" fill="#FF6A2A" fill-opacity=".16"/><circle r="9" fill="#FF6A2A" fill-opacity=".3"/><circle r="5.5" fill="#FF6A2A"/></g>
+ </g>
+</g>
+
+<!-- title block -->
+<g class="titleblock">
+ <g class="tlab"><text class="tl-n" x="72" y="613">04</text><text class="tl-s" x="188" y="613">SERVICE FOUR OF SEVEN</text></g>
+ <line class="trule" x1="108" y1="607" x2="172" y2="607" stroke="#0D1321" stroke-width="2"/>
+ <text class="h1 h1a" x="66" y="719">CUSTOMER</text>
+ <text class="h1 h1b" x="66" y="835">EXPERIENCE</text>
+ <text class="ds" x="72" y="870">Every step your customer takes, mapped and smoothed.</text>
+</g>
+
+
+<g class="legend" transform="translate(1142,60)">
+ <rect x="0" y="0" width="250" height="198" fill="#F6F6F4" stroke="#0D1321" stroke-width="2"/>
+ <text x="18" y="29" class="lg-h">KEY</text>
+ <line x1="18" y1="40" x2="232" y2="40" stroke="#0D1321" stroke-width="1.5"/>
+ <g transform="translate(0,64)"><line x1="18" y1="0" x2="70" y2="0" stroke="#0D1321" stroke-width="12"/><line x1="18" y1="0" x2="70" y2="0" stroke="#FF6A2A" stroke-width="4"/><text x="80" y="5" class="lg-t">Customer journey</text></g>
+ <g transform="translate(0,90)"><line x1="18" y1="0" x2="62" y2="0" stroke="#646B78" stroke-width="8"/><line x1="66" y1="-9" x2="66" y2="9" stroke="#646B78" stroke-width="5"/><text x="80" y="5" class="lg-t">Where customers get lost</text></g>
+ <g transform="translate(0,116)"><circle cx="44" cy="0" r="10" fill="#F6F6F4" stroke="#0D1321" stroke-width="4"/><text x="80" y="5" class="lg-t">Station</text></g>
+ <g transform="translate(0,144)"><rect x="33" y="-13" width="22" height="26" rx="11" fill="#F6F6F4" stroke="#0D1321" stroke-width="4"/><text x="80" y="5" class="lg-t">Interchange</text></g>
+ <g transform="translate(0,174)"><circle cx="44" cy="0" r="13" fill="none" stroke="#FF6A2A" stroke-width="3"/><circle cx="44" cy="0" r="6" fill="#FF6A2A"/><text x="80" y="5" class="lg-t">You are here</text></g>
+</g>
+
+<g class="foot"><text class="sm" x="1392" y="872" text-anchor="end">NOT TO SCALE</text></g>
+</svg>
+<script>
+window.SPARK_ENTRY = {x:0, y:319.4, t:0.345};
+(function(){
+ var root=document.documentElement;
+ var q=new URLSearchParams(location.search), T=q.get('t');
+ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function reflow(){void root.getBoundingClientRect();}
+ function freeze(t){document.getAnimations().forEach(function(a){a.pause();a.currentTime=t*1000;});}
+ window.play=function(){
+  root.classList.remove('play');reflow();
+  if(reduce)return;
+  root.classList.add('play');reflow();
+  var ends=document.getAnimations().map(function(a){return a.effect.getComputedTiming().endTime;});
+  window.DURATION=Math.max.apply(null,ends)/1000;
+  if(T!==null&&T!==''&&!isNaN(parseFloat(T)))freeze(parseFloat(T));
+ };
+ window.finish=function(){root.classList.remove('play');};
+ window.addEventListener('message',function(e){if(e.data==='play')play();else if(e.data==='finish')finish();});
+ play();
+})();
+</script></body></html>

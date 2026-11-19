@@ -330,7 +330,7 @@ function closeBlock (city) {
       If the workflow looks worth exploring, the next step is a free 20-minute call about the problem, its impact, and whether I can help. The result is a starting point, not a diagnosis or a build quote.
     </p>
     <div class="close__acts">
-      <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
+      <a class="btn btn--go" href="${ORIGIN}/fit-check/">Run the 60-second Fit Check</a>
       <a class="btn btn--line" href="${CAL}" rel="noopener">Skip it, book the 20-minute call</a>
     </div>
     <p class="hero__note" style="margin-top:22px;">
@@ -349,7 +349,7 @@ function footer (city) {
     <div class="foot__in">
       <span class="foot__b">Perseid Echo</span>
       <nav class="foot__nav" aria-label="Footer">
-        <a href="${ORIGIN}/#fitcheck">Fit Check</a>
+        <a href="${ORIGIN}/fit-check/">Fit Check</a>
         <a href="${ORIGIN}/#pricing">Pricing</a>
         <a href="/workflows/">Workflows</a>
         <a href="/local/">Areas served</a>
@@ -377,7 +377,7 @@ function topbar (city) {
       <a href="/workflows/">Workflows</a>
       <a href="/local/">Areas served</a>
       <a href="${ORIGIN}/#pricing">Pricing</a>
-      <a href="${ORIGIN}/#fitcheck">Run the Fit Check</a>
+      <a href="${ORIGIN}/fit-check/">Run the Fit Check</a>
     </nav>
   </div>
 </div>`;
@@ -567,7 +567,7 @@ ${topbar(c.city)}
     <p class="hero__sub">${esc(c.sub)}</p>
     ${byline('Written by', d)}
     <div class="hero__acts">
-      <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
+      <a class="btn btn--go" href="${ORIGIN}/fit-check/">Run the 60-second Fit Check</a>
       <a class="btn btn--line" href="${ORIGIN}/#pricing">See what it costs</a>
     </div>
     <p class="hero__note">
@@ -698,7 +698,7 @@ ${topbar('')}
     <h1 class="h-xl hero__head">Where I <em>work</em></h1>
     <p class="hero__sub">I am one operator based in Renton, so the list is short on purpose. These are the places I can get to, and each page says something specific about the businesses there rather than swapping a city name into the same paragraph.</p>
     <div class="hero__acts">
-      <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
+      <a class="btn btn--go" href="${ORIGIN}/fit-check/">Run the 60-second Fit Check</a>
       <a class="btn btn--line" href="${ORIGIN}/#pricing">See what it costs</a>
     </div>
   </div>
@@ -739,6 +739,14 @@ ${footer('')}
 function sitemap (lastmod) {
   const rootPages = [
     { loc: `${ORIGIN}/`,               priority: '1.0', changefreq: 'monthly', lastmod: rootLastmod('index.html') },
+    { loc: `${ORIGIN}/fit-check/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('fit-check/index.html') },
+    { loc: `${ORIGIN}/cold-email/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('cold-email/index.html') },
+    { loc: `${ORIGIN}/social/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('social/index.html') },
+    { loc: `${ORIGIN}/automation/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('automation/index.html') },
+    { loc: `${ORIGIN}/customer-experience/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('customer-experience/index.html') },
+    { loc: `${ORIGIN}/design/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('design/index.html') },
+    { loc: `${ORIGIN}/video/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('video/index.html') },
+    { loc: `${ORIGIN}/playbooks/`, priority: '0.9', changefreq: 'monthly', lastmod: rootLastmod('playbooks/index.html') },
     { loc: `${ORIGIN}/partners.html`,  priority: '0.7', changefreq: 'monthly', lastmod: rootLastmod('partners.html') },
     { loc: `${ORIGIN}/privacy.html`,   priority: '0.3', changefreq: 'yearly',  lastmod: rootLastmod('privacy.html') }
   ];
@@ -892,7 +900,7 @@ ${topbar('')}
     <p class="hero__sub">${esc(w.sub)}</p>
     ${byline('By', d)}
     <div class="hero__acts">
-      <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
+      <a class="btn btn--go" href="${ORIGIN}/fit-check/">Run the 60-second Fit Check</a>
       <a class="btn btn--line" href="#decide">Buy or build?</a>
     </div>
   </div>
@@ -1081,7 +1089,7 @@ ${topbar('')}
     <h1 class="h-xl hero__head">Buy a tool, or <em>build it?</em></h1>
     <p class="hero__sub">Five repetitive jobs that eat owner-led businesses, and the honest read on each. On more than one of them the right answer is to buy something off the shelf and keep your money &mdash; those pages say so.</p>
     <div class="hero__acts">
-      <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
+      <a class="btn btn--go" href="${ORIGIN}/fit-check/">Run the 60-second Fit Check</a>
       <a class="btn btn--line" href="/local/">Areas served</a>
     </div>
   </div>
@@ -1240,7 +1248,7 @@ ${topbar('')}
     ${answerBlock(MAP_DEF)}
     ${byline('By', d)}
     <div class="hero__acts">
-      <a class="btn btn--go" href="${ORIGIN}/#fitcheck">Run the 60-second Fit Check</a>
+      <a class="btn btn--go" href="${ORIGIN}/fit-check/">Run the 60-second Fit Check</a>
       <a class="btn btn--line" href="#inside">What is in it</a>
     </div>
   </div>
@@ -1376,7 +1384,7 @@ ${topbar('')}
       <p class="copybox__label">Your link</p>
       <div class="copybox__row">
         <input class="copybox__in" id="reflink" type="text" readonly aria-label="Your referral link"
-               value="${ORIGIN}/#fitcheck">
+               value="${ORIGIN}/fit-check/">
         <button class="btn btn--ink" type="button" id="copybtn">Copy link</button>
       </div>
       <p class="copybox__note" id="refnote">
@@ -1475,7 +1483,7 @@ ${footer('')}
   } catch (e) { /* no code is a valid state: the link still works */ }
 
   var base = ${JSON.stringify(ORIGIN)};
-  var link = base + '/' + (code ? '?ref=' + encodeURIComponent(code) : '') + '#fitcheck';
+  var link = base + '/fit-check/' + (code ? '?ref=' + encodeURIComponent(code) : '');
 
   var input = document.getElementById('reflink');
   if (input) input.value = link;

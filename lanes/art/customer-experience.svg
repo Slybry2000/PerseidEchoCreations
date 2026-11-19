@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice">
+<!-- Customer experience: one customer's path, each moment lights up as they pass it. -->
+<style>
+.m{animation:met 8.5s ease-in infinite;opacity:0}
+@keyframes met{0%,70%{transform:translate(0,0);opacity:0}72%{opacity:1}86%{transform:translate(-420px,260px);opacity:0}100%{opacity:0}}
+.lbl{font-family:'Spline Sans Mono',Consolas,monospace;font-size:13px;letter-spacing:1.5px;fill:#F6F6F4}
+.trail{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 8s linear infinite}
+@keyframes draw{0%{stroke-dashoffset:1200}85%,100%{stroke-dashoffset:0}}
+</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#121628"/><stop offset="1" stop-color="#1d1a24"/></linearGradient>
+<linearGradient id="mt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFC56B"/><stop offset="1" stop-color="#FFC56B" stop-opacity="0"/></linearGradient>
+<radialGradient id="halo"><stop offset="0" stop-color="#FFC56B" stop-opacity=".55"/><stop offset="1" stop-color="#FFC56B" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="600" height="900" fill="url(#bg)"/>
+<g fill="#F6F6F4" opacity=".45"><circle cx="90" cy="70" r="1.2"/><circle cx="300" cy="40" r="1"/><circle cx="480" cy="90" r="1.5"/><circle cx="540" cy="420" r="1"/><circle cx="50" cy="480" r="1.2"/></g>
+<g class="m"><rect x="560" y="80" width="140" height="2.5" rx="1.2" fill="url(#mt)" transform="rotate(-32 560 80)"/></g>
+<!-- the journey -->
+<path id="j" d="M130 790 C130 700 470 700 470 610 C470 520 130 520 130 430 C130 340 470 340 470 250 C470 190 360 170 300 160" fill="none" stroke="#F6F6F4" stroke-opacity=".14" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+<path class="trail" d="M130 790 C130 700 470 700 470 610 C470 520 130 520 130 430 C130 340 470 340 470 250 C470 190 360 170 300 160" fill="none" stroke="#FFC56B" stroke-width="3" stroke-linecap="round"/>
+<!-- moments: light up in turn (8s loop) -->
+<g>
+ <g transform="translate(130,790)"><circle r="42" fill="url(#halo)" opacity="0"><animate attributeName="opacity" values="0;1;.35" keyTimes="0;.06;1" dur="8s" begin="0s" repeatCount="indefinite"/></circle><circle r="14" fill="#121628" stroke="#FFC56B" stroke-width="3"/></g>
+ <g transform="translate(300,700)"><circle r="42" fill="url(#halo)" opacity="0"><animate attributeName="opacity" values="0;0;1;.35" keyTimes="0;.15;.21;1" dur="8s" repeatCount="indefinite"/></circle><circle r="14" fill="#121628" stroke="#FFC56B" stroke-width="3"/></g>
+ <g transform="translate(300,520)"><circle r="42" fill="url(#halo)" opacity="0"><animate attributeName="opacity" values="0;0;1;.35" keyTimes="0;.36;.42;1" dur="8s" repeatCount="indefinite"/></circle><circle r="14" fill="#121628" stroke="#FFC56B" stroke-width="3"/></g>
+ <g transform="translate(300,340)"><circle r="42" fill="url(#halo)" opacity="0"><animate attributeName="opacity" values="0;0;1;.35" keyTimes="0;.57;.63;1" dur="8s" repeatCount="indefinite"/></circle><circle r="14" fill="#121628" stroke="#FFC56B" stroke-width="3"/></g>
+ <g transform="translate(300,160)"><circle r="56" fill="url(#halo)" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.8;.86;1" dur="8s" repeatCount="indefinite"/></circle><circle r="18" fill="#FFC56B"/>
+  <path d="M-7 -3v1M7 -3v1M-8 5 Q0 12 8 5" stroke="#121628" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+</g>
+<circle r="9" fill="#F6F6F4"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear"><mpath href="#j"/></animateMotion></circle>
+<g class="lbl" text-anchor="middle" opacity=".8">
+ <text x="130" y="842">FINDS YOU</text>
+ <text x="300" y="752">ASKS</text>
+ <text x="300" y="572">BOOKS</text>
+ <text x="300" y="392">IS SERVED</text>
+ <text x="300" y="110" fill="#FFC56B">COMES BACK</text>
+</g>
+</svg>

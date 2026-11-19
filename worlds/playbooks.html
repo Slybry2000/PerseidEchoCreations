@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>PEC World 07: Team Playbooks</title>
+<meta name="viewport" content="width=1440">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;800&family=Barlow+Condensed:wght@700&family=Courier+Prime:wght@700&family=Special+Elite&family=Stardos+Stencil:wght@700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;overflow:hidden;background:#EFE9DC}
+svg{display:block;width:1440px;height:900px}
+.ar{font-family:'Archivo',Arial,sans-serif;font-weight:800}
+.ad{font-family:'Archivo',Arial,sans-serif;font-weight:400}
+.tw{font-family:'Special Elite','Courier New',monospace}
+.mo{font-family:'Courier Prime','Courier New',monospace;font-weight:700;letter-spacing:.08em}
+.cn{font-family:'Barlow Condensed','Archivo Narrow',Arial,sans-serif;font-weight:700}
+.sg{font-family:'Stardos Stencil','Archivo',sans-serif;font-weight:700}
+.cl{font-family:'Barlow Condensed',Arial,sans-serif;font-weight:700;font-size:12px;fill:#0D1321}
+.sg.fi{font-size:24px;letter-spacing:3px;fill:#0D1321;stroke:none}
+.tt{font-size:16px;letter-spacing:.2em;fill:#0D1321}
+.mul{mix-blend-mode:multiply}
+.dr{fill:none;stroke:#0D1321;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 2}
+.dr.thin{stroke-width:1.4}
+.dr.frm{stroke-width:1.4}
+.figg .fi{}
+.ck{fill:none;stroke:#FF6A2A;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 2}
+.tk{stroke-width:3.6}
+.trail{fill:none;stroke:#FF6A2A;stroke-opacity:.3;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1 2}
+.spark,.rg{display:none}
+.rg{opacity:0;fill:none;stroke:#FF6A2A;stroke-width:2.6;vector-effect:non-scaling-stroke;transform-origin:815px 708px}
+:root{--fly:cubic-bezier(.35,.05,.7,.75);--out:cubic-bezier(.16,.84,.3,1);--io:cubic-bezier(.5,.05,.25,1)}
+.play .spark{display:inline;offset-path:path('M-30,262 C150,40 520,20 668,300 C700,380 735,610 758,716');offset-rotate:auto;animation:fly 1.4s var(--fly) .05s backwards}
+.play .sparkin{animation:sparkend 1.4s linear .05s both}
+.play .rg{display:inline}
+.play .trail{animation:dash 1.4s var(--fly) .05s backwards}
+.play .hdr1{animation:wipeX .5s steps(30,end) .15s backwards}
+.play .hdr2{animation:wipeX .5s steps(30,end) .25s backwards}
+.play .hdrule{transform-origin:758px 0;animation:rule .5s var(--out) .4s backwards}
+.play .cb{animation:dash .26s var(--out) var(--d) backwards}
+.play .st{animation:wipeX .4s steps(26,end) var(--d) backwards}
+.play .figg{animation:figin .01s linear var(--d) backwards}
+.play .figg .frm{animation:dash .35s var(--out) var(--d) backwards}
+.play .figg .dr:not(.frm){animation:dash .6s var(--out) calc(var(--d) + .08s) backwards}
+.play .figg .fi{animation:fade .3s linear calc(var(--d) + .5s) backwards}
+.play .tk.a{animation:dash .08s linear var(--d) backwards}
+.play .tk.b{animation:dash .11s cubic-bezier(.3,.7,.2,1) var(--d) backwards}
+.play .ck{animation:dash .24s cubic-bezier(.25,.7,.2,1) 1.45s backwards}
+.play .rg1{animation:ring .9s cubic-bezier(.2,.6,.3,1) 1.45s backwards}
+.play .rg2{animation:ring .9s cubic-bezier(.2,.6,.3,1) 1.58s backwards}
+.play .rg3{animation:ring .9s cubic-bezier(.2,.6,.3,1) 1.71s backwards}
+.play .stampo{transform-origin:1274px 70px;animation:thump .36s cubic-bezier(.2,.8,.25,1) 1.78s backwards}
+.play .lbl{animation:fadeUp .4s var(--out) 1.8s backwards}
+.play .hw1{transform-origin:72px 700px;animation:pressin .5s var(--out) 1.85s backwards}
+.play .hw2{transform-origin:72px 782px;animation:pressin .5s var(--out) 1.98s backwards}
+.play .desc{animation:fadeUp .45s var(--out) 2.3s backwards}
+.play .fold{animation:fadeUp .5s var(--out) 2.4s backwards}
+.play .rul{animation:wipeX .7s var(--io) 2.35s backwards}
+.play .tab{animation:tabin .45s var(--out) var(--d) backwards}
+.play .foot{animation:wipeX .6s steps(48,end) 2.75s backwards}
+.play .pgno{animation:fade .4s linear 3s backwards}
+.play .clip{animation:fadeUp .5s var(--out) 2.6s backwards}
+@keyframes fly{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes sparkend{0%,92%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.3)}}
+@keyframes dash{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes wipeX{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes figin{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ring{0%{opacity:0;transform:scale(.04)}8%{opacity:1}100%{opacity:0;transform:scale(1)}}
+@keyframes pressin{0%{opacity:0;transform:scale(1.14)}100%{opacity:1;transform:scale(1)}}
+@keyframes thump{0%{opacity:0;transform:scale(1.5)}55%{opacity:1;transform:scale(.95)}100%{opacity:1;transform:scale(1)}}
+@keyframes tabin{from{transform:translateX(-64px)}to{transform:translateX(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.spark,.rg{display:none!important}}
+</style></head><body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900">
+<defs>
+<filter id="fibA" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" seed="4"/><feColorMatrix type="saturate" values="0"/></filter>
+<filter id="fibB" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.55" numOctaves="2" seed="11"/><feColorMatrix type="saturate" values="0"/></filter>
+<filter id="rough" x="-5%" y="-10%" width="110%" height="120%">
+<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n"/>
+<feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  9 0 0 0 -2.3" result="m"/>
+<feComposite in="SourceGraphic" in2="m" operator="in" result="s"/>
+<feTurbulence type="turbulence" baseFrequency="0.06" numOctaves="2" seed="8" result="w"/>
+<feDisplacementMap in="s" in2="w" scale="1.5"/></filter>
+<filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="6"/></filter>
+<linearGradient id="tailg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#FF6A2A" stop-opacity="0"/><stop offset="1" stop-color="#FF6A2A" stop-opacity=".9"/></linearGradient>
+</defs>
+
+<!-- ground -->
+<rect width="1440" height="900" fill="#EFE9DC"/>
+<g stroke="#0D1321" stroke-opacity=".07" stroke-width="1"><line x1="0" x2="660" y1="-9" y2="-9"/><line x1="0" x2="660" y1="18" y2="18"/><line x1="0" x2="660" y1="45" y2="45"/><line x1="0" x2="660" y1="72" y2="72"/><line x1="0" x2="660" y1="99" y2="99"/><line x1="0" x2="660" y1="126" y2="126"/><line x1="0" x2="660" y1="153" y2="153"/><line x1="0" x2="660" y1="180" y2="180"/><line x1="0" x2="660" y1="207" y2="207"/><line x1="0" x2="660" y1="234" y2="234"/><line x1="0" x2="660" y1="261" y2="261"/><line x1="0" x2="660" y1="288" y2="288"/><line x1="0" x2="660" y1="315" y2="315"/><line x1="0" x2="660" y1="342" y2="342"/><line x1="0" x2="660" y1="369" y2="369"/><line x1="0" x2="660" y1="396" y2="396"/><line x1="0" x2="660" y1="423" y2="423"/><line x1="0" x2="660" y1="450" y2="450"/><line x1="0" x2="660" y1="477" y2="477"/><line x1="0" x2="660" y1="504" y2="504"/><line x1="0" x2="660" y1="531" y2="531"/><line x1="0" x2="660" y1="558" y2="558"/><line x1="0" x2="660" y1="585" y2="585"/><line x1="0" x2="660" y1="612" y2="612"/><line x1="0" x2="660" y1="639" y2="639"/><line x1="0" x2="660" y1="666" y2="666"/><line x1="0" x2="660" y1="693" y2="693"/><line x1="0" x2="660" y1="720" y2="720"/><line x1="0" x2="660" y1="747" y2="747"/><line x1="0" x2="660" y1="774" y2="774"/><line x1="0" x2="660" y1="801" y2="801"/><line x1="0" x2="660" y1="828" y2="828"/><line x1="0" x2="660" y1="855" y2="855"/><line x1="0" x2="660" y1="882" y2="882"/></g>
+
+<!-- ruler along top edge -->
+<g class="rul"><line x1="72" x2="612" y1="0.5" y2="0.5" stroke="#0D1321" stroke-opacity=".55"/><g stroke="#0D1321" stroke-opacity=".55" stroke-width="1.2"><line x1="72" x2="72" y1="0" y2="14"/><text x="75" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">0</text><line x1="84" x2="84" y1="0" y2="7"/><line x1="96" x2="96" y1="0" y2="7"/><line x1="108" x2="108" y1="0" y2="7"/><line x1="120" x2="120" y1="0" y2="7"/><line x1="132" x2="132" y1="0" y2="14"/><text x="135" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">1</text><line x1="144" x2="144" y1="0" y2="7"/><line x1="156" x2="156" y1="0" y2="7"/><line x1="168" x2="168" y1="0" y2="7"/><line x1="180" x2="180" y1="0" y2="7"/><line x1="192" x2="192" y1="0" y2="14"/><text x="195" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">2</text><line x1="204" x2="204" y1="0" y2="7"/><line x1="216" x2="216" y1="0" y2="7"/><line x1="228" x2="228" y1="0" y2="7"/><line x1="240" x2="240" y1="0" y2="7"/><line x1="252" x2="252" y1="0" y2="14"/><text x="255" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">3</text><line x1="264" x2="264" y1="0" y2="7"/><line x1="276" x2="276" y1="0" y2="7"/><line x1="288" x2="288" y1="0" y2="7"/><line x1="300" x2="300" y1="0" y2="7"/><line x1="312" x2="312" y1="0" y2="14"/><text x="315" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">4</text><line x1="324" x2="324" y1="0" y2="7"/><line x1="336" x2="336" y1="0" y2="7"/><line x1="348" x2="348" y1="0" y2="7"/><line x1="360" x2="360" y1="0" y2="7"/><line x1="372" x2="372" y1="0" y2="14"/><text x="375" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">5</text><line x1="384" x2="384" y1="0" y2="7"/><line x1="396" x2="396" y1="0" y2="7"/><line x1="408" x2="408" y1="0" y2="7"/><line x1="420" x2="420" y1="0" y2="7"/><line x1="432" x2="432" y1="0" y2="14"/><text x="435" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">6</text><line x1="444" x2="444" y1="0" y2="7"/><line x1="456" x2="456" y1="0" y2="7"/><line x1="468" x2="468" y1="0" y2="7"/><line x1="480" x2="480" y1="0" y2="7"/><line x1="492" x2="492" y1="0" y2="14"/><text x="495" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">7</text><line x1="504" x2="504" y1="0" y2="7"/><line x1="516" x2="516" y1="0" y2="7"/><line x1="528" x2="528" y1="0" y2="7"/><line x1="540" x2="540" y1="0" y2="7"/><line x1="552" x2="552" y1="0" y2="14"/><text x="555" y="26" class="mo" font-size="11" stroke="none" fill="#0D1321" fill-opacity=".6">8</text><line x1="564" x2="564" y1="0" y2="7"/><line x1="576" x2="576" y1="0" y2="7"/><line x1="588" x2="588" y1="0" y2="7"/><line x1="600" x2="600" y1="0" y2="7"/></g></g>
+
+<!-- folder label -->
+<g class="fold">
+<rect x="72" y="46" width="248" height="58" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.5"/>
+<line x1="72" x2="320" y1="62" y2="62" stroke="#0D1321" stroke-opacity=".25"/>
+<text class="tw" x="86" y="60" font-size="12" fill="#0D1321" fill-opacity=".7">DEPT. OF STANDING ORDERS</text>
+<text class="tw" x="86" y="86" font-size="19" fill="#0D1321">PEC FIELD MANUAL</text>
+<text class="mo" x="86" y="99" font-size="11" fill="#0D1321" fill-opacity=".7">SECTION 07</text>
+</g>
+
+<!-- tabs (behind the page) -->
+<g class="tab" style="--d:2.45s"><path d="M1380,112 H1438 a6,6 0 0 1 6,6 V256 a6,6 0 0 1 -6,6 H1380 Z" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.5"/><text class="cn tt" transform="translate(1416,187) rotate(90)" text-anchor="middle">OPEN</text></g><g class="tab" style="--d:2.55s"><path d="M1380,268 H1438 a6,6 0 0 1 6,6 V412 a6,6 0 0 1 -6,6 H1380 Z" fill="#E6DEC9" stroke="#0D1321" stroke-width="1.5"/><text class="cn tt" transform="translate(1416,343) rotate(90)" text-anchor="middle">CLOSE</text></g><g class="tab" style="--d:2.65s"><path d="M1380,424 H1438 a6,6 0 0 1 6,6 V568 a6,6 0 0 1 -6,6 H1380 Z" fill="#E6DEC9" stroke="#0D1321" stroke-width="1.5"/><text class="cn tt" transform="translate(1416,499) rotate(90)" text-anchor="middle">REFUNDS</text></g><g class="tab" style="--d:2.75s"><path d="M1380,580 H1438 a6,6 0 0 1 6,6 V724 a6,6 0 0 1 -6,6 H1380 Z" fill="#E6DEC9" stroke="#0D1321" stroke-width="1.5"/><text class="cn tt" transform="translate(1416,655) rotate(90)" text-anchor="middle">NEW HIRE</text></g>
+
+<!-- page -->
+<rect x="668" y="-20" width="725" height="906" fill="#0D1321" fill-opacity=".12"/>
+<rect x="660" y="-20" width="725" height="900" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.5"/>
+<g stroke="#0D1321" stroke-opacity=".16" stroke-width="1"><line x1="660" x2="1385" y1="126" y2="126"/><line x1="660" x2="1385" y1="153" y2="153"/><line x1="660" x2="1385" y1="180" y2="180"/><line x1="660" x2="1385" y1="207" y2="207"/><line x1="660" x2="1385" y1="234" y2="234"/><line x1="660" x2="1385" y1="261" y2="261"/><line x1="660" x2="1385" y1="288" y2="288"/><line x1="660" x2="1385" y1="315" y2="315"/><line x1="660" x2="1385" y1="342" y2="342"/><line x1="660" x2="1385" y1="369" y2="369"/><line x1="660" x2="1385" y1="396" y2="396"/><line x1="660" x2="1385" y1="423" y2="423"/><line x1="660" x2="1385" y1="450" y2="450"/><line x1="660" x2="1385" y1="477" y2="477"/><line x1="660" x2="1385" y1="504" y2="504"/><line x1="660" x2="1385" y1="531" y2="531"/><line x1="660" x2="1385" y1="558" y2="558"/><line x1="660" x2="1385" y1="585" y2="585"/><line x1="660" x2="1385" y1="612" y2="612"/><line x1="660" x2="1385" y1="639" y2="639"/><line x1="660" x2="1385" y1="666" y2="666"/><line x1="660" x2="1385" y1="693" y2="693"/><line x1="660" x2="1385" y1="720" y2="720"/><line x1="660" x2="1385" y1="747" y2="747"/><line x1="660" x2="1385" y1="774" y2="774"/><line x1="660" x2="1385" y1="801" y2="801"/><line x1="660" x2="1385" y1="828" y2="828"/></g>
+<line x1="764" x2="764" y1="-20" y2="880" stroke="#0D1321" stroke-opacity=".4" stroke-width="1.2"/>
+
+<!-- binder holes -->
+<g>
+<circle cx="692" cy="176" r="19" fill="none" stroke="#0D1321" stroke-opacity=".22" stroke-width="1"/><circle cx="692" cy="176" r="12.5" fill="#EFE9DC" stroke="#0D1321" stroke-opacity=".55" stroke-width="1.4"/><path d="M679.5,176 A12.5,12.5 0 0 1 704.5,176" fill="none" stroke="#0D1321" stroke-opacity=".35" stroke-width="3" transform="translate(0,1)"/><circle cx="692" cy="450" r="19" fill="none" stroke="#0D1321" stroke-opacity=".22" stroke-width="1"/><circle cx="692" cy="450" r="12.5" fill="#EFE9DC" stroke="#0D1321" stroke-opacity=".55" stroke-width="1.4"/><path d="M679.5,450 A12.5,12.5 0 0 1 704.5,450" fill="none" stroke="#0D1321" stroke-opacity=".35" stroke-width="3" transform="translate(0,1)"/><circle cx="692" cy="724" r="19" fill="none" stroke="#0D1321" stroke-opacity=".22" stroke-width="1"/><circle cx="692" cy="724" r="12.5" fill="#EFE9DC" stroke="#0D1321" stroke-opacity=".55" stroke-width="1.4"/><path d="M679.5,724 A12.5,12.5 0 0 1 704.5,724" fill="none" stroke="#0D1321" stroke-opacity=".35" stroke-width="3" transform="translate(0,1)"/>
+</g>
+
+<!-- header -->
+<text class="mo hdr1" x="778" y="52" font-size="11" fill="#0D1321" fill-opacity=".7">PEC FIELD MANUAL . SECTION 07</text>
+<text class="cn hdr2" x="778" y="90" font-size="28" letter-spacing=".8" fill="#0D1321">PROCEDURE 07: OPENING THE SHOP</text>
+<g class="hdrule"><line x1="778" x2="1352" y1="104" y2="104" stroke="#0D1321" stroke-width="2.5"/><line x1="778" x2="1352" y1="109" y2="109" stroke="#0D1321" stroke-width="1"/></g>
+
+<!-- paper clip -->
+<g class="clip"><g transform="translate(1100,-14) rotate(7)"><path d="M10 54 V12 A9 9 0 0 1 28 12 V58 A16 16 0 0 1 -4 58 V16 A5 5 0 0 1 6 16 V54" fill="none" stroke="#0D1321" stroke-opacity=".8" stroke-width="2" stroke-linecap="round"/></g></g>
+
+<!-- steps -->
+<path pathLength="1" class="dr cb" style="--d:0.28s" d="M774.5,159.6 L812,158.6 M807.4,155.5 L808.6,192.5 M811.5,188.6 L774,189.6 M778.6,192.5 L777.6,155.5" stroke-width="2.2"/><text class="tw st" style="--d:0.36s" font-size="20"><tspan x="826" y="180">1. Unlock the front door</tspan><tspan x="826" y="207">and the till.</tspan></text><g transform="translate(1196,137)" class="figg" style="--d:0.4s"><rect x="0" y="0" width="136" height="84" fill="#F5F1E6" stroke="none"/><g class="fg"><rect pathLength="1" class="dr frm" x="0" y="0" width="136" height="84"/><rect pathLength="1" class="dr" x="72" y="18" width="50" height="60" rx="4"/><circle pathLength="1" class="dr" cx="97" cy="25" r="2"/><circle pathLength="1" class="dr" cx="97" cy="71" r="2"/><circle pathLength="1" class="dr" cx="97" cy="48" r="13"/><circle pathLength="1" class="dr" cx="22" cy="48" r="11"/><circle pathLength="1" class="dr" cx="22" cy="48" r="4"/><path pathLength="1" class="dr" d="M33 45 H92 V51 H80 V55 H75 V51 H68 V57 H63 V51 H33"/><path pathLength="1" class="dr" d="M90.2 29.2 A20 20 0 0 1 115.8 41.2"/><polygon class="fi" points="117.2,46.4 120,39.7 111.6,42.7" fill="#0D1321" stroke="none"/><line pathLength="1" class="dr" x1="14.5" y1="29.5" x2="19" y2="37.5" stroke-width="1.2"/><g class="fi"><circle cx="12" cy="22" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="12" y="26" class="cl" text-anchor="middle">A</text></g><line pathLength="1" class="dr" x1="58.5" y1="26" x2="86.6" y2="40.2" stroke-width="1.2"/><g class="fi"><circle cx="52" cy="22" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="52" y="26" class="cl" text-anchor="middle">B</text></g><rect x="7" y="-7" width="58" height="14" fill="#F5F1E6" stroke="none"/><text class="mo fi" x="11" y="4" font-size="11">FIG. 1</text></g></g><path pathLength="1" class="dr cb" style="--d:0.38s" d="M774.5,267.6 L812,266.6 M807.4,263.5 L808.6,300.5 M811.5,296.6 L774,297.6 M778.6,300.5 L777.6,263.5" stroke-width="2.2"/><text class="tw st" style="--d:0.46s" font-size="20"><tspan x="826" y="315">2. Lights on, front to back.</tspan></text><g transform="translate(1196,245)" class="figg" style="--d:0.5s"><rect x="0" y="0" width="136" height="84" fill="#F5F1E6" stroke="none"/><g class="fg"><rect pathLength="1" class="dr frm" x="0" y="0" width="136" height="84"/><rect pathLength="1" class="dr" x="44" y="14" width="44" height="64" rx="3"/><rect pathLength="1" class="dr" x="56" y="30" width="20" height="32" rx="2"/><path pathLength="1" class="dr" d="M59 33 H73 V46 H59 Z"/><circle pathLength="1" class="dr" cx="66" cy="21" r="2.2"/><circle pathLength="1" class="dr" cx="66" cy="71" r="2.2"/><path pathLength="1" class="dr" d="M108 62 V30"/><polygon class="fi" points="108,23 103.5,32 112.5,32" fill="#0D1321" stroke="none"/><line pathLength="1" class="dr" x1="23" y1="29" x2="58" y2="38" stroke-width="1.2"/><g class="fi"><circle cx="16" cy="24" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="16" y="28" class="cl" text-anchor="middle">A</text></g><line pathLength="1" class="dr" x1="115.5" y1="46" x2="110" y2="46" stroke-width="1.2"/><g class="fi"><circle cx="124" cy="46" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="124" y="50" class="cl" text-anchor="middle">B</text></g><rect x="7" y="-7" width="58" height="14" fill="#F5F1E6" stroke="none"/><text class="mo fi" x="11" y="4" font-size="11">FIG. 2</text></g></g><path pathLength="1" class="dr cb" style="--d:0.48s" d="M774.5,375.6 L812,374.6 M807.4,371.5 L808.6,408.5 M811.5,404.6 L774,405.6 M778.6,408.5 L777.6,371.5" stroke-width="2.2"/><text class="tw st" style="--d:0.56s" font-size="20"><tspan x="826" y="396">3. Count the float.</tspan><tspan x="826" y="423">Write it down.</tspan></text><g transform="translate(1196,353)" class="figg" style="--d:0.6s"><rect x="0" y="0" width="136" height="84" fill="#F5F1E6" stroke="none"/><g class="fg"><rect pathLength="1" class="dr frm" x="0" y="0" width="136" height="84"/><path pathLength="1" class="dr" d="M28 44 L38 10 H98 L108 44 Z"/><rect pathLength="1" class="dr" x="46" y="15" width="44" height="13"/><rect pathLength="1" class="dr thin" x="50" y="33" width="8" height="6"/><rect pathLength="1" class="dr thin" x="64" y="33" width="8" height="6"/><rect pathLength="1" class="dr thin" x="78" y="33" width="8" height="6"/><rect pathLength="1" class="dr" x="22" y="44" width="92" height="14"/><path pathLength="1" class="dr" d="M14 58 H122 L128 78 H8 Z"/><path pathLength="1" class="dr thin" d="M38 58 L35 78 M68 58 V78 M98 58 L101 78"/><line pathLength="1" class="dr" x1="22.5" y1="19" x2="46" y2="21" stroke-width="1.2"/><g class="fi"><circle cx="14" cy="18" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="14" y="22" class="cl" text-anchor="middle">A</text></g><line pathLength="1" class="dr" x1="122" y1="48.5" x2="117" y2="62" stroke-width="1.2"/><g class="fi"><circle cx="124" cy="40" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="124" y="44" class="cl" text-anchor="middle">B</text></g><rect x="7" y="-7" width="58" height="14" fill="#F5F1E6" stroke="none"/><text class="mo fi" x="11" y="4" font-size="11">FIG. 3</text></g></g><path pathLength="1" class="dr cb" style="--d:0.58s" d="M774.5,483.6 L812,482.6 M807.4,479.5 L808.6,516.5 M811.5,512.6 L774,513.6 M778.6,516.5 L777.6,479.5" stroke-width="2.2"/><text class="tw st" style="--d:0.66s" font-size="20"><tspan x="826" y="531">4. Flip the sign.</tspan></text><g transform="translate(1196,461)" class="figg" style="--d:0.7s"><rect x="0" y="0" width="136" height="84" fill="#F5F1E6" stroke="none"/><g class="fg"><rect pathLength="1" class="dr frm" x="0" y="0" width="136" height="84"/><circle pathLength="1" class="dr" cx="68" cy="14" r="3"/><path pathLength="1" class="dr" d="M68 17 L44 34 M68 17 L92 34"/><rect pathLength="1" class="dr" x="24" y="34" width="88" height="38" rx="3"/><rect pathLength="1" class="dr thin" x="29" y="39" width="78" height="28" rx="2"/><text class="fi sg" x="68" y="62" text-anchor="middle">OPEN</text><path pathLength="1" class="dr" d="M120 36 C132 44 132 62 120 70"/><polygon class="fi" points="117,71.5 123.9,71.1 120.1,65.3" fill="#0D1321" stroke="none"/><line pathLength="1" class="dr" x1="21" y1="29" x2="26" y2="40" stroke-width="1.2"/><g class="fi"><circle cx="14" cy="24" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="14" y="28" class="cl" text-anchor="middle">A</text></g><line pathLength="1" class="dr" x1="99.5" y1="14" x2="71.5" y2="14" stroke-width="1.2"/><g class="fi"><circle cx="108" cy="14" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="108" y="18" class="cl" text-anchor="middle">B</text></g><rect x="7" y="-7" width="58" height="14" fill="#F5F1E6" stroke="none"/><text class="mo fi" x="11" y="4" font-size="11">FIG. 4</text></g></g><path pathLength="1" class="dr cb" style="--d:0.68s" d="M774.5,591.6 L812,590.6 M807.4,587.5 L808.6,624.5 M811.5,620.6 L774,621.6 M778.6,624.5 L777.6,587.5" stroke-width="2.2"/><text class="tw st" style="--d:0.76s" font-size="20"><tspan x="826" y="612">5. Check messages.</tspan><tspan x="826" y="639">Reply before nine.</tspan></text><g transform="translate(1196,569)" class="figg" style="--d:0.8s"><rect x="0" y="0" width="136" height="84" fill="#F5F1E6" stroke="none"/><g class="fg"><rect pathLength="1" class="dr frm" x="0" y="0" width="136" height="84"/><rect pathLength="1" class="dr" x="48" y="10" width="40" height="66" rx="6"/><rect pathLength="1" class="dr thin" x="53" y="20" width="30" height="44"/><path pathLength="1" class="dr thin" d="M62 15 H74"/><circle pathLength="1" class="dr thin" cx="68" cy="70" r="2.5"/><rect pathLength="1" class="dr thin" x="57" y="26" width="20" height="9" rx="3"/><rect pathLength="1" class="dr thin" x="59" y="40" width="20" height="9" rx="3"/><path pathLength="1" class="dr thin" d="M57 56 H79"/><path pathLength="1" class="dr" d="M98 32 Q106 44 98 56"/><path pathLength="1" class="dr" d="M104 26 Q116 44 104 62"/><line pathLength="1" class="dr" x1="27.5" y1="31" x2="48" y2="38" stroke-width="1.2"/><g class="fi"><circle cx="20" cy="28" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="20" y="32" class="cl" text-anchor="middle">A</text></g><line pathLength="1" class="dr" x1="117" y1="61.5" x2="108" y2="56" stroke-width="1.2"/><g class="fi"><circle cx="124" cy="67" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="124" y="71" class="cl" text-anchor="middle">B</text></g><rect x="7" y="-7" width="58" height="14" fill="#F5F1E6" stroke="none"/><text class="mo fi" x="11" y="4" font-size="11">FIG. 5</text></g></g><path pathLength="1" class="dr cb" style="--d:0.78s" d="M774.5,699.6 L812,698.6 M807.4,695.5 L808.6,732.5 M811.5,728.6 L774,729.6 M778.6,732.5 L777.6,695.5" stroke-width="2.2"/><text class="tw st" style="--d:0.86s" font-size="20"><tspan x="826" y="747">6. Sign this page.</tspan></text><g transform="translate(1196,677)" class="figg" style="--d:0.9s"><rect x="0" y="0" width="136" height="84" fill="#F5F1E6" stroke="none"/><g class="fg"><rect pathLength="1" class="dr frm" x="0" y="0" width="136" height="84"/><rect pathLength="1" class="dr" x="22" y="14" width="58" height="64" rx="3"/><rect pathLength="1" class="dr" x="40" y="8" width="22" height="12" rx="2"/><rect pathLength="1" class="dr thin" x="30" y="30" width="7" height="7"/><rect pathLength="1" class="dr thin" x="30" y="44" width="7" height="7"/><rect pathLength="1" class="dr thin" x="30" y="58" width="7" height="7"/><path pathLength="1" class="dr thin" d="M31.5 33.5 L33.5 35.5 L36.5 30 M31.5 47.5 L33.5 49.5 L36.5 44"/><path pathLength="1" class="dr thin" d="M42 34 H72 M42 48 H72 M42 62 H66"/><path pathLength="1" class="dr" d="M98 20 H110 V58 L104 70 L98 58 Z M98 28 H110 M98 58 H110"/><line pathLength="1" class="dr" x1="17" y1="30" x2="22.5" y2="37" stroke-width="1.2"/><g class="fi"><circle cx="10" cy="24" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="10" y="28" class="cl" text-anchor="middle">A</text></g><line pathLength="1" class="dr" x1="117.5" y1="38" x2="110.5" y2="40" stroke-width="1.2"/><g class="fi"><circle cx="126" cy="36" r="8.5" fill="#F5F1E6" stroke="#0D1321" stroke-width="1.4"/><text x="126" y="40" class="cl" text-anchor="middle">B</text></g><rect x="7" y="-7" width="58" height="14" fill="#F5F1E6" stroke="none"/><text class="mo fi" x="11" y="4" font-size="11">FIG. 6</text></g></g>
+<path pathLength="1" class="dr tk a" style="--d:0.8s" d="M782.6,174.2 L790.4,185.0"/><path pathLength="1" class="dr tk b" style="--d:0.87s" d="M790.1,185.7 C793.9,173.0 801.9,160.8 814.0,150.0"/><path pathLength="1" class="dr tk a" style="--d:0.9s" d="M782.8,283.8 L789.1,293.3"/><path pathLength="1" class="dr tk b" style="--d:0.97s" d="M790.3,295.1 C795.2,280.8 804.1,267.9 815.9,258.5"/><path pathLength="1" class="dr tk a" style="--d:1.0s" d="M782.1,390.1 L789.5,402.8"/><path pathLength="1" class="dr tk b" style="--d:1.07s" d="M789.2,402.2 C795.3,388.7 803.1,376.0 813.9,366.3"/><path pathLength="1" class="dr tk a" style="--d:1.1s" d="M783.4,498.8 L789.6,510.2"/><path pathLength="1" class="dr tk b" style="--d:1.17s" d="M789.9,509.5 C795.7,497.5 802.4,485.2 815.1,475.9"/><path pathLength="1" class="dr tk a" style="--d:1.2s" d="M783.6,606.5 L791.2,617.1"/><path pathLength="1" class="dr tk b" style="--d:1.27s" d="M789.8,618.6 C794.2,605.0 801.9,593.4 815.6,583.2"/>
+
+<!-- persimmon trail, spark landing, the check -->
+<path pathLength="1" class="trail" d="M-30,262 C150,40 520,20 668,300 C700,380 735,610 758,716"/>
+<path pathLength="1" class="ck" d="M758,716 C770,728 780,742 788,756 C812,712 846,682 880,656"/>
+
+<!-- stamp -->
+<g class="stampo"><g transform="translate(1274,70) rotate(-5)"><g filter="url(#rough)" fill="none" stroke="#0D1321"><rect x="-98" y="-32" width="196" height="64" stroke-width="3.6"/><rect x="-92" y="-26" width="184" height="52" stroke-width="1.3"/><line x1="-92" x2="92" y1="3" y2="3" stroke-width="1.3"/><text class="sg" x="0" y="-7" text-anchor="middle" font-size="15" textLength="170" lengthAdjust="spacingAndGlyphs" fill="#0D1321" stroke="none">STANDARD PROCEDURE</text><text class="sg" x="0" y="22" text-anchor="middle" font-size="19" letter-spacing="3" fill="#0D1321" stroke="none">REV. 3</text></g></g></g>
+
+<!-- footer -->
+<line x1="778" x2="1352" y1="828" y2="828" stroke="#0D1321" stroke-width="1.2" stroke-opacity=".5"/>
+<text class="mo foot" x="778" y="852" font-size="11.5" fill="#0D1321" style="letter-spacing:.14em">IF IT IS NOT WRITTEN DOWN, IT IS NOT A PROCEDURE.</text>
+<text class="sg pgno" x="1352" y="860" font-size="30" text-anchor="end" fill="#0D1321">07</text>
+
+<!-- title block -->
+<g class="lbl"><text class="ar" x="72" y="606" font-size="24" fill="#0D1321">07</text>
+<line x1="112" x2="170" y1="600" y2="600" stroke="#0D1321" stroke-width="1.6"/>
+<text class="mo" x="182" y="605" font-size="11.5" fill="#0D1321" style="letter-spacing:.3em">SERVICE SEVEN OF SEVEN</text></g>
+<g class="hw1"><text class="ar" x="72" y="700" font-size="88" fill="#0D1321" style="letter-spacing:-.03em">TEAM</text></g>
+<g class="hw2"><text class="ar" x="72" y="782" font-size="88" fill="#0D1321" style="letter-spacing:-.03em">PLAYBOOKS</text></g>
+<text class="ad desc" x="72" y="828" font-size="20" fill="#0D1321">How your team does it, written down once.</text>
+
+<!-- spark -->
+<g class="spark"><g class="sparkin"><circle r="17" fill="#FF6A2A" opacity=".6" filter="url(#glow)"/><polygon points="0,-5.5 -92,0 0,5.5" fill="url(#tailg)"/><circle r="7" fill="#FF6A2A"/><circle r="2.6" fill="#F5F1E6"/></g></g>
+<circle class="rg rg1" cx="815" cy="708" r="150"/><circle class="rg rg2" cx="815" cy="708" r="150"/><circle class="rg rg3" cx="815" cy="708" r="150"/>
+
+<!-- paper fibre -->
+<rect width="1440" height="900" filter="url(#fibA)" class="mul" opacity=".22"/>
+<rect width="1440" height="900" filter="url(#fibB)" class="mul" opacity=".12"/>
+</svg>
+<script>
+window.SPARK_ENTRY = {x:0, y:228.2, t:0.205};
+(function(){
+ var root=document.documentElement;
+ var q=new URLSearchParams(location.search), T=q.get('t');
+ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function reflow(){void root.getBoundingClientRect();}
+ function freeze(t){document.getAnimations().forEach(function(a){a.pause();a.currentTime=t*1000;});}
+ window.play=function(){
+  root.classList.remove('play');reflow();
+  if(reduce)return;
+  root.classList.add('play');reflow();
+  var ends=document.getAnimations().map(function(a){return a.effect.getComputedTiming().endTime;});
+  window.DURATION=Math.max.apply(null,ends)/1000;
+  if(T!==null&&T!==''&&!isNaN(parseFloat(T)))freeze(parseFloat(T));
+ };
+ window.finish=function(){root.classList.remove('play');};
+ window.addEventListener('message',function(e){if(e.data==='play')play();else if(e.data==='finish')finish();});
+ play();
+})();
+</script></body></html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fit Check · Which service fits your business · Perseid Echo Creations</title>
+<meta name="description" content="Three quick questions. Find out which of seven done-for-you services fits your business first, or whether none of them does yet.">
+<link rel="canonical" href="https://perseidechocreations.com/fit-check/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Perseid Echo Creations">
+<meta property="og:title" content="Fit Check · Which service fits your business · Perseid Echo Creations">
+<meta property="og:description" content="Three quick questions. Find out which of seven done-for-you services fits your business first, or whether none of them does yet.">
+<meta property="og:url" content="https://perseidechocreations.com/fit-check/">
+<meta property="og:image" content="https://perseidechocreations.com/art/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0D1321;--paper:#F6F6F4;--a:#FF6A2A;--rule:rgba(246,246,244,.16);--mute:rgba(246,246,244,.62)}
+html,body{height:100%}
+body{font-family:Archivo,system-ui,sans-serif;background:var(--ink);color:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:100vh;min-height:100dvh}
+
+/* left: the seven lanes. The one your answer points to opens and plays its poster. */
+.side{position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--ink);border-right:1px solid var(--rule);overflow:hidden}
+.brand{flex:none;display:flex;align-items:center;height:60px;padding:0 clamp(18px,3vw,36px);text-decoration:none;font-weight:800;font-size:14px;letter-spacing:.14em;white-space:nowrap}
+.stack{flex:1;min-height:0;display:flex;flex-direction:column}
+.ln{flex:1 1 0;min-height:30px;position:relative;overflow:hidden;transition:flex-basis .5s cubic-bezier(.7,0,.2,1),flex-grow .5s cubic-bezier(.7,0,.2,1),opacity .3s;background:var(--ink)}
+.ln.on{flex:0 0 var(--ph)}
+.stack.dim .ln:not(.hot){opacity:.38}
+.pst{position:absolute;left:50%;top:0;width:var(--pw);height:var(--ph);margin-left:calc(var(--pw) / -2);visibility:hidden}
+.ln.on .pst{visibility:visible}
+.pst iframe{display:block;width:1440px;height:900px;border:0;transform-origin:0 0;transform:scale(var(--ps));pointer-events:none}
+.spine{position:absolute;inset:0;z-index:2;display:flex;align-items:center;gap:16px;padding:0 clamp(18px,3vw,36px);box-shadow:inset 0 1px 0 rgba(13,19,33,.9);transition:opacity .3s}
+.ln.on .spine{opacity:0}
+.spine i{font-style:normal;font-weight:800;font-size:13px;letter-spacing:.06em;line-height:1}
+.spine svg{width:26px;height:26px;flex:none;display:block}
+.spine em{font-style:normal;font-weight:800;font-size:14px;letter-spacing:.2em;text-transform:uppercase;line-height:1;white-space:nowrap}
+.w1{background:#FCFAF4;color:var(--ink)}
+.w2{background:var(--a);color:var(--ink)}
+.w3{background:#16233F;color:var(--paper)}
+.w4{background:var(--paper);color:var(--ink)}
+.w5{background:#fff;color:var(--ink)}
+.w6{background:#07090F;color:var(--paper)}
+.w7{background:#F5F1E6;color:var(--ink)}
+.cap{flex:none;padding:22px clamp(18px,3vw,36px) 26px;font-weight:800;font-size:clamp(20px,2vw,30px);line-height:1.04;text-transform:uppercase;text-wrap:balance}
+.cap span{display:block;color:var(--mute)}
+
+/* right: the questions */
+.panel{display:flex;flex-direction:column;padding:clamp(24px,4vw,56px) clamp(20px,5vw,80px);min-height:100vh;min-height:100dvh}
+.meta{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.meta h1{font:inherit;letter-spacing:inherit;color:var(--paper)}
+.stage{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,5vh,56px) 0;max-width:640px}
+.bar{width:56px;height:5px;background:var(--a);margin-bottom:22px}
+h2{font-weight:800;font-size:clamp(28px,3.3vw,50px);line-height:1.04;text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance;margin-bottom:10px}
+h2:focus{outline:0}
+.hint{color:var(--mute);font-size:16px;margin-bottom:26px}
+.opts{list-style:none;border-top:1px solid var(--rule)}
+.opts button{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;font:inherit;font-size:clamp(17px,1.35vw,20px);font-weight:600;color:var(--paper);background:none;border:0;border-bottom:1px solid var(--rule);padding:18px 4px;cursor:pointer;transition:padding .25s,background .25s}
+.opts button::after{content:'→';opacity:0;transition:opacity .2s}
+.opts button:hover,.opts button:focus-visible{background:rgba(246,246,244,.06);padding-left:16px;outline:0}
+.opts button:hover::after,.opts button:focus-visible::after{opacity:1}
+.back{align-self:flex-start;margin-top:22px;font:inherit;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);background:none;border:0;cursor:pointer;padding:6px 0}
+.back:hover{color:var(--paper)}
+.fade{animation:in .45s ease both}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* the answer */
+.kick{font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+.why{font-size:clamp(17px,1.4vw,20px);margin-bottom:26px;max-width:34em}
+.rows{border-top:1px solid var(--rule);margin-bottom:28px}
+.rows div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.rows dt{font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding-top:3px}
+.rows a{font-weight:700}
+.acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;background:var(--a);color:var(--ink);font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--paper)}
+.btn.line{background:none;color:var(--paper);box-shadow:inset 0 0 0 1px rgba(246,246,244,.4)}
+.btn.line:hover{box-shadow:inset 0 0 0 1px var(--paper)}
+.send{margin-top:34px;padding-top:22px;border-top:1px solid var(--rule)}
+.send p{font-size:14px;color:var(--mute);margin-bottom:12px}
+.send form{display:flex;gap:10px;flex-wrap:wrap}
+.send input[type=email]{flex:1;min-width:220px;font:inherit;font-size:16px;color:var(--paper);background:none;border:0;border-bottom:1px solid rgba(246,246,244,.4);padding:10px 2px}
+.send input[type=email]:focus{outline:0;border-color:var(--paper)}
+.send .msg{margin:10px 0 0}
+@media(max-width:860px){
+  .wrap{grid-template-columns:1fr}
+  .side{position:relative;height:auto;display:block}
+  .cap{display:none}
+  .stack{display:none}
+  body.done .stack{display:block}
+  body.done .ln{display:none}
+  body.done .ln.on{display:block;height:var(--ph)}
+  .panel{min-height:0}
+  .stage{justify-content:flex-start}
+  .rows div{grid-template-columns:1fr;gap:4px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="1xxvugkyQ7UIw1LFd" data-version="062024"></script>
+</head>
+<body>
+<div class="wrap">
+  <aside class="side">
+    <a class="brand" href="/">PERSEID ECHO CREATIONS</a>
+    <div class="stack" id="stack"><div class="ln" data-lane="cold-email"><div class="pst"><iframe data-src="/worlds/cold-email-b-anim.html" scrolling="no" title="" tabindex="-1" aria-hidden="true"></iframe></div><div class="spine w1"><i>01</i><svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="11.5" stroke="#FF6A2A" stroke-width="2"/><circle cx="15" cy="15" r="7" stroke="#FF6A2A" stroke-width="1.2"/><path d="M2 12q3.2-3 6.5 0t6.5 0 6.5 0 6.5 0M2 18q3.2-3 6.5 0t6.5 0 6.5 0 6.5 0" stroke="#0D1321" stroke-width="1.6"/></svg><em>Cold email</em></div></div><div class="ln" data-lane="social"><div class="pst"><iframe data-src="/worlds/social.html" scrolling="no" title="" tabindex="-1" aria-hidden="true"></iframe></div><div class="spine w2"><i>02</i><svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h24v16H14l-6 6v-6H3z" fill="#0D1321"/><path d="M15 16.6c-4.6-3.2-5.2-5.3-4.3-6.9 1-1.6 3.2-1.5 4.3.3 1.1-1.8 3.3-1.9 4.3-.3.9 1.6.3 3.7-4.3 6.9z" fill="#F6F6F4"/></svg><em>Social media</em></div></div><div class="ln" data-lane="automation"><div class="pst"><iframe data-src="/worlds/automation.html" scrolling="no" title="" tabindex="-1" aria-hidden="true"></iframe></div><div class="spine w3"><i>03</i><svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#F6F6F4" stroke-width="1.6"><circle cx="15" cy="15" r="7.5"/><path d="M15 2.5v5M15 22.5v5M2.5 15h5M22.5 15h5M6.2 6.2l3.5 3.5M20.3 20.3l3.5 3.5M6.2 23.8l3.5-3.5M20.3 9.7l3.5-3.5"/></g><circle cx="15" cy="15" r="3" fill="#FF6A2A"/></svg><em>Automation</em></div></div><div class="ln" data-lane="customer-experience"><div class="pst"><iframe data-src="/worlds/customer-experience.html" scrolling="no" title="" tabindex="-1" aria-hidden="true"></iframe></div><div class="spine w4"><i>04</i><svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="10.5" fill="#F6F6F4" stroke="#0D1321" stroke-width="4"/><circle cx="15" cy="15" r="4" fill="#FF6A2A"/></svg><em>Customer experience</em></div></div><div class="ln" data-lane="design"><div class="pst"><iframe data-src="/worlds/design.html" scrolling="no" title="" tabindex="-1" aria-hidden="true"></iframe></div><div class="spine w5"><i>05</i><svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h10.5v10.5H3zM16.5 16.5H27V27H16.5zM3 16.5h10.5V27H3z" fill="#0D1321"/><path d="M16.5 3H27v10.5H16.5z" fill="#FF6A2A"/></svg><em>Digital design</em></div></div><div class="ln" data-lane="video"><div class="pst"><iframe data-src="/worlds/video.html" scrolling="no" title="" tabindex="-1" aria-hidden="true"></iframe></div><div class="spine w6"><i>06</i><svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="11.5" stroke="#F6F6F4" stroke-width="1.8"/><path d="M12 9.5l9 5.5-9 5.5z" fill="#FF6A2A"/></svg><em>Video</em></div></div><div class="ln" data-lane="playbooks"><div class="pst"><iframe data-src="/worlds/playbooks.html" scrolling="no" title="" tabindex="-1" aria-hidden="true"></iframe></div><div class="spine w7"><i>07</i><svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h18v20H4z" stroke="#0D1321" stroke-width="2"/><path d="M8.5 15l5 5L25.5 5.5" stroke="#FF6A2A" stroke-width="3.2"/></svg><em>Team playbooks</em></div></div></div>
+    <p class="cap" id="cap">You do the work. <span>I take the rest.</span></p>
+  </aside>
+  <main class="panel">
+    <div class="meta"><h1>Fit Check</h1><span id="count">1 of 3</span></div>
+    <div class="stage" id="stage">
+      <noscript><h2>Which service fits?</h2><p class="why">This check needs scripting turned on. Or skip it: <a href="https://calendar.app.google/XgzHeDeyYp9DyvYJ6">book a free 20-minute call</a> and I will tell you the same thing in person.</p></noscript>
+    </div>
+  </main>
+</div>
+<script>window.PEC_PAGE="fitcheck";</script>
+<script src="/local/assets/track.js"></script>
+<script>
+(function(){
+"use strict";
+var CAL='https://calendar.app.google/XgzHeDeyYp9DyvYJ6';
+var IMG=function(id){return id.charAt(0)==='/'?id:'https://images.unsplash.com/photo-'+id+'?auto=format&fit=crop&w=1400&q=75'};
+/* The services. EDIT COPY HERE. */
+var LANES={
+ 'cold-email':{name:'Cold email',em:'done for you',photo:'1663767117072-a97deef95956',pos:'36% 30%',
+   does:'I build the list, write the emails in your voice, set up safe sending, and hand you the people who reply.',
+   first:'A 20-minute call about who you want to reach. If it fits, the list, sending addresses and emails are ready in about two weeks.'},
+ 'social':{name:'Social media',em:'that shows up for you',photo:'/art/work/gfc-top-post.jpg',pos:'50% 40%',
+   does:'I turn your real work into posts, images and short videos. You approve them once a week, and they go out on schedule.',
+   first:'A 20-minute call about how you like to sound. Then a first week of posts for you to approve.'},
+ 'automation':{name:'Business automation',em:'that gives you your week back',photo:'1770822662831-c361f15790ea',pos:'45% 40%',
+   does:'I map where your hours go, then connect the tools you already have so the work moves on its own.',
+   first:'A 20-minute call. If there is something worth building, the next step is a Workflow Opportunity Map: $750, credited toward a build signed within 30 days.'},
+ 'customer-experience':{name:'Customer experience',em:'by design',photo:'1642751652611-bb9a7cad58a3',pos:'40% 50%',
+   does:'I find where your customer\'s path breaks, then fix the handoffs, scripts and steps behind it.',
+   first:'A 20-minute call. Then we walk one customer journey together, from the first contact to the follow-up.'},
+ 'design':{name:'Digital design',em:'that does a job',photo:'1594050275594-abd9c790bdeb',pos:'30% 50%',
+   does:'Websites and pages that look sharp and move people to the next step. Designed, written and built in one place.',
+   first:'A 20-minute call about what the page needs to do. Then a working draft you can click through.'},
+ 'video':{name:'Video',em:'that shows the real thing',photo:'1611784728558-6c7d9b409cdf',pos:'55% 45%',
+   does:'A short film of your actual product or service at work. Scripted, recorded, edited and delivered ready to post.',
+   first:'A 20-minute call about what the film is for. Then a script for you to approve before anything is recorded.'},
+ 'playbooks':{name:'Team playbooks',em:'your people actually use',photo:'1761095596588-e85f6a028894',pos:'50% 40%',
+   does:'I learn how the work is really done, write it down as short procedures and checklists, and train your team on it.',
+   first:'A 20-minute call about which job hurts most. Then I watch how it is done before I write a word.'}
+};
+/* Question 1 picks a branch. Question 2 depends on that answer. EDIT QUESTIONS HERE.
+   Each answer: t = what they click, lane = the service it points to, why = the plain reason,
+   also = a second service worth a look, note = an honest caveat, no = true means "not yet". */
+var Q1={ask:'What is the biggest headache right now?',hint:'Pick the one that costs you the most.',opts:[
+ {t:'Not enough new customers',go:'customers'},
+ {t:'I never get around to posting',go:'posting'},
+ {t:'Busywork is eating my week',go:'busywork'},
+ {t:'Customers get confused or slip through the cracks',go:'service'},
+ {t:'My website is not pulling its weight',go:'website'},
+ {t:'I need a video that shows what we do',go:'video'},
+ {t:'It only gets done right when I am there',go:'team'}]};
+var Q2={
+ customers:{ask:'Who are you trying to reach?',opts:[
+  {t:'Other businesses',lane:'cold-email',also:'social',why:'You sell to other businesses and need more of them to know you exist. A direct, well-written email to the right person is the fastest way to start those conversations.'},
+  {t:'The general public',lane:'social',also:'design',why:'Cold email is built for reaching businesses, not households, so I would not sell you that. Showing up every week where local people already scroll is the better first move.'},
+  {t:'A bit of both',lane:'cold-email',also:'social',why:'Start with the business side, where a direct email can open a conversation this month. Social can follow for the public side.'}]},
+ posting:{ask:'What keeps getting in the way?',opts:[
+  {t:'No time',lane:'social',why:'Posting is not hard. It just never reaches the top of your list. So take it off the list: I write and post, you approve once a week.'},
+  {t:'I never know what to post',lane:'social',why:'You do not need more ideas. You need someone to turn the work you already do into posts, and that is the job.'},
+  {t:'I post, but nothing comes of it',lane:'social',also:'design',why:'You are already putting the effort in, so the fix is probably what the posts say and where they send people.',note:'If people see your posts and still do not act, the page they land on may be the weak link. I would check that first.'}]},
+ busywork:{ask:'How often does it land on you?',hint:'Follow-ups, reminders, re-typing the same details.',opts:[
+  {t:'Every day',lane:'automation',why:'Busywork that shows up every day adds up to weeks each year. That is usually worth fixing properly, once.'},
+  {t:'A few times a week',lane:'automation',why:'That is often enough to be worth a look. Sometimes the fix is a connection between two tools, sometimes it is just a clearer step.'},
+  {t:'Only now and then',lane:'automation',no:true,why:'If it only comes up now and then, a build would probably cost more than it saves. A checklist or a saved template may be all you need.'}]},
+ service:{ask:'Where does it usually go wrong?',opts:[
+  {t:'Before they buy: questions, quotes, waiting',lane:'customer-experience',why:'When people have to ask, wait or chase before they can buy, some of them quietly go elsewhere. That is the first stretch of the path I would walk.'},
+  {t:'During the job: handoffs and mix-ups',lane:'customer-experience',why:'Mix-ups in the middle usually mean nobody clearly owns the handoff. Fixing who does what, and writing it down, is most of the cure.'},
+  {t:'Afterwards: no follow-up, no repeat business',lane:'customer-experience',also:'automation',why:'The job gets done and then the relationship goes quiet. A simple, reliable follow-up is one of the cheapest ways to get repeat work.'}]},
+ website:{ask:'What have you got now?',opts:[
+  {t:'No site, or one I threw together',lane:'design',why:'A clear, fast page that says what you do and what to do next will beat a thrown-together one from day one.'},
+  {t:'A site that looks dated',lane:'design',why:'People judge the business by the page. If it looks ten years old, they assume the service is too.'},
+  {t:'A decent site that brings in nothing',lane:'design',also:'cold-email',why:'A page can look fine and still not ask anyone to do anything. That is usually fixable without starting over.',note:'If the site is sound and still quiet, the real problem may be that too few people see it. I would check that before redesigning anything.'}]},
+ video:{ask:'What is the video for?',opts:[
+  {t:'Showing how my product or app works',lane:'video',why:'A demo that shows the real thing working does the explaining for you, every time someone lands on your site.'},
+  {t:'One strong piece for my website or a pitch',lane:'video',also:'design',why:'One clear film, made once and made properly, can carry your home page and your sales conversations for a long time.'},
+  {t:'Regular short videos for social media',lane:'social',also:'video',why:'A steady run of short videos is part of the social media service, which covers the planning, the posting and your approval each week.'}]},
+ team:{ask:'What is behind it?',opts:[
+  {t:'Nothing is written down',lane:'playbooks',why:'While it lives in your head, the business needs you in the room. Getting it onto paper is the first step to stepping back.'},
+  {t:'New people take too long to get it',lane:'playbooks',why:'When every new hire learns from whoever is nearby, they each learn a different version. One clear way, taught properly, fixes that.'},
+  {t:'We are about to launch something new',lane:'playbooks',also:'customer-experience',why:'A launch goes well when your people know what to do on day one. That takes procedures and training before it goes live, not after.'}]}
+};
+var Q3={ask:'How soon do you want it sorted?',opts:[
+ {t:'This month',v:'now'},{t:'In the next few months',v:'soon'},{t:'Just looking for now',v:'looking'}]};
+
+var stage=document.getElementById('stage'),count=document.getElementById('count'),cap=document.getElementById('cap');
+var stack=document.getElementById('stack'),lns=[].slice.call(stack.querySelectorAll('.ln'));
+var BR={customers:'cold-email',posting:'social',busywork:'automation',service:'customer-experience',website:'design',video:'video',team:'playbooks'};
+var ans={},step=0;
+function track(n,d){try{window.pecTrack&&window.pecTrack(n,d)}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function focusHead(){var h=stage.querySelector('h2');if(h){h.setAttribute('tabindex','-1');try{h.focus({preventScroll:true})}catch(e){h.focus()}}
+  if(window.innerWidth<=860){var m=document.querySelector('.panel');if(m&&m.scrollIntoView)m.scrollIntoView({block:'start'})}}
+function size(){
+  var w=stack.clientWidth||innerWidth, room=stack.clientHeight-6*34, ph=w*.625;
+  if(innerWidth>860&&room>120&&ph>room)ph=room;
+  var r=document.documentElement.style;r.setProperty('--ph',ph+'px');r.setProperty('--pw',(ph*1.6)+'px');r.setProperty('--ps',ph/900);
+}
+function hot(slug){
+  stack.classList.toggle('dim',!!slug);
+  lns.forEach(function(l){l.classList.toggle('hot',l.getAttribute('data-lane')===slug)});
+}
+function openLane(slug){
+  document.body.classList.toggle('done',!!slug);
+  size();
+  lns.forEach(function(l){
+    var on=l.getAttribute('data-lane')===slug;l.classList.toggle('on',on);
+    if(!on)return;
+    var f=l.querySelector('iframe');
+    if(!f.getAttribute('src'))f.src=f.getAttribute('data-src');   /* loads, then plays itself */
+    else try{f.contentWindow.play()}catch(e){}
+  });
+}
+addEventListener('resize',size);
+function ask(q,n,pick){
+  step=n;count.textContent=n+' of 3';openLane(null);hot(n>1&&ans.q1?BR[ans.q1.go]:null);
+  cap.innerHTML='You do the work. <span>I take the rest.</span>';
+  var h='<div class="fade"><div class="bar"></div><h2>'+esc(q.ask)+'</h2>'+(q.hint?'<p class="hint">'+esc(q.hint)+'</p>':'<p class="hint">&nbsp;</p>')+'<ul class="opts">';
+  q.opts.forEach(function(o,i){h+='<li><button type="button" data-i="'+i+'">'+esc(o.t)+'</button></li>'});
+  h+='</ul>'+(n>1?'<button type="button" class="back">← Back</button>':'')+'</div>';
+  stage.innerHTML=h;
+  [].forEach.call(stage.querySelectorAll('.opts button'),function(b){b.addEventListener('click',function(){pick(q.opts[+b.getAttribute('data-i')])})});
+  if(n===1)[].forEach.call(stage.querySelectorAll('.opts button'),function(b){var l=BR[q.opts[+b.getAttribute('data-i')].go];b.addEventListener('mouseenter',function(){hot(l)});b.addEventListener('focus',function(){hot(l)});b.addEventListener('mouseleave',function(){hot(null)})});
+  var bk=stage.querySelector('.back');if(bk)bk.addEventListener('click',function(){n===2?one():two()});
+  if(n>1)focusHead();
+}
+function one(){ask(Q1,1,function(o){ans.q1=o;track('fc_start');two()})}
+function two(){ask(Q2[ans.q1.go],2,function(o){ans.q2=o;three()})}
+function three(){ask(Q3,3,function(o){ans.q3=o;result()})}
+
+function result(){
+  var o=ans.q2,L=LANES[o.lane],slug=o.lane,when=ans.q3.v,A=o.also?LANES[o.also]:null;
+  count.textContent='Your answer';hot(o.no?'-':null);openLane(o.no?null:slug);
+  track('fc_done',{v:o.no?'low':(when==='now'?'strong':'mid'),c:slug});
+  var head,kick;
+  if(o.no){kick='Honest answer';head='Do not automate this yet';cap.innerHTML='Not every problem <span>needs a build.</span>'}
+  else{kick='Start here';head=L.name+' <span style="display:block;color:var(--mute)">'+esc(L.em)+'</span>';cap.innerHTML=esc(L.name)+' <span>'+esc(L.em)+'</span>'}
+  var call='<a class="btn'+((o.no||when==='looking')?' line':'')+'" href="'+CAL+'" target="_blank" rel="noopener">'+(o.no?'Get a second opinion':'Book a 20-minute call')+'</a>';
+  var page='<a class="btn'+((o.no||when==='looking')?'':' line')+'" href="/'+slug+'/">See how it works</a>';
+  var h='<div class="fade"><p class="kick">'+kick+'</p><div class="bar"></div><h2>'+head+'</h2><p class="why">'+esc(o.why)+'</p><dl class="rows">';
+  if(!o.no){h+='<div><dt>What I do</dt><dd>'+esc(L.does)+'</dd></div><div><dt>First step</dt><dd>'+esc(L.first)+'</dd></div>'}
+  else{h+='<div><dt>Try first</dt><dd>Write the steps down once, save the message you keep retyping, and see if that covers it.</dd></div><div><dt>Come back when</dt><dd>It is happening every week, or it starts costing you customers.</dd></div>'}
+  if(o.note)h+='<div><dt>One caution</dt><dd>'+esc(o.note)+'</dd></div>';
+  if(A)h+='<div><dt>Also worth a look</dt><dd><a href="/'+o.also+'/">'+esc(A.name)+' '+esc(A.em)+'</a></dd></div>';
+  if(when==='looking'&&!o.no)h+='<div><dt>No rush</dt><dd>You said you are just looking. Read how it works first. The call is there when you want it.</dd></div>';
+  h+='</dl><div class="acts">'+(o.no?call:(when==='looking'?page+call:call+page))+'</div>';
+  h+='<div class="send"><p>Want this in writing? I will email you this answer. A copy lands in my inbox, so you can just reply.</p>'+
+     '<form novalidate><input type="email" name="email" placeholder="you@yourbusiness.com" autocomplete="email" aria-label="Your email address" required>'+
+     '<input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">'+
+     '<button class="btn line" type="submit">Email it to me</button></form><p class="msg" role="alert"></p></div>';
+  h+='<button type="button" class="back">← Start over</button></div>';
+  stage.innerHTML=h;focusHead();
+  stage.querySelector('.back').addEventListener('click',function(){ans={};one()});
+  var f=stage.querySelector('form'),msg=stage.querySelector('.msg');
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var em=f.email,btn=f.querySelector('button');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)){msg.textContent='That email does not look right. Mind checking it?';em.focus();return}
+    if(f.botcheck.value)return;   /* honeypot: a real person never fills this in */
+    btn.disabled=true;btn.textContent='Sending...';msg.textContent='';
+    var title=o.no?'Do not automate this yet':L.name+' '+L.em;
+    var lines=['FIT CHECK RESULT','Answer: '+title,'',Q1.ask+'  >>  '+ans.q1.t,Q2[ans.q1.go].ask+'  >>  '+o.t,Q3.ask+'  >>  '+ans.q3.t,'','Why: '+o.why];
+    if(!o.no){lines.push('What I do: '+L.does);lines.push('First step: '+L.first)}
+    if(o.note)lines.push('One caution: '+o.note);
+    if(A)lines.push('Also worth a look: '+A.name+' '+A.em);
+    lines.push('');lines.push('Book a call: '+CAL);
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:'9dcf879b-c9aa-42b5-b01b-fbf09e383690',subject:'Fit Check ['+title+']',from_name:'PEC Fit Check',email:em.value,answer:title,timing:ans.q3.t,message:lines.join('\n')})})
+    .then(function(r){return r.json()}).then(function(d){
+      if(!d||!d.success)throw new Error('rejected');
+      track('fc_email',{v:o.no?'low':(when==='now'?'strong':'mid'),c:slug});
+      f.parentNode.innerHTML='<p>Sent. It is on its way to '+esc(em.value)+', and it landed in my inbox too, so you can just reply to it.</p>';
+    }).catch(function(){
+      btn.disabled=false;btn.textContent='Email it to me';
+      msg.innerHTML='That did not go through. Email me directly at <a href="mailto:bryan@perseidechocreations.com">bryan@perseidechocreations.com</a>.';
+    });
+  });
+}
+one();
+/* ?a=0,0,0 jumps straight to an answer (question 1, 2, 3 choices by position), for checking the page */
+var pre=(location.search.match(/[?&]a=(\d),(\d),(\d)/)||0);
+if(pre){try{ans.q1=Q1.opts[+pre[1]];ans.q2=Q2[ans.q1.go].opts[+pre[2]];ans.q3=Q3.opts[+pre[3]];result()}catch(e){ans={};one()}}
+})();
+</script>
+</body>
+</html>

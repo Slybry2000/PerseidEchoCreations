@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice">
+<!-- Cold email: envelopes stream across the sky toward an inbox; one reply lights up. Perseid meteors = the brand thread. -->
+<style>
+.fly{animation:fly 9s linear infinite;opacity:0}
+@keyframes fly{0%{transform:translate(-160px,520px);opacity:0}10%{opacity:.9}80%{opacity:.9}100%{transform:translate(720px,-120px);opacity:0}}
+.m{animation:met 7s ease-in infinite;opacity:0}
+@keyframes met{0%,70%{transform:translate(0,0);opacity:0}72%{opacity:1}86%{transform:translate(-420px,260px);opacity:0}100%{opacity:0}}
+.reply{animation:rep 9s ease-in-out infinite}
+@keyframes rep{0%,35%{opacity:0;transform:translateY(14px)}45%,90%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+.dot{animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+text{font-family:'Archivo',Arial,Helvetica,sans-serif}
+</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0D1321"/><stop offset="1" stop-color="#221a1c"/></linearGradient>
+<linearGradient id="mt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF6A2A"/><stop offset="1" stop-color="#FF6A2A" stop-opacity="0"/></linearGradient>
+<g id="env"><rect x="0" y="0" width="64" height="42" rx="6" fill="#F6F6F4"/><path d="M3 4 L32 25 L61 4" fill="none" stroke="#0D1321" stroke-width="3" stroke-linejoin="round"/></g>
+</defs>
+<rect width="600" height="900" fill="url(#bg)"/>
+<g fill="#F6F6F4" opacity=".5"><circle cx="80" cy="90" r="1.4"/><circle cx="210" cy="40" r="1"/><circle cx="420" cy="120" r="1.6"/><circle cx="530" cy="60" r="1"/><circle cx="330" cy="210" r="1.2"/><circle cx="60" cy="260" r="1"/><circle cx="500" cy="300" r="1.3"/><circle cx="150" cy="380" r="1"/></g>
+<g class="m"><rect x="520" y="70" width="140" height="2.5" rx="1.2" fill="url(#mt)" transform="rotate(-32 520 70)"/></g>
+<g class="m" style="animation-delay:-3.5s"><rect x="600" y="180" width="110" height="2" rx="1" fill="url(#mt)" transform="rotate(-32 600 180)"/></g>
+<!-- flight of envelopes -->
+<g class="fly" style="animation-delay:0s"><use href="#env" transform="rotate(-24)"/></g>
+<g class="fly" style="animation-delay:-1.5s"><use href="#env" transform="translate(40,90) rotate(-24) scale(.8)"/></g>
+<g class="fly" style="animation-delay:-3s"><use href="#env" transform="translate(-30,40) rotate(-24) scale(1.1)"/></g>
+<g class="fly" style="animation-delay:-4.5s"><use href="#env" transform="translate(70,150) rotate(-24) scale(.7)"/></g>
+<g class="fly" style="animation-delay:-6s"><use href="#env" transform="translate(10,200) rotate(-24) scale(.9)"/></g>
+<g class="fly" style="animation-delay:-7.5s"><use href="#env" transform="translate(-60,110) rotate(-24) scale(.75)"/></g>
+<!-- the inbox -->
+<g transform="translate(110,300)">
+ <rect width="380" height="250" rx="18" fill="#F6F6F4" opacity=".06" stroke="#F6F6F4" stroke-opacity=".18"/>
+ <text x="24" y="40" fill="#F6F6F4" font-size="15" font-weight="700" letter-spacing="2">INBOX</text>
+ <circle class="dot" cx="96" cy="35" r="4" fill="#FF6A2A"/>
+ <rect x="24" y="66" width="332" height="40" rx="9" fill="#F6F6F4" opacity=".08"/>
+ <rect x="40" y="81" width="120" height="9" rx="4" fill="#F6F6F4" opacity=".35"/><rect x="176" y="81" width="150" height="9" rx="4" fill="#F6F6F4" opacity=".18"/>
+ <g class="reply">
+  <rect x="24" y="118" width="332" height="52" rx="10" fill="#FF6A2A"/>
+  <text x="42" y="141" fill="#0D1321" font-size="13" font-weight="700">Re: quick question</text>
+  <text x="42" y="159" fill="#0D1321" font-size="13">Yes, Thursday works. Let's talk.</text>
+ </g>
+ <rect x="24" y="182" width="332" height="40" rx="9" fill="#F6F6F4" opacity=".08"/>
+ <rect x="40" y="197" width="96" height="9" rx="4" fill="#F6F6F4" opacity=".35"/><rect x="152" y="197" width="170" height="9" rx="4" fill="#F6F6F4" opacity=".18"/>
+</g>
+</svg>

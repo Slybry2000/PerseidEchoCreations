@@ -27,7 +27,7 @@
       <a href="/workflows/">Workflows</a>
       <a href="/local/">Areas served</a>
       <a href="https://perseidechocreations.com/#pricing">Pricing</a>
-      <a href="https://perseidechocreations.com/#fitcheck">Run the Fit Check</a>
+      <a href="https://perseidechocreations.com/fit-check/">Run the Fit Check</a>
     </nav>
   </div>
 </div>
@@ -59,7 +59,7 @@
       <p class="copybox__label">Your link</p>
       <div class="copybox__row">
         <input class="copybox__in" id="reflink" type="text" readonly aria-label="Your referral link"
-               value="https://perseidechocreations.com/#fitcheck">
+               value="https://perseidechocreations.com/fit-check/">
         <button class="btn btn--ink" type="button" id="copybtn">Copy link</button>
       </div>
       <p class="copybox__note" id="refnote">
@@ -145,7 +145,7 @@
     <div class="foot__in">
       <span class="foot__b">Perseid Echo</span>
       <nav class="foot__nav" aria-label="Footer">
-        <a href="https://perseidechocreations.com/#fitcheck">Fit Check</a>
+        <a href="https://perseidechocreations.com/fit-check/">Fit Check</a>
         <a href="https://perseidechocreations.com/#pricing">Pricing</a>
         <a href="/workflows/">Workflows</a>
         <a href="/local/">Areas served</a>
@@ -180,7 +180,7 @@
   } catch (e) { /* no code is a valid state: the link still works */ }
 
   var base = "https://perseidechocreations.com";
-  var link = base + '/' + (code ? '?ref=' + encodeURIComponent(code) : '') + '#fitcheck';
+  var link = base + '/fit-check/' + (code ? '?ref=' + encodeURIComponent(code) : '');
 
   var input = document.getElementById('reflink');
   if (input) input.value = link;

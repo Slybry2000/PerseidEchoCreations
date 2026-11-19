@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice">
+<!-- Digital design: a page assembling itself; blocks slide into place, the palette settles, a cursor nudges it. -->
+<style>
+.m{animation:met 7s ease-in infinite;opacity:0}
+@keyframes met{0%,70%{transform:translate(0,0);opacity:0}72%{opacity:1}86%{transform:translate(-420px,260px);opacity:0}100%{opacity:0}}
+.b{animation:snap 6s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes snap{0%{transform:translate(var(--x0),var(--y0)) rotate(var(--r0));opacity:.0}12%{opacity:1}35%,85%{transform:translate(0,0) rotate(0);opacity:1}100%{transform:translate(0,0);opacity:0}}
+.sw{animation:sw 6s ease-in-out infinite}
+@keyframes sw{0%,30%{transform:translateY(16px);opacity:0}45%,88%{transform:translateY(0);opacity:1}100%{opacity:0}}
+.cur{animation:cur 6s ease-in-out infinite}
+@keyframes cur{0%{transform:translate(470px,780px)}40%{transform:translate(330px,420px)}55%{transform:translate(330px,420px) scale(.9)}60%{transform:translate(330px,420px)}100%{transform:translate(470px,780px)}}
+.lbl{font-family:'Spline Sans Mono',Consolas,monospace;font-size:12px;letter-spacing:1.5px;fill:#F6F6F4;opacity:.6}
+</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#131218"/><stop offset="1" stop-color="#1b1830"/></linearGradient>
+<linearGradient id="mt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9B8CFF"/><stop offset="1" stop-color="#9B8CFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="hero" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B8CFF"/><stop offset="1" stop-color="#FF6A2A"/></linearGradient>
+</defs>
+<rect width="600" height="900" fill="url(#bg)"/>
+<g fill="#F6F6F4" opacity=".4"><circle cx="80" cy="60" r="1.2"/><circle cx="260" cy="90" r="1"/><circle cx="500" cy="50" r="1.5"/><circle cx="560" cy="300" r="1"/><circle cx="40" cy="380" r="1.2"/></g>
+<g class="m"><rect x="560" y="60" width="140" height="2.5" rx="1.2" fill="url(#mt)" transform="rotate(-32 560 60)"/></g>
+<!-- browser frame -->
+<g transform="translate(90,170)">
+ <rect width="420" height="560" rx="16" fill="#F6F6F4" opacity=".06" stroke="#F6F6F4" stroke-opacity=".22"/>
+ <circle cx="22" cy="22" r="5" fill="#FF6A2A"/><circle cx="40" cy="22" r="5" fill="#FFC56B"/><circle cx="58" cy="22" r="5" fill="#5EEAD4"/>
+ <rect x="90" y="16" width="240" height="12" rx="6" fill="#F6F6F4" opacity=".1"/>
+ <!-- blocks fly in from off-grid -->
+ <g class="b" style="--x0:-120px;--y0:-60px;--r0:-8deg"><rect x="20" y="48" width="380" height="190" rx="12" fill="url(#hero)"/><rect x="44" y="160" width="190" height="16" rx="8" fill="#0D1321" opacity=".7"/><rect x="44" y="186" width="120" height="12" rx="6" fill="#0D1321" opacity=".45"/></g>
+ <g class="b" style="--x0:140px;--y0:60px;--r0:10deg;animation-delay:.15s"><rect x="20" y="256" width="118" height="140" rx="10" fill="#F6F6F4" opacity=".9"/><rect x="32" y="352" width="70" height="9" rx="4" fill="#0D1321" opacity=".5"/></g>
+ <g class="b" style="--x0:-90px;--y0:120px;--r0:-12deg;animation-delay:.3s"><rect x="151" y="256" width="118" height="140" rx="10" fill="#F6F6F4" opacity=".9"/><rect x="163" y="352" width="80" height="9" rx="4" fill="#0D1321" opacity=".5"/></g>
+ <g class="b" style="--x0:120px;--y0:-80px;--r0:8deg;animation-delay:.45s"><rect x="282" y="256" width="118" height="140" rx="10" fill="#F6F6F4" opacity=".9"/><rect x="294" y="352" width="60" height="9" rx="4" fill="#0D1321" opacity=".5"/></g>
+ <g class="b" style="--x0:0px;--y0:160px;--r0:4deg;animation-delay:.6s"><rect x="20" y="416" width="250" height="14" rx="7" fill="#F6F6F4" opacity=".4"/><rect x="20" y="442" width="200" height="14" rx="7" fill="#F6F6F4" opacity=".25"/><rect x="20" y="484" width="140" height="44" rx="22" fill="#FF6A2A"/></g>
+</g>
+<!-- the palette settles -->
+<g class="sw" transform="translate(150,770)">
+ <rect x="0" width="50" height="50" rx="12" fill="#9B8CFF"/><rect x="62" width="50" height="50" rx="12" fill="#FF6A2A"/><rect x="124" width="50" height="50" rx="12" fill="#FFC56B"/><rect x="186" width="50" height="50" rx="12" fill="#5EEAD4"/><rect x="248" width="50" height="50" rx="12" fill="#F6F6F4"/>
+</g>
+<text class="lbl" x="300" y="150" text-anchor="middle">LAYOUT · TYPE · COLOR · MOTION</text>
+<!-- cursor -->
+<g class="cur"><path d="M0 0 L0 30 L8 23 L14 36 L20 33 L14 21 L25 21Z" fill="#F6F6F4" stroke="#0D1321" stroke-width="2" stroke-linejoin="round"/></g>
+</svg>

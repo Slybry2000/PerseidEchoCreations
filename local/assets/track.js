@@ -87,7 +87,7 @@ window.pecTrack = function(){};
       var a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
       if (!a) return;
       var href = a.getAttribute("href") || "";
-      if (href.indexOf("#fitcheck") > -1)             send("cta_fitcheck");
+      if (href.indexOf("#fitcheck") > -1 || href.indexOf("/fit-check/") > -1) send("cta_fitcheck");
       else if (href.indexOf("calendar.app.google") > -1) send("cta_call");
       else if (href.indexOf("mailto:") === 0)            send("cta_email");
       else if (href.indexOf("/local/") > -1)             send("cta_nearby");

@@ -1,0 +1,131 @@
+:root{--ink:#0D1321;--paper:#F6F6F4;--acc:#FF6A2A;--sp:56px;--bar:64px;--open:600px}
+html{scroll-behavior:smooth}
+html,body{margin:0;overflow-x:hidden;background:var(--ink);font-family:Archivo,Arial,sans-serif;color:var(--paper)}
+.door{height:calc(100vh - 30px);display:flex;flex-direction:column;align-items:center;overflow:hidden}
+a{color:inherit;text-decoration:none}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.bar{flex:none;align-self:stretch;height:var(--bar);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left));box-sizing:border-box}
+.bar .logo{font-weight:800;letter-spacing:.14em;font-size:14px;white-space:nowrap}
+.bar .tag{font-size:14px;letter-spacing:.04em;opacity:.7;white-space:nowrap;margin-right:auto;padding-left:20px;border-left:1px solid rgba(246,246,244,.3)}
+.bar nav{display:flex;align-items:center;white-space:nowrap}
+.bar nav a{font-size:13px;letter-spacing:.08em;margin-left:24px;opacity:.8;text-transform:uppercase;transition:opacity .15s}
+.bar nav a:hover,.bar nav a:focus-visible{opacity:1}
+.bar nav .pill{background:var(--acc);color:var(--ink);opacity:1;padding:9px 18px;border-radius:99px;font-weight:800}
+.row{flex:none;display:flex;overflow:hidden}
+.lane{flex:0 0 var(--sp);position:relative;overflow:hidden;transition:flex-basis .45s cubic-bezier(.7,0,.2,1);cursor:pointer;background:var(--ink);outline:0}
+.lane.on{flex-basis:var(--open)}
+.lane:focus-visible .spine{box-shadow:inset 0 0 0 3px var(--acc)}
+.poster{position:absolute;left:0;top:0;visibility:hidden;transition:visibility 0s .45s}
+.lane.on .poster{visibility:visible;transition-delay:0s}
+.poster iframe{width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;display:block}
+
+/* ---------- closed lanes: seven spines, each a small piece of its own world ---------- */
+.spine{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 0 20px;box-sizing:border-box;transition:opacity .3s;box-shadow:inset 1px 0 0 rgba(13,19,33,.9);background-repeat:no-repeat}
+.lane.on .spine{opacity:0;pointer-events:none}
+.spine:before{content:"";position:absolute;inset:0;pointer-events:none}
+.spine>*{position:relative}
+.spine i{font-style:normal;font-weight:800;font-size:13px;letter-spacing:.06em;line-height:1}
+.spine svg{width:30px;height:30px;flex:none;display:block}
+.spine em{margin-top:auto;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-style:normal;font-weight:800;font-size:14px;letter-spacing:.2em;text-transform:uppercase;line-height:1}
+.spine:after{content:"";position:absolute;right:7px;top:7px;width:6px;height:6px;border-radius:50%;background:var(--acc);opacity:0;transition:opacity .3s}
+.spine.seen:after{opacity:1}
+.w2:after{background:var(--ink)}
+/* 01 cold email: letter paper with an airmail edge */
+.w1{background-color:#FCFAF4;color:var(--ink)}
+.w1:before{inset:0 auto 0 0;width:6px;background:repeating-linear-gradient(135deg,var(--acc) 0 9px,#FCFAF4 9px 15px,var(--ink) 15px 24px,#FCFAF4 24px 30px)}
+/* 02 social: street-poster orange with a band of halftone */
+.w2{background-color:var(--acc);color:var(--ink)}
+.w2:before{background:radial-gradient(var(--ink) 1.7px,transparent 2.1px) 0 0/9px 9px;-webkit-mask-image:linear-gradient(transparent 20%,#000 38%,#000 46%,transparent 64%);mask-image:linear-gradient(transparent 20%,#000 38%,#000 46%,transparent 64%)}
+/* 03 automation: blueprint */
+.w3{background-color:#16233F;color:var(--paper)}
+.w3:before{opacity:.13;background:linear-gradient(var(--paper) 1px,transparent 1px) 0 0/14px 14px,linear-gradient(90deg,var(--paper) 1px,transparent 1px) 0 0/14px 14px}
+/* 04 customer experience: a transit line with its stops */
+.w4{background-color:var(--paper);color:var(--ink)}
+.w4:before{inset:104px auto 296px 9px;width:13px;background:radial-gradient(circle at 6.5px 36px,var(--paper) 2.6px,var(--ink) 3.1px 6px,transparent 6.5px) 0 0/13px 72px,linear-gradient(var(--ink),var(--ink)) 4px 0/5px 100% no-repeat}
+/* 05 digital design: Swiss grid and one orange circle running off the edge */
+.w5{background-color:#fff;color:var(--ink);background-image:linear-gradient(90deg,transparent 9px,rgba(13,19,33,.16) 9px 10px,transparent 10px)}
+.w5:before{inset:30% -62px auto auto;width:104px;height:104px;border-radius:50%;background:var(--acc)}
+/* 06 video: film stock */
+.w6{background-color:#07090F;color:var(--paper)}
+.w6:before{opacity:.8;background:repeating-linear-gradient(var(--paper) 0 8px,transparent 8px 19px) 5px 0/4px 100% no-repeat,repeating-linear-gradient(var(--paper) 0 8px,transparent 8px 19px) calc(100% - 5px) 0/4px 100% no-repeat}
+/* 07 team playbooks: ruled manual page */
+.w7{background-color:#F5F1E6;color:var(--ink)}
+.w7:before{background:linear-gradient(var(--acc),var(--acc)) 9px 0/1px 100% no-repeat,repeating-linear-gradient(transparent 0 23px,rgba(13,19,33,.13) 23px 24px)}
+
+/* ---------- footer: what the open lane is, where to go next ---------- */
+.foot{flex:1;align-self:stretch;min-height:0;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left));overflow:hidden;box-sizing:border-box}
+.now{display:flex;align-items:center;gap:18px;min-width:0}
+.now .k{font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);white-space:nowrap}
+.now .d{font-size:16px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.go{flex:none;display:inline-flex;align-items:center;gap:10px;border:2px solid var(--acc);color:var(--paper);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;border-radius:99px;white-space:nowrap;transition:background .15s,color .15s}
+.go:hover,.go:focus-visible{background:var(--acc);color:var(--ink)}
+.go svg{width:16px;height:10px}
+.fc{flex:none;font-size:14px;letter-spacing:.03em;white-space:nowrap;opacity:.85}
+.fc b{font-weight:800;color:var(--acc);margin-left:8px;border-bottom:2px solid var(--acc);padding-bottom:1px}
+.fc:hover{opacity:1}
+#fly{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
+.more{display:none;align-self:stretch;padding:22px 16px 26px;font-size:15px;line-height:1.5}
+.more p{margin:0 0 14px;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.more a{display:inline-block;margin:10px 18px 0 0;color:var(--acc);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+@media (max-width:1250px){.bar .tag{display:none}}
+@media (max-width:1560px){.fc span{display:none}.fc b{margin:0}}
+@media (max-width:1050px){.bar nav a.far{display:none}.now .d{display:none}}
+
+/* short screens (a phone on its side): slim bar, slim spines, slim footer */
+body.short .bar .logo{font-size:11px}
+body.short .bar nav a{font-size:10px;margin-left:12px}
+body.short .bar nav .pill{padding:5px 11px}
+body.short .bar nav a.opt,body.short .bar .tag{display:none}
+body.short .spine{gap:7px;padding:8px 0 9px;background-image:none}
+body.short .spine:before{display:none}
+body.short .spine i{font-size:10px}
+body.short .spine svg{width:18px;height:18px}
+body.short .spine em{font-size:10px;letter-spacing:.14em}
+body.short .spine:after{right:3px;top:3px;width:4px;height:4px}
+body.short .now .d,body.short .fc span{display:none}
+body.short .fc b{margin:0}
+body.short .now .k,body.short .fc{font-size:10px}
+body.short .go{font-size:10px;padding:4px 10px;border-width:1.5px}
+body.short .go svg{width:12px}
+
+/* upright phone: lanes stack as horizontal strips, the open one shows its poster full width */
+body.tall{padding-bottom:calc(58px + env(safe-area-inset-bottom))}
+body.tall .door{height:auto;overflow:visible}
+body.tall .row{flex-direction:column;width:100%}
+body.tall .bar nav a.opt,body.tall .bar .tag{display:none}
+body.tall .bar{gap:8px;padding:0 12px}
+body.tall .bar .logo{font-size:11px;letter-spacing:.1em}
+body.tall .bar nav .pill{padding:8px 13px;font-size:12px}
+body.tall .bar nav a{margin-left:0}
+body.tall .spine{flex-direction:row;gap:14px;padding:0 16px;box-shadow:inset 0 1px 0 rgba(13,19,33,.9);background-image:none}
+body.tall .spine:before{display:none}
+body.tall .spine svg{width:24px;height:24px}
+body.tall .spine em{writing-mode:horizontal-tb;transform:none;margin:0;font-size:13px}
+body.tall .spine:after{right:16px;top:50%;margin-top:-3px}
+body.tall .foot{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--ink);border-top:1px solid rgba(246,246,244,.2);padding:10px 14px calc(10px + env(safe-area-inset-bottom));gap:10px}
+body.tall .now .k,body.tall .now .d,body.tall .fc span{display:none}
+body.tall .fc b{margin:0}
+body.tall .go{font-size:12px;padding:9px 14px}
+
+/* calmer spines (2026-11-19): flat color, number, emblem, name. Patterns off. */
+.spine:before{display:none}
+.spine{background-image:none}
+
+/* lanes open on a click, so each spine carries a plus button and answers the pointer */
+.spine b{flex:none;position:relative;width:26px;height:26px;border:2px solid currentColor;border-radius:50%;box-sizing:border-box;transition:transform .2s,background .2s,border-color .2s,color .2s}
+.spine b:before,.spine b:after{content:"";position:absolute;left:50%;top:50%;width:10px;height:2px;margin:-1px 0 0 -5px;background:currentColor}
+.spine b:after{transform:rotate(90deg)}
+.spine i,.spine svg,.spine em{transition:transform .25s}
+.lane:not(.on):hover .spine b,.lane:not(.on):focus-visible .spine b{background:var(--acc);border-color:var(--acc);color:var(--ink);transform:scale(1.2)}
+.lane:not(.on):hover .w2 b,.lane:not(.on):focus-visible .w2 b{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.lane:not(.on):hover .spine em{transform:rotate(180deg) translateY(8px)}
+.lane:not(.on):hover .spine svg{transform:scale(1.15)}
+.lane:not(.on):hover .spine{box-shadow:inset 1px 0 0 rgba(13,19,33,.9),inset 0 -5px 0 var(--acc)}
+.lane:not(.on):hover .w2{box-shadow:inset 1px 0 0 rgba(13,19,33,.9),inset 0 -5px 0 var(--ink)}
+.lane.on{cursor:pointer}
+body.short .spine b{width:16px;height:16px;border-width:1.5px}
+body.short .spine b:before,body.short .spine b:after{width:6px;margin-left:-3px}
+body.tall .spine b{margin-left:auto}
+body.tall .spine:after{right:54px}
+body.tall .lane:not(.on):hover .spine em{transform:none}
+@media (prefers-reduced-motion:reduce){.spine b,.spine i,.spine svg,.spine em{transition:none}}

@@ -1,0 +1,39 @@
+html,body{margin:0;overflow:hidden;background:#16233F}
+svg{display:block;width:1440px;height:900px}
+.t{font-family:'Barlow Semi Condensed','Arial Narrow',Arial,sans-serif;font-weight:500}
+.dr{stroke-dasharray:1 2;stroke-dashoffset:0}
+.ball{offset-distance:100%;offset-rotate:0deg}
+.spark,.rg,.lp{display:none}
+.rg{transform-box:fill-box;transform-origin:center}
+.lp{transform-box:fill-box;transform-origin:center}
+.hw{clip-path:inset(0 0 0 0)}
+
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes fade{from{opacity:0}}
+@keyframes lit{from{opacity:.42}}
+@keyframes pulse{0%{opacity:0;transform:scale(1)}10%{opacity:.9}100%{opacity:0;transform:scale(2.8)}}
+@keyframes travel{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes fly{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes hide{from{opacity:1}to{opacity:0}}
+@keyframes show{from{opacity:0}to{opacity:1}}
+@keyframes reveal{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes ring{0%{opacity:0;transform:scale(.15)}8%{opacity:.9}100%{opacity:0;transform:scale(1)}}
+@keyframes turnA{from{transform:rotate(0)}to{transform:rotate(51.43deg)}}
+@keyframes turnB{from{transform:rotate(0)}to{transform:rotate(-72deg)}}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+.reveal{stroke-dasharray:1 2;stroke-dashoffset:0}
+.play .dr{animation:draw var(--l,.55s) cubic-bezier(.5,.05,.3,1) var(--d) backwards}
+.play .fd{animation:fade .45s linear var(--d) backwards}
+.play .lt{animation:lit .3s linear var(--lt) backwards}
+.play .lp{display:inline;animation:pulse .8s cubic-bezier(.2,.6,.3,1) var(--lt) both}
+.play .reveal{animation:reveal %TD% linear %T0% backwards}
+.play .spark{display:inline;animation:fly 1.2s cubic-bezier(.3,.25,.65,.85) .1s backwards,hide .01s linear %T0% forwards}
+.play .ball{animation:travel %TD% linear %T0% backwards,show .02s linear %T0% backwards}
+.play .rg{display:inline;animation:ring .95s cubic-bezier(.2,.6,.3,1) var(--d) both}
+.play .gA{animation:turnA %GADUR% cubic-bezier(.5,0,.5,1) %GA0% backwards}
+.play .gB{animation:turnB %GBDUR% cubic-bezier(.5,0,.5,1) %GB0% backwards}
+.play .hw{animation:wipe .75s steps(18,end) 1.8s backwards}
+.play .reveal-none{}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.spark,.rg,.lp{display:none!important}}

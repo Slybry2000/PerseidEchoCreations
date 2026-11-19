@@ -1,0 +1,76 @@
+
+/* ---------- below the front door: steps, proof, Bryan, the ask ---------- */
+.sec{padding:clamp(56px,8vw,112px) max(20px,env(safe-area-inset-left))}
+.sec .in{max-width:1180px;margin:0 auto}
+.sec.paper{background:var(--paper);color:var(--ink)}
+.sec .kick{margin:0 0 14px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.sec.paper .kick{color:#C2410C}
+.sec h2{margin:0 0 18px;font-weight:800;font-size:clamp(34px,5.2vw,68px);line-height:.98;letter-spacing:-.02em;text-transform:uppercase}
+.sec .lede{margin:0 0 40px;max-width:36em;font-size:clamp(17px,1.5vw,20px);line-height:1.5;opacity:.85}
+.sec p{line-height:1.55}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--acc);color:var(--ink);font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:15px 24px;border-radius:99px;border:2px solid var(--acc);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.line{background:none;color:inherit;border-color:currentColor}
+.acts{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+
+/* three steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);border-top:3px solid var(--ink)}
+.steps li{padding:26px 28px 6px 0;border-right:1px solid rgba(13,19,33,.2);margin-right:28px}
+.steps li:last-child{border:0;margin:0}
+.steps .n{font-weight:800;font-size:64px;line-height:1;letter-spacing:-.03em;color:var(--acc)}
+.steps h3{margin:14px 0 10px;font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:-.005em}
+.steps p{margin:0 0 18px;font-size:16px}
+.steps .tag{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:2px solid var(--ink);padding:5px 10px}
+
+/* proof */
+.exs{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:64px}
+.exs figure{margin:0}
+.exs img,.exs video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#07090F;border:1px solid rgba(246,246,244,.25)}
+.exs h3{margin:16px 0 8px;font-size:20px;font-weight:800;text-transform:uppercase}
+.exs p{margin:0 0 10px;font-size:15px;opacity:.8}
+.exs figcaption a,.wo a{color:var(--acc);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.work{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;border-top:1px solid rgba(246,246,244,.3)}
+.wo{padding:28px 0;border-bottom:1px solid rgba(246,246,244,.3)}
+.wo .kick{margin-bottom:8px}
+.wo h3{margin:0 0 4px;font-size:24px;font-weight:800;text-transform:uppercase}
+.wo .sub{margin:0 0 16px;font-size:14px;opacity:.65}
+.wo .stats{display:flex;gap:32px;margin-bottom:14px}
+.wo .stats b{display:block;font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.wo .stats span{font-size:13px;opacity:.7}
+.wo p{margin:0 0 10px;font-size:15px;opacity:.85}
+.fine{margin:26px 0 0;font-size:13px;opacity:.6;max-width:60em}
+
+/* Bryan */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,72px);align-items:start}
+.about img{display:block;width:100%;height:auto;border:3px solid var(--ink)}
+.about p{font-size:18px;margin:0 0 16px;max-width:34em}
+.promises{margin:28px 0 0;padding:0;list-style:none;counter-reset:p;border-top:3px solid var(--ink)}
+.promises li{counter-increment:p;display:flex;gap:18px;padding:14px 0;border-bottom:1px solid rgba(13,19,33,.2);font-size:16px;line-height:1.45}
+.promises li:before{content:"0" counter(p);font-weight:800;color:#C2410C;letter-spacing:.06em}
+
+/* the ask */
+.ask{background:var(--acc);color:var(--ink);text-align:left}
+.ask h2{max-width:14em}
+.ask .lede{opacity:1}
+.ask .btn{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.ask .btn.line{background:none;color:var(--ink)}
+.ask small{display:block;margin-top:22px;font-size:14px}
+.ask small a{font-weight:800;border-bottom:2px solid var(--ink)}
+
+/* site footer */
+.site{padding:56px max(20px,env(safe-area-inset-left)) 40px;font-size:15px}
+.site .cols{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px}
+.site h4{margin:0 0 12px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.site a{display:block;padding:4px 0;opacity:.8}
+.site a:hover{opacity:1}
+.site .who{opacity:.7;max-width:24em;line-height:1.5;margin:12px 0 0}
+.site .logo{font-weight:800;letter-spacing:.14em;font-size:14px;opacity:1}
+.site .fine{max-width:1180px;margin:40px auto 0}
+
+@media (max-width:900px){
+  .steps,.exs,.work,.about{grid-template-columns:1fr}
+  .steps li{border-right:0;margin:0;border-bottom:1px solid rgba(13,19,33,.2);padding:22px 0}
+  .about img{max-width:320px}
+  .site .cols{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}

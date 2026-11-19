@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>PEC 06 Video</title>
+<meta name="viewport" content="width=1440">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#07090F;--paper:#F6F6F4;--pers:#FF6A2A}
+html,body{margin:0;overflow:hidden;background:#07090F}
+svg{display:block;width:1440px;height:900px}
+text{font-family:'Archivo',Arial,sans-serif}
+.mono{font-family:'IBM Plex Mono',Consolas,monospace}
+.edge{font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;letter-spacing:.2em;fill:#F6F6F4;opacity:.6}
+.sf{stroke-dasharray:1}
+
+/* ---------- animation (only under .play; base styles are the finished poster) ---------- */
+.play .strip{animation:slide .85s cubic-bezier(.2,.7,.2,1) .1s both}
+.play .ex{animation:expose .3s ease-out calc(.5s + var(--i) * .14s) both}
+.sparkg{opacity:0}
+.play .sparkg{animation:fly 1.05s cubic-bezier(.4,.1,.7,1) .35s both}
+.lamp{transform-origin:152px 420px}
+.play .lamp{animation:pop .55s cubic-bezier(.2,.8,.2,1) 1.38s both}
+.play .house{animation:fadein .7s ease 1.4s both}
+.ring{transform-origin:152px 420px}
+.play .ring{animation:echo 1.2s cubic-bezier(.15,.7,.2,1) calc(1.4s + var(--i) * .15s) both}
+.beam{transform-origin:152px 420px}
+.play .beam{animation:beamopen .6s cubic-bezier(.25,.7,.25,1) 1.42s both}
+.play .motes{animation:drift 1.2s ease-out 1.8s both}
+.play .sf{animation:draw 1s cubic-bezier(.4,0,.2,1) .45s both}
+.play .sdark{animation:fadein .6s ease .5s both}
+.play .lit{animation:fadein .4s ease 1.7s both}
+.sweepw{opacity:0}
+.play .sweepw{animation:sweepw 1.1s linear 1.8s both}
+.hand{transform-origin:1080px 419px}
+.play .hand{animation:rot .8s cubic-bezier(.4,.05,.35,1) 1.85s both}
+.play .pie{animation:pie .8s cubic-bezier(.4,.05,.35,1) 1.85s both}
+.num{transform-origin:1080px 419px}
+.play .num{animation:numin .4s cubic-bezier(.2,.7,.2,1) 2.5s both}
+.play .t1{animation:fadeup .5s cubic-bezier(.2,.7,.2,1) 1.65s both}
+.play .t2{animation:fadeup .8s cubic-bezier(.2,.7,.2,1) 1.8s both}
+.play .t3{animation:fadeup .55s cubic-bezier(.2,.7,.2,1) 2.4s both}
+.play .slate{animation:fadeup .55s cubic-bezier(.2,.7,.2,1) 2.55s both}
+.arm{transform-origin:1040px 672px;transform:rotate(-8deg)}
+.play .arm{animation:clap .6s cubic-bezier(.3,.6,.2,1) 2.6s both}
+.play .runtime{animation:fadeup .5s cubic-bezier(.2,.7,.2,1) 2.75s both}
+.xm{stroke-dasharray:1}
+.play .xm{animation:draw .35s ease-out calc(2.95s + var(--i) * .15s) both}
+
+@keyframes slide{from{transform:translateX(-380px);opacity:0}to{transform:none;opacity:1}}
+@keyframes expose{from{opacity:1}to{opacity:0}}
+@keyframes fly{0%{transform:translate(-192px,-130px);opacity:0}8%{opacity:1}55%{transform:translate(-84px,-44px)}92%{opacity:1}100%{transform:translate(0,0);opacity:0}}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes echo{0%{transform:scale(.12);opacity:0}8%{opacity:.95}to{transform:scale(1);opacity:var(--o)}}
+@keyframes beamopen{from{transform:scaleX(0);opacity:.35}to{transform:scaleX(1);opacity:1}}
+@keyframes drift{from{opacity:0;transform:translate(-14px,8px)}to{opacity:1;transform:none}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes sweepw{0%{opacity:0}6%{opacity:1}72%{opacity:1}100%{opacity:0}}
+@keyframes rot{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes pie{from{stroke-dashoffset:351.86}to{stroke-dashoffset:0}}
+@keyframes numin{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:none}}
+@keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes clap{from{transform:rotate(-30deg)}to{transform:rotate(-8deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.sparkg{display:none!important}}
+</style></head>
+<body>
+<svg id="poster" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <clipPath id="fc"><rect width="175" height="96"/></clipPath>
+ <clipPath id="armclip"><rect x="1040" y="642" width="320" height="30"/></clipPath>
+ <clipPath id="stickclip"><rect x="1040" y="672" width="320" height="30"/></clipPath>
+ <clipPath id="scr"><rect x="780" y="250" width="600" height="338"/></clipPath>
+ <linearGradient id="bg" gradientUnits="userSpaceOnUse" x1="152" y1="0" x2="782" y2="0">
+  <stop offset="0" stop-color="#FF6A2A" stop-opacity=".95"/>
+  <stop offset=".22" stop-color="#FF8F5E" stop-opacity=".5"/>
+  <stop offset=".6" stop-color="#FFC9AE" stop-opacity=".4"/>
+  <stop offset="1" stop-color="#F6F6F4" stop-opacity=".55"/>
+ </linearGradient>
+ <linearGradient id="bg2" gradientUnits="userSpaceOnUse" x1="152" y1="0" x2="782" y2="0">
+  <stop offset="0" stop-color="#FFE3D2" stop-opacity=".9"/>
+  <stop offset="1" stop-color="#F6F6F4" stop-opacity=".18"/>
+ </linearGradient>
+ <linearGradient id="tail" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="-84" y2="-56">
+  <stop offset="0" stop-color="#FF6A2A" stop-opacity=".95"/><stop offset="1" stop-color="#FF6A2A" stop-opacity="0"/>
+ </linearGradient>
+ <radialGradient id="litg" gradientUnits="userSpaceOnUse" cx="1000" cy="419" r="470">
+  <stop offset="0" stop-color="#F6F6F4"/><stop offset=".7" stop-color="#E3DDD2"/><stop offset="1" stop-color="#C9C0B2"/>
+ </radialGradient>
+ <filter id="soft" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+ <filter id="soft2" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="16"/></filter>
+ <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="9"/></filter>
+ <filter id="glow2" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="3"/></filter>
+ <filter id="grain" x="0" y="0" width="100%" height="100%">
+  <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 .96  0 0 0 0 .96  0 0 0 0 .95  2.2 0 0 0 -.95"/>
+ </filter>
+</defs>
+
+<rect width="1440" height="900" fill="#07090F"/>
+<g>%%SCRATCH%%</g>
+
+<!-- ================= FILM STRIP ================= -->
+<g class="strip">
+ <rect x="-20" y="18" width="1480" height="190" fill="#0D1017" stroke="#F6F6F4" stroke-opacity=".28" stroke-width="1"/>
+ <g fill="#07090F" stroke="#F6F6F4" stroke-opacity=".3" stroke-width="1">%%HOLES%%</g>
+ %%EDGE%%
+ %%FRAMES%%
+ <!-- grease pencil cut mark -->
+ <g fill="none" stroke="#F6F6F4" stroke-linecap="round" stroke-linejoin="round">
+  <path class="xm" style="--i:0" pathLength="1" d="M806,50 C816,78 832,104 853,170" stroke-width="3.4" opacity=".92"/>
+  <path class="xm" style="--i:1" pathLength="1" d="M853,48 C840,84 826,118 805,168" stroke-width="3.4" opacity=".92"/>
+  <path class="xm" style="--i:0" pathLength="1" d="M808,52 C818,80 834,106 851,166" stroke-width="1.2" opacity=".5"/>
+ </g>
+</g>
+
+<!-- ================= PROJECTOR ================= -->
+<g class="house" fill="none" stroke="#F6F6F4" stroke-width="1" opacity=".4">
+ %%REELS%%
+ <path d="M-20,384 H116 L130,396 V444 L116,456 H-20"/>
+ <rect x="130" y="404" width="20" height="32"/>
+ <line x1="60" y1="384" x2="60" y2="456" opacity=".5"/>
+</g>
+
+<!-- ================= BEAM ================= -->
+<g class="beam">
+ <g filter="url(#soft)"><polygon points="152,420 782,246 782,592" fill="url(#bg)"/></g>
+ <g filter="url(#soft2)"><polygon points="152,420 782,326 782,512" fill="url(#bg2)" opacity=".7"/></g>
+ <g stroke="#F6F6F4" stroke-opacity=".16" stroke-width="1"><line x1="152" y1="420" x2="782" y2="246"/><line x1="152" y1="420" x2="782" y2="592"/></g>
+</g>
+<g class="motes" fill="#F6F6F4">%%MOTES%%</g>
+
+<!-- ================= SCREEN ================= -->
+<rect class="sdark" x="780" y="250" width="600" height="338" fill="#0B0E15"/>
+<g class="lit">
+ <rect x="780" y="250" width="600" height="338" fill="url(#litg)"/>
+ <g clip-path="url(#scr)">
+  <g fill="none" stroke="#07090F">
+   <line x1="780" y1="419" x2="1380" y2="419" stroke-width="1.5" opacity=".8"/>
+   <line x1="1080" y1="250" x2="1080" y2="588" stroke-width="1.5" opacity=".8"/>
+   <circle cx="1080" cy="419" r="148" stroke-width="3.5"/>
+   <circle cx="1080" cy="419" r="139" stroke-width="1"/>
+   <circle cx="1080" cy="419" r="112" stroke-width="1.5"/>
+   <g stroke-width="1.5">%%TICKS%%</g>
+   <circle cx="1352" cy="278" r="7" stroke-width="1.5"/><circle cx="1352" cy="278" r="2" fill="#07090F"/>
+   <circle cx="808" cy="560" r="7" stroke-width="1.5"/><circle cx="808" cy="560" r="2" fill="#07090F"/>
+  </g>
+  <text x="800" y="278" class="mono" font-size="11" letter-spacing="2.2" fill="#07090F" opacity=".7">PICTURE START</text>
+  <text x="1360" y="574" class="mono" font-size="11" letter-spacing="2.2" fill="#07090F" opacity=".7" text-anchor="end">HEAD LEADER</text>
+ </g>
+</g>
+<g class="sweepw" clip-path="url(#scr)">
+ <circle class="pie" cx="1080" cy="419" r="56" fill="none" stroke="#07090F" stroke-opacity=".16" stroke-width="112" stroke-dasharray="351.86 351.86" transform="rotate(-90 1080 419)"/>
+ <g class="hand"><line x1="1080" y1="419" x2="1080" y2="271" stroke="#07090F" stroke-width="3"/><circle cx="1080" cy="419" r="6" fill="#07090F"/></g>
+</g>
+<text class="num" x="1080" y="489" text-anchor="middle" font-size="200" font-weight="800" fill="#07090F">3</text>
+<!-- double border, title-card style -->
+<g fill="none" stroke="#F6F6F4">
+ <rect class="sf" pathLength="1" x="780" y="250" width="600" height="338" stroke-width="1.6"/>
+ <rect class="sf" pathLength="1" x="768" y="238" width="624" height="362" stroke-width="1" stroke-opacity=".6"/>
+</g>
+
+<!-- ================= LAMP / SPARK ================= -->
+<g class="ring" style="--i:0;--o:.28" fill="none" stroke="#FF6A2A" stroke-width="1.3" opacity=".28"><circle cx="152" cy="420" r="44"/></g>
+<g class="ring" style="--i:1;--o:.18" fill="none" stroke="#FF6A2A" stroke-width="1.1" opacity=".18"><circle cx="152" cy="420" r="72"/></g>
+<g class="ring" style="--i:2;--o:.11" fill="none" stroke="#FF6A2A" stroke-width="1" opacity=".11"><circle cx="152" cy="420" r="104"/></g>
+<g class="lamp">
+ <g filter="url(#glow)"><circle cx="152" cy="420" r="22" fill="#FF6A2A" opacity=".6"/></g>
+ <g filter="url(#glow2)"><circle cx="152" cy="420" r="9" fill="#FF8F5E"/></g>
+ <circle cx="152" cy="420" r="5.5" fill="#FFF1E6"/>
+</g>
+<g transform="translate(152 420)"><g class="sparkg">
+ <polygon points="0,-3.4 -84,-56 3.4,0" fill="url(#tail)"/>
+ <g filter="url(#glow2)"><circle r="7" fill="#FF6A2A"/></g>
+ <circle r="4" fill="#FFE3D2"/>
+</g></g>
+
+<!-- ================= TITLE BLOCK ================= -->
+<g class="t1">
+ <text x="72" y="628" font-size="22" font-weight="800" fill="#F6F6F4">06</text>
+ <line x1="112" y1="621" x2="196" y2="621" stroke="#F6F6F4" stroke-width="1.5"/>
+ <text x="214" y="626" class="mono" font-size="12" letter-spacing="3.6" fill="#F6F6F4" opacity=".8">SERVICE SIX OF SEVEN</text>
+</g>
+<text class="t2" x="66" y="790" font-size="176" font-weight="800" letter-spacing="-6" fill="#F6F6F4">VIDEO</text>
+<text class="t3" x="72" y="838" font-size="20" font-weight="400" fill="#F6F6F4" opacity=".92">Your product, on film, in a minute.</text>
+
+<!-- ================= RUNNING TIME ================= -->
+<g class="runtime">
+ <line x1="790" y1="640" x2="960" y2="640" stroke="#F6F6F4" stroke-width="1" opacity=".5"/>
+ <text x="790" y="662" class="mono" font-size="11" letter-spacing="2.6" fill="#F6F6F4" opacity=".7">RUNNING TIME</text>
+ <text x="788" y="728" class="mono" font-size="60" font-weight="500" fill="#F6F6F4">0:60</text>
+ <text x="790" y="758" class="mono" font-size="11" letter-spacing="2.6" fill="#F6F6F4" opacity=".7">REEL 1 OF 1</text>
+</g>
+
+<!-- ================= CLAPPER SLATE ================= -->
+<g class="slate">
+ <g clip-path="url(#stickclip)"><rect x="1040" y="672" width="320" height="30" fill="#07090F"/><g fill="#F6F6F4">%%STICK%%</g></g>
+ <rect x="1040" y="672" width="320" height="30" fill="none" stroke="#F6F6F4" stroke-width="1.5"/>
+ <g class="arm">
+  <g clip-path="url(#armclip)"><rect x="1040" y="642" width="320" height="30" fill="#07090F"/><g fill="#F6F6F4">%%ARM%%</g></g>
+  <rect x="1040" y="642" width="320" height="30" fill="none" stroke="#F6F6F4" stroke-width="1.5"/>
+ </g>
+ <circle cx="1040" cy="672" r="4.5" fill="#07090F" stroke="#F6F6F4" stroke-width="1.5"/>
+ <rect x="1040" y="702" width="320" height="152" fill="#07090F" stroke="#F6F6F4" stroke-width="1.5"/>
+ <g stroke="#F6F6F4" stroke-width="1" opacity=".55"><line x1="1040" y1="746" x2="1360" y2="746"/><line x1="1040" y1="806" x2="1360" y2="806"/><line x1="1200" y1="746" x2="1200" y2="806"/></g>
+ <g class="mono" fill="#F6F6F4">
+  <text x="1054" y="719" font-size="11" letter-spacing="2.2" opacity=".6">PROD.</text>
+  <text x="1054" y="739" font-size="19" font-weight="500" letter-spacing="1">YOUR BUSINESS</text>
+  <text x="1054" y="763" font-size="11" letter-spacing="2.2" opacity=".6">SCENE</text>
+  <text x="1054" y="796" font-size="30" font-weight="500">1</text>
+  <text x="1214" y="763" font-size="11" letter-spacing="2.2" opacity=".6">TAKE</text>
+  <text x="1214" y="796" font-size="30" font-weight="500">1</text>
+  <text x="1054" y="823" font-size="11" letter-spacing="2.2" opacity=".6">DIR.</text>
+  <text x="1054" y="845" font-size="19" font-weight="500" letter-spacing="1">BRYAN</text>
+ </g>
+</g>
+
+<!-- ================= FILM GRAIN ================= -->
+<rect width="1440" height="900" filter="url(#grain)" opacity=".26" style="mix-blend-mode:screen;pointer-events:none"/>
+</svg>
+<script>
+window.SPARK_ENTRY = {x:0, y:322.3, t:0.595};
+(function(){
+ var root=document.documentElement;
+ var q=new URLSearchParams(location.search), T=q.get('t');
+ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function reflow(){void root.getBoundingClientRect();}
+ function freeze(t){document.getAnimations().forEach(function(a){a.pause();a.currentTime=t*1000;});}
+ window.play=function(){
+  root.classList.remove('play');reflow();
+  if(reduce)return;
+  root.classList.add('play');reflow();
+  var ends=document.getAnimations().map(function(a){return a.effect.getComputedTiming().endTime;});
+  window.DURATION=Math.max.apply(null,ends)/1000;
+  if(T!==null&&T!==''&&!isNaN(parseFloat(T)))freeze(parseFloat(T));
+ };
+ window.finish=function(){root.classList.remove('play');};
+ window.addEventListener('message',function(e){if(e.data==='play')play();else if(e.data==='finish')finish();});
+ play();
+})();
+</script></body></html>
