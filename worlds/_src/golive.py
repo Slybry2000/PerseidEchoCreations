@@ -21,7 +21,7 @@ def og(title, desc, url):
     return ('<meta property="og:type" content="website"><meta property="og:site_name" content="Perseid Echo Creations">\n'
             '<meta property="og:title" content="%s">\n<meta property="og:description" content="%s">\n'
             '<meta property="og:url" content="%s">\n'
-            '<meta property="og:image" content="https://perseidechocreations.com/art/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">\n'
+            '<meta property="og:image" content="https://perseidechocreations.com/art/og-seven.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">\n'
             '<meta name="twitter:card" content="summary_large_image">\n' % (title, desc, url))
 
 
